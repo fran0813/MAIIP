@@ -1,0 +1,20 @@
+body{
+
+}
+
+/* Slider */
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+     /* width: 70%;*/
+      margin: auto;
+}
+
+/* Color del footer*/
+.color-footer{
+	background-color: #870000;
+}
+
+/* Color del copyrigth*/
+.color-footer-leter {
+	color: #FFFFFF;
+}
