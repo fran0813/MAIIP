@@ -1,6 +1,6 @@
-@extends ('layout')
+@extends('layout')
 
-	@section ('content')
+	@section('content')
 
 	<!-- Contenido -->
 	<div class="col-sm-12 col-md-12 col-lg-12">
@@ -60,7 +60,7 @@
 			<p class="text-center">El Modelo Alternativo de Inclusión e Innovación Productiva es una herramienta multidimensional, dinámica y funcional que busca generar innovación social en territorios con altos niveles de ruralidad en Colombia, a partir de la construcción con las comunidades de un sistema de generación de valor orientado a ampliar las capacidades territoriales a partir de instrumentos de gestión empresarial aplicados a las dimensiones productivas, asociativas, turísticas, patrimoniales y de conectividad</p>
 
 			<center>
-				<a class="btn btn-danger" href="">Mas información</a>
+				<a class="btn btn-danger" href="http://www.unipiloto.edu.co/construccion-social-del-territorio/maiip/">Mas información</a>
 			</center>
 
 			<br>

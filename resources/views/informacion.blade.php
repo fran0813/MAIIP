@@ -1,6 +1,6 @@
-@extends ('layout')
+@extends('layout')
 
-	@section ('content')
+	@section('content')
 
 	<h1>Hello</h1>
 
