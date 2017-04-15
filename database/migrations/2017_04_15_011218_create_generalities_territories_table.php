@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGeneralitiesTerritoryTable extends Migration
+class CreateGeneralitiesTerritoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateGeneralitiesTerritoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('GeneralidadesTerritorio', function (Blueprint $table) {
+        Schema::create('GeneralidadesTerritorios', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('anio');
             $table->decimal('temperatura', 2, 1);
             $table->integer('alturaNivMar');
             $table->String('catMun', 10);
-            $table->integer('idMunicipio')->unsigned();
-            $table->foreign('idMunicipio')->references('id')->on('Municipio');
+            $table->integer('idMunicipios')->unsigned();
+            $table->foreign('idMunicipios')->references('id')->on('Municipios');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateGeneralitiesTerritoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('GeneralidadesTerritorio');
+        Schema::dropIfExists('GeneralidadesTerritorios');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDemographyTable extends Migration
+class CreateDemographicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDemographyTable extends Migration
      */
     public function up()
     {
-        Schema::create('Demografia', function (Blueprint $table) {
+        Schema::create('Demografias', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('anio');
             $table->integer('pobEdadTrabajar');
@@ -29,8 +29,8 @@ class CreateDemographyTable extends Migration
             $table->integer('indRuralidad');
             $table->integer('pobTotal');
             $table->integer('crecPob');
-            $table->integer('idMunicipio')->unsigned();
-            $table->foreign('idMunicipio')->references('id')->on('Municipio');
+            $table->integer('idMunicipios')->unsigned();
+            $table->foreign('idMunicipios')->references('id')->on('Municipios');
             $table->timestamps();
         });
     }
@@ -42,6 +42,6 @@ class CreateDemographyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Demografia');
+        Schema::dropIfExists('Demografias');
     }
 }

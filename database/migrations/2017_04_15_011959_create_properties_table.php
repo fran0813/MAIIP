@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGeneralitiesTable extends Migration
+class CreatePropertiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateGeneralitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Generalidades', function (Blueprint $table) {
+        Schema::create('Predios', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('rural', 7, 3);
-            $table->decimal('urbano', 7, 3);
-            $table->decimal('total', 7, 3);
+            $table->integer('rural');
+            $table->integer('urbano');
+            $table->integer('total');
             $table->integer('idGeneralidadesTerritorios')->unsigned();
             $table->foreign('idGeneralidadesTerritorios')->references('id')->on('GeneralidadesTerritorios');
             $table->timestamps();
@@ -31,6 +31,6 @@ class CreateGeneralitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Generalidades');
+        Schema::dropIfExists('Predios');
     }
 }
