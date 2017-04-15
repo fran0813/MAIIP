@@ -8,7 +8,7 @@ class Territorio extends Model
 {
     protected $table = "territorios";
 
-    protected $fillable = ['constRural', 'constUrbano', 'constTotal', 'terrRural', 'terrUrbano', 'terrTotal', 'idGeneralidadesTerritorios'];
+    protected $fillable = ['constRural', 'constUrbano', 'constTotal', 'terrRural', 'terrUrbano', 'terrTotal', 'generalidadterritorio_id'];
 
     // Relacion uno a uno con generalidadterritorio
     public function generalidadterritorio()

@@ -1,5 +1,9 @@
 @extends('layout')
 
+	@section('titulo')
+		index
+	@endsection
+
 	@section('content')
 
 	<!-- Contenido -->
