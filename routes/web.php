@@ -13,4 +13,4 @@
 
 Route::get('/', 'MainController@index');
 
-Route::get('informacion', 'MainController@show');
+Route::get('informacion/{id?}', 'MainController@show');

@@ -1,11 +1,13 @@
-@extends('layout')
+@extends('base.layout')
 
-	@section('titulo')
-		información
-	@endsection
+	@section('titulo', 'información')
 
 	@section('content')
 
-	<h1>Hello</h1>
+	<h1>{{$prueba->nombre}}</h1>
+
+	{{-- @for()
+
+	@endfor --}}
 
 	@endsection

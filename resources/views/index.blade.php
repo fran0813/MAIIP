@@ -1,8 +1,6 @@
-@extends('layout')
+@extends('base.layout')
 
-	@section('titulo')
-		index
-	@endsection
+	@section('titulo', 'index')
 
 	@section('content')
 

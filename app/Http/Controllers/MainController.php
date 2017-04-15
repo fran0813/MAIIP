@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use App\Departamento;
 
 class MainController extends Controller
 {
@@ -13,11 +13,14 @@ class MainController extends Controller
     	return view('index');
     }
 
-    public function show()
+    public function show($id ='null')
     {
-    	$users = DB::select('select * from users where id = ?', [1]);
+    	$dep = Departamento::find($id);
 
-        return view('informacion', ['users' => $users]);
+    	$dep->codigo;
+    	$dep->nombre;
+    	
+        return view('informacion', ['prueba' => $dep]);
     }
 
 }
