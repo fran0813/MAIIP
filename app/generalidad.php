@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class generalidad extends Model
+class Generalidad extends Model
 {
     protected $table = "generalidades";
 
-    protected $fileable = ['rural', 'urbano', 'total', 'idGeneralidadesTerritorios']
+    protected $fillable = ['rural', 'urbano', 'total', 'idGeneralidadesTerritorios'];
 }
