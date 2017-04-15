@@ -17,8 +17,8 @@ class CreateTownsTable extends Migration
             $table->increments('id');
             $table->integer('codigo')->unique();
             $table->String('nombre', 45);
-            $table->integer('idDepartamentos')->unsigned();
-            $table->foreign('idDepartamentos')->references('id')->on('Departamentos');
+            $table->integer('departamento_id')->unsigned();
+            $table->foreign('departamento_id')->references('id')->on('Departamentos');
             $table->timestamps();
         });
     }

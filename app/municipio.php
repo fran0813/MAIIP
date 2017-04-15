@@ -25,6 +25,6 @@ class Municipio extends Model
     // Relacion uno a muchos con demografia
     public function demografias()
     {
-        return $this->hasMany('App\Generalidadterritorio');
+        return $this->hasMany('App\Demografia');
     }
 }

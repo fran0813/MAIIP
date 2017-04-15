@@ -15,11 +15,11 @@ class CreateGeneralitiesTable extends Migration
     {
         Schema::create('Generalidades', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('rural', 7, 3);
-            $table->decimal('urbano', 7, 3);
-            $table->decimal('total', 7, 3);
-            $table->integer('idGeneralidadesTerritorios')->unsigned();
-            $table->foreign('idGeneralidadesTerritorios')->references('id')->on('GeneralidadesTerritorios');
+            $table->double('rural', 7, 3);
+            $table->double('urbano', 7, 3);
+            $table->double('total', 7, 3);
+            $table->integer('generalidadterritorio_id')->unsigned();
+            $table->foreign('generalidadterritorio_id')->references('id')->on('GeneralidadesTerritorios');
             $table->timestamps();
         });
     }

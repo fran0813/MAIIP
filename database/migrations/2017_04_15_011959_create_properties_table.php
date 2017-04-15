@@ -18,8 +18,8 @@ class CreatePropertiesTable extends Migration
             $table->integer('rural');
             $table->integer('urbano');
             $table->integer('total');
-            $table->integer('idGeneralidadesTerritorios')->unsigned();
-            $table->foreign('idGeneralidadesTerritorios')->references('id')->on('GeneralidadesTerritorios');
+            $table->integer('generalidadterritorio_id')->unsigned();
+            $table->foreign('generalidadterritorio_id')->references('id')->on('GeneralidadesTerritorios');
             $table->timestamps();
         });
     }

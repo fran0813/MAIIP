@@ -18,11 +18,11 @@ class CreateTerritoriesTable extends Migration
             $table->integer('constRural');
             $table->integer('constUrbano');
             $table->integer('constTotal');
-            $table->decimal('terrRural', 10, 5);
-            $table->decimal('terrUrbano', 10, 5);
-            $table->decimal('terrTotal', 10, 5);
-            $table->integer('idGeneralidadesTerritorios')->unsigned();
-            $table->foreign('idGeneralidadesTerritorios')->references('id')->on('GeneralidadesTerritorios');
+            $table->double('terrRural', 10, 5);
+            $table->double('terrUrbano', 10, 5);
+            $table->double('terrTotal', 10, 5);
+            $table->integer('generalidadterritorio_id')->unsigned();
+            $table->foreign('generalidadterritorio_id')->references('id')->on('GeneralidadesTerritorios');
             $table->timestamps();
         });
     }
