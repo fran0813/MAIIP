@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class MainController extends Controller
 {
@@ -14,7 +15,9 @@ class MainController extends Controller
 
     public function show()
     {
-    	return view('informacion');
+    	$users = DB::select('select * from users where id = ?', [1]);
+
+        return view('informacion', ['users' => $users]);
     }
 
 }

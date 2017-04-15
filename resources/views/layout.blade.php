@@ -16,8 +16,6 @@
 
 	<body>
 
-		@section('header')
-
 		<!-- Encabezado -->
 		<header>
 		
@@ -77,11 +75,7 @@
 				
 		</header>
 
-		@show
-
 		@yield('content')
-
-		@section('footer')
 		
 		<!-- Pie de pagina -->
 		<footer>
@@ -102,8 +96,6 @@
 			</div>
 
 		</footer>
-
-		@show
 		
 	</body>
 
