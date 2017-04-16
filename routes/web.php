@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', 'MainController@index');
+// ruta principal
+Route::get('/', function(){
+	return view('index');
+});
 
-Route::get('informacion/{id?}', 'MainController@show');
+// ruta para mostrar la información
+Route::resource('informacion', 'MainsController');
+
+// rutas para admin
+Route::group(['prefix' => 'admin'], function(){
+
+});
