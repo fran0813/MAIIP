@@ -24,21 +24,18 @@
 
 				{{-- departamento --}}
 				<div class="col-sm-5 col-md-5 col-lg-5">
-					<select class="form-control">
+					<select id="dep" class="form-control" onchange="mostrarMunicipios()" >
 						<option>Seleccione un departamento</option>
 							@foreach($departamentos as $departamento)
-								<option>{{ $departamento->id }}</option>
+								<option value="{{ $departamento->id }}">{{ $departamento->nombre }}</option>
 							@endforeach
 					</select>
 				</div>
 
 				{{-- municipio --}}
 				<div class="col-sm-5 col-md-5 col-lg-5">
-					<select class="form-control">
-						<option>Seleccione un municipio</option>
-							@foreach($municipios as $municipio)
-								<option>{{ $municipio->departamento_id }}</option>
-							@endforeach
+					<select id="mun" class="form-control">
+						<option>Seleccione un municipio</option>			
 					</select>
 				</div>
 
@@ -51,4 +48,10 @@
 
 	</div>
 
+	@endsection
+
+	@section('javascript')
+
+		<script src="{{ asset('js/main.js') }}"></script>
+	
 	@endsection
