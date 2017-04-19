@@ -27,7 +27,7 @@
 					<select class="form-control">
 						<option>Seleccione un departamento</option>
 							@foreach($departamentos as $departamento)
-								<option>{{ $departamento->id }}</option>
+								<option id="{{ $departamento->id}}">{{ $departamento->nombre}}</option>
 							@endforeach
 					</select>
 				</div>
@@ -52,3 +52,5 @@
 	</div>
 
 	@endsection
+
+	
