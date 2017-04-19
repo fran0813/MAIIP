@@ -15,7 +15,7 @@ class CreateTownsTable extends Migration
     {
         Schema::create('Municipios', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('codigo')->unique();
+            $table->integer('codigoM')->unique();
             $table->String('nombre', 45);
             $table->integer('departamento_id')->unsigned();
             $table->foreign('departamento_id')->references('id')->on('Departamentos');

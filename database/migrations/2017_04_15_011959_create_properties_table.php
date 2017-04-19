@@ -15,9 +15,9 @@ class CreatePropertiesTable extends Migration
     {
         Schema::create('Predios', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('rural');
-            $table->integer('urbano');
-            $table->integer('total');
+            $table->integer('ruralP');
+            $table->integer('urbanoP');
+            $table->integer('totalP');
             $table->integer('generalidadterritorio_id')->unsigned();
             $table->foreign('generalidadterritorio_id')->references('id')->on('GeneralidadesTerritorios');
             $table->timestamps();

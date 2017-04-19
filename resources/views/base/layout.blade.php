@@ -11,7 +11,7 @@
 
 		{{-- Botstrap --}}
 		<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/principal.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
 	</head>
 
