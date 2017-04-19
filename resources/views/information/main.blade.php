@@ -4,7 +4,7 @@
 
 	@section('content')
 
-	{{-- pagina de principla de la informacion --}}
+	{{-- Inicio --}}
 	<div class="col-sm-12 col-md-12 col-lg-12">
 
 		{{-- migas de pan --}}
@@ -18,13 +18,13 @@
 			<div class="col-sm-12 col-md-12 col-lg-12">
 
 				{{-- codigo --}}
-				<div class="col-sm-2 col-md-2 col-lg-2">
-					<input class="form-control" type="text">
+				<div id="cod" class="col-sm-2 col-md-2 col-lg-2">
+					<input class="form-control" type="text" value="">
 				</div>
 
 				{{-- departamento --}}
 				<div class="col-sm-5 col-md-5 col-lg-5">
-					<select id="dep" class="form-control" onchange="mostrarMunicipios()" >
+					<select id="dep" class="form-control" onchange="mostrarMunicipios()">
 						<option>Seleccione un departamento</option>
 							@foreach($departamentos as $departamento)
 								<option value="{{ $departamento->id }}">{{ $departamento->nombre }}</option>
@@ -34,7 +34,7 @@
 
 				{{-- municipio --}}
 				<div class="col-sm-5 col-md-5 col-lg-5">
-					<select id="mun" class="form-control">
+					<select id="mun" class="form-control" onchange="mostrarCodigo()">
 						<option>Seleccione un municipio</option>			
 					</select>
 				</div>
@@ -46,6 +46,18 @@
 		<br>
 		<br>
 
+	</div>
+
+	{{-- Tabla - Graficas --}}
+	<div class="col-sm-12 col-md-12 col-lg-12">
+
+		<div class="col-sm-3 col-md-3 col-lg-3">
+			<a href="#">Generalidades y territorio</a> 
+			<br>
+			<a href="#">Demografia</a>
+			<br>
+		</div>
+			
 	</div>
 
 	@endsection

@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use App\Departamento;
-use App\Municipio;
 
 class MainsController extends Controller
 {
@@ -16,11 +14,8 @@ class MainsController extends Controller
      */
     public function index()
     {
-      // $departamentos = DB::table('departamentos')->orderBy('nombre', 'desc')->get();
       $departamentos = Departamento::orderBy('nombre', 'asc')->get(); 
-      $municipios = Municipio::orderBy('nombre', 'asc')->get();
-
-      return view('information.main')->with(['departamentos'=>$departamentos, 'municipios'=>$municipios]);
+      return view('information.main')->with(['departamentos'=>$departamentos]);
     }
 
     /**

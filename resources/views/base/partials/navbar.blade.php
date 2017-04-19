@@ -42,8 +42,7 @@
 
 	    <div class="collapse navbar-collapse" id="idnavbar">
 	    	<ul class="nav navbar-nav">
-	    		<li class="active"><a href="#">Inicio <span class="sr-only">(current)</span></a></li>
-
+	    		<li class="active"><a href="/">Inicio <span class="sr-only">(current)</span></a></li>
 	    		<li><a href="informacion">Ver</a></li>
 	    	</ul>
 	    </div>

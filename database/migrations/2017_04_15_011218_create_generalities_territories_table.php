@@ -15,7 +15,7 @@ class CreateGeneralitiesTerritoriesTable extends Migration
     {
         Schema::create('GeneralidadesTerritorios', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('anio');
+            $table->dateTime('anioGT');
             $table->double('temperatura', 4, 2);
             $table->integer('alturaNivMar');
             $table->String('catMun', 10);
