@@ -31,6 +31,7 @@
 		</section>
 
 		<!-- Pie de pagina -->
+		<br>
 		<footer>
 
 			@include('base.partials.footer')

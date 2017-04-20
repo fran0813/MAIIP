@@ -27,11 +27,7 @@
 					<select id="dep" class="form-control" onchange="mostrarMunicipios()">
 						<option>Seleccione un departamento</option>
 							@foreach($departamentos as $departamento)
-<<<<<<< HEAD
-								<option id="{{ $departamento->id}}">{{ $departamento->nombre}}</option>
-=======
 								<option value="{{ $departamento->id }}">{{ $departamento->nombre }}</option>
->>>>>>> 7e3b6accbdfc19ae0a62005860a156b5f44f7950
 							@endforeach
 					</select>
 				</div>
@@ -52,21 +48,18 @@
 
 	</div>
 
-<<<<<<< HEAD
-	@endsection
-
 	
-=======
-	{{-- Tabla - Graficas --}}
 	<div class="col-sm-12 col-md-12 col-lg-12">
+		<br>
+		{{-- Submenu --}}
+		@include('base.partials.submenu')
 
-		<div class="col-sm-3 col-md-3 col-lg-3">
-			<a href="#">Generalidades y territorio</a> 
-			<br>
-			<a href="#">Demografia</a>
-			<br>
+		{{-- Tabla - Graficas --}}
+		<div class="col-sm-10 col-md-10 col-lg-10" style="background-color: #fff;padding: 18px;">
+			Tablas y graficas
+		<br>
 		</div>
-			
+		
 	</div>
 
 	@endsection
@@ -76,4 +69,4 @@
 		<script src="{{ asset('js/main.js') }}"></script>
 	
 	@endsection
->>>>>>> 7e3b6accbdfc19ae0a62005860a156b5f44f7950
+

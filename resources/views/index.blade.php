@@ -5,7 +5,7 @@
 	@section('content')
 
 	<!-- Contenido -->
-	<div class="col-sm-12 col-md-12 col-lg-12">
+	<div class="col-sm-12 col-md-12 col-lg-12" style="padding-left: 0;padding-right: 0;">
 
 		<!-- Slider -->
 		<div class="col-sm-12 col-md-12 col-lg-12">
@@ -53,17 +53,25 @@
 		</div>
 
 		<!-- Contenido MAIIP -->
-		<div class="col-sm-12 col-md-12 col-lg-12">
+		<div class="col-sm-12 col-md-12 col-lg-12" style="padding-left: 0;padding-right: 0;background-color: #fff">
 
 		<br>
 
-			<p class="text-center"><b>MAIIP</b></p>
+			<div class="col-sm-7 col-md-7 col-lg-7">
 
-			<p class="text-center">El Modelo Alternativo de Inclusión e Innovación Productiva es una herramienta multidimensional, dinámica y funcional que busca generar innovación social en territorios con altos niveles de ruralidad en Colombia, a partir de la construcción con las comunidades de un sistema de generación de valor orientado a ampliar las capacidades territoriales a partir de instrumentos de gestión empresarial aplicados a las dimensiones productivas, asociativas, turísticas, patrimoniales y de conectividad</p>
+				<p class="text-center titulo" ><b>MAIIP</b></p>
 
-			<center>
-				<a class="btn btn-danger" href="http://www.unipiloto.edu.co/construccion-social-del-territorio/maiip/">Mas información</a>
-			</center>
+				<p class="text-center" style="font-size: 15px;">El Modelo Alternativo de Inclusión e Innovación Productiva es una herramienta multidimensional, dinámica y funcional que busca generar innovación social en territorios con altos niveles de ruralidad en Colombia, a partir de la construcción con las comunidades de un sistema de generación de valor orientado a ampliar las capacidades territoriales a partir de instrumentos de gestión empresarial aplicados a las dimensiones productivas, asociativas, turísticas, patrimoniales y de conectividad</p>
+
+				<center>
+					<br>
+					<a class="btn btn-danger" href="http://www.unipiloto.edu.co/construccion-social-del-territorio/maiip/" style="font-size: 17px;">Mas información</a>
+				</center>
+
+			</div>
+			<div class="col-sm-5 col-md-5 col-lg-5" style="padding-left: 0;padding-right: 0;">
+			<img class="img-responsive" src="{{ asset('img/img1.png')}}" alt="Foto">
+			</div>
 
 			<br>
 		</div>
