@@ -12,35 +12,43 @@
 		$resultados = $sql->fetchAll();
 		$html = "";
 
+		$html .= "<table class='table table-bordered'>
+					<thead>
+						<tr>
+							<th>Predios</th>
+							<th>Valores</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Zona rural</td>";
 		foreach ($resultados as $resultado) {
 			$ruralP = $resultado['ruralP'];
-			$urbanoP = $resultado['urbanoP'];
-			$totalP = $resultado['totalP'];
 
-			$html .= "<table class='table table-bordered'>
-							<thead>
-								<tr>
-									<th>Predios</th>
-									<th>Valores</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Zona rural</td>
-									<td>$ruralP</td>
-								</tr>
-								<tr>
-									<td>Zona urbana</td>
-									<td>$urbanoP</td>
-								</tr>
-								<tr>
-									<td>Total por municipio</td>
-									<td>$totalP</td>
-								</tr>
-							</tbody>
-						</table>";
+			$html .= "<td>$ruralP</td>";
 		};
 
+		$html .="</tr>
+					<tr>
+						<td>Zona urbana</td>";
+		foreach ($resultados as $resultado) {
+			$urbanoP = $resultado['urbanoP'];
+
+			$html .= "<td>$urbanoP</td>";							
+		};
+
+		$html .="</tr>
+					<tr>
+						<td>Total por municipio</td>";
+		foreach ($resultados as $resultado) {
+			$totalP = $resultado['totalP'];
+
+			$html .= "<td>$totalP</td>";
+		};
+		$html .=		"</tr>
+					</tbody>
+				</table>";
+		
 		echo json_encode($html);
 
 	}catch(PDOException $e){

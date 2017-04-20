@@ -6,7 +6,7 @@
 	</div>
 	<div class="sub-cuerpo">
 		<div class="sub-texto-cajon"><a href="/tabla/generalidadesterritorio" class="blanco">Generalidades y territorio</a></div>
-		<div class="sub-texto-cajon"><a href="#" class="blanco">Demografia</a></div>
+		<div class="sub-texto-cajon"><a href="/tabla/demografia" class="blanco">Demografia</a></div>
 		<div class="sub-texto-cajon"><a href="#" class="blanco">Vivienda y Servicios Públicos</a></div>
 		<div class="sub-texto-cajon"><a href="#" class="blanco">Salud</a></div>
 		<div class="sub-texto-cajon"><a href="#" class="blanco">Educación</a></div>

@@ -12,41 +12,52 @@
 		$resultados = $sql->fetchAll();
 		$html = "";
 
+		$html .= "<table class='table table-bordered'>
+					<thead>
+						<tr>
+							<th>Territorio</th>
+							<th>A. construida</th>
+							<th>A. terreno</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Zona rural</td>";
 		foreach ($resultados as $resultado) {
 			$constRural = $resultado['constRural'];
-			$constUrbano = $resultado['constUrbano'];
-			$constTotal = $resultado['constTotal'];
 			$terrRural = $resultado['terrRural'];
+
+			$html .= "<td>$constRural</td>
+						<td>$terrRural</td>";
+		};
+
+		$html .= "</tr>
+					<tr>
+						<td>Zona urbana</td>";
+
+		foreach ($resultados as $resultado) {
+			$constUrbano = $resultado['constUrbano'];
 			$terrUrbano = $resultado['terrUrbano'];
+
+			$html .= "<td>$constUrbano</td>
+						<td>$terrUrbano</td>";						
+		};
+
+		$html .="</tr>
+					<tr>
+						<td>Total por municipio</td>";
+
+		foreach ($resultados as $resultado) {
+			$constTotal = $resultado['constTotal'];
 			$terrTotal = $resultado['terrTotal'];
 
-			$html .= "<table class='table table-bordered'>
-							<thead>
-								<tr>
-									<th>Territorio</th>
-									<th>A. construida</th>
-									<th>A. terreno</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Zona rural</td>
-									<td>$constRural</td>
-									<td>$terrRural</td>
-								</tr>
-								<tr>
-									<td>Zona urbana</td>
-									<td>$constUrbano</td>
-									<td>$terrUrbano</td>
-								</tr>
-								<tr>
-									<td>Total por municipio</td>
-									<td>$constTotal</td>
-									<td>$terrTotal</td>
-								</tr>
-							</tbody>
-						</table>";
+			$html .= "<td>$constTotal</td>
+						<td>$terrTotal</td>";
 		};
+
+		$html .=		"</tr>
+					</tbody>
+				</table>";
 
 		echo json_encode($html);
 

@@ -23,5 +23,6 @@ Route::get('informacion', 'MainsController@index');
 Route::group(['prefix' => 'tabla'], function(){
 
 	Route::get('generalidadesterritorio', 'TablesController@generalidadesterritorio');
+	Route::get('demografia', 'TablesController@demografia');
 
 });

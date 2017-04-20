@@ -6,7 +6,7 @@
 		
 		<div class="col-sm-3 col-md-3 col-lg-3 pull-right">
 			
-			<a class="btn btn-danger pull-right" href="#" onclick="mostrarTablas()" style="font-size: 17px;">Mas información</a>
+			<a class="btn btn-danger pull-right" href="#" onclick="mostrarTablas()" style="font-size: 17px;">Mostrar</a>
 			
 			<br>
 			<br>

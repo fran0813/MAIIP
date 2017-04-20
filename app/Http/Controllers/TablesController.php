@@ -12,4 +12,10 @@ class TablesController extends Controller
       $departamentos = Departamento::orderBy('nombre', 'asc')->get(); 
       return view('information.tables.generalidadesterritorio')->with(['departamentos'=>$departamentos]);
     }
+
+    public function demografia()
+    {
+      $departamentos = Departamento::orderBy('nombre', 'asc')->get(); 
+      return view('information.tables.demografia')->with(['departamentos'=>$departamentos]);
+    }
 }
