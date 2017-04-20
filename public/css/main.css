@@ -129,3 +129,17 @@ body{
 .blanco{
 	color: #fff;
 }
+
+/* Thead estilo */
+.thead-s{
+	background: #e8e8e8;
+    color: #383631;
+    font-size: 17px;
+    font-family: "Varela";
+}
+
+/* borde punteado tr */
+.border-dotted{
+	border-bottom-style: dotted;
+    border-bottom-width: 2px;
+}
