@@ -18,7 +18,6 @@ class CreateGeneralitiesTerritoriesTable extends Migration
             $table->dateTime('anioGT');
             $table->double('temperatura', 4, 2);
             $table->integer('alturaNivMar');
-            $table->String('catMun', 10);
             $table->integer('municipio_id')->unsigned();
             $table->foreign('municipio_id')->references('id')->on('Municipios');
             $table->timestamps();

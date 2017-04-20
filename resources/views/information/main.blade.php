@@ -56,8 +56,9 @@
 
 		{{-- Tabla - Graficas --}}
 		<div class="col-sm-10 col-md-10 col-lg-10" style="background-color: #fff;padding: 18px;">
-			Tablas y graficas
-		<br>
+
+			@yield('tables')
+			
 		</div>
 		
 	</div>
@@ -69,4 +70,6 @@
 		<script src="{{ asset('js/main.js') }}"></script>
 	
 	@endsection
+
+	@yield('javascripttable')
 
