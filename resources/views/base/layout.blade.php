@@ -19,7 +19,7 @@
 
 		<!-- Encabezado -->
 		<header>
-		
+
 			@include('base.partials.navbar')
 				
 		</header>

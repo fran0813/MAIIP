@@ -13,12 +13,11 @@
 		$html = "";
 
 		$html .= "<table class='table table-bordered'>
-					<thead>
+					<thead class='thead-s'>
 						<tr>
 							<th>Datos</th>";
 		foreach ($resultados as $resultado) {
 			$anio = $resultado['anio'];
-			// $alturaNivMar = $resultado['alturaNivMar'];
 			
 			$html .= "<th>$anio</th>";
 		};
@@ -26,7 +25,7 @@
 		$html .= 		"</tr>
 					</thead>
 					</tbody>
-						<tr>
+						<tr class='border-dotted'>
 							<td>Población en edad de trabajar</td>";
 		foreach ($resultados as $resultado) {
 			$pobEdadTrabajar = $resultado['pobEdadTrabajar'];
@@ -35,16 +34,16 @@
 		};
 
 		$html .= "</tr>
-					<tr>
+					<tr class='border-dotted'>
 						<td>Póblacion potencialmente activa</td>";
 		foreach ($resultados as $resultado) {
-			// $pobPotActiva = $resultado['pobPotActiva'];
+			$pobPotActiva = $resultado['pobPotActiva'];
 			
-			$html .= "<td></td>";
+			$html .= "<td>$pobPotActiva<td>";
 		};
 
 		$html .= "</tr>
-					<tr>
+					<tr class='border-dotted'>
 						<td>Póblacion potencialmente inactiva</td>";
 		foreach ($resultados as $resultado) {
 			$pobPotInactiva = $resultado['pobPotInactiva'];
@@ -53,7 +52,7 @@
 		};
 
 		$html .= "</tr>
-					<tr>
+					<tr class='border-dotted'>
 						<td>Numero de personas menores a 15 años</td>";
 		foreach ($resultados as $resultado) {
 			$numPerMen = $resultado['numPerMen'];
@@ -62,16 +61,16 @@
 		};
 
 		$html .= "</tr>
-					<tr>
+					<tr class='border-dotted'>
 						<td>Numero de personas mayores a 64 años</td>";
 		foreach ($resultados as $resultado) {
-			$numPermay = $resultado['numPermay'];
+			$numPerMay = $resultado['numPerMay'];
 			
-			$html .= "<td>$numPermay</td>"; //corregir M
+			$html .= "<td>$numPerMay</td>"; 
 		};
 
 		$html .= "</tr>
-					<tr>
+					<tr class='border-dotted'>
 						<td>Numero de personas independientes</td>";
 		foreach ($resultados as $resultado) {
 			$numPerInd = $resultado['numPerInd'];
@@ -80,7 +79,7 @@
 		};
 
 		$html .= "</tr>
-					<tr>
+					<tr class='border-dotted'>
 						<td>Numero de personas dependientes</td>";
 		foreach ($resultados as $resultado) {
 			$numPerDep = $resultado['numPerDep'];
@@ -89,7 +88,7 @@
 		};
 
 		$html .= "</tr>
-					<tr>
+					<tr class='border-dotted'>
 						<td>Población por género -Hombres";
 		foreach ($resultados as $resultado) {
 			$pobHom = $resultado['pobHom'];
@@ -98,7 +97,7 @@
 		};
 
 		$html .= "</tr>
-					<tr>
+					<tr class='border-dotted'>
 						<td>Población por género -Mujeres";
 		foreach ($resultados as $resultado) {
 			$pobMuj = $resultado['pobMuj'];
@@ -107,7 +106,7 @@
 		};
 
 		$html .= "</tr>
-					<tr>
+					<tr class='border-dotted'>
 						<td>Población por zona -Cabecera";
 		foreach ($resultados as $resultado) {
 			$pobZonCab = $resultado['pobZonCab'];
@@ -116,7 +115,7 @@
 		};
 
 		$html .= "</tr>
-					<tr>
+					<tr class='border-dotted'>
 						<td>Población por zona -Resto";
 		foreach ($resultados as $resultado) {
 			$pobZonRes = $resultado['pobZonRes'];
@@ -125,7 +124,7 @@
 		};
 
 		$html .= "</tr>
-					<tr>
+					<tr class='border-dotted'>
 						<td>Índice de ruralidad";
 		foreach ($resultados as $resultado) {
 			$indRuralidad = $resultado['indRuralidad'];
@@ -134,7 +133,7 @@
 		};
 
 		$html .= "</tr>
-					<tr>
+					<tr class='border-dotted'>
 						<td>Población total";
 		foreach ($resultados as $resultado) {
 			$pobTotal = $resultado['pobTotal'];

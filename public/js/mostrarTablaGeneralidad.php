@@ -13,14 +13,14 @@
 		$html = "";
 
 		$html .= "<table class='table table-bordered'>
-						<thead>
+						<thead class='thead-s'>
 							<tr>
 								<th>Generalidad</th>
 								<th>Valores (km2)</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr class='border-dotted'>
 								<td>Rural</td>";
 		foreach ($resultados as $resultado) {
 			$ruralG = $resultado['ruralG'];
@@ -30,7 +30,7 @@
 		};
 
 		$html .= "</tr>
-					<tr>
+					<tr class='border-dotted'>
 						<td>Urbana</td>";
 		foreach ($resultados as $resultado) {
 			$urbanoG = $resultado['urbanoG'];

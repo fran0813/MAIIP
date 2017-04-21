@@ -2,6 +2,13 @@
 
 	@section('titulo', 'index')
 
+	@section('active')
+
+		<li class="active"><a href="/">Inicio <span class="sr-only">(current)</span></a></li>
+		<li><a href="/informacion">Ver</a></li>
+
+	@endsection
+
 	@section('content')
 
 	<!-- Contenido -->
