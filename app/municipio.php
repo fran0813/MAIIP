@@ -8,7 +8,7 @@ class Municipio extends Model
 {
     protected $table = "municipios";
 
-    protected $fillable = ['codigo', 'nombre', 'departamento_id'];
+    protected $fillable = ['codigo', 'nombre', 'catMun', 'departamento_id'];
 
     // Relacion muchos a uno con departamento
     public function departamento()

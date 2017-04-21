@@ -8,7 +8,7 @@ class Predio extends Model
 {
     protected $table = "predios";
 
-    protected $fillable = ['rural', 'urbano', 'total', 'generalidadterritorio_id'];
+    protected $fillable = ['ruralP', 'urbanoP', 'totalP', 'generalidadterritorio_id'];
 
     // Relacion uno a uno con generalidadterritorio
     public function generalidadterritorio()

@@ -8,7 +8,7 @@ class Generalidadterritorio extends Model
 {
     protected $table = "generalidadesterritorios";
 
-    protected $fillable = ['anio', 'temperatura', 'alturaNivMar', 'atMun', 'municipio_id'];
+    protected $fillable = ['anio', 'temperatura', 'alturaNivMar', 'municipio_id'];
 
     // Relacion muchos a uno con municipio
     public function municipio()
