@@ -16,6 +16,7 @@
 		foreach ($resultados as $resultado) {
 			$coddep = $resultado['codigoD'];
 			$codmun = $resultado['codigoM'];
+			
 			$html = "<input class='form-control' type='text' value='$coddep$codmun'>";
 		};
 
@@ -23,8 +24,8 @@
 
 	}catch(PDOException $e){
 
-		$a = "ERROR: " . $e->getMessage();
-		echo json_encode($a);
+		$e->getMessage();
+		echo json_encode($e);
 
 	}
 

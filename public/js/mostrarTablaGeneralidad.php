@@ -12,16 +12,17 @@
 		$resultados = $sql->fetchAll();
 		$html = "";
 
-		$html .= "<table class='table table-bordered'>
-						<thead class='thead-s'>
-							<tr>
-								<th>Generalidad</th>
-								<th>Valores (km2)</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class='border-dotted'>
-								<td>Rural</td>";
+		$html .="<table class='table table-bordered'>
+				<thead class='thead-s'>
+				<tr>
+				<th>Generalidad</th>
+				<th>Valores (km2)</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class='border-dotted'>
+				<td>Rural</td>";
+
 		foreach ($resultados as $resultado) {
 			$ruralG = $resultado['ruralG'];
 		
@@ -29,25 +30,28 @@
 								
 		};
 
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Urbana</td>";
+		$html .="</tr>
+				<tr class='border-dotted'>
+				<td>Urbana</td>";
+
 		foreach ($resultados as $resultado) {
 			$urbanoG = $resultado['urbanoG'];
 
 			$html .="<td>$urbanoG</td>";
 		}
 
-		$html .= "</tr>
-					<tr>
-						<td>Extensión total</td>";
+		$html .="</tr>
+				<tr>
+				<td>Extensión total</td>";
+
 		foreach ($resultados as $resultado) {
 			$totalG = $resultado['totalG'];
 
 			$html .="<td>$totalG</td>";
 		}
-		$html .=		"</tr>
-					</tbody>
+		
+		$html .="</tr>
+				</tbody>
 				</table>";
 
 		echo json_encode($html);

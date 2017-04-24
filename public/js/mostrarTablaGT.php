@@ -13,15 +13,16 @@
 		$html = "";
 
 		$html .="<table class='table table-bordered'>
-					<thead class='thead-s'>
-						<tr>
-							<th>Datos</th>
-							<th>Valores</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr class='border-dotted'>
-							<td>Temperatura Media(°C)</td>";
+				<thead class='thead-s'>
+				<tr>
+				<th>Datos</th>
+				<th>Valores</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class='border-dotted'>
+				<td>Temperatura Media(°C)</td>";
+							
 		foreach ($resultados as $resultado) {
 			$temperatura = $resultado['temperatura'];
 			
@@ -29,17 +30,19 @@
 								
 		};
 
-		$html .= "</tr>
-					<tr'>
-						<td>Altura sobre el nivel del mal</td>";
+		$html .="</tr>
+				<tr'>
+				<td>Altura sobre el nivel del mal</td>";
+
 		foreach ($resultados as $resultado) {
 			$alturaNivMar = $resultado['alturaNivMar'];
 			
 			$html .= "<td>$alturaNivMar</td>";
 
 		};
-		$html .=		"</tr>
-					</tbody>
+
+		$html .="</tr>
+				</tbody>
 				</table>";
 
 		echo json_encode($html);

@@ -1,4 +1,18 @@
-function mostrarMunicipios(){
+$( document ).ready(function() {
+
+	$.ajax({
+		method: "POST",
+		url: "/js/mostrarDepartamentos.php",
+		dataType: 'json',
+	})
+
+	.done(function(response) {
+		$('#dep').html(response);
+	});
+
+});
+
+function mostrarMunicipios() {
 
 	var dep = $("#dep").val();
 
@@ -15,7 +29,7 @@ function mostrarMunicipios(){
 
 }
 
-function mostrarCodigo(){
+function mostrarCodigo() {
 
 	var dep = $("#dep").val();
 	var mun = $("#mun").val();

@@ -1,19 +1,17 @@
 <?php
 
-	$iddep = $_POST['iddep'];
-
 	try{
 
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT * FROM municipios WHERE departamento_id = :iddep ORDER BY municipios.nombre');
-		$sql->execute(array('iddep' => $iddep));
+		$sql = $conn->prepare('SELECT * FROM departamentos ORDER BY nombre');
+		$sql->execute();
 		$resultados = $sql->fetchAll();
 		$html = "";
 
-		$html .= "<option>Seleccione un municipio</option>";
-		
+		$html .= "<option>Seleccione un departamento</option>";
+
 		foreach ($resultados as $resultado) {
 			$id = $resultado['id'];
 			$nombre = $resultado['nombre'];

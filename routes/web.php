@@ -26,3 +26,10 @@ Route::group(['prefix' => 'tabla'], function(){
 	Route::get('demografia', 'TablesController@demografia');
 
 });
+
+// ruta para admin
+Route::group(['prefix' => 'admin'], function(){
+
+	Route::get('principal', 'AdminsController@index');
+
+});

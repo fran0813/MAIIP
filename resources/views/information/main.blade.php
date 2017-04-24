@@ -33,9 +33,6 @@
 				<div class="col-sm-5 col-md-5 col-lg-5">
 					<select id="dep" class="form-control" onchange="mostrarMunicipios()">
 						<option>Seleccione un departamento</option>
-							@foreach($departamentos as $departamento)
-								<option value="{{ $departamento->id }}">{{ $departamento->nombre }}</option>
-							@endforeach
 					</select>
 				</div>
 
@@ -57,7 +54,9 @@
 
 	
 	<div class="col-sm-12 col-md-12 col-lg-12">
+
 		<br>
+
 		{{-- Submenu --}}
 		@include('base.partials.submenu')
 
