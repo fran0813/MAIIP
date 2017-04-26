@@ -38,10 +38,11 @@
 		$html .="</tr>
 				<tr class='border-dotted'>
 				<td>Póblacion potencialmente activa</td>";
+
 		foreach ($resultados as $resultado) {
 			$pobPotActiva = $resultado['pobPotActiva'];
 			
-			$html .= "<td>$pobPotActiva<td>";
+			$html .= "<td>$pobPotActiva</td>";
 		};
 
 		$html .="</tr>

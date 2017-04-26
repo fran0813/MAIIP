@@ -20,6 +20,10 @@
 			$html = "<input class='form-control' type='text' value='$coddep$codmun'>";
 		};
 
+		if($idmun == "Seleccione un municipio"){
+			$html = "<input class='form-control' type='text' value=''>";
+		}
+
 		echo json_encode($html);
 
 	}catch(PDOException $e){

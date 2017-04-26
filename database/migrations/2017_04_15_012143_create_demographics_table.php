@@ -15,7 +15,7 @@ class CreateDemographicsTable extends Migration
     {
         Schema::create('Demografias', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('anio');
+            $table->dateTime('anio')->unique();
             $table->integer('pobEdadTrabajar');
             $table->integer('pobPotActiva');
             $table->integer('pobPotInactiva');

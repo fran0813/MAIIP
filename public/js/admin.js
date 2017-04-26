@@ -1,10 +1,8 @@
-function main(){
-
-		var username = $("#username").val();
+$("#form").on("submit", function(){
+	var username = $("#username").val();
 		var email = $("#email").val();
 		var password = $("#password").val();
-
-		$.ajax({
+			$.ajax({
 		method: "POST",
 		url: "/js/adminIngresarDatos.php",
 		dataType: 'json',
@@ -12,7 +10,8 @@ function main(){
 		})
 
 		.done(function(response) {
-			alert("bn")
+			$('#r').html(response);
 		});
 
-}
+		return false;
+		});
