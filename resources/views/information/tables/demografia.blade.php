@@ -1,4 +1,15 @@
-@extends('information.main')
+@extends('information.base.layout')
+
+	@section('titulo', 'demografia')
+
+	@section('breadcrumbs')
+
+		<ol class="breadcrumb">
+			<li class="color-breadcrumbs"><a href="/informacion"><b>Información</b></a></li>
+			<li class="active"><b>Demografia</b></li>
+		</ol>
+
+	@endsection
 	
 	@section('tables')
 

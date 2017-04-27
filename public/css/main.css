@@ -143,3 +143,7 @@ body{
 	border-bottom-style: dotted;
     border-bottom-width: 2px;
 }
+
+.color-breadcrumbs > a{
+	color: #e9473f;
+}

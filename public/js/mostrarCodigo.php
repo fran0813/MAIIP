@@ -3,6 +3,8 @@
 	$iddep = $_POST['iddep'];
 	$idmun = $_POST['idmun'];
 
+	$html = "<input class='form-control' type='text' value='h'>";
+
 	try{
 
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
@@ -20,9 +22,9 @@
 			$html = "<input class='form-control' type='text' value='$coddep$codmun'>";
 		};
 
-		if($idmun == "Seleccione un municipio"){
-			$html = "<input class='form-control' type='text' value=''>";
-		}
+		// if($idmun == "Seleccione un municipio"){
+		// 	$html = "<input class='form-control' type='text' value=''>";
+		// }
 
 		echo json_encode($html);
 
