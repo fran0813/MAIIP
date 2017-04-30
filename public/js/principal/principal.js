@@ -2,7 +2,7 @@ $( document ).ready(function() {
 
 	$.ajax({
 		method: "POST",
-		url: "/js/main/mostrarDepartamentos.php",
+		url: "/js/principal/mostrarDepartamentos.php",
 		dataType: 'json',
 	})
 
@@ -18,7 +18,7 @@ function mostrarMunicipios() {
 
 	$.ajax({
 		method: "POST",
-		url: "/js/main/mostrarMunicipios.php",
+		url: "/js/principal/mostrarMunicipios.php",
 		dataType: 'json',
 		data: { idDepartamento: departamento }
 	})
@@ -36,7 +36,7 @@ function mostrarCodigo() {
 
 	$.ajax({
 		method: "POST",
-		url: "/js/main/mostrarCodigo.php",
+		url: "/js/principal/mostrarCodigo.php",
 		dataType: 'json',
 		data: { idDepartamento: departamento, idMunicipio: municipio }
 	})

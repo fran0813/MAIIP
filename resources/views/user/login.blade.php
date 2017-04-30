@@ -51,11 +51,11 @@
 			                    <form id="form" role="form" class="login-form">
 			                    	<div class="form-group">
 			                    		<label class="sr-only" for="form-username">Username</label>
-			                        	<input  id="username" type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="form-username">
+			                        	<input  id="username" type="text" placeholder="Username..." class="form-username form-control" id="form-username">
 			                        </div>
 			                        <div class="form-group">
 			                        	<label class="sr-only" for="form-password">Password</label>
-			                        	<input id="password" type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
+			                        	<input id="password" type="password" placeholder="Password..." class="form-password form-control" id="form-password">
 			                        </div>
 			                        <button type="submit" class="btn">Sign in!</button>
 			                    </form>
@@ -72,7 +72,7 @@
         <!-- Javascript -->
         <script src="{{ asset('jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/usuario.js') }}"></script>
+        <script src="{{ asset('js/usuario/login.js') }}"></script>
 
     </body>
 

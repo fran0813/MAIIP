@@ -147,6 +147,6 @@
 
 	@section('javascripttable')
 	
-		<script src="{{ asset('js/generalidadesterritorio.js') }}"></script>
+		<script src="{{ asset('js/generalidadesterritorio/generalidadesterritorio.js') }}"></script>
 
 	@endsection

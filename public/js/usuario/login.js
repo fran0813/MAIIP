@@ -5,7 +5,7 @@ $("#form").on("submit", function(){
 
 	$.ajax({
 		method: "POST",
-		url: "/js/users/login.php",
+		url: "/js/usuario/login.php",
 		dataType: 'json',
 		data: { username: username, password: password }
 	})
