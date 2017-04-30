@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="{{ config('app.locale') }}">
 
     <head>
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap Login Form Template</title>
+        <title>@yield('title', 'Login')</title>
 
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -47,18 +48,19 @@
                         		</div>
                             </div>
                             <div class="form-bottom">
-			                    <form role="form" action="" method="post" class="login-form">
+			                    <form id="form" role="form" class="login-form">
 			                    	<div class="form-group">
 			                    		<label class="sr-only" for="form-username">Username</label>
-			                        	<input type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="form-username">
+			                        	<input  id="username" type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="form-username">
 			                        </div>
 			                        <div class="form-group">
 			                        	<label class="sr-only" for="form-password">Password</label>
-			                        	<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
+			                        	<input id="password" type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
 			                        </div>
 			                        <button type="submit" class="btn">Sign in!</button>
 			                    </form>
-		                    </div>
+                                <p id="respuesta"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -70,12 +72,7 @@
         <!-- Javascript -->
         <script src="{{ asset('jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="assets/js/jquery.backstretch.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
-        
-        <!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js"></script>
-        <![endif]-->
+        <script src="{{ asset('js/usuario.js') }}"></script>
 
     </body>
 

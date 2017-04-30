@@ -11,8 +11,17 @@ $("#form").on("submit", function(){
 	})
 
 	.done(function(response) {
-		$('#r').html(response);
+		if(response == "true"){
+
+			location.href="/admin/principal";
+
+		}else{
+
+			$('#respuesta').html("Usuario o contraseña incorrecta");
+
+		}
 	});
 
 	return false;
-});
+
+}); 
