@@ -44,7 +44,7 @@ function mostrarGrafica2Dem(){
 
 	$.ajax({
 		method: "POST",
-		url: "/js/demografia/mostrargrafica2Demografia.php",
+		url: "/js/demografia/grafica2Demografia.php",
 		dataType: 'json',
 		data: { idMunicipio: municipio }
 	})
