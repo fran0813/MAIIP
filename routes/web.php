@@ -34,5 +34,7 @@ Route::group(['prefix' => 'tabla'], function(){
 Route::group(['prefix' => 'admin'], function(){
 
 	Route::get('principal', 'AdminsController@index');
+	Route::get('generalidadesterritorio', 'AdminsController@tableGeneralidadesterritorio');
+	Route::get('demografia', 'AdminsController@tableDemografia');
 
 });

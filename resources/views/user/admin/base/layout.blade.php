@@ -76,31 +76,31 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
+                            <a href="{{ url('/admin/principal') }}"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Generalidades y territorio</a>
+                            <a href="{{ url('/admin/generalidadesterritorio') }}"><i class="fa fa-table fa-fw"></i> Generalidades y territorio</a>
                         </li> 
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Demografia</a>
+                            <a href="{{ url('/admin/demografia') }}"><i class="fa fa-edit fa-fw"></i> Demografia</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Vivienda y Servivicios Públicos</a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Vivienda y Servivicios Públicos</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Salud</a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Salud</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Educación</a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Educación</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Seguiridad y Violencia</a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Seguiridad y Violencia</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Económico-Social</a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Económico-Social</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Finanzas</a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Finanzas</a>
                         </li>
                     </ul>
                 </div>

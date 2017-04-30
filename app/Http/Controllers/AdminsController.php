@@ -10,4 +10,14 @@ class AdminsController extends Controller
     {
       return view('user.admin.main');
     }
+
+    public function tableGeneralidadesterritorio()
+    {
+      return view('user.admin.tables.generalidadesterritorio');
+    }
+
+    public function tableDemografia()
+    {
+      return view('user.admin.tables.demografia');
+    }
 }
