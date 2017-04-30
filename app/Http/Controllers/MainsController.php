@@ -9,7 +9,7 @@ class MainsController extends Controller
 {
     public function index()
     {
-      $departamentos = Departamento::orderBy('nombre', 'asc')->get(); 
-      return view('information.main')->with(['departamentos'=>$departamentos]);
+      // $departamentos = Departamento::orderBy('nombre', 'asc')->get(); 
+      return view('information.main');
     }
 }

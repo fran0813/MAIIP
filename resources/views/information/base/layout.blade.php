@@ -2,8 +2,8 @@
 
 	@section('active')
 
-		<li><a href="/">Inicio <span class="sr-only">(current)</span></a></li>
-		<li class="active"><a href="/informacion">Información</a></li>
+	<li><a href="{{ url('/') }}">Inicio <span class="sr-only">(current)</span></a></li>
+	<li class="active"><a href="{{ url('/informacion') }}">Información</a></li>
 
 	@endsection
 
@@ -57,4 +57,3 @@
 	@endsection
 
 	@yield('javascripttable')
-

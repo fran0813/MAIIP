@@ -1,13 +1,13 @@
 @extends('information.base.layout')
 
-	@section('titulo', 'generalidades y territorio')
+	@section('titulo', 'Generalidades y territorio')
 
 	@section('breadcrumbs')
 
-		<ol class="breadcrumb">
-			<li class="color-breadcrumbs"><a href="/informacion"><b>Información</b></a></li>
-			<li class="active"><b>Generalidades y territorio</b></li>
-		</ol>
+	<ol class="breadcrumb">
+		<li class="color-breadcrumbs"><a href="{{ url('/informacion') }}"><b>Información</b></a></li>
+		<li class="active"><b>Generalidades y territorio</b></li>
+	</ol>
 
 	@endsection
 	
@@ -27,9 +27,9 @@
 
 	</div>
 
-	<div class="col-sm-12 col-md-12 col-lg-12">
+	<div id="generalidadesterritorio" class="col-sm-12 col-md-12 col-lg-12">
 
-		<div id="datos" class="col-sm-6 col-md-6 col-lg-6">
+		<div class="col-sm-6 col-md-6 col-lg-6">
 
 			{{-- Datos --}}
 			<table class="table table-bordered table-hover">
@@ -53,7 +53,7 @@
 
 		</div>
 
-		<div id="predios" class="col-sm-6 col-md-6 col-lg-6">
+		<div class="col-sm-6 col-md-6 col-lg-6">
 
 			{{-- Predios --}}
 			<table class="table table-bordered table-hover">
@@ -81,11 +81,7 @@
 
 		</div>
 
-	</div>
-
-	<div class="col-sm-12 col-md-12 col-lg-12">
-
-		<div id="generalidades" class="col-sm-6 col-md-6 col-lg-6">
+		<div class="col-sm-6 col-md-6 col-lg-6">
 
 			{{-- Generalidad --}}
 			<table class="table table-bordered table-hover">
@@ -113,7 +109,7 @@
 
 		</div>
 
-		<div id="territorios" class="col-sm-6 col-md-6 col-lg-6">
+		<div class="col-sm-6 col-md-6 col-lg-6">
 
 			{{-- Territorio --}}
 			<table class="table table-bordered table-hover">
@@ -151,6 +147,6 @@
 
 	@section('javascripttable')
 	
-		<script src="{{ asset('js/tableGT.js') }}"></script>
+		<script src="{{ asset('js/generalidadesterritorio.js') }}"></script>
 
 	@endsection

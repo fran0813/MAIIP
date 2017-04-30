@@ -1,11 +1,11 @@
 @extends('base.layout')
 
-	@section('titulo', 'index')
+	@section('titulo', 'Inicio')
 
 	@section('active')
 
-		<li class="active"><a href="/">Inicio <span class="sr-only">(current)</span></a></li>
-		<li><a href="/informacion">Información</a></li>
+	<li class="active"><a href="{{ url('/') }}">Inicio <span class="sr-only">(current)</span></a></li>
+	<li><a href="{{ url('/informacion') }}">Información</a></li>
 
 	@endsection
 
@@ -29,6 +29,7 @@
 
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
+
 			    	<div class="item active">
 			      		<img class="img-responsive" src="{{ asset('img/slider1.png')}}" alt="Chania">
 			    	</div>
@@ -44,6 +45,7 @@
 				    <div class="item">
 				    	<img class="img-responsive" src="{{ asset('img/slider4.png')}}" alt="Chania">
 				    </div>
+
 				</div>
 
 				<!-- Left and right controls -->
@@ -51,18 +53,20 @@
 				    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 				    <span class="sr-only">Previous</span>
 			  	</a>
+
 			  	<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
 			    	<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 			    	<span class="sr-only">Next</span>
 			  	</a>
 
 			</div>
+
 		</div>
 
 		<!-- Contenido MAIIP -->
 		<div class="col-sm-12 col-md-12 col-lg-12" style="padding-left: 0;padding-right: 0;background-color: #fff">
 
-		<br>
+			<br>
 
 			<div class="col-sm-7 col-md-7 col-lg-7">
 
@@ -72,16 +76,19 @@
 
 				<center>
 					<br>
-					<a class="btn btn-danger" href="http://www.unipiloto.edu.co/construccion-social-del-territorio/maiip/" style="font-size: 17px;">Mas información</a>
+					<a class="btn btn-danger" href="{{ url('http://www.unipiloto.edu.co/construccion-social-del-territorio/maiip/') }}" style="font-size: 17px;">Mas información</a>
 				</center>
 
 			</div>
+
 			<div class="col-sm-5 col-md-5 col-lg-5" style="padding-left: 0;padding-right: 0;">
-			<img class="img-responsive" src="{{ asset('img/img1.png')}}" alt="Foto">
+				<img class="img-responsive" src="{{ asset('img/img1.png')}}" alt="Foto">
 			</div>
 
 			<br>
+
 		</div>
+		
 	</div>
 
 	@endsection

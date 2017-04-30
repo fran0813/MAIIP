@@ -1,17 +1,15 @@
 <?php
 
-	$iddep = $_POST['iddep'];
-	$idmun = $_POST['idmun'];
-
-	$html = "<input class='form-control' type='text' value='h'>";
+	$idDepartamento = $_POST['idDepartamento'];
+	$idMunicipio = $_POST['idMunicipio'];
 
 	try{
 
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT * FROM departamentos,municipios WHERE departamentos.id = :iddep and municipios.id = :idmun');
-		$sql->execute(array('iddep' => $iddep, 'idmun' => $idmun));
+		$sql = $conn->prepare('SELECT * FROM departamentos,municipios WHERE departamentos.id = :idDepartamento AND municipios.id = :idMunicipio');
+		$sql->execute(array('idDepartamento' => $idDepartamento, 'idMunicipio' => $idMunicipio));
 		$resultados = $sql->fetchAll();
 		$html = "";
 
@@ -19,10 +17,10 @@
 			$coddep = $resultado['codigoD'];
 			$codmun = $resultado['codigoM'];
 			
-			$html = "<input class='form-control' type='text' value='$coddep$codmun'>";
+			$html = "<input class='form-control' type='text' disabled='true' value='$coddep$codmun'>";
 		};
 
-		// if($idmun == "Seleccione un municipio"){
+		// if($idMunicipio == "Seleccione un municipio"){
 		// 	$html = "<input class='form-control' type='text' value=''>";
 		// }
 

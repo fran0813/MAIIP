@@ -1,14 +1,14 @@
 <?php
 
-	$iddep = $_POST['iddep'];
+	$idDepartamento = $_POST['idDepartamento'];
 
 	try{
 
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT * FROM municipios WHERE departamento_id = :iddep ORDER BY municipios.nombre');
-		$sql->execute(array('iddep' => $iddep));
+		$sql = $conn->prepare('SELECT * FROM municipios WHERE departamento_id = :idDepartamento ORDER BY municipios.nombre');
+		$sql->execute(array('idDepartamento' => $idDepartamento));
 		$resultados = $sql->fetchAll();
 		$html = "";
 

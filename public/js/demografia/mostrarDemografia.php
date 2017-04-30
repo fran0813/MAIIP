@@ -1,14 +1,14 @@
 <?php
 
-	$idmun = $_POST['idmun'];
+	$idMunicipio = $_POST['idMunicipio'];
 
 	try{
 
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT * FROM municipios,demografias WHERE demografias.municipio_id = :idmun and municipios.id = :idmun ORDER BY demografias.anio ASC LIMIT 10');
-		$sql->execute(array('idmun' => $idmun));
+		$sql = $conn->prepare('SELECT YEAR(anio),pobEdadTrabajar,pobPotActiva,pobPotInactiva,numPerMen,numPerMay,numPerInd,numPerDep,pobHom,pobMuj,pobZonCab,pobZonRes,indRuralidad,pobTotal,crecPob FROM demografias WHERE demografias.municipio_id = :idMunicipio ORDER BY demografias.anio DESC LIMIT 10');
+		$sql->execute(array('idMunicipio' => $idMunicipio));
 		$resultados = $sql->fetchAll();
 		$html = "";
 
@@ -18,7 +18,7 @@
 				<th>Datos</th>";
 
 		foreach ($resultados as $resultado) {
-			$anio = $resultado['anio'];
+			$anio = $resultado['YEAR(anio)'];
 			
 			$html .= "<th>$anio</th>";
 		};

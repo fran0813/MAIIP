@@ -2,47 +2,47 @@ $( document ).ready(function() {
 
 	$.ajax({
 		method: "POST",
-		url: "/js/mostrarDepartamentos.php",
+		url: "/js/main/mostrarDepartamentos.php",
 		dataType: 'json',
 	})
 
 	.done(function(response) {
-		$('#dep').html(response);
+		$('#departamento').html(response);
 	});
 
 });
 
 function mostrarMunicipios() {
 
-	var dep = $("#dep").val();
+	var departamento = $("#departamento").val();
 
 	$.ajax({
 		method: "POST",
-		url: "/js/mostrarMunicipios.php",
+		url: "/js/main/mostrarMunicipios.php",
 		dataType: 'json',
-		data: { iddep: dep }
+		data: { idDepartamento: departamento }
 	})
 
 	.done(function(response) {
-		$('#mun').html(response);
+		$('#municipio').html(response);
 	});
 
 }
 
 function mostrarCodigo() {
 
-	var dep = $("#dep").val();
-	var mun = $("#mun").val();
+	var departamento = $("#departamento").val();
+	var municipio = $("#municipio").val();
 
 	$.ajax({
 		method: "POST",
-		url: "/js/mostrarCodigo.php",
+		url: "/js/main/mostrarCodigo.php",
 		dataType: 'json',
-		data: { iddep: dep, idmun: mun }
+		data: { idDepartamento: departamento, idMunicipio: municipio }
 	})
 
 	.done(function(response) {
-		$('#cod').html(response);
+		$('#codigo').html(response);
 	});
 
 }

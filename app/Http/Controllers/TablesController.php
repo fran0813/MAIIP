@@ -4,18 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Departamento;
+use App\Demografia;
 
 class TablesController extends Controller
 {
     public function generalidadesterritorio()
-    {
-      $departamentos = Departamento::orderBy('nombre', 'asc')->get(); 
-      return view('information.tables.generalidadesterritorio')->with(['departamentos'=>$departamentos]);
+    {   
+      return view('information.tables.generalidadesterritorio');
     }
 
     public function demografia()
     {
-      $departamentos = Departamento::orderBy('nombre', 'asc')->get(); 
-      return view('information.tables.demografia')->with(['departamentos'=>$departamentos]);
+      return view('information.tables.demografia');
     }
 }

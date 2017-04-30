@@ -1,13 +1,13 @@
 @extends('information.base.layout')
 
-	@section('titulo', 'demografia')
+	@section('titulo', 'Demografia')   
 
 	@section('breadcrumbs')
 
-		<ol class="breadcrumb">
-			<li class="color-breadcrumbs"><a href="/informacion"><b>Información</b></a></li>
-			<li class="active"><b>Demografia</b></li>
-		</ol>
+	<ol class="breadcrumb">
+		<li class="color-breadcrumbs"><a href="{{ url('/informacion') }}"><b>Información</b></a></li>
+		<li class="active"><b>Demografia</b></li>
+	</ol>
 
 	@endsection
 	
@@ -114,10 +114,19 @@
 
 	</div>
 
+	<div id="grafica1" class="col-sm-12 col-md-12 col-lg-12">
+
+	</div>
+
+	<div id="grafica2" class="col-sm-12 col-md-12 col-lg-12">
+
+	</div>
+
 	@endsection
 
 	@section('javascripttable')
 	
-		<script src="{{ asset('js/tableDem.js') }}"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script src="{{ asset('js/demografia.js') }}"></script>
 
 	@endsection
