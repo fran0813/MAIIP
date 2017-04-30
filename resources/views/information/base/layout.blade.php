@@ -52,7 +52,7 @@
 
 	@section('javascript')
 
-		<script src="{{ asset('js/main.js') }}"></script>
+		<script src="{{ asset('js/principal.js') }}"></script>
 	
 	@endsection
 

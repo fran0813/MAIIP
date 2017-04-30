@@ -126,7 +126,7 @@
 
 	@section('javascripttable')
 	
-		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript" src="{{ url('https://www.gstatic.com/charts/loader.js') }}"></script>
 		<script src="{{ asset('js/demografia.js') }}"></script>
 
 	@endsection

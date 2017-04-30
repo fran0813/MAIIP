@@ -33,7 +33,7 @@
 	        	var options = {
 		        title: 'Índice de ruralidad V.S Crecimiento demografico',
 		        curveType: 'function',
-		        legend: { position: 'bottom' },
+		        legend: { position: 'rigth' },
 		        colors: ['#e9473f', '#131FBD']
 	        	};
 

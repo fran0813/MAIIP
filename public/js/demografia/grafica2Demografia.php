@@ -32,7 +32,7 @@
 	        	var options = {
 		        title: 'Población total',
 		        bar: {groupWidth: '20%'},
-		        legend: { position: 'bottom' },
+		        legend: { position: 'rigth' },
 		        colors: ['#e9473f']
 	        	};
 
