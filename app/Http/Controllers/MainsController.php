@@ -12,4 +12,10 @@ class MainsController extends Controller
       // $departamentos = Departamento::orderBy('nombre', 'asc')->get(); 
       return view('information.main');
     }
+
+    public function login()
+    {
+      // $departamentos = Departamento::orderBy('nombre', 'asc')->get(); 
+      return view('user.login');
+    }
 }

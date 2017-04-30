@@ -19,6 +19,9 @@ Route::get('/', function(){
 // ruta para mostrar la información
 Route::get('informacion', 'MainsController@index');
 
+// ruta para login
+Route::get('login', 'MainsController@login');
+
 // rutas para tablas
 Route::group(['prefix' => 'tabla'], function(){
 
