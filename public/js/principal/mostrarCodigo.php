@@ -17,12 +17,12 @@
 			$coddep = $resultado['codigoD'];
 			$codmun = $resultado['codigoM'];
 			
-			$html = "<input class='form-control' type='text' disabled='true' value='$coddep$codmun'>";
+			$html .= "<input class='form-control' type='text' disabled='true' value='$coddep$codmun'>";
 		};
 
-		// if($idMunicipio == "Seleccione un municipio"){
-		// 	$html = "<input class='form-control' type='text' value=''>";
-		// }
+		if($idMunicipio == "Seleccione un municipio"){
+			$html .= "<input class='form-control' type='text' value=''>";
+		}
 
 		echo json_encode($html);
 

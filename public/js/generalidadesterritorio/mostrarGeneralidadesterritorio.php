@@ -7,7 +7,7 @@
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT * FROM generalidadesterritorios,predios,generalidades,territorios WHERE generalidadesterritorios.municipio_id = :idMunicipio AND predios.generalidadterritorio_id = generalidadesterritorios.id AND generalidades.generalidadterritorio_id = generalidadesterritorios.id AND territorios.generalidadterritorio_id = generalidadesterritorios.id');
+		$sql = $conn->prepare('SELECT * FROM generalidadesterritorios,predios,generalidades,territorios WHERE generalidadesterritorios.municipio_id = :idMunicipio AND predios.generalidadterritorio_id = generalidadesterritorios.id AND generalidades.generalidadterritorio_id = generalidadesterritorios.id AND territorios.generalidadterritorio_id = generalidadesterritorios.id LIMIT 1');
 		$sql->execute(array('idMunicipio' => $idMunicipio));
 		$resultados = $sql->fetchAll();
 		$html = "";

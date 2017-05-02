@@ -41,7 +41,9 @@
 
 		    <div class="collapse navbar-collapse" id="idnavbar">
 		    	<ul class="nav navbar-nav">
+
 		    		@yield('active')
+		    		
 		    	</ul>
 		    </div>
 	    

@@ -1,11 +1,47 @@
 <?php
 
-	// $iddep = $_POST['iddep'];
+	$anioGT = $_POST['anioGT'];
+	$temperatura = $_POST['temperatura'];
+	$alturaNivMar = $_POST['alturaNivMar'];
+	$municipio_id = $_POST['municipio_id'];
+
+	$ruralG = $_POST['ruralG'];
+	$urbanoG = $_POST['urbanoG'];
+	$totalG = $_POST['totalG'];
+
+	$constRural = $_POST['constRural'];
+	$constUrbano = $_POST['constUrbano'];
+	$constTotal = $_POST['constTotal'];
+	$terrRural = $_POST['terrRural'];
+	$terrUrbano = $_POST['terrUrbano'];
+	$terrTotal = $_POST['terrTotal'];
+
+	$ruralP = $_POST['ruralP'];
+	$urbanoP = $_POST['urbanoP'];
+	$totalP = $_POST['totalP'];
+
+	$created_at = $_POST['created_at'];
+	$updated_at = $_POST['updated_at'];
+
 
 	try{
 
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		$sql = $conn->prepare('SELECT YEAR(anioGT) FROM generalidadesterritorios WHERE anioGT = :anioGT');
+		$sql->execute(array('anioGT' => $anioGT));
+		$resultados = $sql->fetchAll();
+		$ban = False;
+
+		foreach ($resultados as $resultado) {
+			$anio = $resultado['YEAR(anioGT)'];
+
+			$ban = True;
+		};
+
+
+		if($ban == False){
 
 		$sql = $conn->prepare('INSERT INTO generalidadesterritorios VALUES (null, :anioGT, :temperatura, :alturaNivMar, :municipio_id, :created_at, :updated_at)');
 		$sql->bindParam("anioGT", $anioGT, PDO::PARAM_STR);
@@ -54,8 +90,15 @@
 		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
 		$sql->execute();
 
-		// $html = "";
-		// echo json_encode($html);
+		$html = "Se registrarón los datos correctamente";
+
+		}else{
+
+		$html = "Ya se encuentra registrado ese año";
+
+		}
+
+		echo json_encode($html);
 
 	}catch(PDOException $e){
 

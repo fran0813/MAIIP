@@ -36,7 +36,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Lucas</a>
+                <a class="navbar-brand" href="#">Lucas</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -52,7 +52,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="{{ url('/') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -82,8 +82,8 @@
                             <a href="{{ url('/admin/generalidadesterritorio') }}"><i class="fa fa-table fa-fw"></i> Generalidades y territorio</a>
                         </li> 
                         <li>
-                            <a href="{{ url('/admin/demografia') }}"><i class="fa fa-edit fa-fw"></i> Demografia</a>
-                        </li>
+                            <a href="{{ url('/admin/demografia') }}"><i class="fa fa-table fa-fw"></i> Demografias</a>
+                        </li> 
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Vivienda y Servivicios Públicos</a>
                         </li>
@@ -140,6 +140,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('js/admin/sb-admin-2.js') }}"></script>
+
+    @yield('javascript')
 
 </body>
 
