@@ -14,16 +14,17 @@
 	@section('tables')
 	
 	<div class="col-sm-12 col-md-12 col-lg-12">
-		
-		<div class="col-sm-3 col-md-3 col-lg-3 pull-right">
-			
-			<a class="btn btn-danger pull-right" href="#" onclick="mostrarTablas()" style="font-size: 17px;">Mostrar</a>
-			
-			<br>
-			<br>
-			<br>
 
-		</div>
+		<div class="col-sm-2 col-md-2 col-lg-2 pull-right">
+
+			<select id="añoGT" class="form-control" onchange="mostrarTablas()">
+				<option>Año</option>
+			</select>
+
+			<br>
+			<br>
+			
+		</div>		
 
 	</div>
 

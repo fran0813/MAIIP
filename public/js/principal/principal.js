@@ -46,3 +46,20 @@ function mostrarCodigo() {
 	});
 
 }
+
+function mostrarAñoGT() {
+
+	var municipio = $("#municipio").val();
+
+	$.ajax({
+		method: "POST",
+		url: "/js/principal/mostrarAnioGT.php",
+		dataType: 'json',
+		data: { idMunicipio: municipio }
+	})
+
+	.done(function(response) {
+		$('#añoGT').html(response);
+	});
+
+}
