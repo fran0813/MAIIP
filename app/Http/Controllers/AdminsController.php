@@ -15,11 +15,6 @@ class AdminsController extends Controller
     {
       return view('user.admin.tables.generalidadesterritorio');
     }
-
-    public function createGeneralidadesterritorio()
-    {
-      return view('user.admin.tables.generalidadesterritorio.crear');
-    }
     
     public function tableDemografia()
     {

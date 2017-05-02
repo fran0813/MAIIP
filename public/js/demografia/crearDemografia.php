@@ -1,11 +1,41 @@
 <?php
 
-	// $iddep = $_POST['iddep'];
+	$anioD = $_POST['anioD'];
+	$pobEdadTrabajar = $_POST['pobEdadTrabajar'];
+	$pobPotActiva = $_POST['pobPotActiva'];
+	$pobPotInactiva = $_POST['pobPotInactiva'];
+	$numPerMen = $_POST['numPerMen'];
+	$numPerMay = $_POST['numPerMay'];
+	$numPerInd = $_POST['numPerInd'];
+	$numPerDep = $_POST['numPerDep'];
+	$pobHom = $_POST['pobHom'];
+	$pobMuj = $_POST['pobMuj'];
+	$pobZonCab = $_POST['pobZonCab'];
+	$pobZonRes = $_POST['pobZonRes'];
+	$indRuralidad = $_POST['indRuralidad'];
+	$pobTotal = $_POST['pobTotal'];
+	$crecPob = $_POST['crecPob'];
+	$created_at = $_POST['created_at'];
+	$updated_at = $_POST['updated_at'];
+	$municipio_id = $_POST['municipio_id'];
 
 	try{
 
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		$sql = $conn->prepare('SELECT YEAR(anioD) FROM demografias WHERE anioD = :anioD');
+		$sql->execute(array('anioD' => $anioD));
+		$resultados = $sql->fetchAll();
+		$ban = False;
+
+		foreach ($resultados as $resultado) {
+			$anio = $resultado['YEAR(anioD)'];
+
+			$ban = True;
+		};
+
+		if($ban == False){
 
 		$sql = $conn->prepare('INSERT INTO demografias VALUES (null, :anioD, :pobEdadTrabajar, :pobPotActiva, :pobPotInactiva, :numPerMen, :numPerMay, :numPerInd, :numPerDep, :pobHom, :pobMuj, :pobZonCab, :pobZonRes, :indRuralidad, :pobTotal, :crecPob, :municipio_id, :created_at, :updated_at)');
 		$sql->bindParam("anioD", $anioD, PDO::PARAM_STR);
@@ -28,8 +58,15 @@
 		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
 		$sql->execute();
 
-		// $html = "";
-		// echo json_encode($html);
+		$html = "Se registrarón los datos correctamente";
+
+		}else{
+
+		$html = "Ya se encuentra registrado ese año";
+
+		}
+
+		echo json_encode($html);
 
 	}catch(PDOException $e){
 

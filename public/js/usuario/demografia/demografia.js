@@ -6,18 +6,18 @@ function mostrarDatos() {
 
 	$.ajax({
 		method: "POST",
-		url: "/js/usuario/generalidadesterritorio/mostrarTablaGeneralidadesterritorio.php",
+		url: "/js/usuario/demografia/mostrarTablaDemografia.php",
 		dataType: 'json',
 		data: { idMunicipio: municipio }
 	})
 
 	.done(function(response) {
-		$('#tablaGeneralidadesterritorio').html(response);
+		$('#tablaDemografia').html(response);
 	});
 
 }
 
-$("#tablaGeneralidadesterritorio").on("click", "a", function(){
+$("#tablaDemografia").on("click", "a", function(){
 
 	var clase = $(this).attr("class");
 
@@ -27,13 +27,13 @@ $("#tablaGeneralidadesterritorio").on("click", "a", function(){
 
 		$.ajax({
 			method: "POST",
-			url: "/js/generalidadesterritorio/mostrarActualizarGeneralidadesterritorio.php",
+			url: "/js/demografia/mostrarActualizarDemografia.php",
 			dataType: 'json',
 			data: { idGT: id }
 		})
 
 		.done(function(response) {
-			$('#modalGT').html(response);
+			$('#modalD').html(response);
 		});
 
 	}else if(clase == "btn btn-danger"){
@@ -42,7 +42,7 @@ $("#tablaGeneralidadesterritorio").on("click", "a", function(){
 
 		$.ajax({
 			method: "POST",
-			url: "/js/generalidadesterritorio/borrarGeneralidadesterritorio.php",
+			url: "/js/demografia/borrarDemografia.php",
 			dataType: 'json',
 			data: { idGT: id }
 		})

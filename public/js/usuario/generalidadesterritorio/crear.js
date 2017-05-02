@@ -80,8 +80,16 @@ $("#formCrear").on("submit", function(){
 	var municipio = $("#municipio").val();
 
 	// if(anio == "0001-01-01" || anio < "1900-01-01") {
+
+ //  		$('#respuesta').html("Año no valido");
+ //  		return false;
+
+ //  	}else if(isNaN(temperatura)) {
+
  //  		alert("n");
-	// }
+ // 		return false;
+
+	// }else{
 
 	$.ajax({
 		method: "POST",
@@ -98,7 +106,19 @@ $("#formCrear").on("submit", function(){
 
 		$('#respuesta').html(response);
 
-		var municipio = $("#municipio").val();
+		refrescar();
+		
+	});
+
+	return false;
+
+	// }
+
+}); 
+
+function refrescar(){
+
+	var municipio = $("#municipio").val();
 
 		$.ajax({
 			method: "POST",
@@ -111,8 +131,4 @@ $("#formCrear").on("submit", function(){
 			$('#tablaGeneralidadesterritorio').html(response);
 		});
 
-	});
-
-	return false;
-
-}); 
+}

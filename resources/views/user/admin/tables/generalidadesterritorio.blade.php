@@ -54,9 +54,9 @@
         <!-- /.panel -->
     </div>
 
-@include('user.admin.tables.generalidadesterritorio.crear')
+    @include('user.admin.tables.generalidadesterritorio.crear')
 
-@include('user.admin.tables.generalidadesterritorio.mostrarActualizar')
+    @include('user.admin.tables.generalidadesterritorio.mostrarActualizar')
 
     @endsection
 

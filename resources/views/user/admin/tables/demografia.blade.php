@@ -15,13 +15,13 @@
 
         {{-- municipio --}}
         <div class="col-sm-5 col-md-5 col-lg-5">
-            <select id="municipio" class="form-control">
+            <select id="municipio" class="form-control" onchange="mostrarDatos()">
                 <option>Seleccione un municipio</option>            
             </select>
         </div>
         
-        <div class="col-sm-2 col-md-2 col-lg-2">
-           <a href="#" class="btn btn-primary pull-right">Crear</a>        
+        <div id="crear" class="col-sm-2 col-md-2 col-lg-2" hidden="">
+           <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalCrear">Crear</a>        
         </div>
 
     </div>
@@ -30,7 +30,7 @@
 		<div class="panel panel-default">
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <div class="table-responsive">
+                <div id="tablaDemografia" class="table-responsive">
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
@@ -40,8 +40,9 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>hola</td>
-                                <td><a href="#" class="btn btn-success">Editar</a> <a href="#" class="btn btn-danger">Borrar</a></td>
+                                <td></td>
+                                <td></td>
+                                {{-- <td><a href="#" class="btn btn-success">Editar</a> <a href="#" class="btn btn-danger">Borrar</a></td> --}}
                             </tr>
                         </tbody>
                     </table>
@@ -52,5 +53,18 @@
         </div>
         <!-- /.panel -->
     </div>
+
+    @include('user.admin.tables.demografia.crear')
+
+    @include('user.admin.tables.demografia.mostrarActualizar')
     
+    @endsection
+
+    @section('javascript')
+
+        <script src="{{ asset('js/principal/principal.js') }}"></script>
+        <script src="{{ asset('js/usuario/demografia/demografia.js') }}"></script>
+        <script src="{{ asset('js/usuario/demografia/crear.js') }}"></script>
+        <script src="{{ asset('js/usuario/demografia/actualizar.js') }}"></script>
+
     @endsection
