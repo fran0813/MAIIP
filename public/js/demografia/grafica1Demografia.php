@@ -7,7 +7,7 @@
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT YEAR(anio),indRuralidad,crecPob FROM demografias WHERE demografias.municipio_id = :idMunicipio ORDER BY demografias.anio DESC LIMIT 10');
+		$sql = $conn->prepare('SELECT YEAR(anioD),indRuralidad,crecPob FROM demografias WHERE demografias.municipio_id = :idMunicipio ORDER BY demografias.anioD DESC LIMIT 10');
 		$sql->execute(array('idMunicipio' => $idMunicipio));
 		$resultados = $sql->fetchAll();
 		$html = "";
@@ -21,7 +21,7 @@
 		        ['Año', 'Índice de ruralidad', 'Crecimiento poblacional'],";
 		
 		foreach ($resultados as $resultado) {
-			$anio = $resultado['YEAR(anio)'];
+			$anio = $resultado['YEAR(anioD)'];
 			$indRuralidad = $resultado['indRuralidad'];
 			$crecPob = $resultado['crecPob'];
 

@@ -7,7 +7,7 @@
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT YEAR(anio),pobTotal FROM demografias WHERE demografias.municipio_id = :idMunicipio ORDER BY demografias.anio DESC LIMIT 10');
+		$sql = $conn->prepare('SELECT YEAR(anioD),pobTotal FROM demografias WHERE demografias.municipio_id = :idMunicipio ORDER BY demografias.anioD DESC LIMIT 10');
 		$sql->execute(array('idMunicipio' => $idMunicipio));
 		$resultados = $sql->fetchAll();
 		$html = "";
@@ -21,7 +21,7 @@
 		        ['Año', 'Población total'],";
 		
 		foreach ($resultados as $resultado) {
-			$anio = $resultado['YEAR(anio)'];
+			$anio = $resultado['YEAR(anioD)'];
 			$pobTotal = $resultado['pobTotal'];
 
 			$html .= "['$anio', $pobTotal],";
