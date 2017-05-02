@@ -29,7 +29,7 @@ $("#tablaDemografia").on("click", "a", function(){
 			method: "POST",
 			url: "/js/demografia/mostrarActualizarDemografia.php",
 			dataType: 'json',
-			data: { idGT: id }
+			data: { idD: id }
 		})
 
 		.done(function(response) {
@@ -44,7 +44,7 @@ $("#tablaDemografia").on("click", "a", function(){
 			method: "POST",
 			url: "/js/demografia/borrarDemografia.php",
 			dataType: 'json',
-			data: { idGT: id }
+			data: { idD: id }
 		})
 
 		.done(function(response) {

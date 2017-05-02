@@ -5,11 +5,11 @@ $( document ).ready(function() {
 	var mm = hoy.getMonth()+1; //hoy es 0!
 	var yyyy = hoy.getFullYear();
 
-	if(dd<10) {
+	if(dd < 10) {
 	    dd='0'+dd
 	} 
 
-	if(mm<10) {
+	if(mm < 10) {
 	    mm='0'+mm
 	} 
 
@@ -20,36 +20,37 @@ $( document ).ready(function() {
 
 $("#formActualizar").on("submit", function(){
 
-	var idGT = $("#idGT").val();
+	var idD = $("#idD").val();
 	var anio = $("#anio2").val();
-	var temperatura = $("#temperatura2").val();
-	var alturaNivMar = $("#alturaNivMar2").val();
-	var ruralG = $("#ruralG2").val();
-	var urbanoG = $("#urbanoG2").val();
-	var totalG = $("#totalG2").val();
-	var constRural = $("#constRural2").val();
-	var constUrbano = $("#constUrbano2").val();
-	var constTotal = $("#constTotal2").val();
-	var terrRural = $("#terrRural2").val();
-	var terrUrbano = $("#terrUrbano2").val();
-	var terrTotal = $("#terrTotal2").val();
-	var ruralP = $("#ruralP2").val();
-	var urbanoP = $("#urbanoP2").val();
-	var totalP = $("#totalP2").val();
+	var pobEdadTrabajar = $("#pobEdadTrabajar2").val();
+	var pobPotActiva = $("#pobPotActiva2").val();
+	var pobPotInactiva = $("#pobPotInactiva2").val();
+	var numPerMen = $("#numPerMen2").val();
+	var numPerMay= $("#numPerMay2").val();
+	var numPerInd = $("#numPerInd2").val();
+	var numPerDep = $("#numPerDep2").val();
+	var pobHom = $("#pobHom2").val();
+	var pobMuj = $("#pobMuj2").val();
+	var pobZonCab = $("#pobZonCab2").val();
+	var pobZonRes = $("#pobZonRes2").val();
+	var indRuralidad = $("#indRuralidad2").val();
+	var pobTotal = $("#pobTotal2").val();
+	var crecPob = $("#crecPob2").val();
 	var updated_at = $("#updated_at2").val();
 
 	$.ajax({
 		method: "POST",
-		url: "/js/generalidadesterritorio/actualizarGeneralidadesterritorio.php",
+		url: "/js/demografia/actualizarDemografia.php",
 		dataType: 'json',
-		data: { idGT: idGT, anioGT: anio, temperatura: temperatura, alturaNivMar: alturaNivMar, ruralG: ruralG, 
-			urbanoG: urbanoG, totalG: totalG, constRural: constRural, constUrbano: constUrbano, 
-			constTotal: constTotal, terrRural: terrRural, terrUrbano: terrUrbano, 
-			terrTotal: terrTotal, ruralP: ruralP, urbanoP: urbanoP, totalP: totalP, updated_at: updated_at}
+		data: { idD: idD, anioD: anio, pobEdadTrabajar: pobEdadTrabajar, pobPotActiva: pobPotActiva, 
+			pobPotInactiva: pobPotInactiva, numPerMen: numPerMen, numPerMay: numPerMay, numPerInd: numPerInd,
+			numPerDep: numPerDep, pobHom: pobHom, pobMuj: pobMuj, pobZonCab: pobZonCab, 
+			pobZonRes: pobZonRes, indRuralidad: indRuralidad, pobTotal: pobTotal, crecPob: crecPob, 
+			updated_at: updated_at}
 	})
 
 	.done(function(response) {
-		
+			
 		$('#respuesta2').html(response);
 		
 	});

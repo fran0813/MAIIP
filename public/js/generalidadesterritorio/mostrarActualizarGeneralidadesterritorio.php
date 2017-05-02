@@ -30,22 +30,22 @@
 			$urbanoP = $resultado['urbanoP'];
 			$totalP = $resultado['totalP'];
 
-			$html .="<label for='anio'>Año</label>       
-              		<input id='anio2' type='date'value='$anio'>";
+			$html .="<label for='anio2'>Año</label>       
+              		<input id='anio2' type='date'value='$anio'>
 
-            $html .="<br>
+                    <br>
                 	<br>
 
 	                <label for='temperatura'>Temperatura</label>        
-	                <input id='temperatura2' type='text' value='$temperatura'>";
+	                <input id='temperatura2' type='text' value='$temperatura'>
 
-	        $html .="<br>
+                    <br>
 	                <br>
 
 	                <label for='alturaNivMar'>Altura sobre el nivel del mar</label>     
-	                <input id='alturaNivMar2' type='text' value='$alturaNivMar'>";
+	                <input id='alturaNivMar2' type='text' value='$alturaNivMar'>
 
-	        $html .="<div>
+                    <div>
 
                     <label for='ruralG'>Generalidades</label>
 
@@ -67,9 +67,9 @@
                 	</div>
 
                 	<br>
-	                <br>";
+	                <br>
 
-            $html .="<div>
+                    <div>
 
                     <div>
 
@@ -123,9 +123,9 @@
 	                </div>
 
 	                <br>
-	                <br>";
+	                <br>
 
-	        $html .="<div>
+                    <div>
 
                     <label for='ruralP'>Predios</label>
 
