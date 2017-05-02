@@ -17,13 +17,13 @@
             <form id="formCrear">
 
                 <label for="anio">Año</label>       
-                <input id="anio" type="date">
+                <input id="anio" type="date" oninput="calcularCrecPob()">
 
                 <br>
                 <br>
 
                 <label for="pobEdadTrabajar">Población en edad de trabajar</label>        
-                <input id="pobEdadTrabajar" type="text" placeholder="Población en edad de trabajar">
+                <input id="pobEdadTrabajar" type="text" placeholder="Población en edad de trabajar" oninput="calcularCrecPob()">
 
                 <br>
                 <br>
@@ -83,25 +83,27 @@
                 <br>
 
                 <label for="pobZonRes">Población zona resto</label>     
-                <input id="pobZonRes" type="text" placeholder="Población zona resto">
+                <input id="pobZonRes" type="text" placeholder="Población zona resto" oninput="calcularIndRuralidad()">
 
                 <br>
                 <br>
 
                 <label for="indRuralidad">Indice de ruralidad</label>     
-                <input id="indRuralidad" type="text" placeholder="Indice de ruralidad">
+                <input id="indRuralidad" type="text" placeholder="Indice de ruralidad" disabled="">
 
                 <br>
                 <br>
 
                 <label for="pobTotal">Población total</label>     
-                <input id="pobTotal" type="text" placeholder="Población total">
+                <input id="pobTotal" type="text" placeholder="Población total" oninput="calcularIndRuralidad()">
 
                 <br>
                 <br>
-
+                    
+                <div id="recibirCrecPob">
                 <label for="crecPob">Crecimiento poblacional</label>     
-                <input id="crecPob" type="text" placeholder="Crecimiento poblacional">
+                <input id="crecPob" type="text" placeholder="Crecimiento poblacional" disabled="">
+                </div>
 
                 <br>
                 <br>

@@ -1,6 +1,7 @@
 <?php
 
 	$anioGT = $_POST['anioGT'];
+	$comprobar = $_POST['comprobar'];
 	$temperatura = $_POST['temperatura'];
 	$alturaNivMar = $_POST['alturaNivMar'];
 	$municipio_id = $_POST['municipio_id'];
@@ -29,17 +30,14 @@
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT YEAR(anioGT) FROM generalidadesterritorios WHERE anioGT = :anioGT');
-		$sql->execute(array('anioGT' => $anioGT));
+		$sql = $conn->prepare('SELECT * FROM generalidadesterritorios WHERE YEAR(anioGT) = :comprobar');
+		$sql->execute(array('comprobar' => $comprobar));
 		$resultados = $sql->fetchAll();
 		$ban = False;
 
 		foreach ($resultados as $resultado) {
-			$anio = $resultado['YEAR(anioGT)'];
-
 			$ban = True;
 		};
-
 
 		if($ban == False){
 

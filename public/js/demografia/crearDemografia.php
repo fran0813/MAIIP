@@ -1,6 +1,7 @@
 <?php
 
 	$anioD = $_POST['anioD'];
+	$comprobar = $_POST['comprobar'];
 	$pobEdadTrabajar = $_POST['pobEdadTrabajar'];
 	$pobPotActiva = $_POST['pobPotActiva'];
 	$pobPotInactiva = $_POST['pobPotInactiva'];
@@ -24,14 +25,12 @@
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT YEAR(anioD) FROM demografias WHERE anioD = :anioD');
-		$sql->execute(array('anioD' => $anioD));
+		$sql = $conn->prepare('SELECT * FROM demografias WHERE YEAR(anioD) = :comprobar');
+		$sql->execute(array('comprobar' => $comprobar));
 		$resultados = $sql->fetchAll();
 		$ban = False;
 
 		foreach ($resultados as $resultado) {
-			$anio = $resultado['YEAR(anioD)'];
-
 			$ban = True;
 		};
 

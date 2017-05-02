@@ -22,9 +22,41 @@ $( document ).ready(function() {
 
 });
 
+function calcularIndRuralidad(){
+
+	var pobZonRes = $("#pobZonRes").val();
+	var pobTotal = $("#pobTotal").val();
+	var indRuralidad = (parseInt(pobZonRes) / parseInt(pobTotal) * 100);
+
+	$('#indRuralidad').val((Math.round(indRuralidad))+"%");
+
+}
+
+function calcularCrecPob(){
+
+	var anio2 = $("#anio").val();
+	var anio = parseInt(anio2.substr(0,4));
+	var pobEdadTrabajar = $("#pobEdadTrabajar").val();
+
+	$.ajax({
+		method: "POST",
+		url: "/js/usuario/demografia/calcularCrecPob.php",
+		dataType: 'json',
+		data: { anioD: anio, pobEdadTrabajar: pobEdadTrabajar}
+	})
+
+	.done(function(response) {
+		
+		$('#recibirCrecPob').html(response);
+		
+	});
+
+}
+
 $("#formCrear").on("submit", function(){
 
 	var anio = $("#anio").val();
+	var comprobar = parseInt(anio.substr(0,4));
 	var pobEdadTrabajar = $("#pobEdadTrabajar").val();
 	var pobPotActiva = $("#pobPotActiva").val();
 	var pobPotInactiva = $("#pobPotInactiva").val();
@@ -47,7 +79,7 @@ $("#formCrear").on("submit", function(){
 		method: "POST",
 		url: "/js/demografia/crearDemografia.php",
 		dataType: 'json',
-		data: { anioD: anio, pobEdadTrabajar: pobEdadTrabajar, pobPotActiva: pobPotActiva, municipio_id: municipio, 
+		data: { anioD: anio, comprobar: comprobar, pobEdadTrabajar: pobEdadTrabajar, pobPotActiva: pobPotActiva, municipio_id: municipio, 
 			pobPotInactiva: pobPotInactiva, numPerMen: numPerMen, numPerMay: numPerMay, numPerInd: numPerInd,
 			numPerDep: numPerDep, pobHom: pobHom, pobMuj: pobMuj, pobZonCab: pobZonCab, 
 			pobZonRes: pobZonRes, indRuralidad: indRuralidad, pobTotal: pobTotal, crecPob: crecPob, 

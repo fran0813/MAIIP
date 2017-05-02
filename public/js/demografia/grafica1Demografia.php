@@ -7,7 +7,7 @@
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT YEAR(anioD),indRuralidad,crecPob FROM demografias WHERE demografias.municipio_id = :idMunicipio ORDER BY demografias.anioD DESC LIMIT 10');
+		$sql = $conn->prepare('SELECT YEAR(anioD),indRuralidad,crecPob FROM demografias WHERE demografias.municipio_id = :idMunicipio ORDER BY demografias.anioD ASC');
 		$sql->execute(array('idMunicipio' => $idMunicipio));
 		$resultados = $sql->fetchAll();
 		$html = "";
@@ -23,9 +23,11 @@
 		foreach ($resultados as $resultado) {
 			$anio = $resultado['YEAR(anioD)'];
 			$indRuralidad = $resultado['indRuralidad'];
+			$porcentajeIndRuralidad = ($indRuralidad/100);
 			$crecPob = $resultado['crecPob'];
+			$porcentajeCrecPob= ($crecPob/100);
 
-			$html .= "['$anio', $indRuralidad, $crecPob],";
+			$html .= "['$anio', $porcentajeIndRuralidad, $porcentajeCrecPob],";
 		};
 
 		$html .="]);
@@ -34,7 +36,8 @@
 		        title: 'Índice de ruralidad V.S Crecimiento demografico',
 		        curveType: 'function',
 		        legend: { position: 'rigth' },
-		        colors: ['#e9473f', '#131FBD']
+		        colors: ['#e9473f', '#131FBD'],
+		        vAxis: {format: 'percent'}
 	        	};
 
 	        	var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));

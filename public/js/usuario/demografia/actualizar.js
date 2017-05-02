@@ -18,6 +18,37 @@ $( document ).ready(function() {
 
 });
 
+function calcularIndRuralidad2(){
+
+	var pobZonRes = $("#pobZonRes2").val();
+	var pobTotal = $("#pobTotal2").val();
+	var indRuralidad = (parseInt(pobZonRes) / parseInt(pobTotal) * 100);
+
+	$('#indRuralidad2').val((Math.round(indRuralidad))+"%");
+
+}
+
+function calcularCrecPob2(){
+
+	var anio2 = $("#anio2").val();
+	var anio = parseInt(anio2.substr(0,4));
+	var pobEdadTrabajar = $("#pobEdadTrabajar2").val();
+
+	$.ajax({
+		method: "POST",
+		url: "/js/usuario/demografia/calcularCrecPob.php",
+		dataType: 'json',
+		data: { anioD: anio, pobEdadTrabajar: pobEdadTrabajar}
+	})
+
+	.done(function(response) {
+
+		$('#recibirCrecPob2').html(response);
+		
+	});
+
+}
+
 $("#formActualizar").on("submit", function(){
 
 	var idD = $("#idD").val();

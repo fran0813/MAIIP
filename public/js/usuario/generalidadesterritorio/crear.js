@@ -61,20 +61,21 @@ function calcularTotalP(){
 $("#formCrear").on("submit", function(){
 
 	var anio = $("#anio").val();
+	var comprobar = parseInt(anio.substr(0,4));
 	var temperatura = $("#temperatura").val();
 	var alturaNivMar = $("#alturaNivMar").val();
 	var ruralG = $("#ruralG").val();
 	var urbanoG = $("#urbanoG").val();
-	var totalG= (parseFloat(ruralG) + parseFloat(urbanoG));
+	var totalG= $("#totalG").val();
 	var constRural = $("#constRural").val();
 	var constUrbano = $("#constUrbano").val();
-	var constTotal= (parseInt(constRural) + parseInt(constUrbano));
+	var constTotal= $("#constTotal").val();
 	var terrRural = $("#terrRural").val();
 	var terrUrbano = $("#terrUrbano").val();
-	var terrTotal = (parseFloat(terrRural) + parseFloat(terrUrbano));
+	var terrTotal = $("#terrTotal").val();
 	var ruralP = $("#ruralP").val();
 	var urbanoP = $("#urbanoP").val();
-	var totalP = (parseInt(ruralP) + parseInt(urbanoP));
+	var totalP = $("#totalP").val();
 	var created_at = $("#created_at").val();
 	var updated_at = $("#updated_at").val();
 	var municipio = $("#municipio").val();
@@ -95,7 +96,7 @@ $("#formCrear").on("submit", function(){
 		method: "POST",
 		url: "/js/generalidadesterritorio/crearGeneralidadesterritorio.php",
 		dataType: 'json',
-		data: { anioGT: anio, temperatura: temperatura, alturaNivMar: alturaNivMar, municipio_id: municipio, ruralG: ruralG, 
+		data: { anioGT: anio, comprobar: comprobar, temperatura: temperatura, alturaNivMar: alturaNivMar, municipio_id: municipio, ruralG: ruralG, 
 			urbanoG: urbanoG, totalG: totalG, constRural: constRural, constUrbano: constUrbano, 
 			constTotal: constTotal, terrRural: terrRural, terrUrbano: terrUrbano, 
 			terrTotal: terrTotal, ruralP: ruralP, urbanoP: urbanoP, totalP: totalP, 

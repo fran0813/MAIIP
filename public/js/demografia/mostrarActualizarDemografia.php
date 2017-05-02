@@ -31,13 +31,13 @@
 			$crecPob = $resultado['crecPob'];
 
 			$html .="<label for='anio2'>Año</label>       
-                    <input id='anio2' type='date' value='$anio'>
+                    <input id='anio2' type='date' value='$anio' oninput='calcularCrecPob2()'>
 
                     <br>
                     <br>
 
                     <label for='pobEdadTrabajar2'>Población en edad de trabajar</label>        
-                    <input id='pobEdadTrabajar2' type='text' value='$pobEdadTrabajar'>
+                    <input id='pobEdadTrabajar2' type='text' value='$pobEdadTrabajar' oninput='calcularCrecPob2()'>
 
                     <br>
                     <br>
@@ -97,26 +97,28 @@
                     <br>
 
                     <label for='pobZonRes2'>Población zona resto</label>     
-                    <input id='pobZonRes2' type='text' value='$pobZonRes'>
+                    <input id='pobZonRes2' type='text' value='$pobZonRes' oninput='calcularIndRuralidad2()'>
 
                     <br>
                     <br>
 
                     <label for='indRuralidad2'>Indice de ruralidad</label>     
-                    <input id='indRuralidad2' type='text' value='$indRuralidad'>
+                    <input id='indRuralidad2' type='text' value='$indRuralidad' disabled=''>
 
                     <br>
                     <br>
 
                     <label for='pobTotal2'>Población total</label>     
-                    <input id='pobTotal2' type='text' value='$pobTotal'>
+                    <input id='pobTotal2' type='text' value='$pobTotal' oninput='calcularIndRuralidad2()'>
 
                     <br>
                     <br>
-
+                         
+                    <div id='recibirCrecPob2'>
                     <label for='crecPob2'>Crecimiento poblacional</label>     
-                    <input id='crecPob2' type='text' value='$crecPob'>
-
+                    <input id='crecPob2' type='text' value='$crecPob' disabled=''>
+                    </div>
+                    
                     <br>
                     <br>";
 
