@@ -1,6 +1,6 @@
 @extends('information.base.layout')
 
-	@section('titulo', 'Generalidades y territorio')
+	@section('title', 'Generalidades y territorio')
 
 	@section('breadcrumbs')
 
@@ -10,7 +10,13 @@
 	</ol>
 
 	@endsection
+
+	@section('selects')
+
+		@include('information.base.partials.selects')
 	
+	@endsection
+
 	@section('tables')
 	
 	<div class="col-sm-12 col-md-12 col-lg-12">

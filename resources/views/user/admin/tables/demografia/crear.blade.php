@@ -1,10 +1,9 @@
 {{-- Modal Crear --}}
-<!-- Modal -->
 <div class="modal fade" id="modalCrear" role="dialog">
 
     <div class="modal-dialog">
 
-        <!-- Modal content-->
+         {{-- Modal content --}}
         <div class="modal-content">
 
             <div class="modal-header">

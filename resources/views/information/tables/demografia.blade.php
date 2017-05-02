@@ -1,6 +1,6 @@
 @extends('information.base.layout')
 
-	@section('titulo', 'Demografia')   
+	@section('title', 'Demografia')   
 
 	@section('breadcrumbs')
 
@@ -9,6 +9,12 @@
 		<li class="active"><b>Demografia</b></li>
 	</ol>
 
+	@endsection
+
+	@section('selects')
+
+		@include('information.base.partials.selects')
+	
 	@endsection
 	
 	@section('tables')

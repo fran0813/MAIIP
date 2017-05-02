@@ -1,10 +1,9 @@
 {{-- Modal Mostrar/Actualizar --}}
-<!-- Modal -->
 <div class="modal fade" id="modalMostrarActualizar" role="dialog">
 
     <div class="modal-dialog">
 
-        <!-- Modal content-->
+         {{-- Modal content --}}
         <div class="modal-content">
 
             <div class="modal-header">

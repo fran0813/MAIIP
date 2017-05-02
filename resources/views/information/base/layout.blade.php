@@ -12,17 +12,17 @@
 	{{-- Inicio --}}
 	<div class="col-sm-12 col-md-12 col-lg-12">
 
-		{{-- migas de pan --}}
+		{{-- Migas de pan --}}
 		<div class="col-sm-6 col-md-6 col-lg-6">
 
 			@yield('breadcrumbs')
 			
 		</div>
 
-		{{-- codigo - departamentos - municipios --}}
+		{{-- Codigo - Departamentos - Municipios --}}
 		<div class="col-sm-6 col-md-6 col-lg-6">
 			
-			@include('information.base.partials.selects')
+			@yield('selects')
 
 		</div>
 

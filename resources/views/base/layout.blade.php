@@ -7,7 +7,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">	
 
-		<title>@yield('titulo')</title>
+		<title> @yield('title') </title>
 
 		{{-- Botstrap --}}
 		<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
@@ -17,13 +17,14 @@
 
 	<body>
 
-		<!-- Encabezado -->
+		<!-- Encabezado de la pagina -->
 		<header>
 
 			@include('base.partials.navbar')
 				
 		</header>
 
+		{{-- Contenido de la pagina --}}
 		<section>
 
 			@yield('content')
@@ -32,6 +33,7 @@
 
 		<!-- Pie de pagina -->
 		<br>
+		
 		<footer>
 
 			@include('base.partials.footer')

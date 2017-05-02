@@ -12,7 +12,7 @@
 		$resultados = $sql->fetchAll();
 		$html = "";
 
-		$html .= "<option>Seleccione un año</option>";
+		$html .= "<option>Año</option>";
 
 		foreach ($resultados as $resultado) {
 			$anio = $resultado['YEAR(anioGT)'];

@@ -6,19 +6,8 @@
 
 	<div class="col-sm-12 col-md-12 collg-12">
         
-        {{-- departamento --}}
-        <div class="col-sm-5 col-md-5 col-lg-5">
-            <select id="departamento" class="form-control" onchange="mostrarMunicipios()">
-                <option>Seleccione un departamento</option>
-            </select>
-        </div>
-
-        {{-- municipio --}}
-        <div class="col-sm-5 col-md-5 col-lg-5">
-            <select id="municipio" class="form-control" onchange="mostrarDatos()">
-                <option>Seleccione un municipio</option>            
-            </select>
-        </div>
+        {{-- Selects --}}
+        @include('user.admin.base.selects')
         
         <div id="crear" class="col-sm-2 col-md-2 col-lg-2" hidden="">
            <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalCrear">Crear</a>        
