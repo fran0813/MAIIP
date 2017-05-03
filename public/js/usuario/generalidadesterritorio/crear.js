@@ -80,18 +80,6 @@ $("#formCrear").on("submit", function(){
 	var updated_at = $("#updated_at").val();
 	var municipio = $("#municipio").val();
 
-	// if(anio == "0001-01-01" || anio < "1900-01-01") {
-
- //  		$('#respuesta').html("Año no valido");
- //  		return false;
-
- //  	}else if(isNaN(temperatura)) {
-
- //  		alert("n");
- // 		return false;
-
-	// }else{
-
 	$.ajax({
 		method: "POST",
 		url: "/js/generalidadesterritorio/crearGeneralidadesterritorio.php",
@@ -112,8 +100,6 @@ $("#formCrear").on("submit", function(){
 	});
 
 	return false;
-
-	// }
 
 }); 
 
