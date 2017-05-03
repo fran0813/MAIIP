@@ -1,7 +1,6 @@
 <?php
 
 	$idGT = $_POST['idGT'];
-	$anioGT = $_POST['anioGT'];
 	$temperatura = $_POST['temperatura'];
 	$alturaNivMar = $_POST['alturaNivMar'];
 
@@ -28,9 +27,8 @@
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('UPDATE generalidadesterritorios SET anioGT = :anioGT, temperatura = :temperatura, alturaNivMar = :alturaNivMar, updated_at =:updated_at WHERE id = :idGT');
+		$sql = $conn->prepare('UPDATE generalidadesterritorios SET temperatura = :temperatura, alturaNivMar = :alturaNivMar, updated_at =:updated_at WHERE id = :idGT');
 		$sql->bindParam("idGT", $idGT, PDO::PARAM_STR);
-		$sql->bindParam("anioGT", $anioGT, PDO::PARAM_STR);
 		$sql->bindParam("temperatura", $temperatura, PDO::PARAM_STR);
 		$sql->bindParam("alturaNivMar", $alturaNivMar, PDO::PARAM_STR);
 		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);

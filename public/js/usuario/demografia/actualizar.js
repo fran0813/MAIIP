@@ -36,7 +36,7 @@ function calcularCrecPob2(){
 
 	$.ajax({
 		method: "POST",
-		url: "/js/usuario/demografia/calcularCrecPob.php",
+		url: "/js/usuario/demografia/calcularCrecPob2.php",
 		dataType: 'json',
 		data: { anioD: anio, pobEdadTrabajar: pobEdadTrabajar}
 	})
@@ -52,7 +52,6 @@ function calcularCrecPob2(){
 $("#formActualizar").on("submit", function(){
 
 	var idD = $("#idD").val();
-	var anio = $("#anio2").val();
 	var pobEdadTrabajar = $("#pobEdadTrabajar2").val();
 	var pobPotActiva = $("#pobPotActiva2").val();
 	var pobPotInactiva = $("#pobPotInactiva2").val();
@@ -73,7 +72,7 @@ $("#formActualizar").on("submit", function(){
 		method: "POST",
 		url: "/js/demografia/actualizarDemografia.php",
 		dataType: 'json',
-		data: { idD: idD, anioD: anio, pobEdadTrabajar: pobEdadTrabajar, pobPotActiva: pobPotActiva, 
+		data: { idD: idD, pobEdadTrabajar: pobEdadTrabajar, pobPotActiva: pobPotActiva, 
 			pobPotInactiva: pobPotInactiva, numPerMen: numPerMen, numPerMay: numPerMay, numPerInd: numPerInd,
 			numPerDep: numPerDep, pobHom: pobHom, pobMuj: pobMuj, pobZonCab: pobZonCab, 
 			pobZonRes: pobZonRes, indRuralidad: indRuralidad, pobTotal: pobTotal, crecPob: crecPob, 
@@ -81,7 +80,7 @@ $("#formActualizar").on("submit", function(){
 	})
 
 	.done(function(response) {
-			
+
 		$('#respuesta2').html(response);
 		
 	});

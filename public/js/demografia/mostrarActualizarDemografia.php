@@ -31,7 +31,7 @@
 			$crecPob = $resultado['crecPob'];
 
 			$html .="<label for='anio2'>Año</label>       
-                    <input id='anio2' type='date' value='$anio' oninput='calcularCrecPob2()'>
+                    <input id='anio2' type='date' value='$anio' disabled=''>
 
                     <br>
                     <br>

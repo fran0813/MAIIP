@@ -1,4 +1,4 @@
-function mostrarTablas(){
+function mostrarTablasGT(){
 	mostrarTablaGeneralidadesterritorio();
 }
 

@@ -31,7 +31,7 @@
 			$totalP = $resultado['totalP'];
 
 			$html .="<label for='anio2'>Año</label>       
-              		<input id='anio2' type='date'value='$anio'>
+              		<input id='anio2' type='date'value='$anio' disabled=''>
 
                     <br>
                 	<br>

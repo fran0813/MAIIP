@@ -1,4 +1,4 @@
-function mostrarTablas(){
+function mostrarTablasD(){
 	mostrarTablaDememografia();
 	mostrarGrafica1Dem();
 	mostrarGrafica2Dem();

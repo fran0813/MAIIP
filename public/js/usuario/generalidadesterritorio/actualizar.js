@@ -57,7 +57,6 @@ function calcularTotalP2(){
 $("#formActualizar").on("submit", function(){
 
 	var idGT = $("#idGT").val();
-	var anio = $("#anio2").val();
 	var temperatura = $("#temperatura2").val();
 	var alturaNivMar = $("#alturaNivMar2").val();
 	var ruralG = $("#ruralG2").val();
@@ -78,7 +77,7 @@ $("#formActualizar").on("submit", function(){
 		method: "POST",
 		url: "/js/generalidadesterritorio/actualizarGeneralidadesterritorio.php",
 		dataType: 'json',
-		data: { idGT: idGT, anioGT: anio, temperatura: temperatura, alturaNivMar: alturaNivMar, ruralG: ruralG, 
+		data: { idGT: idGT, temperatura: temperatura, alturaNivMar: alturaNivMar, ruralG: ruralG, 
 			urbanoG: urbanoG, totalG: totalG, constRural: constRural, constUrbano: constUrbano, 
 			constTotal: constTotal, terrRural: terrRural, terrUrbano: terrUrbano, 
 			terrTotal: terrTotal, ruralP: ruralP, urbanoP: urbanoP, totalP: totalP, updated_at: updated_at}
