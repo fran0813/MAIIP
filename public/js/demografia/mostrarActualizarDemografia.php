@@ -117,10 +117,7 @@
                     <div id='recibirCrecPob2'>
                     <label for='crecPob2'>Crecimiento poblacional</label>     
                     <input id='crecPob2' type='text' value='$crecPob' disabled=''>
-                    </div>
-                    
-                    <br>
-                    <br>";
+                    </div>";
 
 			$html .="<input id='idD' type='text' value='$id' style='display: none;'>";
 		};
