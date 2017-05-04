@@ -1,7 +1,7 @@
 {{-- Modal Crear --}}
-<div class="modal fade" id="modalCrear" role="dialog">
+<div class="modal fade bd-example-modal-lg" id="modalCrear" role="dialog">
 
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
 
          {{-- Modal content --}}
         <div class="modal-content">
@@ -15,113 +15,124 @@
 
             <form id="formCrear">
 
-                <label for="anio">Año</label>       
-                <input id="anio" type="date" oninput="calcularCrecPob()">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-5 col-md-5 col-sm-5">
+                        <label for="anio" class="text-label">Año</label>       
+                        <input id="anio" type="date" oninput="calcularCrecPob()" class="form-control">
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-7">
+                        <label for="pobEdadTrabajar" class="text-label">Población en edad de trabajar</label>        
+                        <input id="pobEdadTrabajar" type="text" placeholder="Población en edad de trabajar" oninput="calcularCrecPob()" class="form-control">
+                    </div>
+                </div>
 
-                <br>
-                <br>
+                <div class="col-lg-12 col-md-12 col-sm-12"><br></div> 
 
-                <label for="pobEdadTrabajar">Población en edad de trabajar</label>        
-                <input id="pobEdadTrabajar" type="text" placeholder="Población en edad de trabajar" oninput="calcularCrecPob()">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <label for="pobPotActiva" class="text-label">Población activa</label>     
+                        <input id="pobPotActiva" type="text" placeholder="Población activa" class="form-control">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <label for="pobPotInactiva" class="text-label">Población inactiva</label>     
+                        <input id="pobPotInactiva" type="text" placeholder="Población inactiva" class="form-control">
+                    </div>
+                </div>
 
-                <br>
-                <br>
+                <div class="col-lg-12 col-md-12 col-sm-12"><br></div> 
 
-                <label for="pobPotActiva">Población activa</label>     
-                <input id="pobPotActiva" type="text" placeholder="Población activa">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <label for="numPerMen" class="text-label">Numero de personas menores</label>     
+                        <input id="numPerMen" type="text" placeholder="Numero de personas menores" class="form-control">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <label for="numPerMay" class="text-label">Numero de personas mayores</label>     
+                        <input id="numPerMay" type="text" placeholder="Numero de personas mayores" class="form-control">
+                    </div>
+                </div>
 
-                <br>
-                <br>
+                <div class="col-lg-12 col-md-12 col-sm-12"><br></div> 
 
-                <label for="pobPotInactiva">Población inactiva</label>     
-                <input id="pobPotInactiva" type="text" placeholder="Población inactiva">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <label for="numPerInd" class="text-label">Numero de personas independientes</label>     
+                        <input id="numPerInd" type="text" placeholder="Numero de personas independientes" class="form-control">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <label for="numPerDep" class="text-label">Numero de personas dependientes</label>     
+                        <input id="numPerDep" type="text" placeholder="Numero de personas dependientes" class="form-control">
+                    </div>
+                </div>
 
-                <br>
-                <br>
+                <div class="col-lg-12 col-md-12 col-sm-12"><br></div> 
 
-                <label for="numPerMen">Numero de personas menores</label>     
-                <input id="numPerMen" type="text" placeholder="Numero de personas menores">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <label for="pobHom" class="text-label">Población de hombres</label>     
+                        <input id="pobHom" type="text" placeholder="Población de hombres" class="form-control">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <label for="pobMuj" class="text-label">Población de mujeres</label>     
+                        <input id="pobMuj" type="text" placeholder="Población de mujeres" class="form-control">
+                    </div>
+                </div>
 
-                <br>
-                <br>
+                <div class="col-lg-12 col-md-12 col-sm-12"><br></div> 
 
-                <label for="numPerMay">Numero de personas mayores</label>     
-                <input id="numPerMay" type="text" placeholder="Numero de personas mayores">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <label for="pobZonCab" class="text-label">Población zona cabecera</label>     
+                        <input id="pobZonCab" type="text" placeholder="Población zona cabecera" class="form-control">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <label for="pobZonRes" class="text-label">Población zona resto</label>     
+                        <input id="pobZonRes" type="text" placeholder="Población zona resto" oninput="calcularIndRuralidad()" class="form-control">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <label for="indRuralidad" class="text-label">Indice de ruralidad</label>     
+                        <input id="indRuralidad" type="text" placeholder="Indice de ruralidad" disabled="" class="form-control">
+                    </div>
+                </div>
 
-                <br>
-                <br>
+                <div class="col-lg-12 col-md-12 col-sm-12"><br></div> 
 
-                <label for="numPerInd">Numero de personas independientes</label>     
-                <input id="numPerInd" type="text" placeholder="Numero de personas independientes">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <label for="pobTotal" class="text-label">Población total</label>     
+                        <input id="pobTotal" type="text" placeholder="Población total" oninput="calcularIndRuralidad()" class="form-control">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div id="recibirCrecPob">
+                            <label for="crecPob" class="text-label">Crecimiento poblacional</label>     
+                            <input id="crecPob" type="text" placeholder="Crecimiento poblacional" disabled="" class="form-control">
+                        </div>
+                    </div>
+                </div>
 
-                <br>
-                <br>
+                <div class="col-lg-12 col-md-12 col-sm-12"><br></div> 
 
-                <label for="numPerDep">Numero de personas dependientes</label>     
-                <input id="numPerDep" type="text" placeholder="Numero de personas dependientes">
-
-                <br>
-                <br>
-
-                <label for="pobHom">Población de hombres</label>     
-                <input id="pobHom" type="text" placeholder="Población de hombres">
-
-                <br>
-                <br>
-
-                <label for="pobMuj">Población de mujeres</label>     
-                <input id="pobMuj" type="text" placeholder="Población de mujeres">
-
-                <br>
-                <br>
-
-                <label for="pobZonCab">Población zona cabecera</label>     
-                <input id="pobZonCab" type="text" placeholder="Población zona cabecera">
-
-                <br>
-                <br>
-
-                <label for="pobZonRes">Población zona resto</label>     
-                <input id="pobZonRes" type="text" placeholder="Población zona resto" oninput="calcularIndRuralidad()">
-
-                <br>
-                <br>
-
-                <label for="indRuralidad">Indice de ruralidad</label>     
-                <input id="indRuralidad" type="text" placeholder="Indice de ruralidad" disabled="">
-
-                <br>
-                <br>
-
-                <label for="pobTotal">Población total</label>     
-                <input id="pobTotal" type="text" placeholder="Población total" oninput="calcularIndRuralidad()">
-
-                <br>
-                <br>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div style="display: none;">
+                        <input id="created_at" type="date">
+                        <input id="updated_at" type="date">
+                    </div>
                     
-                <div id="recibirCrecPob">
-                <label for="crecPob">Crecimiento poblacional</label>     
-                <input id="crecPob" type="text" placeholder="Crecimiento poblacional" disabled="">
-                </div>
+                    &nbsp;&nbsp;<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cerrar</button> &nbsp;&nbsp;        
+                    <input type="submit" value="Guardar Datos Nuevos" class="btn btn-primary pull-right">&nbsp;&nbsp;
 
-                <br>
-                <br>
-              
-                <div style="display: none;">
-                    <input id="created_at" type="date">
-                    <input id="updated_at" type="date">
                 </div>
-                            
-                <input type="submit" value="submit">
 
             </form>
 
-            <p id="respuesta"></p>
-        
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <p id="respuesta"></p>
+            
+                </div>
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              
             </div>
 
         </div>

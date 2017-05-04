@@ -30,94 +30,101 @@
 			$pobTotal = $resultado['pobTotal'];
 			$crecPob = $resultado['crecPob'];
 
-			$html .="<label for='anio2'>Año</label>       
-                    <input id='anio2' type='date' value='$anio' disabled=''>
+			$html .="
+                    <div class='col-lg-12 col-md-12 col-sm-12'>
+                         <div class='col-lg-5 col-md-5 col-sm-5'>
+                              <label for='anio2' class='text-label'>Año</label>       
+                              <input id='anio2' type='date' value='$anio' disabled='' class='form-control'>
+                         </div>
+                         <div class='col-lg-7 col-md-7 col-sm-7'>
+                              <label for='pobEdadTrabajar2' class='text-label'>Población en edad de trabajar</label>        
+                              <input id='pobEdadTrabajar2' type='text' value='$pobEdadTrabajar' oninput='calcularCrecPob2()' class='form-control'>
+                         </div>
+                     </div>
 
-                    <br>
-                    <br>
+                    <div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
 
-                    <label for='pobEdadTrabajar2'>Población en edad de trabajar</label>        
-                    <input id='pobEdadTrabajar2' type='text' value='$pobEdadTrabajar' oninput='calcularCrecPob2()'>
+                    <div class='col-lg-12 col-md-12 col-sm-12'>
+                         <div class='col-lg-6 col-md-6 col-sm-6'>
+                              <label for='pobPotActiva2' class='text-label'>Población activa</label>     
+                              <input id='pobPotActiva2' type='text' value='$pobPotActiva' class='form-control'>
+                         </div>
+                         <div class='col-lg-6 col-md-6 col-sm-6'>
+                              <label for='pobPotInactiva2' class='text-label'>Población inactiva</label>     
+                              <input id='pobPotInactiva2' type='text' value='$pobPotInactiva' class='form-control'>
+                         </div>
+                     </div>
 
-                    <br>
-                    <br>
+                    <div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
 
-                    <label for='pobPotActiva2'>Población activa</label>     
-                    <input id='pobPotActiva2' type='text' value='$pobPotActiva'>
+                    <div class='col-lg-12 col-md-12 col-sm-12'>
+                         <div class='col-lg-6 col-md-6 col-sm-6'>
+                              <label for='numPerMen2' class='text-label'>Numero de personas menores</label>     
+                              <input id='numPerMen2' type='text' value='$numPerMen' class='form-control'>
+                         </div>
+                         <div class='col-lg-6 col-md-6 col-sm-6'>
+                              <label for='numPerMay2' class='text-label'>Numero de personas mayores</label>     
+                              <input id='numPerMay2' type='text' value='$numPerMay' class='form-control'>
+                         </div>
+                     </div>
 
-                    <br>
-                    <br>
+                    <div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
 
-                    <label for='pobPotInactiva2'>Población inactiva</label>     
-                    <input id='pobPotInactiva2' type='text' value='$pobPotInactiva'>
+                    <div class='col-lg-12 col-md-12 col-sm-12'>
+                         <div class='col-lg-6 col-md-6 col-sm-6'>
+                              <label for='numPerInd2' class='text-label'>Numero de personas independientes</label>     
+                              <input id='numPerInd2' type='text' value='$numPerInd' class='form-control'>
+                         </div>
+                         <div class='col-lg-6 col-md-6 col-sm-6'>
+                              <label for='numPerDep2' class='text-label'>Numero de personas dependientes</label>     
+                              <input id='numPerDep2' type='text' value='$numPerDep' class='form-control'>
+                         </div>
+                     </div>
 
-                    <br>
-                    <br>
+                    <div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
 
-                    <label for='numPerMen2'>Numero de personas menores</label>     
-                    <input id='numPerMen2' type='text' value='$numPerMen'>
+                    <div class='col-lg-12 col-md-12 col-sm-12'>
+                         <div class='col-lg-6 col-md-6 col-sm-6'>
+                              <label for='pobHom2' class='text-label'>Población de hombres</label>     
+                              <input id='pobHom2' type='text' value='$pobHom' class='form-control'> 
+                         </div>
+                         <div class='col-lg-6 col-md-6 col-sm-6'>
+                              <label for='pobMuj2' class='text-label'>Población de mujeres</label>     
+                              <input id='pobMuj2' type='text' value='$pobMuj' class='form-control'>
+                         </div>
+                     </div>
 
-                    <br>
-                    <br>
+                    <div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
 
-                    <label for='numPerMay2'>Numero de personas mayores</label>     
-                    <input id='numPerMay2' type='text' value='$numPerMay'>
+                    <div class='col-lg-12 col-md-12 col-sm-12'>
+                         <div class='col-lg-4 col-md-4 col-sm-4'>
+                              <label for='pobZonCab2' class='text-label'>Población zona cabecera</label>     
+                              <input id='pobZonCab2' type='text' value='$pobZonCab' class='form-control'>
+                         </div>
+                         <div class='col-lg-4 col-md-4 col-sm-4'>
+                              <label for='pobZonRes2' class='text-label'>Población zona resto</label>     
+                              <input id='pobZonRes2' type='text' value='$pobZonRes' oninput='calcularIndRuralidad2()' class='form-control'>
+                         </div>
+                         <div class='col-lg-4 col-md-4 col-sm-4'>
+                              <label for='indRuralidad2' class='text-label'>Indice de ruralidad</label>     
+                              <input id='indRuralidad2' type='text' value='$indRuralidad' disabled='' class='form-control'>
+                         </div>
+                     </div>
 
-                    <br>
-                    <br>
+                    <div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
 
-                    <label for='numPerInd2'>Numero de personas independientes</label>     
-                    <input id='numPerInd2' type='text' value='$numPerInd'>
-
-                    <br>
-                    <br>
-
-                    <label for='numPerDep2'>Numero de personas dependientes</label>     
-                    <input id='numPerDep2' type='text' value='$numPerDep'>
-
-                    <br>
-                    <br>
-
-                    <label for='pobHom2'>Población de hombres</label>     
-                    <input id='pobHom2' type='text' value='$pobHom'>
-
-                    <br>
-                    <br>
-
-                    <label for='pobMuj2'>Población de mujeres</label>     
-                    <input id='pobMuj2' type='text' value='$pobMuj'>
-
-                    <br>
-                    <br>
-
-                    <label for='pobZonCab2'>Población zona cabecera</label>     
-                    <input id='pobZonCab2' type='text' value='$pobZonCab'>
-
-                    <br>
-                    <br>
-
-                    <label for='pobZonRes2'>Población zona resto</label>     
-                    <input id='pobZonRes2' type='text' value='$pobZonRes' oninput='calcularIndRuralidad2()'>
-
-                    <br>
-                    <br>
-
-                    <label for='indRuralidad2'>Indice de ruralidad</label>     
-                    <input id='indRuralidad2' type='text' value='$indRuralidad' disabled=''>
-
-                    <br>
-                    <br>
-
-                    <label for='pobTotal2'>Población total</label>     
-                    <input id='pobTotal2' type='text' value='$pobTotal' oninput='calcularIndRuralidad2()'>
-
-                    <br>
-                    <br>
-                         
-                    <div id='recibirCrecPob2'>
-                    <label for='crecPob2'>Crecimiento poblacional</label>     
-                    <input id='crecPob2' type='text' value='$crecPob' disabled=''>
-                    </div>";
+                    <div class='col-lg-12 col-md-12 col-sm-12'>
+                         <div class='col-lg-6 col-md-6 col-sm-6'>
+                              <label for='pobTotal2' class='text-label'>Población total</label>     
+                              <input id='pobTotal2' type='text' value='$pobTotal' oninput='calcularIndRuralidad2()' class='form-control'>
+                         </div>
+                         <div class='col-lg-6 col-md-6 col-sm-6'>
+                              <div id='recibirCrecPob2'>
+                              <label for='crecPob2' class='text-label'>Crecimiento poblacional</label>     
+                              <input id='crecPob2' type='text' value='$crecPob' disabled='' class='form-control'>
+                              </div>
+                         </div>
+                     </div>";
 
 			$html .="<input id='idD' type='text' value='$id' style='display: none;'>";
 		};

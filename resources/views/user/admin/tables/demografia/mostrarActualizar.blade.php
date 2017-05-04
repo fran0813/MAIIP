@@ -1,7 +1,7 @@
 {{-- Modal Mostrar/Actualizar --}}
-<div class="modal fade" id="modalMostrarActualizar" role="dialog">
+<div class="modal fade fade bd-example-modal-lg" id="modalMostrarActualizar" role="dialog">
 
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
 
          {{-- Modal content --}}
         <div class="modal-content">
@@ -22,8 +22,14 @@
                 <br>
 
                 <input id="updated_at2" type="date" style="display: none;">
+                
+                <div class="col-lg-12 col-md-12 col-sm-12"><br></div> 
 
-                <input type="submit" value="submit">
+                <div class="col-lg-12 col-md-12 col-sm-12">                    
+                    &nbsp;&nbsp;<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cerrar</button> &nbsp;&nbsp;        
+                    <input type="submit" value="Actualizar Datos" class="btn btn-primary pull-right">&nbsp;&nbsp;
+
+                </div>
 
             </form>
 
@@ -32,7 +38,7 @@
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              
             </div>
 
         </div>

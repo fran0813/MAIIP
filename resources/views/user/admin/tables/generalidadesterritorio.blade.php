@@ -20,21 +20,7 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div id="tablaGeneralidadesterritorio" class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>Año</th>
-                                <th>Funciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                {{-- <td><a id="1" href="#" class="btn btn-success" data-toggle="modal" data-target="#modalMostrarActualizar">Editar</a> <a id="1" href="#" class="btn btn-danger">Borrar</a></td> --}}
-                            </tr>
-                        </tbody>
-                    </table>
+                    <center><h3>Porfavor seleccione un <strong>Departamento</strong> y un <strong>Municipio</strong></h3></center>
                 </div>
                 <!-- /.table-responsive -->
             </div>
