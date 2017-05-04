@@ -78,7 +78,7 @@
 					<br>
 					<a class="btn btn-danger" href="{{ url('http://www.unipiloto.edu.co/construccion-social-del-territorio/maiip/') }}" style="font-size: 17px;">Mas información</a>
 					<br><br>
-					<a class="btn btn-info" href="{{ url('/login') }}" style="font-size: 17px;">Inicia sesión</a>
+					<a class="btn btn-azul" href="{{ url('/login') }}" style="font-size: 17px;">Iniciar sesión</a>
 				</center>
 
 			</div>

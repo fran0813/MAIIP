@@ -97,6 +97,24 @@ body{
     border-color: #ce1828;
 }
 
+/* Boton azul oscuro */
+.btn-azul{
+	color: #fff;
+    background-color: #14505a;
+    border-color: #092c33;
+}
+.btn-azul:focus,
+.btn-azul.focus {
+  color: #fff;
+  background-color: #1c7786;
+  border-color: #136777;
+}
+.btn-azul:hover {
+  color: #fff;
+  background-color: #1c7786;
+  border-color: #136777;
+}
+
 /* Submenu estilos titulo*/
 .sub-titulo{
 	color: #fff;
