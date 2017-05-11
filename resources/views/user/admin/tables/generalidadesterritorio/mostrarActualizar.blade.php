@@ -21,9 +21,14 @@
 
                 <br>
 
-                <input id="updated_at2" type="date" style="display: none;">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div style="display: none;">
+                        <input id="updated_at2" type="date" style="display: none;">
+                    </div>
 
-                <input type="submit" value="submit">
+                    &nbsp;&nbsp;<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cerrar</button> &nbsp;&nbsp;        
+                    <input type="submit" value="Guardar Datos Nuevos" class="btn btn-primary pull-right">&nbsp;&nbsp;
+                </div>
 
             </form>
 
@@ -32,7 +37,7 @@
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              
             </div>
 
         </div>
