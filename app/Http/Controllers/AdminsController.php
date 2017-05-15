@@ -21,4 +21,9 @@ class AdminsController extends Controller
       return view('user.admin.tables.demografia');
     }
 
+    public function tableViviendasserviciospublicosa()
+    {
+      return view('user.admin.tables.viviendaserviciospublicos');
+    }
+
 }

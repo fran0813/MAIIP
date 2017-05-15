@@ -63,3 +63,20 @@ function mostrarAñoGT() {
 	});
 
 }
+
+function mostrarAñoVSP() {
+
+	var municipio = $("#municipio").val();
+
+	$.ajax({
+		method: "POST",
+		url: "/js/principal/mostrarAnioVSP.php",
+		dataType: 'json',
+		data: { idMunicipio: municipio }
+	})
+
+	.done(function(response) {
+		$('#añoVSP').html(response);
+	});
+
+}

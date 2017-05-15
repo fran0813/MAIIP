@@ -17,4 +17,9 @@ class TablesController extends Controller
     {
       return view('information.tables.demografia');
     }
+
+    public function viviendasserviciospublicos()
+    {
+      return view('information.tables.viviendaserviciospublicos');
+    }
 }
