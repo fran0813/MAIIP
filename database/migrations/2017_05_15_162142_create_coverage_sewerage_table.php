@@ -13,7 +13,7 @@ class CreateCoverageSewerageTable extends Migration
      */
     public function up()
     {
-        Schema::create('cobAlcantarillado', function (Blueprint $table) {
+        Schema::create('CoberturaAlcantarillado', function (Blueprint $table) {
             $table->increments('id');
             $table->double('cabCA', 4, 2);
             $table->double('centPobCA', 4, 2);
@@ -31,6 +31,6 @@ class CreateCoverageSewerageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cobAlcantarillado');
+        Schema::dropIfExists('CoberturaAlcantarillado');
     }
 }

@@ -75,7 +75,7 @@
                             <a href="{{ url('/admin/demografia') }}"><i class="fa fa-edit fa-fw"></i> Demografias</a>
                         </li> 
                         <li>
-                            <a href="#"><i class="fa fa-home fa-fw"></i> Vivienda y Servivicios Públicos</a>
+                            <a href="{{ url('/admin/viviendaserviciospublicos') }}"><i class="fa fa-home fa-fw"></i> Vivienda y Servivicios Públicos</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-plus fa-fw"></i> Salud</a>

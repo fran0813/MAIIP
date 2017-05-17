@@ -13,7 +13,7 @@ class CreateCoveragePhoneTable extends Migration
      */
     public function up()
     {
-        Schema::create('cobTelefono', function (Blueprint $table) {
+        Schema::create('CoberturaTelefono', function (Blueprint $table) {
             $table->increments('id');
             $table->double('cabCT', 4, 2);
             $table->double('centPobCT', 4, 2);
@@ -31,6 +31,6 @@ class CreateCoveragePhoneTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cobTelefono');
+        Schema::dropIfExists('CoberturaTelefono');
     }
 }

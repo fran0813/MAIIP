@@ -13,7 +13,7 @@ class CreateCoverageCleanlinessTable extends Migration
      */
     public function up()
     {
-        Schema::create('cobAseo', function (Blueprint $table) {
+        Schema::create('CoberturaAseo', function (Blueprint $table) {
             $table->increments('id');
             $table->double('cabCAs', 4, 2);
             $table->double('centPobCAs', 4, 2);
@@ -31,6 +31,6 @@ class CreateCoverageCleanlinessTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cobAseo');
+        Schema::dropIfExists('CoberturaAseo');
     }
 }

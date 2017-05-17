@@ -13,7 +13,7 @@ class CreateCoverageGasTable extends Migration
      */
     public function up()
     {
-        Schema::create('cobGas', function (Blueprint $table) {
+        Schema::create('CoberturaGas', function (Blueprint $table) {
             $table->increments('id');
             $table->double('cabCG', 4, 2);
             $table->double('centPobCG', 4, 2);
@@ -31,6 +31,6 @@ class CreateCoverageGasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cobGas');
+        Schema::dropIfExists('CoberturaGas');
     }
 }
