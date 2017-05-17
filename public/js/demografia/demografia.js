@@ -51,7 +51,6 @@ function mostrarGrafica2Dem(){
 
 	.done(function(response) {
 		$('#grafica2').html(response);
-		// alert("llego");
 	});
 
 }

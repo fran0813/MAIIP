@@ -105,7 +105,7 @@ $("#formActualizar").on("submit", function(){
 		method: "POST",
 		url: "/js/viviendaserviciospublicos/actualizarViviendaserviciospublicos.php",
 		dataType: 'json',
-		data: { idGT: idGT, cabViv: cabViv, cabHog: cabHog, 
+		data: { idVSP: idVSP, cabViv: cabViv, cabHog: cabHog, 
 			cabHogViv: cabHogViv, cabPerHog: cabPerHog, cabPerViv: cabPerViv, rurViv: rurViv, rurHog: rurHog, 
 			rurHogViv: rurHogViv, rurPerHog: rurPerHog, rurPerViv: rurPerViv, totalViv: totalViv,
 			totalHog: totalHog, totalHogViv: totalHogViv, totalPerHog: totalPerHog, totalPerViv: totalPerViv, 
@@ -117,7 +117,7 @@ $("#formActualizar").on("submit", function(){
 	})
 
 	.done(function(response) {
-		
+
 		$('#respuesta2').html(response);
 		
 	});

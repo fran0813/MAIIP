@@ -198,10 +198,19 @@
 
 	</div>
 
+	<div id="grafica1" class="col-sm-12 col-md-12 col-lg-12">
+
+	</div>
+
+	<div id="grafica2" class="col-sm-12 col-md-12 col-lg-12">
+
+	</div>
+
 	@endsection	
 
 	@section('javascripttable')
 	
+		<script type="text/javascript" src="{{ url('https://www.gstatic.com/charts/loader.js') }}"></script>
 		<script src="{{ asset('js/viviendaserviciospublicos/viviendaserviciospublicos.js') }}"></script>
 
 	@endsection

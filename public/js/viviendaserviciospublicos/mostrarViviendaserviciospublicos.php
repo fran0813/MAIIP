@@ -8,7 +8,7 @@
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT * FROM viviendasserviciospublicos,cobalcantarillado,cobaseo,cobgas,cobtelefono WHERE viviendasserviciospublicos.municipio_id = :idMunicipio AND cobalcantarillado.viviendaserviciopublico_id = viviendasserviciospublicos.id AND cobaseo.viviendaserviciopublico_id = viviendasserviciospublicos.id AND cobgas.viviendaserviciopublico_id = viviendasserviciospublicos.id AND cobtelefono.viviendaserviciopublico_id = viviendasserviciospublicos.id AND YEAR(anioVSP) = :anioVSP');
+		$sql = $conn->prepare('SELECT * FROM viviendasserviciospublicos,coberturaalcantarillado,coberturaaseo,coberturagas,coberturatelefono WHERE viviendasserviciospublicos.municipio_id = :idMunicipio AND coberturaalcantarillado.viviendaserviciopublico_id = viviendasserviciospublicos.id AND coberturaaseo.viviendaserviciopublico_id = viviendasserviciospublicos.id AND coberturagas.viviendaserviciopublico_id = viviendasserviciospublicos.id AND coberturatelefono.viviendaserviciopublico_id = viviendasserviciospublicos.id AND YEAR(anioVSP) = :anioVSP');
 		$sql->execute(array('idMunicipio' => $idMunicipio, 'anioVSP' => $anioVSP));
 		$resultados = $sql->fetchAll();
 		$html = "";

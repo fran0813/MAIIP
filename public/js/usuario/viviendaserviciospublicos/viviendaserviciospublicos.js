@@ -48,7 +48,6 @@ $("#tablaviviendaserviciospublicos").on("click", "a", function(){
 		})
 
 		.done(function(response) {
-
 			mostrarDatos();
 
 		});

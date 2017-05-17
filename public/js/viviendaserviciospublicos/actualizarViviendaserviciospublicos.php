@@ -43,7 +43,7 @@
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('UPDATE viviendasserviciospublicos SET cabViv = :cabViv, cabHog = :cabHog, cabHogViv = :cabHogViv, cabPerHog = :cabPerHog, cabPerViv = :cabPerViv updated_at =:updated_at WHERE id = :idVSP');
+		$sql = $conn->prepare('UPDATE viviendasserviciospublicos SET cabViv = :cabViv, cabHog = :cabHog, cabHogViv = :cabHogViv, cabPerHog = :cabPerHog, cabPerViv = :cabPerViv, rurViv = :rurViv, rurHog = :rurHog, rurHogViv = :rurHogViv, rurPerHog = :rurPerHog, rurPerViv = :rurPerViv, totalViv = :totalViv, totalHog = :totalHog, totalHogViv= :totalHogViv, totalPerHog = :totalPerHog, totalPerViv = :totalPerViv, updated_at =:updated_at WHERE id = :idVSP');
 		$sql->bindParam("idVSP", $idVSP, PDO::PARAM_STR);
 
 		$sql->bindParam("cabViv", $cabViv, PDO::PARAM_STR);
@@ -67,30 +67,35 @@
 		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
 		$sql->execute();
 
-		$sql = $conn->prepare('UPDATE generalidades SET ruralG = :ruralG, urbanoG = :urbanoG, totalG = :totalG, updated_at = :updated_at WHERE generalidadterritorio_id = :idVSP');
+		$sql = $conn->prepare('UPDATE coberturaalcantarillado SET cabCA = :cabCA, centPobCA = :centPobCA, rurDispCA = :rurDispCA, updated_at = :updated_at WHERE viviendaserviciopublico_id = :idVSP');
 		$sql->bindParam("idVSP", $idVSP, PDO::PARAM_STR);
-		$sql->bindParam("ruralG", $ruralG, PDO::PARAM_STR);
-		$sql->bindParam("urbanoG", $urbanoG, PDO::PARAM_STR);
-		$sql->bindParam("totalG", $totalG, PDO::PARAM_STR);
+		$sql->bindParam("cabCA", $cabCA, PDO::PARAM_STR);
+		$sql->bindParam("centPobCA", $centPobCA, PDO::PARAM_STR);
+		$sql->bindParam("rurDispCA", $rurDispCA, PDO::PARAM_STR);
 		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
 		$sql->execute();
 
-		$sql = $conn->prepare('UPDATE territorios SET constRural = :constRural, constUrbano = :constUrbano, constTotal = :constTotal, terrRural = :terrRural, terrUrbano = :terrUrbano, terrTotal = :terrTotal, updated_at = :updated_at WHERE generalidadterritorio_id = :idGT');
-		$sql->bindParam("idGT", $idGT, PDO::PARAM_STR);
-		$sql->bindParam("constRural", $constRural, PDO::PARAM_STR);
-		$sql->bindParam("constUrbano", $constUrbano, PDO::PARAM_STR);
-		$sql->bindParam("constTotal", $constTotal, PDO::PARAM_STR);
-		$sql->bindParam("terrRural", $terrRural, PDO::PARAM_STR);
-		$sql->bindParam("terrUrbano", $terrUrbano, PDO::PARAM_STR);
-		$sql->bindParam("terrTotal", $terrTotal, PDO::PARAM_STR);
+		$sql = $conn->prepare('UPDATE coberturaaseo SET cabCAs = :cabCAs, centPobCAs = :centPobCAs, rurDispCAs = :rurDispCAs, updated_at = :updated_at WHERE viviendaserviciopublico_id = :idVSP');
+		$sql->bindParam("idVSP", $idVSP, PDO::PARAM_STR);
+		$sql->bindParam("cabCAs", $cabCAs, PDO::PARAM_STR);
+		$sql->bindParam("centPobCAs", $centPobCAs, PDO::PARAM_STR);
+		$sql->bindParam("rurDispCAs", $rurDispCAs, PDO::PARAM_STR);
 		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
 		$sql->execute();
 
-		$sql = $conn->prepare('UPDATE predios SET ruralP = :ruralP, urbanoP = :urbanoP, totalP = :totalP, updated_at = :updated_at WHERE generalidadterritorio_id = :idGT');
-		$sql->bindParam("idGT", $idGT, PDO::PARAM_STR);
-		$sql->bindParam("ruralP", $ruralP, PDO::PARAM_STR);
-		$sql->bindParam("urbanoP", $urbanoP, PDO::PARAM_STR);
-		$sql->bindParam("totalP", $totalP, PDO::PARAM_STR);
+		$sql = $conn->prepare('UPDATE coberturagas SET cabCG = :cabCG, centPobCG = :centPobCG, rurDispCG = :rurDispCG, updated_at = :updated_at WHERE viviendaserviciopublico_id = :idVSP');
+		$sql->bindParam("idVSP", $idVSP, PDO::PARAM_STR);
+		$sql->bindParam("cabCG", $cabCG, PDO::PARAM_STR);
+		$sql->bindParam("centPobCG", $centPobCG, PDO::PARAM_STR);
+		$sql->bindParam("rurDispCG", $rurDispCG, PDO::PARAM_STR);
+		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
+		$sql->execute();
+
+		$sql = $conn->prepare('UPDATE coberturatelefono SET cabCT = :cabCT, centPobCT = :centPobCT, rurDispCT = :rurDispCT, updated_at = :updated_at WHERE viviendaserviciopublico_id = :idVSP');
+		$sql->bindParam("idVSP", $idVSP, PDO::PARAM_STR);
+		$sql->bindParam("cabCT", $cabCT, PDO::PARAM_STR);
+		$sql->bindParam("centPobCT", $centPobCT, PDO::PARAM_STR);
+		$sql->bindParam("rurDispCT", $rurDispCT, PDO::PARAM_STR);
 		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
 		$sql->execute();
 
