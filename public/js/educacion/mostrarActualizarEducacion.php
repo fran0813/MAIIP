@@ -57,21 +57,21 @@
                             </div>
                             <div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px;'>
                                 <label for='rurJardin2' class='text-label'>Prejardin y jardin</label>       
-                                <input id='rurJardin2' type='text' placeholder='Prejardin y jardin' class='form-control' value='$rurJardin'>
+                                <input id='rurJardin2' type='text' placeholder='Prejardin y jardin' class='form-control' value='$rurJardin' oninput='calcularJardin2()'>
                             </div>
                             <div class='col-lg-6 col-md-6 col-sm-6' style='padding-right: 0px'>
                                 <label for='rurTrans2' class='text-label'>Transición</label>     
-                                <input id='rurTrans2' type='text' placeholder='Transición' class='form-control' value='$rurTrans'>
+                                <input id='rurTrans2' type='text' placeholder='Transición' class='form-control' value='$rurTrans' oninput='calcularTransicion2()'>
                             </div>
                             <br>
                             <br>
                             <div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px'>
                                 <label for='rurPrim2' class='text-label'>Primaria</label>       
-                                <input id='rurPrim2' type='text' placeholder='Primaria' class='form-control' value='$rurPrim'>
+                                <input id='rurPrim2' type='text' placeholder='Primaria' class='form-control' value='$rurPrim' oninput='calcularPrimaria2()'>
                             </div>
                             <div class='col-lg-6 col-md-6 col-sm-6' style='padding-right: 0px;'>
                                 <label for='rurSecu2' class='text-label'>Secundaria</label>       
-                                <input id='rurSecu2' type='text' placeholder='Secundaria' class='form-control' value='$rurSecu'>
+                                <input id='rurSecu2' type='text' placeholder='Secundaria' class='form-control' value='$rurSecu' oninput='calcularSecundaria2()'>
                             </div>
                             <br>
                             <br>
@@ -80,7 +80,7 @@
                             <br>
                             <div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px;'>
                                 <label for='rurMedia2' class='text-label'>Media</label>       
-                                <input id='rurMedia2' type='text' placeholder='Media' class='form-control' value='$rurMedia'>
+                                <input id='rurMedia2' type='text' placeholder='Media' class='form-control' value='$rurMedia' oninput='calcularMedia2()'>
                             </div>
                         </div>
 
@@ -90,21 +90,21 @@
                             </div>
                             <div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px;'>
                                 <label for='urbJardin2' class='text-label'>Prejardin y jardin</label>       
-                                <input id='urbJardin2' type='text' placeholder='Prejardin y jardin' class='form-control' value='$urbJardin'>
+                                <input id='urbJardin2' type='text' placeholder='Prejardin y jardin' class='form-control' value='$urbJardin' oninput='calcularJardin2()'>
                             </div>
                             <div class='col-lg-6 col-md-6 col-sm-6' style='padding-right: 0px'>
                                 <label for='urbTrans2' class='text-label'>Transición</label>     
-                                <input id='urbTrans2' type='text' placeholder='Transición' class='form-control' value='$urbTrans'>
+                                <input id='urbTrans2' type='text' placeholder='Transición' class='form-control' value='$urbTrans' oninput='calcularTransicion2()'>
                             </div>
                             <br>
                             <br>
                             <div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px'>
                                 <label for='urbPrim2' class='text-label'>Primaria</label>       
-                                <input id='urbPrim2' type='text' placeholder='Primaria' class='form-control' value='$urbPrim'>
+                                <input id='urbPrim2' type='text' placeholder='Primaria' class='form-control' value='$urbPrim' oninput='calcularPrimaria2()'>
                             </div>
                             <div class='col-lg-6 col-md-6 col-sm-6' style='padding-right: 0px;'>
                                 <label for='urbSecu2' class='text-label'>Secundaria</label>       
-                                <input id='urbSecu2' type='text' placeholder='Secundaria' class='form-control'value='$urbSecu'>
+                                <input id='urbSecu2' type='text' placeholder='Secundaria' class='form-control'value='$urbSecu' oninput='calcularSecundaria2()'>
                             </div>
                             <br>
                             <br>
@@ -113,7 +113,7 @@
                             <br>
                             <div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px;'>
                                 <label for='urbMedia2' class='text-label'>Media</label>       
-                                <input id='urbMedia2' type='text' placeholder='Media' class='form-control' value='$urbMedia'>
+                                <input id='urbMedia2' type='text' placeholder='Media' class='form-control' value='$urbMedia' oninput='calcularMedia2()'>
                             </div>
                         </div>
                 </div>
@@ -125,23 +125,23 @@
                     </div>
                     <div class='col-lg-4 col-md-4 col-sm-4'>              
                         <label for='jardin2' class='text-label'>Prejardin y jardin</label>       
-                        <input id='jardin2' type='text' placeholder='Prejardin y jardin' class='form-control' value='$jardin'>
+                        <input id='jardin2' type='text' placeholder='Prejardin y jardin' class='form-control' value='$jardin' disabled=''>
                     </div>
                     <div class='col-lg-4 col-md-4 col-sm-4'>
                         <label for='trans2' class='text-label'>Transición</label>     
-                        <input id='trans2' type='text' placeholder='Transición' class='form-control' value='$trans'>
+                        <input id='trans2' type='text' placeholder='Transición' class='form-control' value='$trans' disabled=''>
                     </div>
                     <div class='col-lg-4 col-md-4 col-sm-4'>
                         <label for='prim2' class='text-label'>Primaria</label>       
-                        <input id='prim2' type='text' placeholder='Primaria' class='form-control' value='$prim'>
+                        <input id='prim2' type='text' placeholder='Primaria' class='form-control' value='$prim' disabled=''>
                     </div>
                     <div class='col-lg-4 col-md-4 col-sm-4'>
                         <label for='secu2' class='text-label'>Secundaria</label>       
-                        <input id='secu2' type='text' placeholder='Secundaria' class='form-control' value='$secu'>
+                        <input id='secu2' type='text' placeholder='Secundaria' class='form-control' value='$secu' disabled=''>
                     </div>
                     <div class='col-lg-4 col-md-4 col-sm-4'>
                         <label for='media2' class='text-label'>Media</label>       
-                        <input id='media2' type='text' placeholder='Media' class='form-control' value='$media'>
+                        <input id='media2' type='text' placeholder='Media' class='form-control' value='$media' disabled=''>
                     </div>
                 </div>
 
@@ -153,11 +153,11 @@
                     </div>
                     <div class='col-lg-6 col-md-6 col-sm-6'>              
                         <label for='femenino2' class='text-label'>Femenino</label>       
-                        <input id='femenino2' type='text' placeholder='Femenino' class='form-control' value='$femenino'>
+                        <input id='femenino2' type='text' placeholder='Femenino' class='form-control' value='$femenino' oninput='validarGenero2()'>
                     </div>
                     <div class='col-lg-6 col-md-6 col-sm-6'>
                         <label for='masculino2' class='text-label'>Masculino</label>     
-                        <input id='masculino2' type='text' placeholder='Masculino' class='form-control' value='$masculino'>
+                        <input id='masculino2' type='text' placeholder='Masculino' class='form-control' value='$masculino' oninput='validarGenero2()'>
                     </div>
                 </div>
 

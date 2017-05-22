@@ -38,7 +38,7 @@
 		        title: 'Matriculas por nivel',
 		        bar: {groupWidth: '20%'},
 		        legend: { position: 'rigth' },
-		        colors: ['#e9473f']
+		        colors: ['#e9473f', '#397ACB', '#F8EF01']
 	        	};
 
 	        	var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));

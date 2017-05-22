@@ -25,6 +25,8 @@ $("#tablaDemografia").on("click", "a", function(){
 
 		var id = $(this).attr("id");
 
+		$('#respuesta2').html(" ");
+
 		$.ajax({
 			method: "POST",
 			url: "/js/demografia/mostrarActualizarDemografia.php",

@@ -13,7 +13,7 @@ class CreateEnrollmentByTownGenderTable extends Migration
      */
     public function up()
     {
-        Schema::create('MatriculaPorMunicipioGenero', function (Blueprint $table) {
+        Schema::create('MatriculaPorGenero', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('femenino');
             $table->integer('masculino');
@@ -30,6 +30,6 @@ class CreateEnrollmentByTownGenderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('MatriculaPorMunicipioGenero');
+        Schema::dropIfExists('MatriculaPorGenero');
     }
 }

@@ -34,21 +34,21 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-left: 0px;">
                                 <label for="rurJardin" class="text-label">Prejardin y jardin</label>       
-                                <input id="rurJardin" type="text" placeholder="Prejardin y jardin" class="form-control">
+                                <input id="rurJardin" type="text" placeholder="Prejardin y jardin" class="form-control" oninput="calcularJardin()">
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-right: 0px">
                                 <label for="rurTrans" class="text-label">Transición</label>     
-                                <input id="rurTrans" type="text" placeholder="Transición" class="form-control">
+                                <input id="rurTrans" type="text" placeholder="Transición" class="form-control" oninput="calcularTransicion()">
                             </div>
                             <br>
                             <br>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-left: 0px">
                                 <label for="rurPrim" class="text-label">Primaria</label>       
-                                <input id="rurPrim" type="text" placeholder="Primaria" class="form-control">
+                                <input id="rurPrim" type="text" placeholder="Primaria" class="form-control" oninput="calcularPrimaria()">
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-right: 0px;">
                                 <label for="rurSecu" class="text-label">Secundaria</label>       
-                                <input id="rurSecu" type="text" placeholder="Secundaria" class="form-control">
+                                <input id="rurSecu" type="text" placeholder="Secundaria" class="form-control" oninput="calcularSecundaria()">
                             </div>
                             <br>
                             <br>
@@ -57,7 +57,7 @@
                             <br>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-left: 0px;">
                                 <label for="rurMedia" class="text-label">Media</label>       
-                                <input id="rurMedia" type="text" placeholder="Media" class="form-control">
+                                <input id="rurMedia" type="text" placeholder="Media" class="form-control" oninput="calcularMedia()">
                             </div>
                         </div>
 
@@ -67,21 +67,21 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-left: 0px;">
                                 <label for="urbJardin" class="text-label">Prejardin y jardin</label>       
-                                <input id="urbJardin" type="text" placeholder="Prejardin y jardin" class="form-control">
+                                <input id="urbJardin" type="text" placeholder="Prejardin y jardin" class="form-control" oninput="calcularJardin()">
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-right: 0px">
                                 <label for="urbTrans" class="text-label">Transición</label>     
-                                <input id="urbTrans" type="text" placeholder="Transición" class="form-control">
+                                <input id="urbTrans" type="text" placeholder="Transición" class="form-control" oninput="calcularTransicion()">
                             </div>
                             <br>
                             <br>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-left: 0px">
                                 <label for="urbPrim" class="text-label">Primaria</label>       
-                                <input id="urbPrim" type="text" placeholder="Primaria" class="form-control">
+                                <input id="urbPrim" type="text" placeholder="Primaria" class="form-control" oninput="calcularPrimaria()">
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-right: 0px;">
                                 <label for="urbSecu" class="text-label">Secundaria</label>       
-                                <input id="urbSecu" type="text" placeholder="Secundaria" class="form-control">
+                                <input id="urbSecu" type="text" placeholder="Secundaria" class="form-control" oninput="calcularSecundaria()">
                             </div>
                             <br>
                             <br>
@@ -90,7 +90,7 @@
                             <br>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-left: 0px;">
                                 <label for="urbMedia" class="text-label">Media</label>       
-                                <input id="urbMedia" type="text" placeholder="Media" class="form-control">
+                                <input id="urbMedia" type="text" placeholder="Media" class="form-control" oninput="calcularMedia()">
                             </div>
                         </div>
                 </div>
@@ -102,23 +102,23 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="jardin" class="text-label">Prejardin y jardin</label>       
-                        <input id="jardin" type="text" placeholder="Prejardin y jardin" class="form-control">
+                        <input id="jardin" type="text" placeholder="Prejardin y jardin" class="form-control" disabled="">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="trans" class="text-label">Transición</label>     
-                        <input id="trans" type="text" placeholder="Transición" class="form-control">
+                        <input id="trans" type="text" placeholder="Transición" class="form-control" disabled="">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="prim" class="text-label">Primaria</label>       
-                        <input id="prim" type="text" placeholder="Primaria" class="form-control">
+                        <input id="prim" type="text" placeholder="Primaria" class="form-control" disabled="">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="secu" class="text-label">Secundaria</label>       
-                        <input id="secu" type="text" placeholder="Secundaria" class="form-control">
+                        <input id="secu" type="text" placeholder="Secundaria" class="form-control" disabled="">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="media" class="text-label">Media</label>       
-                        <input id="media" type="text" placeholder="Media" class="form-control">
+                        <input id="media" type="text" placeholder="Media" class="form-control" disabled="">
                     </div>
                 </div>
 
@@ -130,11 +130,11 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">              
                         <label for="femenino" class="text-label">Femenino</label>       
-                        <input id="femenino" type="text" placeholder="Femenino" class="form-control">
+                        <input id="femenino" type="text" placeholder="Femenino" class="form-control" oninput="validarGenero()">
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <label for="masculino" class="text-label">Masculino</label>     
-                        <input id="masculino" type="text" placeholder="Masculino" class="form-control">
+                        <input id="masculino" type="text" placeholder="Masculino" class="form-control" oninput="validarGenero()">
                     </div>
                 </div>
 
