@@ -8,7 +8,7 @@
 
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Editar Generalidades y territorio</h4>
+              <h4 class="modal-title">Editar generalidades y territorio</h4>
             </div>
 
             <div id="mostrarActualizar" class="modal-body">

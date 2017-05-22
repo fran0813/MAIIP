@@ -22,33 +22,33 @@
 			$cabPerHog = $resultado['cabPerHog'];
 			$cabPerViv = $resultado['cabPerViv'];
 
-               $rurViv = $resultado['rurViv'];
-               $rurHog = $resultado['rurHog'];
-               $rurHogViv = $resultado['rurHogViv'];
-               $rurPerHog = $resultado['rurPerHog'];
-               $rurPerViv = $resultado['rurPerViv'];
+            $rurViv = $resultado['rurViv'];
+            $rurHog = $resultado['rurHog'];
+            $rurHogViv = $resultado['rurHogViv'];
+            $rurPerHog = $resultado['rurPerHog'];
+            $rurPerViv = $resultado['rurPerViv'];
 
-               $totalViv = $resultado['totalViv'];
-               $totalHog = $resultado['totalHog'];
-               $totalHogViv = $resultado['totalHogViv'];
-               $totalPerHog = $resultado['totalPerHog'];
-               $totalPerViv = $resultado['totalPerViv'];
+            $totalViv = $resultado['totalViv'];
+            $totalHog = $resultado['totalHog'];
+            $totalHogViv = $resultado['totalHogViv'];
+            $totalPerHog = $resultado['totalPerHog'];
+            $totalPerViv = $resultado['totalPerViv'];
 
-               $cabCA = $resultado['cabCA'];
-               $centPobCA = $resultado['centPobCA'];
-               $rurDispCA = $resultado['rurDispCA'];
+            $cabCA = $resultado['cabCA'];
+            $centPobCA = $resultado['centPobCA'];
+            $rurDispCA = $resultado['rurDispCA'];
 
-               $cabCAs = $resultado['cabCAs'];
-               $centPobCAs = $resultado['centPobCAs'];
-               $rurDispCAs = $resultado['rurDispCAs'];
+            $cabCAs = $resultado['cabCAs'];
+            $centPobCAs = $resultado['centPobCAs'];
+            $rurDispCAs = $resultado['rurDispCAs'];
 
-               $cabCG = $resultado['cabCG'];
-               $centPobCG = $resultado['centPobCG'];
-               $rurDispCG = $resultado['rurDispCG'];
+            $cabCG = $resultado['cabCG'];
+            $centPobCG = $resultado['centPobCG'];
+            $rurDispCG = $resultado['rurDispCG'];
 
-               $cabCT = $resultado['cabCT'];
-               $centPobCT = $resultado['centPobCT'];
-               $rurDispCT = $resultado['rurDispCT'];
+            $cabCT = $resultado['cabCT'];
+            $centPobCT = $resultado['centPobCT'];
+            $rurDispCT = $resultado['rurDispCT'];
 		
 
 			$html .="

@@ -28,6 +28,8 @@ Route::group(['prefix' => 'tabla'], function(){
 	Route::get('generalidadesterritorio', 'TablesController@generalidadesterritorio');
 	Route::get('demografia', 'TablesController@demografia');
 	Route::get('viviendaserviciospublicos', 'TablesController@viviendasserviciospublicos');
+	Route::get('salud', 'TablesController@salud');
+	Route::get('educacion', 'TablesController@educacion');
 
 });
 
@@ -38,5 +40,7 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::get('generalidadesterritorio', 'AdminsController@tableGeneralidadesterritorio');
 	Route::get('demografia', 'AdminsController@tableDemografia');
 	Route::get('viviendaserviciospublicos', 'AdminsController@tableViviendasserviciospublicosa');
+	Route::get('salud', 'AdminsController@tableSalud');
+	Route::get('educacion', 'AdminsController@tableEducacion');
 
 });

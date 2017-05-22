@@ -45,7 +45,7 @@
 		$html .="]);
 
 	        	var options = {
-		        title: 'Población total',
+		        title: 'Viviendas',
 		        bar: {groupWidth: '20%'},
 		        legend: { position: 'rigth' },
 		        colors: ['#e9473f', '#397ACB', '#F8EF01'],
@@ -57,8 +57,8 @@
 	     		}
 				</script>
 
-				<p> Cabecera / Rural / Total </p>
-				<div id='columnchart_values' style='width: 900px; height: 300px;'></div>";
+				<div id='columnchart_values' style='width: 900px; height: 300px;'></div>
+				<p> Cabecera / Rural / Total </p>";
 
 		echo json_encode($html);
 

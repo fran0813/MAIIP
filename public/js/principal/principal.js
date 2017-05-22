@@ -80,3 +80,20 @@ function mostrarAñoVSP() {
 	});
 
 }
+
+function mostrarAñoS() {
+
+	var municipio = $("#municipio").val();
+
+	$.ajax({
+		method: "POST",
+		url: "/js/principal/mostrarAnioS.php",
+		dataType: 'json',
+		data: { idMunicipio: municipio }
+	})
+
+	.done(function(response) {
+		$('#añoS').html(response);
+	});
+
+}

@@ -50,7 +50,7 @@
 		$html .="]);
 
 	        	var options = {
-		        title: 'Población total',
+		        title: 'Coberturas',
 		        bar: {groupWidth: '20%'},
 		        legend: { position: 'rigth' },
 		        colors: ['#e9473f', '#397ACB', '#F8EF01'],
@@ -62,8 +62,8 @@
 	     		}
 				</script>
 
-				<p> Alcantarillado / Aseo / Gas / Telefono </p>
-				<div id='columnchart_values2' style='width: 900px; height: 300px;'></div>";
+				<div id='columnchart_values2' style='width: 900px; height: 300px;'></div>
+				<p> Alcantarillado / Aseo / Gas / Telefono </p>";
 
 		echo json_encode($html);
 

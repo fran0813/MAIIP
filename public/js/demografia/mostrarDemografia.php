@@ -7,7 +7,7 @@
 		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT YEAR(anioD),pobEdadTrabajar,pobPotActiva,pobPotInactiva,numPerMen,numPerMay,numPerInd,numPerDep,pobHom,pobMuj,pobZonCab,pobZonRes,indRuralidad,pobTotal,crecPob FROM demografias WHERE demografias.municipio_id = :idMunicipio ORDER BY demografias.anioD ASC LIMIT 10');
+		$sql = $conn->prepare('SELECT YEAR(anioD),pobEdadTrabajar,pobPotActiva,pobPotInactiva,numPerMen,numPerMay,numPerInd,numPerDep,pobHom,pobMuj,pobZonCab,pobZonRes,indRuralidad,pobTotal,crecPob FROM demografias WHERE demografias.municipio_id = :idMunicipio ORDER BY demografias.anioD ASC');
 		$sql->execute(array('idMunicipio' => $idMunicipio));
 		$resultados = $sql->fetchAll();
 		$html = "";

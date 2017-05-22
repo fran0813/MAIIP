@@ -198,13 +198,17 @@
 
 	</div>
 
-	<div id="grafica1" class="col-sm-12 col-md-12 col-lg-12">
+	<center>
+		<div id="grafica1" class="col-sm-12 col-md-12 col-lg-12">
 
-	</div>
+		</div>
+	</center>
 
-	<div id="grafica2" class="col-sm-12 col-md-12 col-lg-12">
+	<center>
+		<div id="grafica2" class="col-sm-12 col-md-12 col-lg-12">
 
-	</div>
+		</div>
+	</center>
 
 	@endsection	
 

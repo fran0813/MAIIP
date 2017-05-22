@@ -78,10 +78,10 @@
                             <a href="{{ url('/admin/viviendaserviciospublicos') }}"><i class="fa fa-home fa-fw"></i> Vivienda y Servivicios Públicos</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-plus fa-fw"></i> Salud</a>
+                            <a href="{{ url('/admin/salud') }}"><i class="fa fa-plus fa-fw"></i> Salud</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-book fa-fw"></i> Educación</a>
+                            <a href="{{ url('/admin/educacion') }}"><i class="fa fa-book fa-fw"></i> Educación</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-unlock-alt fa-fw"></i> Seguiridad y Violencia</a>
