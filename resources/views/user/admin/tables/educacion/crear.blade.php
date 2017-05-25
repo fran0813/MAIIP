@@ -63,7 +63,7 @@
 
                        <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="col-lg-12 col-md-12 col-sm-12" style="font-size: 16px; padding-left: 0px; padding-right: 0px">
-                                <label for="urbJardin" class="text-label"><i class="fa fa-chevron-right" aria-hidden="true"></i> Rural</label>
+                                <label for="urbJardin" class="text-label"><i class="fa fa-chevron-right" aria-hidden="true"></i> Urbano</label>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-left: 0px;">
                                 <label for="urbJardin" class="text-label">Prejardin y jardin</label>       
