@@ -1,11 +1,18 @@
 <?php
 
+    // Variables de entorno
+    $db_connection = getenv('DB_CONNECTION');   
+    $db_host = getenv('DB_HOST');
+    $db_database = getenv('DB_DATABASE');
+    $db_username = getenv('DB_USERNAME');
+    $db_password = getenv('DB_PASSWORD');
+
 	$idE = $_POST['idE'];
 
 	try{
 
-		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$conn = new PDO("$db_connection:host=$db_host; dbname=$db_database", "$db_username", "$db_password");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		$sql = $conn->prepare('SELECT educacion.id,DATE(anioE),rurJardin,urbJardin,rurTrans,urbTrans,rurPrim,urbPrim,rurSecu,urbSecu,rurMedia,urbMedia,jardin,trans,prim,secu,media,femenino,masculino FROM educacion,matriculapormunicipiogenero,matriculapornivel WHERE educacion.id = :idE AND matriculapormunicipiogenero.educacion_id = educacion.id AND matriculapornivel.educacion_id = educacion.id');
 		$sql->execute(array('idE' => $idE));

@@ -1,11 +1,18 @@
 <?php
 
+    // Variables de entorno
+    $db_connection = getenv('DB_CONNECTION');   
+    $db_host = getenv('DB_HOST');
+    $db_database = getenv('DB_DATABASE');
+    $db_username = getenv('DB_USERNAME');
+    $db_password = getenv('DB_PASSWORD');
+
 	$idVSP = $_POST['idVSP'];
 
 	try{
 
-		$conn = new PDO('mysql:host=localhost; dbname=maiip', "root", "12345");
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$conn = new PDO("$db_connection:host=$db_host; dbname=$db_database", "$db_username", "$db_password");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		$sql = $conn->prepare('SELECT viviendasserviciospublicos.id,DATE(anioVSP),cabViv,cabHog,cabHogViv,cabPerHog,cabPerViv,rurViv,rurHog,rurHogViv,rurPerHog,rurPerViv,totalViv,totalHog,totalHogViv,totalPerHog,totalPerViv,cabCA,centPobCA,rurDispCA,cabCAs,centPobCAs,rurDispCAs,cabCG,centPobCG,rurDispCG,cabCT,centPobCT,rurDispCT FROM viviendasserviciospublicos,coberturaalcantarillado,coberturaaseo,coberturagas,coberturatelefono WHERE viviendasserviciospublicos.id = :idVSP AND coberturaalcantarillado.viviendaserviciopublico_id = viviendasserviciospublicos.id AND coberturaaseo.viviendaserviciopublico_id = viviendasserviciospublicos.id AND coberturagas.viviendaserviciopublico_id = viviendasserviciospublicos.id AND viviendasserviciospublicos.ID = coberturatelefono.viviendaserviciopublico_id');
 		$sql->execute(array('idVSP' => $idVSP));

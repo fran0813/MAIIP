@@ -4,18 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Departamento;
+use App\Http\Controllers\Session;
 
 class MainsController extends Controller
 {
     public function index()
     {
-      // $departamentos = Departamento::orderBy('nombre', 'asc')->get(); 
       return view('information.main');
     }
 
     public function login()
     {
-      // $departamentos = Departamento::orderBy('nombre', 'asc')->get(); 
       return view('user.login');
     }
 }

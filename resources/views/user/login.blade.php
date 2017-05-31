@@ -41,7 +41,8 @@
 			                    <form id="form" role="form" class="login-form">
 			                    	<div class="form-group">
 			                    		<label class="sr-only" for="form-username">Usuario</label>
-			                        	<input  id="username" type="text" placeholder="Username..." class="form-username form-control" id="form-username">
+			                        	<input id="username" type="text" placeholder="Username..." class="form-username form-control" id="form-username">
+                                        {{-- {{Session::put('key', 'value')}} --}}
 			                        </div>
 			                        <div class="form-group">
 			                        	<label class="sr-only" for="form-password">Contraseña</label>

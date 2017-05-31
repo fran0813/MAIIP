@@ -2,7 +2,7 @@ $("#form").on("submit", function(){
 
 	var username = $("#username").val();
 	var password = $("#password").val();
-
+		
 	$.ajax({
 		method: "POST",
 		url: "/js/usuario/login.php",
@@ -11,6 +11,7 @@ $("#form").on("submit", function(){
 	})
 
 	.done(function(response) {
+
 		if(response == "true"){
 
 			location.href="/admin/principal";
