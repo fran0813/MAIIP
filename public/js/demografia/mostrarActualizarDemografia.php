@@ -125,11 +125,11 @@
                               <label for='pobTotal2' class='text-label'>Población total</label>     
                               <input id='pobTotal2' type='text' value='$pobTotal' oninput='calcularIndRuralidad2()' class='form-control'>
                          </div>
-                         <div class='col-lg-6 col-md-6 col-sm-6'>
-                              <div id='recibirCrecPob2'>
+                         <div id='recibirCrecPob2' class='col-lg-6 col-md-6 col-sm-6'>
+                             
                               <label for='crecPob2' class='text-label'>Crecimiento poblacional</label>     
                               <input id='crecPob2' type='text' value='$crecPob' disabled='' class='form-control'>
-                              </div>
+                              
                          </div>
                      </div>";
 

@@ -22,7 +22,7 @@
 		$sql->bindParam("idE", $idE, PDO::PARAM_STR);
 		$sql->execute();
 
-		$sql = $conn->prepare('DELETE FROM educacion WHERE municipio_id = :idE');
+		$sql = $conn->prepare('DELETE FROM educacion WHERE id = :idE');
 		$sql->bindParam("idE", $idE, PDO::PARAM_STR);
 		$sql->execute();
 

@@ -22,7 +22,7 @@
 		$sql->bindParam("idS", $idS, PDO::PARAM_STR);
 		$sql->execute();
 
-		$sql = $conn->prepare('DELETE FROM salud WHERE municipio_id = :idS');
+		$sql = $conn->prepare('DELETE FROM salud WHERE id = :idS');
 		$sql->bindParam("idS", $idS, PDO::PARAM_STR);
 		$sql->execute();
 
