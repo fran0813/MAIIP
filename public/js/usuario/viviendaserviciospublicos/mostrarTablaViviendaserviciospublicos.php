@@ -14,7 +14,7 @@
 		$conn = new PDO("$db_connection:host=$db_host; dbname=$db_database", "$db_username", "$db_password");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT id,YEAR(anioVSP) FROM viviendasserviciospublicos WHERE viviendasserviciospublicos.municipio_id = :idMunicipio ORDER BY anioVSP');
+		$sql = $conn->prepare('SELECT id,YEAR(anioVSP),totalViv,totalHog,totalHogViv FROM viviendasserviciospublicos WHERE viviendasserviciospublicos.municipio_id = :idMunicipio ORDER BY anioVSP');
 		$sql->execute(array('idMunicipio' => $idMunicipio));
 		$resultados = $sql->fetchAll();
 		$html = "";
@@ -23,6 +23,9 @@
 				<thead>
 				<tr>
 				<th>Año</th>
+				<th>Total de viviendas</th>
+				<th>Total de hogares</th>
+				<th>Total de hogares por vivienda</th>
 				<th>Funciones</th>
 				</tr>
 				</thead>
@@ -31,15 +34,23 @@
 		foreach ($resultados as $resultado) {
 			$id = $resultado['id'];
 			$anio = $resultado['YEAR(anioVSP)'];
+			$totalViv = $resultado['totalViv'];
+			$totalHog = $resultado['totalHog'];
+			$totalHogViv = $resultado['totalHogViv'];
 			
 			$html .="<tr>
 					<td>$anio</td>
-					<td><a id='$id' href='#' class='btn btn-success' data-toggle='modal' data-target='#modalMostrarActualizar'>Editar</a><a id='$id' href='#' class='btn btn-danger'>Borrar</a></td>
+					<td>$totalViv</td>
+					<td>$totalHog</td>
+					<td>$totalHogViv</td>
+					<td><a id='$id' href='#' class='btn btn-success' data-toggle='modal' data-target='#modalMostrarActualizar'>Editar</a></td>
 					</tr>";
 		};
 
 		$html .="</tbody>
 				</table>";
+
+		// <a id='$id' href='#' class='btn btn-danger'>Borrar</a>
 
 		echo json_encode($html);
 

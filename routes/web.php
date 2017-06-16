@@ -33,7 +33,7 @@ Route::group(['prefix' => 'tabla'], function(){
 
 });
 
-// ruta para admin
+// rutas para admin
 Route::group(['prefix' => 'admin'], function(){
 
 	Route::get('principal', 'AdminsController@index');

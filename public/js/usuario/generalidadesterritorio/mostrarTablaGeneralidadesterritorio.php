@@ -14,7 +14,7 @@
 		$conn = new PDO("$db_connection:host=$db_host; dbname=maiip", "u_maiip", "$db_password");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT id,YEAR(anioGT) FROM generalidadesterritorios WHERE generalidadesterritorios.municipio_id = :idMunicipio ORDER BY anioGT');
+		$sql = $conn->prepare('SELECT id,YEAR(anioGT),temperatura,alturaNivMar FROM generalidadesterritorios WHERE generalidadesterritorios.municipio_id = :idMunicipio ORDER BY anioGT');
 		$sql->execute(array('idMunicipio' => $idMunicipio));
 		$resultados = $sql->fetchAll();
 		$html = "";
@@ -23,23 +23,32 @@
 				<thead>
 				<tr>
 				<th>Año</th>
+				<th>Temperatura</th>
+				<th>Altura sobre el nivel del mar</th>
 				<th>Funciones</th>
 				</tr>
 				</thead>
 				<tbody>";
 
 		foreach ($resultados as $resultado) {
+			
 			$id = $resultado['id'];
 			$anio = $resultado['YEAR(anioGT)'];
+			$temperatura = $resultado['temperatura'];
+			$alturaNivMar = $resultado['alturaNivMar'];
 			
 			$html .="<tr>
 					<td>$anio</td>
-					<td><a id='$id' href='#' class='btn btn-success' data-toggle='modal' data-target='#modalMostrarActualizar'>Editar</a><a id='$id' href='#' class='btn btn-danger'>Borrar</a></td>
+					<td>$temperatura</td>
+					<td>$alturaNivMar</td>
+					<td><a id='$id' href='#' class='btn btn-success' data-toggle='modal' data-target='#modalMostrarActualizar'>Editar</a></td>
 					</tr>";
 		};
 
 		$html .="</tbody>
 				</table>";
+
+		// <a id='$id' href='#' class='btn btn-danger'>Borrar</a>
 
 		echo json_encode($html);
 

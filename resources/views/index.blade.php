@@ -6,7 +6,7 @@
 
 	<li class="active"><a href="{{ url('/') }}">Inicio <span class="sr-only">(current)</span></a></li>
 	<li><a href="{{ url('/informacion') }}">Información</a></li>
-
+	
 	@endsection
 
 	@section('content')
