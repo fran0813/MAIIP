@@ -8,6 +8,10 @@ use App\Http\Controllers\Session;
 
 class MainsController extends Controller
 {
+
+	public function __construct(){
+	}
+
     public function index()
     {
       return view('information.main');

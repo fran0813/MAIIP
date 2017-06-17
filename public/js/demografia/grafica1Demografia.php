@@ -1,7 +1,7 @@
 <?php
-	
+
 	// Variables de entorno
-	$db_connection = getenv('DB_CONNECTION');	
+	$db_connection = getenv('DB_CONNECTION');
 	$db_host = getenv('DB_HOST');
 	$db_database = getenv('DB_DATABASE');
 	$db_username = getenv('DB_USERNAME');
@@ -21,12 +21,12 @@
 
 		$html .="<script type='text/javascript'>
 				google.charts.load('current', {'packages':['corechart']});
-	      		google.charts.setOnLoadCallback(drawChart);
+				google.charts.setOnLoadCallback(drawChart);
 
 	      		function drawChart() {
 		        var data = google.visualization.arrayToDataTable([
 		        ['Año', 'Índice de ruralidad', 'Crecimiento poblacional'],";
-		
+
 		foreach ($resultados as $resultado) {
 			$anio = $resultado['YEAR(anioD)'];
 			$indRuralidad = $resultado['indRuralidad'];

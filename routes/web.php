@@ -44,3 +44,8 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::get('educacion', 'AdminsController@tableEducacion');
 
 });
+
+Route::group(['prefix' => 'departamentos'], function(){
+	Route::get('/', 'DepartamentosController@mostrarDepartamentos');
+
+});

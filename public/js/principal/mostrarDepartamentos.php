@@ -1,7 +1,7 @@
 <?php
 
 	// Variables de entorno
-	$db_connection = getenv('DB_CONNECTION');	
+	$db_connection = getenv('DB_CONNECTION');
 	$db_host = getenv('DB_HOST');
 	$db_database = getenv('DB_DATABASE');
 	$db_username = getenv('DB_USERNAME');
