@@ -29,7 +29,6 @@
 		
 		foreach ($resultados as $resultado) {
 			$anio = $resultado['YEAR(anioE)'];
-
 			$jardin = $resultado['jardin'];
 			$trans = $resultado['trans'];
 			$prim = $resultado['prim'];

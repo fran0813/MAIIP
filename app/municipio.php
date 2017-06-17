@@ -27,4 +27,22 @@ class Municipio extends Model
     {
         return $this->hasMany('App\Demografia');
     }
+
+    // Relacion uno a muchos con viviendaserviciospublicos
+    public function viviendaserviciospublicos()
+    {
+        return $this->hasMany('App\Viviendaserviciospublicos');
+    }
+
+    // Relacion uno a muchos con salud
+    public function salud()
+    {
+        return $this->hasMany('App\Salud');
+    }
+
+    // Relacion uno a muchos con educacion
+    public function educacion()
+    {
+        return $this->hasMany('App\Educacion');
+    }
 }

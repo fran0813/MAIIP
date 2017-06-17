@@ -24,28 +24,26 @@ Route::get('login', 'MainsController@login');
 
 // rutas para tablas
 Route::group(['prefix' => 'tabla'], function(){
-
 	Route::get('generalidadesterritorio', 'TablesController@generalidadesterritorio');
 	Route::get('demografia', 'TablesController@demografia');
 	Route::get('viviendaserviciospublicos', 'TablesController@viviendasserviciospublicos');
 	Route::get('salud', 'TablesController@salud');
 	Route::get('educacion', 'TablesController@educacion');
-
 });
 
 // rutas para admin
 Route::group(['prefix' => 'admin'], function(){
-
 	Route::get('principal', 'AdminsController@index');
 	Route::get('generalidadesterritorio', 'AdminsController@tableGeneralidadesterritorio');
 	Route::get('demografia', 'AdminsController@tableDemografia');
 	Route::get('viviendaserviciospublicos', 'AdminsController@tableViviendasserviciospublicosa');
 	Route::get('salud', 'AdminsController@tableSalud');
 	Route::get('educacion', 'AdminsController@tableEducacion');
-
 });
 
 Route::group(['prefix' => 'departamentos'], function(){
 	Route::get('/', 'DepartamentosController@mostrarDepartamentos');
-
+	Route::post('/establecerDepartamento', 'DepartamentosController@establecerDepartamento');
+	Route::get('/mostrarMunicipios', 'DepartamentosController@mostrarMunicipios');
+	Route::post('/establecerMunicipio', 'DepartamentosController@establecerMunicipio');
 });

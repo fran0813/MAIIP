@@ -21,10 +21,10 @@
 
 		$html .="<div class='col-sm-12 col-md-12 col-lg-12'>
 
-			<table class='table table-bordered table-hover'>
+				<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
-					<tr>
-						<th>Datos</th>";
+				<tr>
+				<th>Datos</th>";
 
 		foreach ($resultados as $resultado) {
 			$anio = $resultado['YEAR(anioE)'];
@@ -35,8 +35,8 @@
 		$html .="</tr>
 				</thead>
 				<tbody>
-					<tr class='border-dotted'>
-						<td>Prejardin y jardin (rural)</td>";
+				<tr class='border-dotted'>
+				<td>Prejardin y jardin (rural)</td>";
 
 		foreach ($resultados as $resultado) {
 			$rurJardin = $resultado['rurJardin'];
@@ -206,7 +206,7 @@
 			$html .= "<td>$secu</td>";
 		};
 
-		$html .="<</tr>
+		$html .="</tr>
 					<tr>
 						<td>Media</td>";
 

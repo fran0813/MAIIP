@@ -36,6 +36,10 @@
 							
 		foreach ($resultados as $resultado) {
 			$temperatura = $resultado['temperatura'];
+
+			if($temperatura == 0){
+				$temperatura = "N.D.";
+			}
 			
 			$html .= "<td>$temperatura</td>";
 								
@@ -47,6 +51,10 @@
 
 		foreach ($resultados as $resultado) {
 			$alturaNivMar = $resultado['alturaNivMar'];
+
+			if($alturaNivMar == 0){
+				$alturaNivMar= "N.D.";
+			}
 			
 			$html .= "<td>$alturaNivMar</td>";
 

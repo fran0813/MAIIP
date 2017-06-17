@@ -16,6 +16,8 @@
 	</head>
 
 	<body>
+	
+		<input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
 
 		<!-- Encabezado de la pagina -->
 		<header>

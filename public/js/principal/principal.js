@@ -1,30 +1,72 @@
 $( document ).ready(function() {
 
 	$.ajax({
-		method: "POST",
-		url: "/js/principal/mostrarDepartamentos.php",
+		method: "GET",
+		url: "/departamentos/",
 		dataType: 'json',
 	})
 
 	.done(function(response) {
-		$('#departamento').html(response);
+		// response = JSON.parse(response)
+		console.info(response)
+		$('#departamento').html(response.html).trigger("change");
 	});
 
 });
+
+function establecerDepartamento() {
+
+	var departamento = $("#departamento").val();
+
+	$.ajax({
+		method: "POST",
+		url: "/departamentos/establecerDepartamento",
+		dataType: 'json',
+		data: { 
+			idDepartamento: departamento,
+			_token: $("#_token").val()
+		}
+	})
+
+	.done(function(response) {
+		console.info(response)
+	});
+
+}
+
+function establecerMunicipio() {
+
+	var municipio = $("#municipio").val();
+
+	$.ajax({
+		method: "POST",
+		url: "/departamentos/establecerMunicipio",
+		dataType: 'json',
+		data: { 
+			idMunicipio: municipio,
+			_token: $("#_token").val()
+		}
+	})
+
+	.done(function(response) {
+		console.info(response)
+	});
+
+}
 
 function mostrarMunicipios() {
 
 	var departamento = $("#departamento").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/principal/mostrarMunicipios.php",
+		method: "GET",
+		url: "/departamentos/mostrarMunicipios",
 		dataType: 'json',
 		data: { idDepartamento: departamento }
 	})
 
 	.done(function(response) {
-		$('#municipio').html(response);
+		$('#municipio').html(response.html).trigger("change");
 	});
 
 }
