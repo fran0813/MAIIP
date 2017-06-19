@@ -113,4 +113,29 @@ class DepartamentosController extends Controller
 		return Response::json(array('html' => $html, 'municipio' => $municipios->toArray()));
 
 	}
+
+	public function mostrarCodigo(Request $request){
+
+		$idDepartamento = $_GET['idDepartamento'];
+		$idMunicipio = $_GET['idMunicipio'];
+
+		$departamentos = departamento::all();
+		$municipios = municipio::where("departamento_id",$idDepartamento)->get();
+
+		$html = "";
+
+		foreach ($departamentos as $departamento) {
+			$coddep = $departamento->codigoD;
+			$codmun = $municipio->codigoM;
+			
+			$html .= "<input class='form-control' type='text' disabled='true' value='$coddep$codmun'>";
+		};
+
+		if($idMunicipio == "Seleccione un municipio"){
+			$html .= "<input class='form-control' type='text' value=''>";
+		}
+
+		return Response::json(array('html' => $html, 'municipio' => $municipios->toArray()));
+
+	}
 }
