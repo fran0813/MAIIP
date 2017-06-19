@@ -77,34 +77,34 @@ Route::group(['prefix' => 'demografia'], function(){
 
 Route::group(['prefix' => 'viviendaserviciospublicos'], function(){
 	Route::get('/mostrarTablaViviendaserviciospublicos', 'ViviendaserviciospublicosController@mostrarTablaViviendaserviciospublicos');
-	Route::post('/actualizarViviendaserviciospublicos', 'ViviendaserviciospublicosController@actualizarViviendaserviciospublicos');
+	Route::get('/actualizarViviendaserviciospublicos', 'ViviendaserviciospublicosController@actualizarViviendaserviciospublicos');
 	Route::get('/borrarViviendaserviciospublicos', 'ViviendaserviciospublicosController@borrarViviendaserviciospublicos');
-	Route::post('/crearViviendaserviciospublicos', 'ViviendaserviciospublicosController@crearViviendaserviciospublicos');
-	Route::post('/grafica1Viviendaserviciospublicos', 'ViviendaserviciospublicosController@grafica1Viviendaserviciospublicos');
-	Route::post('/grafica2Viviendaserviciospublicos', 'ViviendaserviciospublicosController@grafica2Viviendaserviciospublicos');
-	Route::post('/mostrarActualizarViviendaserviciospublicos', 'ViviendaserviciospublicosController@mostrarActualizarViviendaserviciospublicos');
-	Route::post('/mostrarViviendaserviciospublicos', 'ViviendaserviciospublicosController@mostrarViviendaserviciospublicos');
+	Route::get('/crearViviendaserviciospublicos', 'ViviendaserviciospublicosController@crearViviendaserviciospublicos');
+	Route::get('/grafica1Viviendaserviciospublicos', 'ViviendaserviciospublicosController@grafica1Viviendaserviciospublicos');
+	Route::get('/grafica2Viviendaserviciospublicos', 'ViviendaserviciospublicosController@grafica2Viviendaserviciospublicos');
+	Route::get('/mostrarActualizarViviendaserviciospublicos', 'ViviendaserviciospublicosController@mostrarActualizarViviendaserviciospublicos');
+	Route::get('/mostrarViviendaserviciospublicos', 'ViviendaserviciospublicosController@mostrarViviendaserviciospublicos');
 });
 
 Route::group(['prefix' => 'salud'], function(){
 	Route::get('/mostrarTablaSalud', 'SaludController@mostrarTablaSalud');
-	Route::post('/actualizarSalud', 'SaludController@actualizarSalud');
+	Route::get('/actualizarSalud', 'SaludController@actualizarSalud');
 	Route::get('/borrarSalud', 'SaludController@borrarSalud');
-	Route::post('/crearSalud', 'SaludController@crearSalud');
-	Route::post('/grafica1Salud', 'SaludController@grafica1Salud');
-	Route::post('/grafica2Salud', 'SaludController@grafica2Salud');
-	Route::post('/mostrarActualizarSalud', 'SaludController@mostrarActualizarSalud');
-	Route::post('/mostrarSalud', 'SaludController@mostrarSalud');
+	Route::get('/crearSalud', 'SaludController@crearSalud');
+	Route::get('/grafica1Salud', 'SaludController@grafica1Salud');
+	Route::get('/grafica2Salud', 'SaludController@grafica2Salud');
+	Route::get('/mostrarActualizarSalud', 'SaludController@mostrarActualizarSalud');
+	Route::get('/mostrarSalud', 'SaludController@mostrarSalud');
 });
 
 Route::group(['prefix' => 'educacion'], function(){
 	Route::get('/mostrarTablaEducacion', 'EducacionController@mostrarTablaEducacion');
-	Route::post('/actualizarEducacion', 'EducacionController@actualizarEducacion');
+	Route::get('/actualizarEducacion', 'EducacionController@actualizarEducacion');
 	Route::get('/borrarEducacion', 'EducacionController@borrarEducacion');
-	Route::post('/crearEducacion', 'EducacionController@crearEducacion');
-	Route::post('/grafica1Educacion', 'EducacionController@grafica1Educacion');
-	Route::post('/grafica2Educacion', 'EducacionController@grafica2Educacion');
-	Route::post('/mostrarActualizarEducacion', 'EducacionController@mostrarActualizarEducacion');
-	Route::post('/mostrarEducacion', 'EducacionController@mostrarEducacion');
+	Route::get('/crearEducacion', 'EducacionController@crearEducacion');
+	Route::get('/grafica1Educacion', 'EducacionController@grafica1Educacion');
+	Route::get('/grafica2Educacion', 'EducacionController@grafica2Educacion');
+	Route::get('/mostrarActualizarEducacion', 'EducacionController@mostrarActualizarEducacion');
+	Route::get('/mostrarEducacion', 'EducacionController@mostrarEducacion');
 });
 
