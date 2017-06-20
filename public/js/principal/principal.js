@@ -2,7 +2,7 @@ $( document ).ready(function() {
 
 	$.ajax({
 		method: "GET",
-		url: "/departamentos/",
+		url: "/departamentos/mostrarDepartamentos",
 		dataType: 'json',
 	})
 
@@ -77,14 +77,14 @@ function mostrarCodigo() {
 	var municipio = $("#municipio").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/principal/mostrarCodigo.php",
+		method: "GET",
+		url: "/departamentos/mostrarCodigo",
 		dataType: 'json',
 		data: { idDepartamento: departamento, idMunicipio: municipio }
 	})
 
 	.done(function(response) {
-		$('#codigo').html(response);
+		$('#codigo').html(response.html);
 	});
 
 }
@@ -94,14 +94,14 @@ function mostrarAñoGT() {
 	var municipio = $("#municipio").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/principal/mostrarAnioGT.php",
+		method: "GET",
+		url: "/departamentos/mostrarAñoGT",
 		dataType: 'json',
 		data: { idMunicipio: municipio }
 	})
 
 	.done(function(response) {
-		$('#añoGT').html(response);
+		$('#añoGT').html(response.html);
 	});
 
 }
@@ -111,14 +111,14 @@ function mostrarAñoVSP() {
 	var municipio = $("#municipio").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/principal/mostrarAnioVSP.php",
+		method: "GET",
+		url: "/departamentos/mostrarAñoVSP",
 		dataType: 'json',
 		data: { idMunicipio: municipio }
 	})
 
 	.done(function(response) {
-		$('#añoVSP').html(response);
+		$('#añoVSP').html(response.html);
 	});
 
 }
@@ -128,14 +128,14 @@ function mostrarAñoS() {
 	var municipio = $("#municipio").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/principal/mostrarAnioS.php",
+		method: "GET",
+		url: "/departamentos/mostrarAñoS",
 		dataType: 'json',
 		data: { idMunicipio: municipio }
 	})
 
 	.done(function(response) {
-		$('#añoS').html(response);
+		$('#añoS').html(response.html);
 	});
 
 }

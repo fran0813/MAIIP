@@ -6,11 +6,11 @@ $( document ).ready(function() {
 	var yyyy = hoy.getFullYear();
 
 	if(dd < 10) {
-	    dd='0'+dd
+	    dd='0'+dd;
 	} 
 
 	if(mm < 10) {
-	    mm='0'+mm
+	    mm='0'+mm;
 	} 
 
 	anio = $("#anio")[0];
@@ -109,8 +109,8 @@ $("#formCrear").on("submit", function(){
 	var municipio = $("#municipio").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/viviendaserviciospublicos/crearViviendaserviciospublicos.php",
+		method: "GET",
+		url: "/viviendaserviciospublicos/crearViviendaserviciospublicos",
 		dataType: 'json',
 		data: { anioVSP: anio, comprobar: comprobar, cabViv: cabViv, cabHog: cabHog, municipio_id: municipio, 
 			cabHogViv: cabHogViv, cabPerHog: cabPerHog, cabPerViv: cabPerViv, rurViv: rurViv, rurHog: rurHog, 
@@ -124,11 +124,8 @@ $("#formCrear").on("submit", function(){
 	})
 
 	.done(function(response) {
-
-		$('#respuesta').html(response);
-
-		refrescar();
-		
+		$('#respuesta').html(response.html);
+		refrescar();		
 	});
 
 	return false;
@@ -140,14 +137,14 @@ function refrescar(){
 	var municipio = $("#municipio").val();
 
 		$.ajax({
-			method: "POST",
-			url: "/js/usuario/viviendaserviciospublicos/mostrarTablaViviendaserviciospublicos.php",
+			method: "GET",
+			url: "/viviendaserviciospublicos/mostrarTablaViviendaserviciospublicos",
 			dataType: 'json',
 			data: { idMunicipio: municipio }
 		})
 
 		.done(function(response) {
-			$('#tablaviviendaserviciospublicos').html(response);
+			$('#tablaviviendaserviciospublicos').html(response.html);
 		});
 
 }

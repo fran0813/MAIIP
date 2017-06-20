@@ -65,7 +65,7 @@
 		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
 		$sql->execute();
 
-		$sql = $conn->prepare('UPDATE matriculapormunicipiogenero SET femenino = :femenino, masculino = :masculino, updated_at = :updated_at WHERE educacion_id = :idE');
+		$sql = $conn->prepare('UPDATE matriculaporgenero SET femenino = :femenino, masculino = :masculino, updated_at = :updated_at WHERE educacion_id = :idE');
 		$sql->bindParam("idE", $idE, PDO::PARAM_STR);
 
 		$sql->bindParam("femenino", $femenino, PDO::PARAM_STR);

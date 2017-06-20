@@ -6,11 +6,11 @@ $( document ).ready(function() {
 	var yyyy = hoy.getFullYear();
 
 	if(dd < 10) {
-	    dd='0'+dd
+	    dd='0'+dd;
 	} 
 
 	if(mm < 10) {
-	    mm='0'+mm
+	    mm='0'+mm;
 	} 
 
 	actualizado = $("#updated_at2")[0];
@@ -102,8 +102,8 @@ $("#formActualizar").on("submit", function(){
 	var updated_at = $("#updated_at2").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/viviendaserviciospublicos/actualizarViviendaserviciospublicos.php",
+		method: "GET",
+		url: "/viviendaserviciospublicos/actualizarViviendaserviciospublicos",
 		dataType: 'json',
 		data: { idVSP: idVSP, cabViv: cabViv, cabHog: cabHog, 
 			cabHogViv: cabHogViv, cabPerHog: cabPerHog, cabPerViv: cabPerViv, rurViv: rurViv, rurHog: rurHog, 
@@ -118,7 +118,7 @@ $("#formActualizar").on("submit", function(){
 
 	.done(function(response) {
 
-		$('#respuesta2').html(response);
+		$('#respuesta2').html(response.html);
 		
 	});
 

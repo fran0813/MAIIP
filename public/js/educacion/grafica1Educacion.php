@@ -14,7 +14,7 @@
 		$conn = new PDO("$db_connection:host=$db_host; dbname=$db_database", "$db_username", "$db_password");
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = $conn->prepare('SELECT YEAR(anioE),femenino,masculino FROM educacion,matriculapormunicipiogenero WHERE educacion.municipio_id = :idMunicipio AND matriculapormunicipiogenero.educacion_id = educacion.id ORDER BY educacion.anioE ASC');
+		$sql = $conn->prepare('SELECT YEAR(anioE),femenino,masculino FROM educacion,matriculaporgenero WHERE educacion.municipio_id = :idMunicipio AND matriculaporgenero.educacion_id = educacion.id ORDER BY educacion.anioE ASC');
 		$sql->execute(array('idMunicipio' => $idMunicipio));
 		$resultados = $sql->fetchAll();
 		$html = "";

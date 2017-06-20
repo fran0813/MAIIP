@@ -61,7 +61,7 @@ class EducacionController extends Controller
 		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
 		$sql->execute();
 
-		$sql = $conn->prepare('UPDATE matriculapormunicipiogenero SET femenino = :femenino, masculino = :masculino, updated_at = :updated_at WHERE educacion_id = :idE');
+		$sql = $conn->prepare('UPDATE matriculaporgenero SET femenino = :femenino, masculino = :masculino, updated_at = :updated_at WHERE educacion_id = :idE');
 		$sql->bindParam("idE", $idE, PDO::PARAM_STR);
 
 		$sql->bindParam("femenino", $femenino, PDO::PARAM_STR);
@@ -85,7 +85,7 @@ class EducacionController extends Controller
 		$sql->bindParam("idE", $idE, PDO::PARAM_STR);
 		$sql->execute();
 
-		$sql = $conn->prepare('DELETE FROM matriculapormunicipiogenero WHERE educacion_id = :idE');
+		$sql = $conn->prepare('DELETE FROM matriculaporgenero WHERE educacion_id = :idE');
 		$sql->bindParam("idE", $idE, PDO::PARAM_STR);
 		$sql->execute();
 
@@ -182,7 +182,7 @@ class EducacionController extends Controller
 
 		$sql->execute();
 
-		$sql = $conn->prepare('INSERT INTO matriculapormunicipiogenero VALUES (null, :femenino, :masculino, :educacion_id, :created_at, :updated_at)');
+		$sql = $conn->prepare('INSERT INTO matriculaporgenero VALUES (null, :femenino, :masculino, :educacion_id, :created_at, :updated_at)');
 
 		$sql->bindParam("femenino", $femenino, PDO::PARAM_STR);
 		$sql->bindParam("masculino", $masculino, PDO::PARAM_STR);
@@ -211,7 +211,7 @@ class EducacionController extends Controller
 
 	$idMunicipio = $_GET['idMunicipio'];
 
-		$sql = $conn->prepare('SELECT YEAR(anioE),femenino,masculino FROM educacion,matriculapormunicipiogenero WHERE educacion.municipio_id = :idMunicipio AND matriculapormunicipiogenero.educacion_id = educacion.id ORDER BY educacion.anioE ASC');
+		$sql = $conn->prepare('SELECT YEAR(anioE),femenino,masculino FROM educacion,matriculaporgenero WHERE educacion.municipio_id = :idMunicipio AND matriculaporgenero.educacion_id = educacion.id ORDER BY educacion.anioE ASC');
 		
 		$html = "";
 
@@ -305,7 +305,7 @@ class EducacionController extends Controller
 
 	$idE = $_GET['idE'];
 
-		$sql = $conn->prepare('SELECT educacion.id,DATE(anioE),rurJardin,urbJardin,rurTrans,urbTrans,rurPrim,urbPrim,rurSecu,urbSecu,rurMedia,urbMedia,jardin,trans,prim,secu,media,femenino,masculino FROM educacion,matriculapormunicipiogenero,matriculapornivel WHERE educacion.id = :idE AND matriculapormunicipiogenero.educacion_id = educacion.id AND matriculapornivel.educacion_id = educacion.id');
+		$sql = $conn->prepare('SELECT educacion.id,DATE(anioE),rurJardin,urbJardin,rurTrans,urbTrans,rurPrim,urbPrim,rurSecu,urbSecu,rurMedia,urbMedia,jardin,trans,prim,secu,media,femenino,masculino FROM educacion,matriculaporgenero,matriculapornivel WHERE educacion.id = :idE AND matriculaporgenero.educacion_id = educacion.id AND matriculapornivel.educacion_id = educacion.id');
 		
 		$html = "";
 
@@ -473,7 +473,7 @@ class EducacionController extends Controller
 
 	$idMunicipio = $_GET['idMunicipio'];
 
-		$sql = $conn->prepare('SELECT YEAR(anioE),rurJardin,urbJardin,rurTrans,urbTrans,rurPrim,urbPrim,rurSecu,urbSecu,rurMedia,urbMedia,jardin,trans,prim,secu,media,femenino,masculino FROM educacion,matriculapormunicipiogenero,matriculapornivel WHERE educacion.municipio_id = :idMunicipio AND matriculapornivel.educacion_id = educacion.id AND matriculapormunicipiogenero.educacion_id = educacion.id ORDER BY educacion.anioE ASC');
+		$sql = $conn->prepare('SELECT YEAR(anioE),rurJardin,urbJardin,rurTrans,urbTrans,rurPrim,urbPrim,rurSecu,urbSecu,rurMedia,urbMedia,jardin,trans,prim,secu,media,femenino,masculino FROM educacion,matriculaporgenero,matriculapornivel WHERE educacion.municipio_id = :idMunicipio AND matriculapornivel.educacion_id = educacion.id AND matriculaporgenero.educacion_id = educacion.id ORDER BY educacion.anioE ASC');
 
 		$html = "";
 

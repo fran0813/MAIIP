@@ -93,7 +93,7 @@
 
 		$sql->execute();
 
-		$sql = $conn->prepare('INSERT INTO matriculapormunicipiogenero VALUES (null, :femenino, :masculino, :educacion_id, :created_at, :updated_at)');
+		$sql = $conn->prepare('INSERT INTO matriculaporgenero VALUES (null, :femenino, :masculino, :educacion_id, :created_at, :updated_at)');
 
 		$sql->bindParam("femenino", $femenino, PDO::PARAM_STR);
 		$sql->bindParam("masculino", $masculino, PDO::PARAM_STR);

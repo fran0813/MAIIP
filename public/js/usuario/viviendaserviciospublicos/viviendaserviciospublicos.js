@@ -5,14 +5,14 @@ function mostrarDatos() {
 	$("#crear").show();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/usuario/viviendaserviciospublicos/mostrarTablaViviendaserviciospublicos.php",
+		method: "GET",
+		url: "/viviendaserviciospublicos/mostrarTablaViviendaserviciospublicos",
 		dataType: 'json',
 		data: { idMunicipio: municipio }
 	})
 
 	.done(function(response) {
-		$('#tablaviviendaserviciospublicos').html(response);
+		$('#tablaviviendaserviciospublicos').html(response.html);
 	});
 
 }
@@ -26,14 +26,14 @@ $("#tablaviviendaserviciospublicos").on("click", "a", function(){
 		var id = $(this).attr("id");
 
 		$.ajax({
-			method: "POST",
-			url: "/js/viviendaserviciospublicos/mostrarActualizarViviendaserviciospublicos.php",
+			method: "GET",
+			url: "/viviendaserviciospublicos/mostrarActualizarViviendaserviciospublicos",
 			dataType: 'json',
 			data: { idVSP: id }
 		})
 
 		.done(function(response) {
-			$('#modalVSP').html(response);
+			$('#modalVSP').html(response.html);
 		});
 
 	}else if(clase == "btn btn-danger"){
@@ -41,16 +41,14 @@ $("#tablaviviendaserviciospublicos").on("click", "a", function(){
 		var id = $(this).attr("id");
 
 		$.ajax({
-			method: "POST",
-			url: "/js/viviendaserviciospublicos/borrarViviendaserviciospublicos.php",
+			method: "GET",
+			url: "/viviendaserviciospublicos/borrarViviendaserviciospublicos",
 			dataType: 'json',
 			data: { idVSP: id }
 		})
 
-		.done(function(response) {
-			
+		.done(function(response) {			
 			mostrarDatos();
-
 		});
 	}
 

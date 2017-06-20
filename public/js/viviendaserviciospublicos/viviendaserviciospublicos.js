@@ -10,14 +10,14 @@ function mostrarTablaViviendaserviciospublicos(){
 	var anio = $("#añoVSP").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/viviendaserviciospublicos/mostrarViviendaserviciospublicos.php",
+		method: "GET",
+		url: "/viviendaserviciospublicos/mostrarViviendaserviciospublicos",
 		dataType: 'json',
 		data: { idMunicipio: municipio, anioVSP: anio }
 	})
 
 	.done(function(response) {
-		$('#viviendaserviciospublicos').html(response);
+		$('#viviendaserviciospublicos').html(response.html);
 	});
 
 }
@@ -28,14 +28,14 @@ function mostrarGrafica1VSP(){
 	var anioVSP = $("#añoVSP").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/viviendaserviciospublicos/grafica1Viviendaserviciospublicos.php",
+		method: "GET",
+		url: "/viviendaserviciospublicos/grafica1Viviendaserviciospublicos",
 		dataType: 'json',
 		data: { idMunicipio: municipio, anioVSP: anioVSP }
 	})
 
 	.done(function(response) {
-		$('#grafica1').html(response);
+		$('#grafica1').html(response.html);
 	});
 
 }
@@ -46,14 +46,14 @@ function mostrarGrafica2VSP(){
 	var anioVSP = $("#añoVSP").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/viviendaserviciospublicos/grafica2Viviendaserviciospublicos.php",
+		method: "GET",
+		url: "/viviendaserviciospublicos/grafica2Viviendaserviciospublicos",
 		dataType: 'json',
 		data: { idMunicipio: municipio, anioVSP: anioVSP }
 	})
 
 	.done(function(response) {
-		$('#grafica2').html(response);
+		$('#grafica2').html(response.html);
 	});
 
 }

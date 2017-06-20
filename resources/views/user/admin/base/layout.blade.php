@@ -25,6 +25,8 @@
 
 <body>
 
+    <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+
     <div id="wrapper">
 
         <!-- Navigation -->

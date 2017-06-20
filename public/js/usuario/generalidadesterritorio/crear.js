@@ -6,11 +6,11 @@ $( document ).ready(function() {
 	var yyyy = hoy.getFullYear();
 
 	if(dd < 10) {
-	    dd='0'+dd
+	    dd='0'+dd;
 	} 
 
 	if(mm < 10) {
-	    mm='0'+mm
+	    mm='0'+mm;
 	} 
 
 	anio = $("#anio")[0];
@@ -81,8 +81,8 @@ $("#formCrear").on("submit", function(){
 	var municipio = $("#municipio").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/generalidadesterritorio/crearGeneralidadesterritorio.php",
+		method: "GET",
+		url: "/generalidadesterritorio/crearGeneralidadesterritorio",
 		dataType: 'json',
 		data: { anioGT: anio, comprobar: comprobar, temperatura: temperatura, alturaNivMar: alturaNivMar, municipio_id: municipio, ruralG: ruralG, 
 			urbanoG: urbanoG, totalG: totalG, constRural: constRural, constUrbano: constUrbano, 
@@ -92,11 +92,8 @@ $("#formCrear").on("submit", function(){
 	})
 
 	.done(function(response) {
-
-		$('#respuesta').html(response);
-
-		refrescar();
-		
+		$('#respuesta').html(response.html);
+		refrescar();		
 	});
 
 	return false;
@@ -108,14 +105,14 @@ function refrescar(){
 	var municipio = $("#municipio").val();
 
 		$.ajax({
-			method: "POST",
-			url: "/js/usuario/generalidadesterritorio/mostrarTablaGeneralidadesterritorio.php",
+			method: "GET",
+			url: "/generalidadesterritorio/mostrarTablaGeneralidadesterritorio",
 			dataType: 'json',
 			data: { idMunicipio: municipio }
 		})
 
 		.done(function(response) {
-			$('#tablaGeneralidadesterritorio').html(response);
+			$('#tablaGeneralidadesterritorio').html(response.html);
 		});
 
 }

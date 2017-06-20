@@ -2,15 +2,15 @@ $( document ).ready(function() {
     
     var hoy = new Date();
 	var dd = hoy.getDate();
-	var mm = hoy.getMonth()+1; //hoy es 0!
+	var mm = hoy.getMonth()+1;
 	var yyyy = hoy.getFullYear();
 
 	if(dd < 10) {
-	    dd='0'+dd
+	    dd='0'+dd;
 	} 
 
 	if(mm < 10) {
-	    mm='0'+mm
+	    mm='0'+mm;
 	} 
 
 	actualizado = $("#updated_at2")[0];
@@ -74,8 +74,8 @@ $("#formActualizar").on("submit", function(){
 	var updated_at = $("#updated_at2").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/generalidadesterritorio/actualizarGeneralidadesterritorio.php",
+		method: "GET",
+		url: "/generalidadesterritorio/actualizarGeneralidadesterritorio",
 		dataType: 'json',
 		data: { idGT: idGT, temperatura: temperatura, alturaNivMar: alturaNivMar, ruralG: ruralG, 
 			urbanoG: urbanoG, totalG: totalG, constRural: constRural, constUrbano: constUrbano, 
@@ -83,10 +83,8 @@ $("#formActualizar").on("submit", function(){
 			terrTotal: terrTotal, ruralP: ruralP, urbanoP: urbanoP, totalP: totalP, updated_at: updated_at}
 	})
 
-	.done(function(response) {
-		
-		$('#respuesta2').html(response);
-		
+	.done(function(response) {		
+		$('#respuesta2').html(response.html);		
 	});
 
 	return false;

@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use \Response;
 
 class AdminsController extends Controller
 {
     // Pagina para el inicio de sesión para el administrador
     public function index()
     {
-      return view('user.admin.main');
+        return view('user.admin.main');
     }
 
     // Crud de la tabla generalidades y territorio

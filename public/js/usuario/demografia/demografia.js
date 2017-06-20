@@ -5,14 +5,14 @@ function mostrarDatos() {
 	$("#crear").show();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/usuario/demografia/mostrarTablaDemografia.php",
+		method: "GET",
+		url: "/demografia/mostrarTablaDemografia",
 		dataType: 'json',
 		data: { idMunicipio: municipio }
 	})
 
 	.done(function(response) {
-		$('#tablaDemografia').html(response);
+		$('#tablaDemografia').html(response.html);
 	});
 
 }
@@ -28,14 +28,14 @@ $("#tablaDemografia").on("click", "a", function(){
 		$('#respuesta2').html(" ");
 
 		$.ajax({
-			method: "POST",
-			url: "/js/demografia/mostrarActualizarDemografia.php",
+			method: "GET",
+			url: "/demografia/mostrarActualizarDemografia",
 			dataType: 'json',
 			data: { idD: id }
 		})
 
 		.done(function(response) {
-			$('#modalD').html(response);
+			$('#modalD').html(response.html);
 		});
 
 	}else if(clase == "btn btn-danger"){
@@ -43,16 +43,14 @@ $("#tablaDemografia").on("click", "a", function(){
 		var id = $(this).attr("id");
 
 		$.ajax({
-			method: "POST",
-			url: "/js/demografia/borrarDemografia.php",
+			method: "GET",
+			url: "/demografia/borrarDemografia",
 			dataType: 'json',
 			data: { idD: id }
 		})
 
 		.done(function(response) {
-
 			mostrarDatos();
-
 		});
 	}
 

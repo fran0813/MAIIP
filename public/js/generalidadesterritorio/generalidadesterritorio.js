@@ -8,14 +8,14 @@ function mostrarTablaGeneralidadesterritorio(){
 	var anio = $("#añoGT").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/generalidadesterritorio/mostrarGeneralidadesterritorio.php",
+		method: "GET",
+		url: "/generalidadesterritorio/mostrarGeneralidadesterritorio",
 		dataType: 'json',
 		data: { idMunicipio: municipio, anioGT: anio }
 	})
 
 	.done(function(response) {
-		$('#generalidadesterritorio').html(response);
+		$('#generalidadesterritorio').html(response.html);
 	});
 
 }

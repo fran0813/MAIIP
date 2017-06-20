@@ -18,7 +18,7 @@
 		$sql->bindParam("idE", $idE, PDO::PARAM_STR);
 		$sql->execute();
 
-		$sql = $conn->prepare('DELETE FROM matriculapormunicipiogenero WHERE educacion_id = :idE');
+		$sql = $conn->prepare('DELETE FROM matriculaporgenero WHERE educacion_id = :idE');
 		$sql->bindParam("idE", $idE, PDO::PARAM_STR);
 		$sql->execute();
 

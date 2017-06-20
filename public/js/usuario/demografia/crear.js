@@ -6,11 +6,11 @@ $( document ).ready(function() {
 	var yyyy = hoy.getFullYear();
 
 	if(dd < 10) {
-	    dd='0'+dd
+	    dd='0'+dd;
 	} 
 
 	if(mm < 10) {
-	    mm='0'+mm
+	    mm='0'+mm;
 	} 
 
 	anio = $("#anio")[0];
@@ -39,15 +39,15 @@ function calcularCrecPob(){
 	var pobEdadTrabajar = $("#pobEdadTrabajar").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/usuario/demografia/calcularCrecPob.php",
+		method: "GET",
+		url: "/demografia/calcularCrecPob",
 		dataType: 'json',
 		data: { anioD: anio, pobEdadTrabajar: pobEdadTrabajar}
 	})
 
 	.done(function(response) {
 		
-		$('#recibirCrecPob').html(response);
+		$('#recibirCrecPob').html(response.html);
 		
 	});
 
@@ -76,8 +76,8 @@ $("#formCrear").on("submit", function(){
 	var municipio = $("#municipio").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/demografia/crearDemografia.php",
+		method: "GET",
+		url: "/demografia/crearDemografia",
 		dataType: 'json',
 		data: { anioD: anio, comprobar: comprobar, pobEdadTrabajar: pobEdadTrabajar, pobPotActiva: pobPotActiva, municipio_id: municipio, 
 			pobPotInactiva: pobPotInactiva, numPerMen: numPerMen, numPerMay: numPerMay, numPerInd: numPerInd,
@@ -87,10 +87,8 @@ $("#formCrear").on("submit", function(){
 	})
 
 	.done(function(response) {
-
-		$('#respuesta').html(response);
-		refrescar();
-		
+		$('#respuesta').html(response.html);
+		refrescar();		
 	});
 
 	return false;
@@ -102,14 +100,14 @@ function refrescar(){
 	var municipio = $("#municipio").val();
 
 		$.ajax({
-			method: "POST",
-			url: "/js/usuario/demografia/mostrarTablaDemografia.php",
+			method: "GET",
+			url: "/demografia/mostrarTablaDemografia",
 			dataType: 'json',
 			data: { idMunicipio: municipio }
 		})
 
 		.done(function(response) {
-			$('#tablaDemografia').html(response);
+			$('#tablaDemografia').html(response.html);
 		});
 
 }

@@ -2,15 +2,15 @@ $( document ).ready(function() {
     
     var hoy = new Date();
 	var dd = hoy.getDate();
-	var mm = hoy.getMonth()+1; //hoy es 0!
+	var mm = hoy.getMonth()+1;
 	var yyyy = hoy.getFullYear();
 
 	if(dd < 10) {
-	    dd='0'+dd
+	    dd='0'+dd;
 	} 
 
 	if(mm < 10) {
-	    mm='0'+mm
+	    mm='0'+mm;
 	} 
 
 	actualizado = $("#updated_at2")[0];
@@ -35,16 +35,14 @@ function calcularCrecPob2(){
 	var pobEdadTrabajar = $("#pobEdadTrabajar2").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/usuario/demografia/calcularCrecPob2.php",
+		method: "GET",
+		url: "/demografia/calcularCrecPob2",
 		dataType: 'json',
 		data: { anioD: anio, pobEdadTrabajar: pobEdadTrabajar}
 	})
 
 	.done(function(response) {
-
-		$('#recibirCrecPob2').html(response);
-		
+		$('#recibirCrecPob2').html(response.html);		
 	});
 
 }
@@ -69,8 +67,8 @@ $("#formActualizar").on("submit", function(){
 	var updated_at = $("#updated_at2").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/demografia/actualizarDemografia.php",
+		method: "GET",
+		url: "/demografia/actualizarDemografia",
 		dataType: 'json',
 		data: { idD: idD, pobEdadTrabajar: pobEdadTrabajar, pobPotActiva: pobPotActiva, 
 			pobPotInactiva: pobPotInactiva, numPerMen: numPerMen, numPerMay: numPerMay, numPerInd: numPerInd,
@@ -80,9 +78,7 @@ $("#formActualizar").on("submit", function(){
 	})
 
 	.done(function(response) {
-
-		$('#respuesta2').html(response);
-		
+		$('#respuesta2').html(response.html);		
 	});
 
 	return false;

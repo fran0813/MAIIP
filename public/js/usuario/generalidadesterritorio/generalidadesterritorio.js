@@ -5,14 +5,14 @@ function mostrarDatos() {
 	$("#crear").show();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/usuario/generalidadesterritorio/mostrarTablaGeneralidadesterritorio.php",
+		method: "GET",
+		url: "/generalidadesterritorio/mostrarTablaGeneralidadesterritorio",
 		dataType: 'json',
 		data: { idMunicipio: municipio }
 	})
 
 	.done(function(response) {
-		$('#tablaGeneralidadesterritorio').html(response);
+		$('#tablaGeneralidadesterritorio').html(response.html);
 	});
 
 }
@@ -26,14 +26,14 @@ $("#tablaGeneralidadesterritorio").on("click", "a", function(){
 		var id = $(this).attr("id");
 
 		$.ajax({
-			method: "POST",
-			url: "/js/generalidadesterritorio/mostrarActualizarGeneralidadesterritorio.php",
+			method: "GET",
+			url: "/generalidadesterritorio/mostrarActualizarGeneralidadesterritorio",
 			dataType: 'json',
 			data: { idGT: id }
 		})
 
 		.done(function(response) {
-			$('#modalGT').html(response);
+			$('#modalGT').html(response.html);
 		});
 
 	}else if(clase == "btn btn-danger"){
@@ -41,16 +41,14 @@ $("#tablaGeneralidadesterritorio").on("click", "a", function(){
 		var id = $(this).attr("id");
 
 		$.ajax({
-			method: "POST",
-			url: "/js/generalidadesterritorio/borrarGeneralidadesterritorio.php",
+			method: "GET",
+			url: "/generalidadesterritorio/borrarGeneralidadesterritorio",
 			dataType: 'json',
 			data: { idGT: id }
 		})
 
 		.done(function(response) {
-
 			mostrarDatos();
-
 		});
 	}
 

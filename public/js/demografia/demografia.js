@@ -9,14 +9,14 @@ function mostrarTablaDememografia(){
 	var municipio = $("#municipio").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/demografia/mostrarDemografia.php",
+		method: "GET",
+		url: "/demografia/mostrarDemografia",
 		dataType: 'json',
 		data: { idMunicipio: municipio }
 	})
 
 	.done(function(response) {
-		$('#demografias').html(response);
+		$('#demografias').html(response.html);
 	});
 
 }
@@ -26,14 +26,14 @@ function mostrarGrafica1Dem(){
 	var municipio = $("#municipio").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/demografia/grafica1Demografia.php",
+		method: "GET",
+		url: "/demografia/grafica1Demografia",
 		dataType: 'json',
 		data: { idMunicipio: municipio }
 	})
 
 	.done(function(response) {
-		$('#grafica1').html(response);
+		$('#grafica1').html(response.html);
 	});
 
 }
@@ -43,14 +43,14 @@ function mostrarGrafica2Dem(){
 	var municipio = $("#municipio").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/demografia/grafica2Demografia.php",
+		method: "GET",
+		url: "/demografia/grafica2Demografia",
 		dataType: 'json',
 		data: { idMunicipio: municipio }
 	})
 
 	.done(function(response) {
-		$('#grafica2').html(response);
+		$('#grafica2').html(response.html);
 	});
 
 }
