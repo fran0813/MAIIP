@@ -365,7 +365,7 @@ class GeneralidadesterritorioController extends Controller
 								'generalidades.*',
 								'territorios.*',
 								'predios.*')
-						->where('anioGT', $anioGT)
+						->where(DB::raw('YEAR(anioGT)'), $anioGT)
 						->get();
 
 		$html = "";

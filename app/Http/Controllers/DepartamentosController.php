@@ -76,7 +76,7 @@ class DepartamentosController extends Controller
 		// $municipios = municipio::where("departamento_id",$idDepartamento)->get();
 		$municipios = DB::table('municipios')
 						->select('municipios.*')
-						->where('departamento_id', '=', $idDepartamento)
+						->where('departamento_id', $idDepartamento)
 						->orderBy('municipios.nombre', 'desc')
 						->get();
 
@@ -116,10 +116,10 @@ class DepartamentosController extends Controller
 		$idMunicipio = $_GET['idMunicipio'];
 
 		$resultados = DB::table('departamentos')
-						->join('municipios', 'departamentos.id', '=', 'municipios.departamento_id')
+						->join('municipios', 'departamentos.id', 'municipios.departamento_id')
 						->select('departamentos.codigoD', 'municipios.codigoM')
-						->where('departamentos.id', '=', $idDepartamento)
-						->where('municipios.id', '=', $idMunicipio)
+						->where('departamentos.id', $idDepartamento)
+						->where('municipios.id', $idMunicipio)
 						->get();
 
 		$html = "";
@@ -148,15 +148,15 @@ class DepartamentosController extends Controller
 		$idMunicipio = $_GET['idMunicipio'];
 
 		$resultados = DB::table('generalidadesterritorios')
-						->select('generalidadesterritorios.anioGT')
-						->where('generalidadesterritorios.municipio_id', '=', $idMunicipio)
+						->select(DB::raw('YEAR(anioGT) as YEARanioGT'))
+						->where('generalidadesterritorios.municipio_id', $idMunicipio)
 						->get();
 
 		$html = "";
 		$html .= "<option>Año</option>";
 
 		foreach ($resultados as $resultado) {
-			$anio = $resultado->anioGT;
+			$anio = $resultado->YEARanioGT;
 			
 			$html .= "<option value='$anio'>$anio</option>";
 
@@ -172,15 +172,15 @@ class DepartamentosController extends Controller
 		$idMunicipio = $_GET['idMunicipio'];
 
 		$resultados = DB::table('viviendasserviciospublicos')
-						->select('viviendasserviciospublicos.anioVSP')
-						->where('viviendasserviciospublicos.municipio_id', '=', $idMunicipio)
+						->select(DB::raw('YEAR(anioVSP) as YEARanioVSP'))
+						->where('viviendasserviciospublicos.municipio_id', $idMunicipio)
 						->get();
 
 		$html = "";
 		$html .= "<option>Año</option>";
 
 		foreach ($resultados as $resultado) {
-			$anio = $resultado->anioVSP;
+			$anio = $resultado->YEARanioVSP;
 			
 			$html .= "<option value='$anio'>$anio</option>";
 
@@ -196,15 +196,15 @@ class DepartamentosController extends Controller
 		$idMunicipio = $_GET['idMunicipio'];
 
 		$resultados = DB::table('salud')
-						->select('salud.anioS')
-						->where('salud.municipio_id', '=', $idMunicipio)
+						->select(DB::raw('YEAR(anioS) as YEARanioS'))
+						->where('salud.municipio_id', $idMunicipio)
 						->get();
 
 		$html = "";
 		$html .= "<option>Año</option>";
 
 		foreach ($resultados as $resultado) {
-			$anio = $resultado->anioS;
+			$anio = $resultado->YEARanioS;
 			
 			$html .= "<option value='$anio'>$anio</option>";
 

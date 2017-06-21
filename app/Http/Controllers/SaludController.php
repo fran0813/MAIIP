@@ -8,103 +8,100 @@ use \Response;
 
 class SaludController extends Controller
 {
-    public function actualizarSalud(){
+	// Función para actualizar los datos de salud
+	public function actualizarSalud(){
 
 		$idS = $_GET['idS'];
-
 		$tasVacBCG = $_GET['tasVacBCG'];
 		$tasVacDPT = $_GET['tasVacDPT'];
 		$tasVacHepatitisB = $_GET['tasVacHepatitisB'];
 		$tasVacHIB = $_GET['tasVacHIB'];
 		$tasVacPolio = $_GET['tasVacPolio'];
 		$tasVacTripleViral = $_GET['tasVacTripleViral'];
-
 		$difBaMov = $_GET['difBaMov'];
 		$difEntApr = $_GET['difEntApr'];
 		$difMovCam = $_GET['difMovCam'];
 		$difSalirCalle = $_GET['difSalirCalle'];
 		$totalDis = $_GET['totalDis'];
-
 		$updated_at = $_GET['updated_at'];
 
-		$sql = $conn->prepare('UPDATE vacunaciones SET tasVacBCG = :tasVacBCG, tasVacDPT = :tasVacDPT, tasVacHepatitisB = :tasVacHepatitisB, tasVacHIB= :tasVacHIB, tasVacPolio = :tasVacPolio, tasVacTripleViral = :tasVacTripleViral, updated_at =:updated_at WHERE salud_id = :idS');
-		$sql->bindParam("idS", $idS, PDO::PARAM_STR);
+		$vacunaciones = array('tasVacBCG' => $tasVacBCG,
+							'tasVacDPT' => $tasVacDPT,
+							'tasVacHepatitisB' => $tasVacHepatitisB,
+							'tasVacHIB' => $tasVacHIB,
+							'tasVacPolio' => $tasVacPolio,
+							'tasVacTripleViral' => $tasVacTripleViral,
+							'updated_at' => $updated_at, );
 
-		$sql->bindParam("tasVacBCG", $tasVacBCG, PDO::PARAM_STR);
-		$sql->bindParam("tasVacDPT", $tasVacDPT, PDO::PARAM_STR);
-		$sql->bindParam("tasVacHepatitisB", $tasVacHepatitisB, PDO::PARAM_STR);
-		$sql->bindParam("tasVacHIB", $tasVacHIB, PDO::PARAM_STR);
-		$sql->bindParam("tasVacPolio", $tasVacPolio, PDO::PARAM_STR);
-		$sql->bindParam("tasVacTripleViral", $tasVacTripleViral, PDO::PARAM_STR);
+		DB::table('vacunaciones')
+			->where('salud_id', $idS)
+			->update($vacunaciones);
 
-		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
-		$sql->execute();
+		$discapacidades = array('difBaMov' => $difBaMov,
+							'difEntApr' => $difEntApr,
+							'difMovCam' => $difMovCam,
+							'difSalirCalle' => $difSalirCalle,
+							'totalDis' => $totalDis,
+							'updated_at' => $updated_at, );
 
-		$sql = $conn->prepare('UPDATE discapacidades SET difBaMov = :difBaMov, difEntApr = :difEntApr, difMovCam = :difMovCam, difSalirCalle = :difSalirCalle, totalDis = :totalDis, updated_at = :updated_at WHERE salud_id = :idS');
-		$sql->bindParam("idS", $idS, PDO::PARAM_STR);
+		DB::table('discapacidades')
+			->where('salud_id', $idS)
+			->update($discapacidades);
 
-		$sql->bindParam("difBaMov", $difBaMov, PDO::PARAM_STR);
-		$sql->bindParam("difEntApr", $difEntApr, PDO::PARAM_STR);
-		$sql->bindParam("difMovCam", $difMovCam, PDO::PARAM_STR);
-		$sql->bindParam("difSalirCalle", $difSalirCalle, PDO::PARAM_STR);
-		$sql->bindParam("totalDis", $totalDis, PDO::PARAM_STR);
+		$html = "Se actualizaron los datos correctamente";
 
-		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
-		$sql->execute();
-
-		$html = "Se actualizaron los datos";
-
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
 
 	}
 
+	// Función para eliminar los datos de salud
 	public function borrarSalud(){
 
 		$idS = $_GET['idS'];
 
-		$sql = $conn->prepare('DELETE FROM vacunaciones WHERE salud_id = :idS');
-		$sql->bindParam("idS", $idS, PDO::PARAM_STR);
-		$sql->execute();
+		DB::table('vacunaciones')
+			->where('salud_id', $idD)
+			->delete();
 
-		$sql = $conn->prepare('DELETE FROM discapacidades WHERE salud_id = :idS');
-		$sql->bindParam("idS", $idS, PDO::PARAM_STR);
-		$sql->execute();
+		DB::table('discapacidades')
+			->where('salud_id', $idD)
+			->delete();
 
-		$sql = $conn->prepare('DELETE FROM salud WHERE id = :idS');
-		$sql->bindParam("idS", $idS, PDO::PARAM_STR);
-		$sql->execute();
+		DB::table('salud')
+			->where('id', $idD)
+			->delete();
 
-		$html = "borrado";
+		$html = "Se eliminaron los datos correctamente";
 
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
 
 	}
 
+	// Función para crear los datos de salud
 	public function crearSalud(){
 
 		$anioS = $_GET['anioS'];
 		$comprobar = $_GET['comprobar'];
-
 		$tasVacBCG = $_GET['tasVacBCG'];
 		$tasVacDPT = $_GET['tasVacDPT'];
 		$tasVacHepatitisB = $_GET['tasVacHepatitisB'];
 		$tasVacHIB = $_GET['tasVacHIB'];
 		$tasVacPolio = $_GET['tasVacPolio'];
 		$tasVacTripleViral = $_GET['tasVacTripleViral'];
-
 		$difBaMov = $_GET['difBaMov'];
 		$difEntApr = $_GET['difEntApr'];
 		$difMovCam = $_GET['difMovCam'];
 		$difSalirCalle = $_GET['difSalirCalle'];
 		$totalDis = $_GET['totalDis'];
-
 		$municipio_id = $_GET['municipio_id'];
 		$created_at = $_GET['created_at'];
 		$updated_at = $_GET['updated_at'];
 
-		$sql = $conn->prepare('SELECT * FROM salud WHERE YEAR(anioS) = :comprobar');
-		$sql->execute(array('comprobar' => $comprobar));
-		$resultados = $sql->fetchAll();
+		$resultados = DB::table('salud')
+						->select('salud.*')
+						->where(DB::raw('YEAR(anioS)'), $comprobar)
+						->get();
+
 		$ban = False;
 
 		foreach ($resultados as $resultado) {
@@ -113,82 +110,87 @@ class SaludController extends Controller
 
 		if($ban == False){
 
-		$sql = $conn->prepare('INSERT INTO salud VALUES (null, :anioS, :municipio_id, :created_at, :updated_at)');
+			$salud = array('anioS' => $anioS,
+						'municipio_id' => $municipio_id,
+						'created_at' => $created_at,
+						'updated_at' => $updated_at, );
 
-		$sql->bindParam("anioS", $anioS, PDO::PARAM_STR);
+			DB::table('salud')
+				->insert($salud);
 
-		$sql->bindParam("municipio_id", $municipio_id, PDO::PARAM_STR);
-		$sql->bindParam("created_at", $created_at, PDO::PARAM_STR);
-		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
-		$sql->execute();
+			$resultados = DB::table('salud')
+						->select('salud.*')
+						->orderBy('id', 'desc')
+						->limit(1)
+						->get();
 
-		$sql = $conn->prepare('SELECT * FROM salud ORDER BY id DESC LIMIT 1');
-		$sql->execute();
-		$resultados = $sql->fetchAll();
+			foreach ($resultados as $resultado) {
+				$salud_id = $resultado->id;
 
-		foreach ($resultados as $resultado) {
-			$salud_id = $resultado['id'];
-		};
+			};
 
-		$sql = $conn->prepare('INSERT INTO vacunaciones VALUES (null, :tasVacBCG, :tasVacDPT, :tasVacHepatitisB, :tasVacHIB, :tasVacPolio, :tasVacTripleViral, :salud_id, :created_at, :updated_at)');
-		$sql->bindParam("tasVacBCG", $tasVacBCG, PDO::PARAM_STR);
-		$sql->bindParam("tasVacDPT", $tasVacDPT, PDO::PARAM_STR);
-		$sql->bindParam("tasVacHepatitisB", $tasVacHepatitisB, PDO::PARAM_STR);
-		$sql->bindParam("tasVacHIB", $tasVacHIB, PDO::PARAM_STR);
-		$sql->bindParam("tasVacPolio", $tasVacPolio, PDO::PARAM_STR);
-		$sql->bindParam("tasVacTripleViral", $tasVacTripleViral, PDO::PARAM_STR);
-		$sql->bindParam("salud_id", $salud_id, PDO::PARAM_STR);
-		$sql->bindParam("created_at", $created_at, PDO::PARAM_STR);
-		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
-		$sql->execute();
+			$vacunaciones = array('tasVacBCG' => $tasVacBCG,
+								'tasVacDPT' => $tasVacDPT,
+								'tasVacHepatitisB' => $tasVacHepatitisB,
+								'tasVacHIB' => $tasVacHIB,
+								'tasVacPolio' => $tasVacPolio,
+								'tasVacTripleViral' => $tasVacTripleViral,
+								'salud_id' => $salud_id,
+								'created_at' => $created_at,
+								'updated_at' => $updated_at, );
 
-		$sql = $conn->prepare('INSERT INTO discapacidades VALUES (null, :difBaMov, :difEntApr, :difMovCam, :difSalirCalle, :totalDis, :salud_id, :created_at, :updated_at)');
-		$sql->bindParam("difBaMov", $difBaMov, PDO::PARAM_STR);
-		$sql->bindParam("difEntApr", $difEntApr, PDO::PARAM_STR);
-		$sql->bindParam("difMovCam", $difMovCam, PDO::PARAM_STR);
-		$sql->bindParam("difSalirCalle", $difSalirCalle, PDO::PARAM_STR);
-		$sql->bindParam("totalDis", $totalDis, PDO::PARAM_STR);
-		$sql->bindParam("salud_id", $salud_id, PDO::PARAM_STR);
-		$sql->bindParam("created_at", $created_at, PDO::PARAM_STR);
-		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
-		$sql->execute();
+			DB::table('vacunaciones')
+				->insert($vacunaciones);
 
-		$html = "Se registrarón los datos correctamente";
+			$discapacidades = array('difBaMov' => $difBaMov,
+								'difEntApr' => $difEntApr,
+								'difMovCam' => $difMovCam,
+								'difSalirCalle' => $difSalirCalle,
+								'totalDis' => $totalDis,
+								'salud_id' => $salud_id,
+								'created_at' => $created_at,
+								'updated_at' => $updated_at, );
+
+			DB::table('discapacidades')
+				->insert($discapacidades);
+
+			$html = "Se registrarón los datos correctamente";
 
 		}else{
 
-		$html = "Ya se encuentra registrado ese año";
+			$html = "Ya se encuentra registrado ese año";
 
 		}
 
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
 
 	}
 
+	// Muestra la grafica de vacunaciones
 	public function grafica1Salud(){
 
 		$idMunicipio = $_GET['idMunicipio'];
 		$anioS = $_GET['anioS'];
 
 		$resultados = DB::table('salud')
-            ->join('vacunaciones', 'salud.id', '=', 'vacunaciones.salud_id')
-            ->select('salud.anioS', 'vacunaciones.*')
-            ->where('salud.municipio_id', '=', $idMunicipio)
-            ->where('salud.anioS', '=', $anioS)
-            ->get();
+						->join('vacunaciones', 'salud.id', 'vacunaciones.salud_id')
+						->select(DB::raw('YEAR(anioS) as YEARanioS'),
+								'vacunaciones.*')
+						->where('salud.municipio_id', $idMunicipio)
+						->where(DB::raw('YEAR(anioS)'), $anioS)
+						->get();
 
 		$html = "";
-		$html .="<script type='text/javascript'>
+		$html .= "<script type='text/javascript'>
 				google.charts.load('current', {'packages':['corechart']});
-	      		google.charts.setOnLoadCallback(drawChart);
+				google.charts.setOnLoadCallback(drawChart);
 
-	      		function drawChart() {
-		        var data = google.visualization.arrayToDataTable([
-		        ['Año', 'Tasa BCG', 'Tasa DPT', 'Tasa Hepatitis B', 'Tasa  HIB', 'Tasa  Polio', 'Tasa  Triple viral'],";
+				function drawChart() {
+				var data = google.visualization.arrayToDataTable([
+				['Año', 'Tasa BCG', 'Tasa DPT', 'Tasa Hepatitis B', 'Tasa  HIB', 'Tasa  Polio', 'Tasa  Triple viral'],";
 		
 		foreach ($resultados as $resultado) {
-			$anio = $resultado->anioS;
-
+			$anio = $resultado->YEARanioS;
 			$tasVacBCG = $resultado->tasVacBCG;
 			$tasVacDPT = $resultado->tasVacDPT;
 			$tasVacHepatitisB = $resultado->tasVacHepatitisB;
@@ -200,41 +202,43 @@ class SaludController extends Controller
 
 		};
 
-		$html .="]);
+		$html .= "]);
 
-	        	var options = {
-		        title: 'Vacunaciones',
-		        bar: {groupWidth: '20%'},
-		        legend: { position: 'rigth' },
-		        colors: ['#e9473f', '#397ACB', '#F8EF01'],
-	        	};
+				var options = {
+				title: 'Vacunaciones',
+				bar: {groupWidth: '20%'},
+				legend: { position: 'rigth' },
+				colors: ['#e9473f', '#397ACB', '#F8EF01'],
+				};
 
-	        	var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
+				var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
 
-	        	chart.draw(data, options);
-	     		}
+				chart.draw(data, options);
+				}
 				</script>
 
 				<div id='columnchart_values' style='width: 900px; height: 300px;'></div>";
 
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
 
 	}
 
+	// Muestra la grafica de discapacidades
 	public function grafica2Salud(){
 
 		$idMunicipio = $_GET['idMunicipio'];
 		$anioS = $_GET['anioS'];
 		
 		$resultados = DB::table('salud')
-            ->join('discapacidades', 'salud.id', '=', 'discapacidades.salud_id')
-            ->select('salud.anioS', 'discapacidades.*')
-            ->where('salud.municipio_id', '=', $idMunicipio)
-            ->where('salud.anioS', '=', $anioS)
-            ->get();
+						->join('discapacidades', 'salud.id', 'discapacidades.salud_id')
+						->select(DB::raw('YEAR(anioS) as YEARanioS'),
+								'discapacidades.*')
+						->where('salud.municipio_id', $idMunicipio)
+						->where(DB::raw('YEAR(anioS)'), $anioS)
+						->get();
 
 		$html = "";
-		$html .="<script type='text/javascript'>
+		$html .= "<script type='text/javascript'>
 				google.charts.load('current', {'packages':['corechart']});
 	      		google.charts.setOnLoadCallback(drawChart);
 
@@ -247,8 +251,7 @@ class SaludController extends Controller
 		         'Total de población con Discapacidad'],";
 		
 		foreach ($resultados as $resultado) {
-			$anio = $resultado->anioS;
-
+			$anio = $resultado->YEARanioS;
 			$difBaMov = $resultado->difBaMov;
 			$difEntApr = $resultado->difEntApr;
 			$difMovCam = $resultado->difMovCam;
@@ -259,162 +262,164 @@ class SaludController extends Controller
 
 		};
 
-		$html .="]);
+		$html .= "]);
 
-	        	var options = {
-		        title: 'Discapacidades',
-		        bar: {groupWidth: '20%'},
-		        legend: { position: 'rigth' },
-		        colors: ['#e9473f', '#397ACB', '#F8EF01'],
-	        	};
+				var options = {
+				title: 'Discapacidades',
+				bar: {groupWidth: '20%'},
+				legend: { position: 'rigth' },
+				colors: ['#e9473f', '#397ACB', '#F8EF01'],
+				};
 
-	        	var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values2'));
+				var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values2'));
 
-	        	chart.draw(data, options);
-	     		}
+				chart.draw(data, options);
+				}
 				</script>
 
 				<div id='columnchart_values2' style='width: 900px; height: 300px;'></div>";
 
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
 
 	}
 
+	// Muestra los datos que seran actualizados en salud 
 	public function mostrarActualizarSalud(){
 
 		$idS = $_GET['idS'];
 		
 		$resultados = DB::table('salud')
-            ->join('vacunaciones', 'salud.id', '=', 'vacunaciones.salud_id')
-            ->join('discapacidades', 'salud.id', '=', 'discapacidades.salud_id')
-            ->select('salud.anioS', 'discapacidades.*', 'vacunaciones.*')
-            ->where('salud.id', '=', $idS)
-            ->get();
+						->join('vacunaciones', 'salud.id', 'vacunaciones.salud_id')
+						->join('discapacidades', 'salud.id', 'discapacidades.salud_id')
+						->select(DB::raw('DATE(anioS) as DATEanioS'),
+								'discapacidades.*',
+								'vacunaciones.*')
+						->where('salud.id', $idS)
+						->get();
 
 		$html = "";
 
 		foreach ($resultados as $resultado) {
             $id = $resultado->id;               
-            $anio = $resultado->anioS;
-
+            $anio = $resultado->DATEanioS;
             $tasVacBCG = $resultado->tasVacBCG;
             $tasVacDPT = $resultado->tasVacDPT;
             $tasVacHepatitisB = $resultado->tasVacHepatitisB;
             $tasVacHIB = $resultado->tasVacHIB;
             $tasVacPolio = $resultado->tasVacPolio;
             $tasVacTripleViral = $resultado->tasVacTripleViral;
-
             $difBaMov = $resultado->difBaMov;
             $difEntApr = $resultado->difEntApr;
             $difMovCam = $resultado->difMovCam;
             $difSalirCalle = $resultado->difSalirCalle;
             $totalDis = $resultado->totalDis;
 
-			$html .="
-                    <div class='col-lg-12 col-md-12 col-sm-12'>
-                    <div class='col-lg-4 col-md-4 col-sm-4'>
-                        <label for='anio2' class='text-label'>Año</label>       
-                        <input id='anio2' type='date' class='form-control' value='$anio' disabled=''>
-                    </div>
-                </div>
+			$html .= "<div class='col-lg-12 col-md-12 col-sm-12'>
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='anio2' class='text-label'>Año</label>       
+					<input id='anio2' type='date' class='form-control' value='$anio' disabled=''>
+					</div>
+					</div>
 
-                <div class='col-lg-12 col-md-12 col-sm-12'><br></div>
+					<div class='col-lg-12 col-md-12 col-sm-12'><br></div>
 
-                <div class='col-lg-12 col-md-12 col-sm-12'>
-                    <div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
-                        <label for='tasVacBCG2' class='text-label'><strong>Vacunación</strong></label>
-                    </div>
-                    <div class='col-lg-4 col-md-4 col-sm-4'>              
-                        <label for='tasVacBCG2' class='text-label'>BCG</label>       
-                        <input id='tasVacBCG2' type='text' placeholder='Tasa de BCG' class='form-control' value='$tasVacBCG'>
-                    </div>
-                    <div class='col-lg-4 col-md-4 col-sm-4'>
-                        <label for='tasVacDPT2' class='text-label'>DPT</label>     
-                        <input id='tasVacDPT2' type='text' placeholder='Tasa de DPT' class='form-control' value='$tasVacDPT'>
-                    </div>
-                    <div class='col-lg-4 col-md-4 col-sm-4'>
-                        <label for='tasVacHepatitisB2' class='text-label'>Hepatitis B</label>       
-                        <input id='tasVacHepatitisB2' type='text' placeholder='Tasa de Hepatitis B' class='form-control' value='$tasVacHepatitisB'>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <div class='col-lg-4 col-md-4 col-sm-4'>
-                        <label for='tasVacHIB2' class='text-label'>HIB</label>       
-                        <input id='tasVacHIB2' type='text' placeholder='Tasa de HIB' class='form-control' value='$tasVacHIB'>
-                    </div>
-                    <div class='col-lg-4 col-md-4 col-sm-4'>
-                        <label for='tasVacPolio2' class='text-label'>Polio</label>       
-                        <input id='tasVacPolio2' type='text' placeholder='Tasa de Polio' class='form-control' value='$tasVacPolio'>
-                    </div>
-                    <div class='col-lg-4 col-md-4 col-sm-4'>
-                        <label for='tasVacTripleViral2' class='text-label'>Triple viral</label>       
-                        <input id='tasVacTripleViral2' type='text' placeholder='Tasa de Triple viral' class='form-control' value='$tasVacTripleViral'>
-                    </div>
-                </div>
+					<div class='col-lg-12 col-md-12 col-sm-12'>
+					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
+					<label for='tasVacBCG2' class='text-label'><strong>Vacunación</strong></label>
+					</div>
+					<div class='col-lg-4 col-md-4 col-sm-4'>              
+					<label for='tasVacBCG2' class='text-label'>BCG</label>       
+					<input id='tasVacBCG2' type='text' placeholder='Tasa de BCG' class='form-control' value='$tasVacBCG'>
+					</div>
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='tasVacDPT2' class='text-label'>DPT</label>     
+					<input id='tasVacDPT2' type='text' placeholder='Tasa de DPT' class='form-control' value='$tasVacDPT'>
+					</div>
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='tasVacHepatitisB2' class='text-label'>Hepatitis B</label>       
+					<input id='tasVacHepatitisB2' type='text' placeholder='Tasa de Hepatitis B' class='form-control' value='$tasVacHepatitisB'>
+					</div>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='tasVacHIB2' class='text-label'>HIB</label>       
+					<input id='tasVacHIB2' type='text' placeholder='Tasa de HIB' class='form-control' value='$tasVacHIB'>
+					</div>
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='tasVacPolio2' class='text-label'>Polio</label>       
+					<input id='tasVacPolio2' type='text' placeholder='Tasa de Polio' class='form-control' value='$tasVacPolio'>
+					</div>
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='tasVacTripleViral2' class='text-label'>Triple viral</label>       
+					<input id='tasVacTripleViral2' type='text' placeholder='Tasa de Triple viral' class='form-control' value='$tasVacTripleViral'>
+					</div>
+					</div>
 
-               <div class='col-lg-12 col-md-12 col-sm-12'><br></div>
+					<div class='col-lg-12 col-md-12 col-sm-12'><br></div>
 
-                <div class='col-lg-12 col-md-12 col-sm-12'>
-                    <div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
-                        <label for='difBaMov2' class='text-label'><strong>Discapacidades</strong></label>
-                    </div>
-                    <div class='col-lg-4 col-md-4 col-sm-4'>              
-                        <label for='difBaMov2' class='text-label'>Dificultad para bañarse o moverse</label>       
-                        <input id='difBaMov2' type='text' placeholder='Total' class='form-control' value='$difBaMov'>
-                    </div>
-                    <div class='col-lg-4 col-md-4 col-sm-4'>
-                        <label for='difEntApr2' class='text-label'>Dificultad para entender o aprender</label>     
-                        <input id='difEntApr2' type='text' placeholder='Total' class='form-control' value='$difEntApr'>
-                    </div>
-                    <div class='col-lg-4 col-md-4 col-sm-4'>
-                        <label for='totalDis2' class='text-label'>Total de población con Discapacidad</label>       
-                        <input id='totalDis2' type='text' placeholder='Total' class='form-control' value='$totalDis'>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                     <div class='col-lg-4 col-md-4 col-sm-4'>
-                        <label for='difSalirCalle2' class='text-label'>Dificultad para salir a la calle sin ayuda o compañia</label>     
-                        <input id='difSalirCalle2' type='text' placeholder='Total' class='form-control' value='$difSalirCalle'>
-                    </div>                    
-                     <div class='col-lg-4 col-md-4 col-sm-4'>
-                        <label for='difMovCam2' class='text-label'>Dificultad para moverse o para caminar por si</label>       
-                        <input id='difMovCam2' type='text' placeholder='Total' class='form-control' value='$difMovCam'>
-                    </div>
-                </div>
+					<div class='col-lg-12 col-md-12 col-sm-12'>
+					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
+					<label for='difBaMov2' class='text-label'><strong>Discapacidades</strong></label>
+					</div>
+					<div class='col-lg-4 col-md-4 col-sm-4'>              
+					<label for='difBaMov2' class='text-label'>Dificultad para bañarse o moverse</label>       
+					<input id='difBaMov2' type='text' placeholder='Total' class='form-control' value='$difBaMov'>
+					</div>
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='difEntApr2' class='text-label'>Dificultad para entender o aprender</label>     
+					<input id='difEntApr2' type='text' placeholder='Total' class='form-control' value='$difEntApr'>
+					</div>
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='totalDis2' class='text-label'>Total de población con Discapacidad</label>       
+					<input id='totalDis2' type='text' placeholder='Total' class='form-control' value='$totalDis'>
+					</div>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='difSalirCalle2' class='text-label'>Dificultad para salir a la calle sin ayuda o compañia</label>     
+					<input id='difSalirCalle2' type='text' placeholder='Total' class='form-control' value='$difSalirCalle'>
+					</div>                    
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='difMovCam2' class='text-label'>Dificultad para moverse o para caminar por si</label>       
+					<input id='difMovCam2' type='text' placeholder='Total' class='form-control' value='$difMovCam'>
+					</div>
+					</div>
 
-                <div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
-               ";
+					<div class='col-lg-12 col-md-12 col-sm-12'><br></div>";
 
-			$html .="<input id='idS' type='text' value='$id' style='display: none;'>";
+			$html .= "<input id='idS' type='text' value='$id' style='display: none;'>";
 		};
 
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
 
 	}
 
+	// Muestra la tabla de salud en la vista de información
 	public function mostrarSalud(){
 
 		$idMunicipio = $_GET['idMunicipio'];
 		$anioS = $_GET['anioS'];
 		
 		$resultados = DB::table('salud')
-            ->join('vacunaciones', 'salud.id', '=', 'vacunaciones.salud_id')
-            ->join('discapacidades', 'salud.id', '=', 'discapacidades.salud_id')
-            ->select('salud.anioS', 'discapacidades.*', 'vacunaciones.*')
-            ->where('salud.municipio_id', '=', $idMunicipio)
-            ->where('salud.anioS', '=', $anioS)
-            ->get();
+						->join('vacunaciones', 'salud.id', 'vacunaciones.salud_id')
+						->join('discapacidades', 'salud.id', 'discapacidades.salud_id')
+						->select(DB::raw('YEAR(anioS) as YEARanioS'),
+								'discapacidades.*',
+								'vacunaciones.*')
+						->where('salud.municipio_id', $idMunicipio)
+						->where(DB::raw('YEAR(anioS)'), $anioS)
+						->get();
 
 		$html = "";
 
 		//Tabla de vacunaciones
-		$html .="<div class='col-sm-6 col-md-6 col-lg-6'>
+		$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
 
 				<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
@@ -430,73 +435,73 @@ class SaludController extends Controller
 		foreach ($resultados as $resultado) {
 			$tasVacBCG = $resultado->tasVacBCG;
 			
-			$html .="<td>$tasVacBCG</td>";
+			$html .= "<td>$tasVacBCG</td>";
 								
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>DPT</td>";
 
 		foreach ($resultados as $resultado) {
 			$tasVacDPT = $resultado->tasVacDPT;
 
-			$html .="<td>$tasVacDPT</td>";
+			$html .= "<td>$tasVacDPT</td>";
 
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Hepatitis B</td>";
 
 		foreach ($resultados as $resultado) {
 			$tasVacHepatitisB = $resultado->tasVacHepatitisB;
 
-			$html .="<td>$tasVacHepatitisB</td>";
+			$html .= "<td>$tasVacHepatitisB</td>";
 
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>HIB</td>";
 
 		foreach ($resultados as $resultado) {
 			$tasVacHIB = $resultado->tasVacHIB;
 			
-			$html .="<td>$tasVacHIB</td>";
+			$html .= "<td>$tasVacHIB</td>";
 
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Polio</td>";
 
 		foreach ($resultados as $resultado) {
 			$tasVacPolio = $resultado->tasVacPolio;
 			
-			$html .="<td>$tasVacPolio</td>";
+			$html .= "<td>$tasVacPolio</td>";
 
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr>
 				<td>Triple viral</td>";
 
 		foreach ($resultados as $resultado) {
 			$tasVacTripleViral = $resultado->tasVacTripleViral;
 			
-			$html .="<td>$tasVacTripleViral</td>";
+			$html .= "<td>$tasVacTripleViral</td>";
 
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				</tbody>
 				</table>
 
 				</div>";
 
 		// Tabla discapacidades
-		$html .="<div class='col-sm-6 col-md-6 col-lg-6'>
+		$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
 
 				<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
@@ -515,7 +520,7 @@ class SaludController extends Controller
 			$html .= "<td>$difBaMov</td>";
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Dificultad para entender o aprender</td>";
 
@@ -525,7 +530,7 @@ class SaludController extends Controller
 			$html .= "<td>$difEntApr</td>";							
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Dificultad para moverse o para caminar por si</td>";
 
@@ -535,7 +540,7 @@ class SaludController extends Controller
 			$html .= "<td>$difMovCam</td>";
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Dificultad para salir a la calle sin ayuda o compañía</td>";
 
@@ -545,7 +550,7 @@ class SaludController extends Controller
 			$html .= "<td>$difSalirCalle</td>";
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr>
 				<td>Total de población con Discapacidad</td>";
 
@@ -555,30 +560,31 @@ class SaludController extends Controller
 			$html .= "<td>$totalDis</td>";
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				</tbody>
 				</table>
 
 				</div>";
 
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
 
 	}
 
+	// Muestra la tabla salud en la vista del administrador
 	public function mostrarTablaSalud(){
 
 		$idMunicipio = $_GET['idMunicipio'];
 	
 		$resultados = DB::table('salud')
-            ->join('vacunaciones', 'salud.id', '=', 'vacunaciones.salud_id')
+            ->join('vacunaciones', 'salud.id', 'vacunaciones.salud_id')
             ->select('salud.anioS', 'vacunaciones.*')
-            ->where('salud.municipio_id', '=', $idMunicipio)
+            ->where('salud.municipio_id', $idMunicipio)
             ->orderBy('anioS')
             ->get();
 
 		$html = "";
 
-		$html .="<table class='table table-striped table-bordered table-hover'>
+		$html .= "<table class='table table-striped table-bordered table-hover'>
 				<thead>
 				<tr>
 				<th>Año</th>
@@ -598,7 +604,7 @@ class SaludController extends Controller
 			$tasVacDPT = $resultado->tasVacDPT;
 			$tasVacHepatitisB = $resultado->tasVacHepatitisB;
 			
-			$html .="<tr>
+			$html .= "<tr>
 					<td>$anio</td>
 					<td>$tasVacBCG</td>
 					<td>$tasVacDPT</td>
@@ -607,12 +613,12 @@ class SaludController extends Controller
 					</tr>";
 		};
 
-		$html .="</tbody>
+		$html .= "</tbody>
                 </table>";
 
         // <a id='$id' href='#' class='btn btn-danger'>Borrar</a>
 
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
 
 	}
 

@@ -9,7 +9,7 @@ use \Response;
 class ViviendaserviciospublicosController extends Controller
 {
 	// Función para actualizar los datos de vivienda y servicios publicos
-    public function actualizarViviendaserviciospublicos(){
+	public function actualizarViviendaserviciospublicos(){
 
 		$idVSP = $_GET['idVSP'];
 		$cabViv = $_GET['cabViv'];
@@ -289,18 +289,18 @@ class ViviendaserviciospublicosController extends Controller
 								'viviendasserviciospublicos.totalPerHog',
 								'viviendasserviciospublicos.totalPerViv')
 						->where('viviendasserviciospublicos.municipio_id', $idMunicipio)
-						->where('viviendasserviciospublicos.anioVSP', $anioVSP)
+						->where(DB::raw('YEAR(anioVSP)'), $anioVSP)
 						->get();
 
 		$html = "";
 		$html .= "<script type='text/javascript'>
 				google.charts.load('current', {'packages':['corechart']});
-	      		google.charts.setOnLoadCallback(drawChart);
+				google.charts.setOnLoadCallback(drawChart);
 
-	      		function drawChart() {
-		        var data = google.visualization.arrayToDataTable([
-		        ['Año', 'Hogares por vivienda', 'Personas por hogar', 'Personas por vivienda'],";
-		
+				function drawChart() {
+				var data = google.visualization.arrayToDataTable([
+				['Año', 'Hogares por vivienda', 'Personas por hogar', 'Personas por vivienda'],";
+
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioVSP;
 			$cabHogViv = $resultado->cabHogViv;
@@ -321,17 +321,17 @@ class ViviendaserviciospublicosController extends Controller
 
 		$html .= "]);
 
-	        	var options = {
-		        title: 'Viviendas',
-		        bar: {groupWidth: '20%'},
-		        legend: { position: 'rigth' },
-		        colors: ['#e9473f', '#397ACB', '#F8EF01'],
-	        	};
+				var options = {
+				title: 'Viviendas',
+				bar: {groupWidth: '20%'},
+				legend: { position: 'rigth' },
+				colors: ['#e9473f', '#397ACB', '#F8EF01'],
+				};
 
-	        	var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
+				var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
 
-	        	chart.draw(data, options);
-	     		}
+				chart.draw(data, options);
+				}
 				</script>
 
 				<div id='columnchart_values' style='width: 900px; height: 300px;'></div>
@@ -367,18 +367,18 @@ class ViviendaserviciospublicosController extends Controller
 								'coberturagas.*',
 								'coberturatelefono.*')
 						->where('viviendasserviciospublicos.municipio_id', $idMunicipio)
-						->where('viviendasserviciospublicos.anioVSP', $anioVSP)
+						->where(DB::raw('YEAR(anioVSP)'), $anioVSP)
 						->get();
 
 		$html = "";
 		$html .= "<script type='text/javascript'>
 				google.charts.load('current', {'packages':['corechart']});
-	      		google.charts.setOnLoadCallback(drawChart);
+				google.charts.setOnLoadCallback(drawChart);
 
-	      		function drawChart() {
-		        var data = google.visualization.arrayToDataTable([
-		        ['Año', 'Cabecera', 'Centros poblados', 'Rural disperso'],";
-		
+				function drawChart() {
+				var data = google.visualization.arrayToDataTable([
+				['Año', 'Cabecera', 'Centros poblados', 'Rural disperso'],";
+
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioVSP;
 			$cabCA = $resultado->cabCA;
@@ -403,17 +403,17 @@ class ViviendaserviciospublicosController extends Controller
 
 		$html .= "]);
 
-	        	var options = {
-		        title: 'Coberturas',
-		        bar: {groupWidth: '20%'},
-		        legend: { position: 'rigth' },
-		        colors: ['#e9473f', '#397ACB', '#F8EF01'],
-	        	};
+				var options = {
+				title: 'Coberturas',
+				bar: {groupWidth: '20%'},
+				legend: { position: 'rigth' },
+				colors: ['#e9473f', '#397ACB', '#F8EF01'],
+				};
 
-	        	var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values2'));
+				var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values2'));
 
-	        	chart.draw(data, options);
-	     		}
+				chart.draw(data, options);
+				}
 				</script>
 
 				<div id='columnchart_values2' style='width: 900px; height: 300px;'></div>
@@ -429,11 +429,11 @@ class ViviendaserviciospublicosController extends Controller
 		$idVSP = $_GET['idVSP'];
 
 		$resultados = DB::table('viviendasserviciospublicos')
-		 	->join('coberturaalcantarillado', 'viviendasserviciospublicos.id', 'coberturaalcantarillado.viviendaserviciopublico_id')
-		 	->join('coberturaaseo', 'viviendasserviciospublicos.id', 'coberturaaseo.viviendaserviciopublico_id')
-		 	->join('coberturagas', 'viviendasserviciospublicos.id', 'coberturagas.viviendaserviciopublico_id')
-		 	->join('coberturatelefono', 'viviendasserviciospublicos.id', 'coberturatelefono.viviendaserviciopublico_id')
-            ->select('viviendasserviciospublicos.id',
+			->join('coberturaalcantarillado', 'viviendasserviciospublicos.id', 'coberturaalcantarillado.viviendaserviciopublico_id')
+			->join('coberturaaseo', 'viviendasserviciospublicos.id', 'coberturaaseo.viviendaserviciopublico_id')
+			->join('coberturagas', 'viviendasserviciospublicos.id', 'coberturagas.viviendaserviciopublico_id')
+			->join('coberturatelefono', 'viviendasserviciospublicos.id', 'coberturatelefono.viviendaserviciopublico_id')
+			->select('viviendasserviciospublicos.id',
 					DB::raw('DATE(anioVSP) as DATEanioVSP'),
 					'viviendasserviciospublicos.cabViv',
 					'viviendasserviciospublicos.cabHog',
@@ -460,35 +460,35 @@ class ViviendaserviciospublicosController extends Controller
 		$html = "";
 
 		foreach ($resultados as $resultado) {
-			$id = $resultado->id;               
+			$id = $resultado->id;
 			$anio = $resultado->DATEanioVSP;
 			$cabViv = $resultado->cabViv;
 			$cabHog = $resultado->cabHog;
 			$cabHogViv = $resultado->cabHogViv;
 			$cabPerHog = $resultado->cabPerHog;
 			$cabPerViv = $resultado->cabPerViv;
-            $rurViv = $resultado->rurViv;
-            $rurHog = $resultado->rurHog;
-            $rurHogViv = $resultado->rurHogViv;
-            $rurPerHog = $resultado->rurPerHog;
-            $rurPerViv = $resultado->rurPerViv;
-            $totalViv = $resultado->totalViv;
-            $totalHog = $resultado->totalHog;
-            $totalHogViv = $resultado->totalHogViv;
-            $totalPerHog = $resultado->totalPerHog;
-            $totalPerViv = $resultado->totalPerViv;
-            $cabCA = $resultado->cabCA;
-            $centPobCA = $resultado->centPobCA;
-            $rurDispCA = $resultado->rurDispCA;
-            $cabCAs = $resultado->cabCAs;
-            $centPobCAs = $resultado->centPobCAs;
-            $rurDispCAs = $resultado->rurDispCAs;
-            $cabCG = $resultado->cabCG;
-            $centPobCG = $resultado->centPobCG;
-            $rurDispCG = $resultado->rurDispCG;
-            $cabCT = $resultado->cabCT;
-            $centPobCT = $resultado->centPobCT;
-            $rurDispCT = $resultado->rurDispCT;		
+			$rurViv = $resultado->rurViv;
+			$rurHog = $resultado->rurHog;
+			$rurHogViv = $resultado->rurHogViv;
+			$rurPerHog = $resultado->rurPerHog;
+			$rurPerViv = $resultado->rurPerViv;
+			$totalViv = $resultado->totalViv;
+			$totalHog = $resultado->totalHog;
+			$totalHogViv = $resultado->totalHogViv;
+			$totalPerHog = $resultado->totalPerHog;
+			$totalPerViv = $resultado->totalPerViv;
+			$cabCA = $resultado->cabCA;
+			$centPobCA = $resultado->centPobCA;
+			$rurDispCA = $resultado->rurDispCA;
+			$cabCAs = $resultado->cabCAs;
+			$centPobCAs = $resultado->centPobCAs;
+			$rurDispCAs = $resultado->rurDispCAs;
+			$cabCG = $resultado->cabCG;
+			$centPobCG = $resultado->centPobCG;
+			$rurDispCG = $resultado->rurDispCG;
+			$cabCT = $resultado->cabCT;
+			$centPobCT = $resultado->centPobCT;
+			$rurDispCT = $resultado->rurDispCT;
 
 			$html .= "<div class='col-lg-12 col-md-12 col-sm-12'>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
@@ -694,18 +694,18 @@ class ViviendaserviciospublicosController extends Controller
 		$anioVSP = $_GET['anioVSP'];
 	
 		$resultados = DB::table('viviendasserviciospublicos')
-			->join('coberturaalcantarillado', 'viviendasserviciospublicos.id', 'coberturaalcantarillado.viviendaserviciopublico_id')
-		 	->join('coberturaaseo', 'viviendasserviciospublicos.id', 'coberturaaseo.viviendaserviciopublico_id')
-		 	->join('coberturagas', 'viviendasserviciospublicos.id', 'coberturagas.viviendaserviciopublico_id')
-		 	->join('coberturatelefono', 'viviendasserviciospublicos.id', 'coberturatelefono.viviendaserviciopublico_id')
-            ->select('viviendasserviciospublicos.*',
-        			'coberturaalcantarillado.*',
-        			'coberturaaseo.*',
-        			'coberturagas.*',
-        			'coberturatelefono.*')
-            ->where('viviendasserviciospublicos.municipio_id', $idMunicipio)
-            ->where('viviendasserviciospublicos.anioVSP', $anioVSP)
-            ->get();
+						->join('coberturaalcantarillado', 'viviendasserviciospublicos.id', 'coberturaalcantarillado.viviendaserviciopublico_id')
+						->join('coberturaaseo', 'viviendasserviciospublicos.id', 'coberturaaseo.viviendaserviciopublico_id')
+						->join('coberturagas', 'viviendasserviciospublicos.id', 'coberturagas.viviendaserviciopublico_id')
+						->join('coberturatelefono', 'viviendasserviciospublicos.id', 'coberturatelefono.viviendaserviciopublico_id')
+						->select('viviendasserviciospublicos.*',
+								'coberturaalcantarillado.*',
+								'coberturaaseo.*',
+								'coberturagas.*',
+								'coberturatelefono.*')
+						->where('viviendasserviciospublicos.municipio_id', $idMunicipio)
+						->where(DB::raw('YEAR(anioVSP)'), $anioVSP)
+						->get();
 
 		$html = "";
 
@@ -1001,26 +1001,26 @@ class ViviendaserviciospublicosController extends Controller
 		$idMunicipio = $_GET['idMunicipio'];
 
 		$resultados = DB::table('viviendasserviciospublicos')
-            ->select('viviendasserviciospublicos.id',
-            		DB::raw('YEAR(anioVSP) as YEARanioVSP'),
-            		'viviendasserviciospublicos.cabHogViv',
-            		'viviendasserviciospublicos.cabPerHog',
-            		'viviendasserviciospublicos.cabPerViv',
-            		'viviendasserviciospublicos.rurHogViv',
-            		'viviendasserviciospublicos.rurPerHog',
-            		'viviendasserviciospublicos.rurPerViv',
-            		'viviendasserviciospublicos.totalHogViv',
-            		'viviendasserviciospublicos.totalPerHog',
-            		'viviendasserviciospublicos.totalPerViv',
-            		'viviendasserviciospublicos.cabViv',
-            		'viviendasserviciospublicos.cabHog',
-            		'viviendasserviciospublicos.rurViv',
-            		'viviendasserviciospublicos.rurHog',
-            		'viviendasserviciospublicos.totalViv',
-            		'viviendasserviciospublicos.totalHog')
-            ->where('viviendasserviciospublicos.municipio_id', $idMunicipio)
-            ->orderBy('anioVSP')
-            ->get();
+						->select('viviendasserviciospublicos.id',
+								DB::raw('YEAR(anioVSP) as YEARanioVSP'),
+								'viviendasserviciospublicos.cabHogViv',
+								'viviendasserviciospublicos.cabPerHog',
+								'viviendasserviciospublicos.cabPerViv',
+								'viviendasserviciospublicos.rurHogViv',
+								'viviendasserviciospublicos.rurPerHog',
+								'viviendasserviciospublicos.rurPerViv',
+								'viviendasserviciospublicos.totalHogViv',
+								'viviendasserviciospublicos.totalPerHog',
+								'viviendasserviciospublicos.totalPerViv',
+								'viviendasserviciospublicos.cabViv',
+								'viviendasserviciospublicos.cabHog',
+								'viviendasserviciospublicos.rurViv',
+								'viviendasserviciospublicos.rurHog',
+								'viviendasserviciospublicos.totalViv',
+								'viviendasserviciospublicos.totalHog')
+						->where('viviendasserviciospublicos.municipio_id', $idMunicipio)
+						->orderBy('anioVSP')
+						->get();
 
 		$html = "";
 		$html .= "<table class='table table-striped table-bordered table-hover'>
