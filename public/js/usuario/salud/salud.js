@@ -5,14 +5,14 @@ function mostrarDatos() {
 	$("#crear").show();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/usuario/salud/mostrarTablaSalud.php",
+		method: "GET",
+		url: "/salud/mostrarTablaSalud",
 		dataType: 'json',
 		data: { idMunicipio: municipio }
 	})
 
 	.done(function(response) {
-		$('#tablasalud').html(response);
+		$('#tablasalud').html(response.html);
 	});
 
 }
@@ -26,14 +26,14 @@ $("#tablasalud").on("click", "a", function(){
 		var id = $(this).attr("id");
 
 		$.ajax({
-			method: "POST",
-			url: "/js/salud/mostrarActualizarSalud.php",
+			method: "GET",
+			url: "/salud/mostrarActualizarSalud",
 			dataType: 'json',
 			data: { idS: id }
 		})
 
 		.done(function(response) {
-			$('#modalS').html(response);
+			$('#modalS').html(response.html);
 		});
 
 	}else if(clase == "btn btn-danger"){
@@ -41,15 +41,14 @@ $("#tablasalud").on("click", "a", function(){
 		var id = $(this).attr("id");
 
 		$.ajax({
-			method: "POST",
-			url: "/js/salud/borrarSalud.php",
+			method: "GET",
+			url: "/salud/borrarSalud",
 			dataType: 'json',
 			data: { idS: id }
 		})
 
 		.done(function(response) {
 			mostrarDatos();
-
 		});
 	}
 

@@ -6,11 +6,11 @@ $( document ).ready(function() {
 	var yyyy = hoy.getFullYear();
 
 	if(dd < 10) {
-	    dd='0'+dd
+	    dd='0'+dd;
 	} 
 
 	if(mm < 10) {
-	    mm='0'+mm
+	    mm='0'+mm;
 	} 
 
 	actualizado = $("#updated_at2")[0];
@@ -47,8 +47,8 @@ $("#formActualizar").on("submit", function(){
 	var updated_at = $("#updated_at2").val();
 
 	$.ajax({
-		method: "POST",
-		url: "/js/salud/actualizarSalud.php",
+		method: "GET",
+		url: "/salud/actualizarSalud",
 		dataType: 'json',
 		data: { idS: idS, tasVacBCG: tasVacBCG, tasVacDPT: tasVacDPT, 
 			tasVacHepatitisB: tasVacHepatitisB, tasVacHIB: tasVacHIB, tasVacPolio: tasVacPolio, 
@@ -58,9 +58,7 @@ $("#formActualizar").on("submit", function(){
 	})
 
 	.done(function(response) {
-
-		$('#respuesta2').html(response);
-		
+		$('#respuesta2').html(response.html);		
 	});
 
 	return false;

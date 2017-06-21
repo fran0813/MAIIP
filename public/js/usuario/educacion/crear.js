@@ -6,11 +6,11 @@ $( document ).ready(function() {
 	var yyyy = hoy.getFullYear();
 
 	if(dd < 10) {
-	    dd='0'+dd
+	    dd='0'+dd;
 	} 
 
 	if(mm < 10) {
-	    mm='0'+mm
+	    mm='0'+mm;
 	} 
 
 	anio = $("#anio")[0];
@@ -138,8 +138,8 @@ $("#formCrear").on("submit", function(){
 	}else{
 
 		$.ajax({
-			method: "POST",
-			url: "/js/educacion/crearEducacion.php",
+			method: "GET",
+			url: "/educacion/crearEducacion",
 			dataType: 'json',
 			data: { anioE: anio, comprobar: comprobar, rurJardin: rurJardin, urbJardin: urbJardin, 
 				rurTrans: rurTrans, urbTrans: urbTrans, rurPrim: rurPrim, urbPrim: urbPrim,
@@ -150,11 +150,8 @@ $("#formCrear").on("submit", function(){
 		})
 
 		.done(function(response) {
-
-			$('#respuesta').html(response);
-
-			refrescar();
-			
+			$('#respuesta').html(response.html);
+			refrescar();			
 		});
 
 		return false;
@@ -167,15 +164,15 @@ function refrescar(){
 
 	var municipio = $("#municipio").val();
 
-		$.ajax({
-			method: "POST",
-			url: "/js/usuario/educacion/mostrarTablaEducacion.php",
-			dataType: 'json',
-			data: { idMunicipio: municipio }
-		})
+	$.ajax({
+		method: "GET",
+		url: "/educacion/mostrarTablaEducacion",
+		dataType: 'json',
+		data: { idMunicipio: municipio }
+	})
 
-		.done(function(response) {
-			$('#tablaeducacion').html(response);
-		});
+	.done(function(response) {
+		$('#tablaeducacion').html(response.html);
+	});
 
 }

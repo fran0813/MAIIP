@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use \Response;
 
 class EducacionController extends Controller
 {
@@ -72,7 +74,7 @@ class EducacionController extends Controller
 
 		$html = "Se actualizaron los datos";
 
-		return Response::json(array('html' => $html, 'departamentos' => $departamentos->toArray()));
+		return Response::json(array('html' => $html,));
 
 	}
 
@@ -95,7 +97,7 @@ class EducacionController extends Controller
 
 		$html = "borrado";
 
-		return Response::json(array('html' => $html, 'departamentos' => $departamentos->toArray()));
+		return Response::json(array('html' => $html,));
 
 	}
 
@@ -202,19 +204,23 @@ class EducacionController extends Controller
 
 		}
 
-		return Response::json(array('html' => $html, 'departamentos' => $departamentos->toArray()));
+		return Response::json(array('html' => $html,));
 
 	}
 
 
 	public function grafica1Educacion(){
 
-	$idMunicipio = $_GET['idMunicipio'];
+		$idMunicipio = $_GET['idMunicipio'];
 
-		$sql = $conn->prepare('SELECT YEAR(anioE),femenino,masculino FROM educacion,matriculaporgenero WHERE educacion.municipio_id = :idMunicipio AND matriculaporgenero.educacion_id = educacion.id ORDER BY educacion.anioE ASC');
+		$resultados = DB::table('educacion')
+            ->join('matriculaporgenero', 'educacion.id', '=', 'matriculaporgenero.educacion_id')
+            ->select('educacion.anioE', 'matriculaporgenero.femenino', 'matriculaporgenero.masculino')
+            ->where('educacion.municipio_id', '=', $idMunicipio)
+            ->orderBy('educacion.anioE', 'asc')
+            ->get();
 		
 		$html = "";
-
 		$html .="<script type='text/javascript'>
 				google.charts.load('current', {'packages':['corechart']});
 	      		google.charts.setOnLoadCallback(drawChart);
@@ -224,9 +230,9 @@ class EducacionController extends Controller
 		        ['Año', 'Femenino', 'Masculino'],";
 		
 		foreach ($resultados as $resultado) {
-			$anio = $resultado['YEAR(anioE)'];
-			$femenino = $resultado['femenino'];
-			$masculino = $resultado['masculino'];
+			$anio = $resultado->anioE;
+			$femenino = $resultado->femenino;
+			$masculino = $resultado->masculino;
 
 			$html .= "['$anio', $femenino, $masculino],";
 		};
@@ -248,19 +254,23 @@ class EducacionController extends Controller
 
 				<div id='curve_chart' style='width: 900px; height: 500px'></div>";
 
-		return Response::json(array('html' => $html, 'departamentos' => $departamentos->toArray()));
+		return Response::json(array('html' => $html,));
 
 	}
 
 
 	public function grafica2Educacion(){
 
-	$idMunicipio = $_GET['idMunicipio'];
+		$idMunicipio = $_GET['idMunicipio'];
 
-		$sql = $conn->prepare('SELECT YEAR(anioE),jardin,trans,prim,secu,media FROM educacion,matriculapornivel WHERE educacion.municipio_id = :idMunicipio AND matriculapornivel.educacion_id = educacion.id ORDER BY educacion.anioE ASC');
+		$resultados = DB::table('educacion')
+            ->join('matriculapornivel', 'educacion.id', '=', 'matriculapornivel.educacion_id')
+            ->select('educacion.anioE', 'matriculapornivel.jardin', 'matriculapornivel.trans', 'matriculapornivel.prim', 'matriculapornivel.secu', 'matriculapornivel.media')
+            ->where('educacion.municipio_id', '=', $idMunicipio)
+            ->orderBy('educacion.anioE', 'asc')
+            ->get();
 
 		$html = "";
-
 		$html .="<script type='text/javascript'>
 				google.charts.load('current', {'packages':['corechart']});
 	      		google.charts.setOnLoadCallback(drawChart);
@@ -270,12 +280,12 @@ class EducacionController extends Controller
 		        ['Año', 'Jardin', 'Transición', 'Primaria', 'Secundaria', 'Media'],";
 		
 		foreach ($resultados as $resultado) {
-			$anio = $resultado['YEAR(anioE)'];
-			$jardin = $resultado['jardin'];
-			$trans = $resultado['trans'];
-			$prim = $resultado['prim'];
-			$secu = $resultado['secu'];
-			$media = $resultado['media'];
+			$anio = $resultado->anioE;
+			$jardin = $resultado->jardin;
+			$trans = $resultado->trans;
+			$prim = $resultado->prim;
+			$secu = $resultado->secu;
+			$media = $resultado->media;
 
 			$html .= "['$anio', $jardin, $trans, $prim, $secu, $media],";
 		};
@@ -297,42 +307,47 @@ class EducacionController extends Controller
 
 				<div id='columnchart_values' style='width: 900px; height: 300px;'></div>";
 
-		return Response::json(array('html' => $html, 'departamentos' => $departamentos->toArray()));
+		return Response::json(array('html' => $html,));
 
 	}
 
 	public function mostrarActualizarEducacion(){
 
-	$idE = $_GET['idE'];
+		$idE = $_GET['idE'];
 
-		$sql = $conn->prepare('SELECT educacion.id,DATE(anioE),rurJardin,urbJardin,rurTrans,urbTrans,rurPrim,urbPrim,rurSecu,urbSecu,rurMedia,urbMedia,jardin,trans,prim,secu,media,femenino,masculino FROM educacion,matriculaporgenero,matriculapornivel WHERE educacion.id = :idE AND matriculaporgenero.educacion_id = educacion.id AND matriculapornivel.educacion_id = educacion.id');
+		$resultados = DB::table('educacion')
+            ->join('matriculaporgenero', 'educacion.id', '=', 'matriculaporgenero.educacion_id')
+            ->join('matriculapornivel', 'educacion.id', '=', 'matriculapornivel.educacion_id')
+            ->select('educacion.anioE', 'educacion.rurJardin', 'educacion.urbJardin', 'educacion.rurTrans', 'educacion.urbTrans', 'educacion.rurPrim', 'educacion.urbPrim', 'educacion.rurSecu', 'educacion.urbSecu', 'educacion.rurMedia', 'educacion.urbMedia', 'matriculaporgenero.*', 'matriculapornivel.*')
+            ->where('educacion.id', '=', $idE)
+            ->get();
 		
 		$html = "";
 
 		foreach ($resultados as $resultado) {
             
-            $id = $resultado['id'];               
-            $anio = $resultado['DATE(anioE)'];
+            $id = $resultado->id;               
+            $anio = $resultado->anioE;
 
-            $rurJardin = $resultado['rurJardin'];
-            $urbJardin = $resultado['urbJardin'];
-            $rurTrans = $resultado['rurTrans'];
-            $urbTrans = $resultado['urbTrans'];
-            $rurPrim = $resultado['rurPrim'];
-            $urbPrim = $resultado['urbPrim'];
-            $rurSecu = $resultado['rurSecu'];
-            $urbSecu = $resultado['urbSecu'];
-            $rurMedia = $resultado['rurMedia'];
-            $urbMedia = $resultado['urbMedia'];
+            $rurJardin = $resultado->rurJardin;
+            $urbJardin = $resultado->urbJardin;
+            $rurTrans = $resultado->rurTrans;
+            $urbTrans = $resultado->urbTrans;
+            $rurPrim = $resultado->rurPrim;
+            $urbPrim = $resultado->urbPrim;
+            $rurSecu = $resultado->rurSecu;
+            $urbSecu = $resultado->urbSecu;
+            $rurMedia = $resultado->rurMedia;
+            $urbMedia = $resultado->urbMedia;
 
-            $jardin = $resultado['jardin'];
-            $trans = $resultado['trans'];
-            $prim = $resultado['prim'];
-            $secu = $resultado['secu'];
-            $media = $resultado['media'];
+            $jardin = $resultado->jardin;
+            $trans = $resultado->trans;
+            $prim = $resultado->prim;
+            $secu = $resultado->secu;
+            $media = $resultado->media;
 
-            $femenino = $resultado['femenino'];
-            $masculino = $resultado['masculino'];
+            $femenino = $resultado->femenino;
+            $masculino = $resultado->masculino;
 
 			$html .="
                  <div class='col-lg-12 col-md-12 col-sm-12'>
@@ -464,19 +479,24 @@ class EducacionController extends Controller
 			$html .="<input id='idE' type='text' value='$id' style='display: none;'>";
 		};
 
-		return Response::json(array('html' => $html, 'departamentos' => $departamentos->toArray()));
+		return Response::json(array('html' => $html,));
 
 	}
 	
 
 	public function mostrarEducacion(){
 
-	$idMunicipio = $_GET['idMunicipio'];
+		$idMunicipio = $_GET['idMunicipio'];
 
-		$sql = $conn->prepare('SELECT YEAR(anioE),rurJardin,urbJardin,rurTrans,urbTrans,rurPrim,urbPrim,rurSecu,urbSecu,rurMedia,urbMedia,jardin,trans,prim,secu,media,femenino,masculino FROM educacion,matriculaporgenero,matriculapornivel WHERE educacion.municipio_id = :idMunicipio AND matriculapornivel.educacion_id = educacion.id AND matriculaporgenero.educacion_id = educacion.id ORDER BY educacion.anioE ASC');
+		$resultados = DB::table('educacion')
+            ->join('matriculaporgenero', 'educacion.id', '=', 'matriculaporgenero.educacion_id')
+            ->join('matriculapornivel', 'educacion.id', '=', 'matriculapornivel.educacion_id')
+            ->select('educacion.anioE', 'educacion.rurJardin', 'educacion.urbJardin', 'educacion.rurTrans', 'educacion.urbTrans', 'educacion.rurPrim', 'educacion.urbPrim', 'educacion.rurSecu', 'educacion.urbSecu', 'educacion.rurMedia', 'educacion.urbMedia', 'matriculaporgenero.*', 'matriculapornivel.*')
+            ->where('educacion.municipio_id', '=', $idMunicipio)
+            ->orderBy('educacion.anioE', 'asc')
+            ->get();
 
 		$html = "";
-
 		$html .="<div class='col-sm-12 col-md-12 col-lg-12'>
 
 				<table class='table table-bordered table-hover'>
@@ -485,7 +505,7 @@ class EducacionController extends Controller
 				<th>Datos</th>";
 
 		foreach ($resultados as $resultado) {
-			$anio = $resultado['YEAR(anioE)'];
+			$anio = $resultado->anioE;
 			
 			$html .= "<th>$anio</th>";
 		};
@@ -497,7 +517,7 @@ class EducacionController extends Controller
 				<td>Prejardin y jardin (rural)</td>";
 
 		foreach ($resultados as $resultado) {
-			$rurJardin = $resultado['rurJardin'];
+			$rurJardin = $resultado->rurJardin;
 			
 			$html .= "<td>$rurJardin</td>";
 		};
@@ -507,7 +527,7 @@ class EducacionController extends Controller
 						<td>Prejardin y jardin (urbano)</td>";
 
 		foreach ($resultados as $resultado) {
-			$urbJardin = $resultado['urbJardin'];
+			$urbJardin = $resultado->urbJardin;
 			
 			$html .= "<td>$urbJardin</td>";
 		};
@@ -517,7 +537,7 @@ class EducacionController extends Controller
 						<td>Transición (rural)</td>";
 
 		foreach ($resultados as $resultado) {
-			$rurTrans = $resultado['rurTrans'];
+			$rurTrans = $resultado->rurTrans;
 			
 			$html .= "<td>$rurTrans</td>";
 		};
@@ -527,7 +547,7 @@ class EducacionController extends Controller
 						<td>Transición (urbano)</td>";
 
 		foreach ($resultados as $resultado) {
-			$urbTrans = $resultado['urbTrans'];
+			$urbTrans = $resultado->urbTrans;
 			
 			$html .= "<td>$urbTrans</td>";
 		};
@@ -537,7 +557,7 @@ class EducacionController extends Controller
 						<td>Primaria (rural)</td>";
 
 		foreach ($resultados as $resultado) {
-			$rurPrim = $resultado['rurPrim'];
+			$rurPrim = $resultado->rurPrim;
 			
 			$html .= "<td>$rurPrim</td>"; 
 		};
@@ -547,7 +567,7 @@ class EducacionController extends Controller
 						<td>Primaria (urbano)</td>";
 
 		foreach ($resultados as $resultado) {
-			$urbPrim = $resultado['urbPrim'];
+			$urbPrim = $resultado->urbPrim;
 			
 			$html .= "<td>$urbPrim</td>";
 		};
@@ -557,7 +577,7 @@ class EducacionController extends Controller
 						<td>Secundaria (rural)</td>";
 
 		foreach ($resultados as $resultado) {
-			$rurSecu = $resultado['rurSecu'];
+			$rurSecu = $resultado->rurSecu;
 			
 			$html .= "<td>$rurSecu</td>";
 		};
@@ -567,7 +587,7 @@ class EducacionController extends Controller
 						<td>Secundaria (urbano)</td>";
 
 		foreach ($resultados as $resultado) {
-			$urbSecu = $resultado['urbSecu'];
+			$urbSecu = $resultado->urbSecu;
 			
 			$html .= "<td>$urbSecu</td>";
 		};
@@ -577,7 +597,7 @@ class EducacionController extends Controller
 						<td>Media (rural)</td>";
 
 		foreach ($resultados as $resultado) {
-			$rurMedia = $resultado['rurMedia'];
+			$rurMedia = $resultado->rurMedia;
 			
 			$html .= "<td>$rurMedia</td>";
 		};
@@ -587,7 +607,7 @@ class EducacionController extends Controller
 						<td>Media (urbano)</td>";
 
 		foreach ($resultados as $resultado) {
-			$urbMedia = $resultado['urbMedia'];
+			$urbMedia = $resultado->urbMedia;
 			
 			$html .= "<td>$urbMedia</td>";
 		};
@@ -607,7 +627,7 @@ class EducacionController extends Controller
 						<th>Matricula por nivel</th>";
 
 		foreach ($resultados as $resultado) {
-			$anio = $resultado['YEAR(anioE)'];
+			$anio = $resultado->anioE;
 			
 			$html .= "<th>$anio</th>";
 		};
@@ -619,7 +639,7 @@ class EducacionController extends Controller
 						<td>Prejardin y jardin</td>";
 
 		foreach ($resultados as $resultado) {
-			$jardin = $resultado['jardin'];
+			$jardin = $resultado->jardin;
 			
 			$html .= "<td>$jardin</td>";
 		};
@@ -629,7 +649,7 @@ class EducacionController extends Controller
 						<td>Transición</td>";
 
 		foreach ($resultados as $resultado) {
-			$trans = $resultado['trans'];
+			$trans = $resultado->trans;
 			
 			$html .= "<td>$trans</td>";
 		};
@@ -639,7 +659,7 @@ class EducacionController extends Controller
 						<td>Primaria (rural)</td>";
 
 		foreach ($resultados as $resultado) {
-			$rurPrim = $resultado['rurPrim'];
+			$rurPrim = $resultado->rurPrim;
 			
 			$html .= "<td>$rurPrim</td>"; 
 		};
@@ -649,7 +669,7 @@ class EducacionController extends Controller
 						<td>Primaria</td>";
 
 		foreach ($resultados as $resultado) {
-			$prim = $resultado['prim'];
+			$prim = $resultado->prim;
 			
 			$html .= "<td>$prim</td>";
 		};
@@ -659,7 +679,7 @@ class EducacionController extends Controller
 						<td>Secundaria</td>";
 
 		foreach ($resultados as $resultado) {
-			$secu = $resultado['secu'];
+			$secu = $resultado->secu;
 			
 			$html .= "<td>$secu</td>";
 		};
@@ -669,7 +689,7 @@ class EducacionController extends Controller
 						<td>Media</td>";
 
 		foreach ($resultados as $resultado) {
-			$media = $resultado['media'];
+			$media = $resultado->media;
 			
 			$html .= "<td>$media</td>";
 		};
@@ -689,7 +709,7 @@ class EducacionController extends Controller
 						<th>Matricula por genero</th>";
 
 		foreach ($resultados as $resultado) {
-			$anio = $resultado['YEAR(anioE)'];
+			$anio = $resultado->anioE;
 			
 			$html .= "<th>$anio</th>";
 		};
@@ -701,7 +721,7 @@ class EducacionController extends Controller
 						<td>Femenino</td>";
 
 		foreach ($resultados as $resultado) {
-			$femenino = $resultado['femenino'];
+			$femenino = $resultado->femenino;
 			
 			$html .= "<td>$femenino</td>";
 		};
@@ -711,7 +731,7 @@ class EducacionController extends Controller
 						<td>Masculino</td>";
 
 		foreach ($resultados as $resultado) {
-			$masculino = $resultado['masculino'];
+			$masculino = $resultado->masculino;
 			
 			$html .= "<td>$masculino</td>";
 		};
@@ -722,20 +742,23 @@ class EducacionController extends Controller
 
 			</div>";	
 
-		return Response::json(array('html' => $html, 'departamentos' => $departamentos->toArray()));
+		return Response::json(array('html' => $html,));
 
 	}
 
 
 	public function mostrarTablaEducacion(){
 
-	$idMunicipio = $_GET['idMunicipio'];
+		$idMunicipio = $_GET['idMunicipio'];
 
-		$sql = $conn->prepare('SELECT id,YEAR(anioE),rurJardin,urbJardin,rurTrans,urbTrans FROM educacion WHERE educacion.municipio_id = :idMunicipio ORDER BY anioE');
-		$sql->execute(array('idMunicipio' => $idMunicipio));
-		$resultados = $sql->fetchAll();
+		$resultados = DB::table('educacion')
+            ->select('educacion.id', 'educacion.anioE', 'educacion.rurJardin', 'educacion.urbJardin', 'educacion.rurTrans', 'educacion.urbTrans', 'educacion.rurPrim', 'educacion.urbPrim', 'educacion.rurSecu', 'educacion.urbSecu', 'educacion.rurMedia', 'educacion.urbMedia')
+            ->where('educacion.municipio_id', '=', $idMunicipio)
+            ->orderBy('anioE')
+            ->get();
+		
+
 		$html = "";
-
 		$html .="<table class='table table-striped table-bordered table-hover'>
 				<thead>
 				<tr>
@@ -751,12 +774,12 @@ class EducacionController extends Controller
 
 		foreach ($resultados as $resultado) {
 
-			$id = $resultado['id'];
-			$anio = $resultado['YEAR(anioE)'];
-			$rurJardin = $resultado['rurJardin'];
-			$urbJardin = $resultado['urbJardin'];
-			$rurTrans = $resultado['rurTrans'];
-			$urbTrans = $resultado['urbTrans'];
+			$id = $resultado->id;
+			$anio = $resultado->anioE;
+			$rurJardin = $resultado->rurJardin;
+			$urbJardin = $resultado->urbJardin;
+			$rurTrans = $resultado->rurTrans;
+			$urbTrans = $resultado->urbTrans;
 			
 			$html .="<tr>
 					<td>$anio</td>
@@ -773,7 +796,7 @@ class EducacionController extends Controller
 
 		// <a id='$id' href='#' class='btn btn-danger'>Borrar</a>	
 
-		return Response::json(array('html' => $html, 'departamentos' => $departamentos->toArray()));
+		return Response::json(array('html' => $html,));
 
 	}
 

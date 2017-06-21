@@ -6,11 +6,11 @@ $( document ).ready(function() {
 	var yyyy = hoy.getFullYear();
 
 	if(dd < 10) {
-	    dd='0'+dd
+	    dd='0'+dd;
 	} 
 
 	if(mm < 10) {
-	    mm='0'+mm
+	    mm='0'+mm;
 	} 
 
 	actualizado = $("#updated_at2")[0];
@@ -124,15 +124,13 @@ $("#formActualizar").on("submit", function(){
 	var total = (parseInt(femenino) + parseInt(masculino));
 
 	if(total > validar || total < validar){
-
 		$('#respuesta').html("<p>El numero de matriculas no coinciden con el numero de matriculados por genero</p>");
 		return false;
-
 	}else{
 
 		$.ajax({
-			method: "POST",
-			url: "/js/educacion/actualizarEducacion.php",
+			method: "GET",
+			url: "/educacion/actualizarEducacion",
 			dataType: 'json',
 			data: { idE: idE, rurJardin: rurJardin, urbJardin: urbJardin, 
 				rurTrans: rurTrans, urbTrans: urbTrans, rurPrim: rurPrim, urbPrim: urbPrim,
@@ -142,9 +140,7 @@ $("#formActualizar").on("submit", function(){
 		})
 
 		.done(function(response) {
-
-			$('#respuesta2').html(response);
-			
+			$('#respuesta2').html(response.html);			
 		});
 
 		return false;

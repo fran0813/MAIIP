@@ -6,11 +6,11 @@ $( document ).ready(function() {
 	var yyyy = hoy.getFullYear();
 
 	if(dd < 10) {
-	    dd='0'+dd
+	    dd='0'+dd;
 	} 
 
 	if(mm < 10) {
-	    mm='0'+mm
+	    mm='0'+mm;
 	} 
 
 	anio = $("#anio")[0];
@@ -45,8 +45,8 @@ $("#formCrear").on("submit", function(){
 	var municipio = $("#municipio").val();
 	
 	$.ajax({
-		method: "POST",
-		url: "/js/salud/crearSalud.php",
+		method: "GET",
+		url: "/salud/crearSalud",
 		dataType: 'json',
 		data: { anioS: anio, comprobar: comprobar, tasVacBCG: tasVacBCG, tasVacDPT: tasVacDPT, 
 			tasVacHepatitisB: tasVacHepatitisB, tasVacHIB: tasVacHIB, tasVacPolio: tasVacPolio, 
@@ -57,7 +57,7 @@ $("#formCrear").on("submit", function(){
 
 	.done(function(response) {
 
-		$('#respuesta').html(response);
+		$('#respuesta').html(response.html);
 
 		refrescar();
 		
@@ -72,14 +72,14 @@ function refrescar(){
 	var municipio = $("#municipio").val();
 
 		$.ajax({
-			method: "POST",
-			url: "/js/usuario/salud/mostrarTablaSalud.php",
+			method: "GET",
+			url: "/salud/mostrarTablaSalud",
 			dataType: 'json',
 			data: { idMunicipio: municipio }
 		})
 
 		.done(function(response) {
-			$('#tablasalud').html(response);
+			$('#tablasalud').html(response.html);
 		});
 
 }
