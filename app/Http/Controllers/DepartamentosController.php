@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use \Response;
-use App\departamento;
-use App\municipio;
 
 class DepartamentosController extends Controller
 {
@@ -34,7 +32,9 @@ class DepartamentosController extends Controller
 		$departamento_select = null;
 
 		if($request->session()->get("departamento_select") ){			
+
 			$departamento_select = $request->session()->get("departamento_select");
+			
 		}
 
 		$html = "";
@@ -45,9 +45,13 @@ class DepartamentosController extends Controller
 			$nombre = $departamento->nombre;
 
 			if($id == $departamento_select){
+
 				$html .= "<option selected value='$id'>$nombre</option>";
+
 			}else{
+
 				$html .= "<option value='$id'>$nombre</option>";
+
 			}
 		};
 
@@ -90,10 +94,15 @@ class DepartamentosController extends Controller
 			$nombre = $municipio->nombre;
 
 			if($id == $municipio_select){
+
 				$html .= "<option selected value='$id'>$nombre</option>";
+
 			}else{
+
 				$html .= "<option value='$id'>$nombre</option>";
+
 			}
+
 		};
 
 		return Response::json(array('html' => $html, 'municipio' => $municipios->toArray()));
@@ -120,10 +129,13 @@ class DepartamentosController extends Controller
 			$codmun = $resultado->codigoM;
 			
 			$html .= "<input class='form-control' type='text' disabled='true' value='$coddep$codmun'>";
+
 		};
 
 		if($idMunicipio == "Seleccione un municipio"){
+
 			$html .= "<input class='form-control' type='text' value='' disabled=''>";
+
 		}
 
 		return Response::json(array('html' => $html,));
@@ -147,6 +159,7 @@ class DepartamentosController extends Controller
 			$anio = $resultado->anioGT;
 			
 			$html .= "<option value='$anio'>$anio</option>";
+
 		};
 
 		return Response::json(array('html' => $html,));
@@ -170,6 +183,7 @@ class DepartamentosController extends Controller
 			$anio = $resultado->anioVSP;
 			
 			$html .= "<option value='$anio'>$anio</option>";
+
 		};
 
 		return Response::json(array('html' => $html,));
@@ -193,6 +207,7 @@ class DepartamentosController extends Controller
 			$anio = $resultado->anioS;
 			
 			$html .= "<option value='$anio'>$anio</option>";
+
 		};
 
 		return Response::json(array('html' => $html,));

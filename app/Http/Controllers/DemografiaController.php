@@ -25,7 +25,7 @@ class DemografiaController extends Controller
 		$pobZonRes = $_GET['pobZonRes'];
 		$indRuralidad = $_GET['indRuralidad'];
 		$pobTotal = $_GET['pobTotal'];
-		$crecPob = $_GET['crecPob'];
+		$crecPob = $_GET['crecPob'];		
 		$updated_at = $_GET['updated_at'];
 
 		$demografias = array('pobEdadTrabajar' => $pobEdadTrabajar,
@@ -94,7 +94,7 @@ class DemografiaController extends Controller
 
 		$resultados = DB::table('demografias')
 						->select('demografias.*')
-						->where(DB::raw('YEAR(anioD)'), '=', $comprobar)
+						->where(DB::raw('YEAR(anioD)'), $comprobar)
 						->get();
 				
 		$ban = False;
@@ -150,7 +150,7 @@ class DemografiaController extends Controller
 						->select(DB::raw('YEAR(anioD) as YEARanioD'),
 								'demografias.indRuralidad',
 								'demografias.crecPob')
-						->where('demografias.municipio_id', '=', $idMunicipio)
+						->where('demografias.municipio_id', $idMunicipio)
 						->orderBy('demografias.anioD', 'asc')
 						->get();
 		
@@ -203,7 +203,7 @@ class DemografiaController extends Controller
 
 		$resultados = DB::table('demografias')
 					->select(DB::raw('YEAR(anioD) as YEARanioD'), 'demografias.pobTotal')
-					->where('demografias.municipio_id', '=', $idMunicipio)
+					->where('demografias.municipio_id', $idMunicipio)
 					->orderBy('demografias.anioD', 'asc')
 					->get();
 
@@ -267,7 +267,7 @@ class DemografiaController extends Controller
 							'demografias.indRuralidad',
 							'demografias.pobTotal',
 							'demografias.crecPob')
-					->where('demografias.id', '=', $idD)
+					->where('demografias.id', $idD)
 					->get();
 
 		$html = "";
@@ -414,7 +414,7 @@ class DemografiaController extends Controller
 								'demografias.indRuralidad',
 								'demografias.pobTotal',
 								'demografias.crecPob')
-						->where('demografias.municipio_id', '=', $idMunicipio)
+						->where('demografias.municipio_id', $idMunicipio)
 						->orderBy('demografias.anioD', 'asc')
 						->get();
 
@@ -686,7 +686,7 @@ class DemografiaController extends Controller
         			'demografias.indRuralidad',
         			'demografias.pobTotal',
         			'demografias.crecPob')
-            ->where('demografias.municipio_id', '=', $idMunicipio)
+            ->where('demografias.municipio_id', $idMunicipio)
             ->orderBy('anioD')
             ->get();
 
