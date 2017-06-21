@@ -176,3 +176,9 @@ function refrescar(){
 	});
 
 }
+
+function limpiarRespuesta(){
+
+	$('#respuesta').html(" ");
+
+}

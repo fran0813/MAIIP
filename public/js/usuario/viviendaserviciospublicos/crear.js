@@ -136,15 +136,21 @@ function refrescar(){
 
 	var municipio = $("#municipio").val();
 
-		$.ajax({
-			method: "GET",
-			url: "/viviendaserviciospublicos/mostrarTablaViviendaserviciospublicos",
-			dataType: 'json',
-			data: { idMunicipio: municipio }
-		})
+	$.ajax({
+		method: "GET",
+		url: "/viviendaserviciospublicos/mostrarTablaViviendaserviciospublicos",
+		dataType: 'json',
+		data: { idMunicipio: municipio }
+	})
 
-		.done(function(response) {
-			$('#tablaviviendaserviciospublicos').html(response.html);
-		});
+	.done(function(response) {
+		$('#tablaviviendaserviciospublicos').html(response.html);
+	});
+		
+}
+
+function limpiarRespuesta(){
+
+	$('#respuesta').html(" ");
 
 }

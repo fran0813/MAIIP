@@ -102,11 +102,9 @@
                         <label for="pobTotal" class="text-label">Población total</label>     
                         <input id="pobTotal" type="text" placeholder="Población total" oninput="calcularIndRuralidad()" class="form-control">
                     </div>
-                    <div id="recibirCrecPob" class="col-lg-6 col-md-6 col-sm-6">
-                        
-                            <label for="crecPob" class="text-label">Crecimiento poblacional</label>     
-                            <input id="crecPob" type="text" placeholder="Crecimiento poblacional" disabled="" class="form-control">
-                        
+                    <div id="recibirCrecPob" class="col-lg-6 col-md-6 col-sm-6">                    
+                        <label for="crecPob" class="text-label">Crecimiento poblacional</label>     
+                        <input id="crecPob" type="text" placeholder="Crecimiento poblacional" disabled="" class="form-control">               
                     </div>
                 </div>
 

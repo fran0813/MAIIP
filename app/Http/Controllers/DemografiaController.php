@@ -8,181 +8,191 @@ use \Response;
 
 class DemografiaController extends Controller
 {
-    public function actualizarDemografia(){
+	// Función para actualizar los datos de demografia
+	public function actualizarDemografia(){
 
-	$idD = $_GET['idD'];
-	$pobEdadTrabajar = $_GET['pobEdadTrabajar'];
-	$pobPotActiva = $_GET['pobPotActiva'];
-	$pobPotInactiva = $_GET['pobPotInactiva'];
-	$numPerMen = $_GET['numPerMen'];
-	$numPerMay = $_GET['numPerMay'];
-	$numPerInd = $_GET['numPerInd'];
-	$numPerDep = $_GET['numPerDep'];
-	$pobHom = $_GET['pobHom'];
-	$pobMuj = $_GET['pobMuj'];
-	$pobZonCab = $_GET['pobZonCab'];
-	$pobZonRes = $_GET['pobZonRes'];
-	$indRuralidad = $_GET['indRuralidad'];
-	$pobTotal = $_GET['pobTotal'];
-	$crecPob = $_GET['crecPob'];
-	$updated_at = $_GET['updated_at'];
+		$idD = $_GET['idD'];
+		$pobEdadTrabajar = $_GET['pobEdadTrabajar'];
+		$pobPotActiva = $_GET['pobPotActiva'];
+		$pobPotInactiva = $_GET['pobPotInactiva'];
+		$numPerMen = $_GET['numPerMen'];
+		$numPerMay = $_GET['numPerMay'];
+		$numPerInd = $_GET['numPerInd'];
+		$numPerDep = $_GET['numPerDep'];
+		$pobHom = $_GET['pobHom'];
+		$pobMuj = $_GET['pobMuj'];
+		$pobZonCab = $_GET['pobZonCab'];
+		$pobZonRes = $_GET['pobZonRes'];
+		$indRuralidad = $_GET['indRuralidad'];
+		$pobTotal = $_GET['pobTotal'];
+		$crecPob = $_GET['crecPob'];
+		$updated_at = $_GET['updated_at'];
 
-		// $sql = $conn->prepare('UPDATE demografias SET pobEdadTrabajar = :pobEdadTrabajar, pobPotActiva = :pobPotActiva, pobPotInactiva = :pobPotInactiva, numPerMen = :numPerMen, numPerMay = :numPerMay, numPerInd = :numPerInd, numPerDep = :numPerDep, pobHom = :pobHom, pobMuj = :pobMuj, pobZonCab = :pobZonCab, pobZonRes= :pobZonRes, indRuralidad = :indRuralidad, pobTotal = :pobTotal, crecPob = :crecPob, updated_at = :updated_at WHERE id = :idD');
-		// // $sql->bindParam("idD", $idD, PDO::PARAM_STR);
-		// $sql->bindParam("pobEdadTrabajar", $pobEdadTrabajar, PDO::PARAM_STR);
-		// $sql->bindParam("pobPotActiva", $pobPotActiva, PDO::PARAM_STR);
-		// $sql->bindParam("pobPotInactiva", $pobPotInactiva, PDO::PARAM_STR);
-		// $sql->bindParam("numPerMen", $numPerMen, PDO::PARAM_STR);
-		// $sql->bindParam("numPerMay", $numPerMay, PDO::PARAM_STR);
-		// $sql->bindParam("numPerInd", $numPerInd, PDO::PARAM_STR);
-		// $sql->bindParam("numPerDep", $numPerDep, PDO::PARAM_STR);
-		// $sql->bindParam("pobHom", $pobHom, PDO::PARAM_STR);
-		// $sql->bindParam("pobMuj", $pobMuj, PDO::PARAM_STR);
-		// $sql->bindParam("pobZonCab", $pobZonCab, PDO::PARAM_STR);
-		// $sql->bindParam("pobZonRes", $pobZonRes, PDO::PARAM_STR);
-		// $sql->bindParam("indRuralidad", $indRuralidad, PDO::PARAM_STR);
-		// $sql->bindParam("pobTotal", $pobTotal, PDO::PARAM_STR);
-		// $sql->bindParam("crecPob", $crecPob, PDO::PARAM_STR);
-		// $sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
-		// $sql->execute();
-
-		$demografias = array('pobEdadTrabajar' => $pobEdadTrabajar, );
+		$demografias = array('pobEdadTrabajar' => $pobEdadTrabajar,
+							'pobPotActiva' => $pobPotActiva,
+							'pobPotInactiva' => $pobPotInactiva,
+							'numPerMen' => $numPerMen,
+							'numPerMay' => $numPerMay,
+							'numPerInd' => $numPerInd,
+							'numPerDep' => $numPerDep,
+							'pobHom' => $pobHom,
+							'pobMuj' => $pobMuj,
+							'pobZonCab' => $pobZonCab,
+							'pobZonRes' => $pobZonRes,
+							'indRuralidad' => $indRuralidad,
+							'pobTotal' => $pobTotal,
+							'crecPob' => $crecPob,
+							'updated_at' => $updated_at, );
 
 		DB::table('demografias')
 			->where('id', $idD)
-			->update(['pobEdadTrabajar' => $pobEdadTrabajar]);
+			->update($demografias);
 
-		$html = "Se actualizaron los datos";
+		$html = "Se actualizaron los datos correctamente";
 
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
+
 	}
 
+	// Función para eliminar los datos de demografia
 	public function borrarDemografia(){
 
-	$idD = $_GET['idD'];
+		$idD = $_GET['idD'];
 
-		$sql = $conn->prepare('DELETE FROM demografias WHERE id = :idD');
-		$sql->bindParam("idD", $idD, PDO::PARAM_STR);
-		$sql->execute();
+		DB::table('demografias')
+			->where('id', $idD)
+			->delete();
 
-		$html = "borrado";
+		$html = "Se eliminaron los datos correctamente";
 
-		return Response::json(array('html' => $html, 'departamentos' => $departamentos->toArray()));
+		return Response::json(array('html' => $html, ));
+
 	}
 
+	// Función para crear los datos de demografia
 	public function crearDemografia(){
 
-	$anioD = $_GET['anioD'];
-	$comprobar = $_GET['comprobar'];
-	$pobEdadTrabajar = $_GET['pobEdadTrabajar'];
-	$pobPotActiva = $_GET['pobPotActiva'];
-	$pobPotInactiva = $_GET['pobPotInactiva'];
-	$numPerMen = $_GET['numPerMen'];
-	$numPerMay = $_GET['numPerMay'];
-	$numPerInd = $_GET['numPerInd'];
-	$numPerDep = $_GET['numPerDep'];
-	$pobHom = $_GET['pobHom'];
-	$pobMuj = $_GET['pobMuj'];
-	$pobZonCab = $_GET['pobZonCab'];
-	$pobZonRes = $_GET['pobZonRes'];
-	$indRuralidad = $_GET['indRuralidad'];
-	$pobTotal = $_GET['pobTotal'];
-	$crecPob = $_GET['crecPob'];
-	$created_at = $_GET['created_at'];
-	$updated_at = $_GET['updated_at'];
-	$municipio_id = $_GET['municipio_id'];
+		$anioD = $_GET['anioD'];
+		$comprobar = $_GET['comprobar'];
+		$pobEdadTrabajar = $_GET['pobEdadTrabajar'];
+		$pobPotActiva = $_GET['pobPotActiva'];
+		$pobPotInactiva = $_GET['pobPotInactiva'];
+		$numPerMen = $_GET['numPerMen'];
+		$numPerMay = $_GET['numPerMay'];
+		$numPerInd = $_GET['numPerInd'];
+		$numPerDep = $_GET['numPerDep'];
+		$pobHom = $_GET['pobHom'];
+		$pobMuj = $_GET['pobMuj'];
+		$pobZonCab = $_GET['pobZonCab'];
+		$pobZonRes = $_GET['pobZonRes'];
+		$indRuralidad = $_GET['indRuralidad'];
+		$pobTotal = $_GET['pobTotal'];
+		$crecPob = $_GET['crecPob'];
+		$created_at = $_GET['created_at'];
+		$updated_at = $_GET['updated_at'];
+		$municipio_id = $_GET['municipio_id'];
 
-		$sql = $conn->prepare('SELECT * FROM demografias WHERE YEAR(anioD) = :comprobar');
-		
+		$resultados = DB::table('demografias')
+						->select('demografias.*')
+						->where(DB::raw('YEAR(anioD)'), '=', $comprobar)
+						->get();
+				
 		$ban = False;
 
 		foreach ($resultados as $resultado) {
 			$ban = True;
+
+		
 		};
 
 		if($ban == False){
 
-		$sql = $conn->prepare('INSERT INTO demografias VALUES (null, :anioD, :pobEdadTrabajar, :pobPotActiva, :pobPotInactiva, :numPerMen, :numPerMay, :numPerInd, :numPerDep, :pobHom, :pobMuj, :pobZonCab, :pobZonRes, :indRuralidad, :pobTotal, :crecPob, :municipio_id, :created_at, :updated_at)');
-		$sql->bindParam("anioD", $anioD, PDO::PARAM_STR);
-		$sql->bindParam("pobEdadTrabajar", $pobEdadTrabajar, PDO::PARAM_STR);
-		$sql->bindParam("pobPotActiva", $pobPotActiva, PDO::PARAM_STR);
-		$sql->bindParam("pobPotInactiva", $pobPotInactiva, PDO::PARAM_STR);
-		$sql->bindParam("numPerMen", $numPerMen, PDO::PARAM_STR);
-		$sql->bindParam("numPerMay", $numPerMay, PDO::PARAM_STR);
-		$sql->bindParam("numPerInd", $numPerInd, PDO::PARAM_STR);
-		$sql->bindParam("numPerDep", $numPerDep, PDO::PARAM_STR);
-		$sql->bindParam("pobHom", $pobHom, PDO::PARAM_STR);
-		$sql->bindParam("pobMuj", $pobMuj, PDO::PARAM_STR);
-		$sql->bindParam("pobZonCab", $pobZonCab, PDO::PARAM_STR);
-		$sql->bindParam("pobZonRes", $pobZonRes, PDO::PARAM_STR);
-		$sql->bindParam("indRuralidad", $indRuralidad, PDO::PARAM_STR);
-		$sql->bindParam("pobTotal", $pobTotal, PDO::PARAM_STR);
-		$sql->bindParam("crecPob", $crecPob, PDO::PARAM_STR);
-		$sql->bindParam("municipio_id", $municipio_id, PDO::PARAM_STR);
-		$sql->bindParam("created_at", $created_at, PDO::PARAM_STR);
-		$sql->bindParam("updated_at", $updated_at, PDO::PARAM_STR);
-		$sql->execute();
+			$demografias = array('anioD' => $anioD,
+								'pobEdadTrabajar' => $pobEdadTrabajar,
+								'pobPotActiva' => $pobPotActiva,
+								'pobPotInactiva' => $pobPotInactiva,
+								'numPerMen' => $numPerMen,
+								'numPerMay' => $numPerMay,
+								'numPerInd' => $numPerInd,
+								'numPerDep' => $numPerDep,
+								'pobHom' => $pobHom,
+								'pobMuj' => $pobMuj,
+								'pobZonCab' => $pobZonCab,
+								'pobZonRes' => $pobZonRes,
+								'indRuralidad' => $indRuralidad,
+								'pobTotal' => $pobTotal,
+								'crecPob' => $crecPob,
+								'municipio_id' => $municipio_id,
+								'created_at' => $created_at,
+								'updated_at' => $updated_at, );
 
-		$html = "Se registrarón los datos correctamente";
+			DB::table('demografias')
+				->insert($demografias);
+
+			$html = "Se registrarón los datos correctamente";
 
 		}else{
 
-		$html = "Ya se encuentra registrado ese año";
+			$html = "Ya se encuentra registrado ese año";
 
 		}
 
-		return Response::json(array('html' => $html, 'departamentos' => $departamentos->toArray()));
+		return Response::json(array('html' => $html, ));
+
 	}
 
-	// Muestra la grafica del indice de ruralidad vs el crecimiento poblacional
+	// Muestra la grafica del índice de ruralidad vs el crecimiento poblacional
 	public function grafica1Demografia(){
 
 		$idMunicipio = $_GET['idMunicipio'];
 
 		$resultados = DB::table('demografias')
-					->select('demografias.anioD', 'demografias.indRuralidad', 'demografias.crecPob')
-					->where('demografias.municipio_id', '=', $idMunicipio)
-					->orderBy('demografias.anioD', 'asc')
-					->get();
+						->select(DB::raw('YEAR(anioD) as YEARanioD'),
+								'demografias.indRuralidad',
+								'demografias.crecPob')
+						->where('demografias.municipio_id', '=', $idMunicipio)
+						->orderBy('demografias.anioD', 'asc')
+						->get();
 		
 		$html = "";
-		$html .="<script type='text/javascript'>
+		$html .= "<script type='text/javascript'>
 				google.charts.load('current', {'packages':['corechart']});
 				google.charts.setOnLoadCallback(drawChart);
 
-	      		function drawChart() {
-		        var data = google.visualization.arrayToDataTable([
-		        ['Año', 'Índice de ruralidad', 'Crecimiento poblacional'],";
+				function drawChart() {
+				var data = google.visualization.arrayToDataTable([
+				['Año', 'Índice de ruralidad', 'Crecimiento poblacional'],";
 
 		foreach ($resultados as $resultado) {
-			$anio = $resultado->anioD;
+			$anio = $resultado->YEARanioD;
 			$indRuralidad = $resultado->indRuralidad;
 			$porcentajeIndRuralidad = ($indRuralidad/100);
 			$crecPob = $resultado->crecPob;
-			$porcentajeCrecPob= ($crecPob/100);
+			$porcentajeCrecPob = ($crecPob/100);
 
 			$html .= "['$anio', $porcentajeIndRuralidad, $porcentajeCrecPob],";
+		
 		};
 
-		$html .="]);
+		$html .= "]);
 
-	        	var options = {
-		        title: 'Índice de ruralidad V.S Crecimiento demografico',
-		        curveType: 'function',
-		        legend: { position: 'rigth' },
-		        colors: ['#e9473f', '#131FBD'],
-		        vAxis: {format: 'percent'}
-	        	};
+				var options = {
+				title: 'Índice de ruralidad V.S Crecimiento demografico',
+				curveType: 'function',
+				legend: { position: 'rigth' },
+				colors: ['#e9473f', '#131FBD'],
+				vAxis: {format: 'percent'}
+				};
 
-	        	var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+				var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
-	        	chart.draw(data, options);
-	     		}
+				chart.draw(data, options);
+				}
 				</script>
 
 				<div id='curve_chart' style='width: 900px; height: 500px'></div>";
 
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
 
 	}
 
@@ -192,54 +202,71 @@ class DemografiaController extends Controller
 		$idMunicipio = $_GET['idMunicipio'];
 
 		$resultados = DB::table('demografias')
-					->select('demografias.anioD', 'demografias.pobTotal')
+					->select(DB::raw('YEAR(anioD) as YEARanioD'), 'demografias.pobTotal')
 					->where('demografias.municipio_id', '=', $idMunicipio)
 					->orderBy('demografias.anioD', 'asc')
 					->get();
 
 		$html = "";
-		$html .="<script type='text/javascript'>
+		$html .= "<script type='text/javascript'>
 				google.charts.load('current', {'packages':['corechart']});
-	      		google.charts.setOnLoadCallback(drawChart);
+				google.charts.setOnLoadCallback(drawChart);
 
-	      		function drawChart() {
-		        var data = google.visualization.arrayToDataTable([
-		        ['Año', 'Población total'],";
+				function drawChart() {
+				var data = google.visualization.arrayToDataTable([
+				['Año', 'Población total'],";
 		
 		foreach ($resultados as $resultado) {
-			$anio = $resultado->anioD;
+			$anio = $resultado->YEARanioD;
 			$pobTotal = $resultado->pobTotal;
 
 			$html .= "['$anio', $pobTotal],";
+		
 		};
 
-		$html .="]);
+		$html .= "]);
 
-	        	var options = {
-		        title: 'Población total',
-		        bar: {groupWidth: '20%'},
-		        legend: { position: 'rigth' },
-		        colors: ['#e9473f']
-	        	};
+				var options = {
+				title: 'Población total',
+				bar: {groupWidth: '20%'},
+				legend: { position: 'rigth' },
+				colors: ['#e9473f']
+				};
 
-	        	var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
+				var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
 
-	        	chart.draw(data, options);
-	     		}
+				chart.draw(data, options);
+				}
 				</script>
 
 				<div id='columnchart_values' style='width: 900px; height: 300px;'></div>";
 
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
 
 	}
 
+	// Muestra los datos que seran actualizados en demografia 
 	public function mostrarActualizarDemografia(){
 
 		$idD = $_GET['idD'];
 
 		$resultados = DB::table('demografias')
-					->select('demografias.id', 'demografias.anioD', 'demografias.pobEdadTrabajar', 'demografias.pobPotActiva', 'demografias.pobPotInactiva', 'demografias.numPerMen', 'demografias.numPerMay', 'demografias.numPerInd', 'demografias.numPerDep', 'demografias.pobHom', 'demografias.pobMuj', 'demografias.pobZonCab', 'demografias.pobZonRes', 'demografias.indRuralidad', 'demografias.pobTotal', 'demografias.crecPob')
+					->select('demografias.id',
+							DB::raw('DATE(anioD) as DATEanioD'),
+							'demografias.pobEdadTrabajar',
+							'demografias.pobPotActiva',
+							'demografias.pobPotInactiva',
+							'demografias.numPerMen',
+							'demografias.numPerMay',
+							'demografias.numPerInd',
+							'demografias.numPerDep',
+							'demografias.pobHom',
+							'demografias.pobMuj',
+							'demografias.pobZonCab',
+							'demografias.pobZonRes',
+							'demografias.indRuralidad',
+							'demografias.pobTotal',
+							'demografias.crecPob')
 					->where('demografias.id', '=', $idD)
 					->get();
 
@@ -247,7 +274,7 @@ class DemografiaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$id = $resultado->id;
-			$anio = $resultado->anioD;
+			$anio = $resultado->DATEanioD;
 			$pobEdadTrabajar = $resultado->pobEdadTrabajar;
 			$pobPotActiva = $resultado->pobPotActiva;
 			$pobPotInactiva = $resultado->pobPotInactiva;
@@ -263,133 +290,148 @@ class DemografiaController extends Controller
 			$pobTotal = $resultado->pobTotal;
 			$crecPob = $resultado->crecPob;
 
-			$html .="
-                    <div class='col-lg-12 col-md-12 col-sm-12'>
-                         <div class='col-lg-5 col-md-5 col-sm-5'>
-                              <label for='anio2' class='text-label'>Año</label>       
-                              <input id='anio2' type='date' value='$anio' disabled='' class='form-control'>
-                         </div>
-                         <div class='col-lg-7 col-md-7 col-sm-7'>
-                              <label for='pobEdadTrabajar2' class='text-label'>Población en edad de trabajar</label>        
-                              <input id='pobEdadTrabajar2' type='text' value='$pobEdadTrabajar' oninput='calcularCrecPob2()' class='form-control'>
-                         </div>
-                     </div>
+			$html .= "<div class='col-lg-12 col-md-12 col-sm-12'>
+					<div class='col-lg-5 col-md-5 col-sm-5'>
+					<label for='anio2' class='text-label'>Año</label>       
+					<input id='anio2' type='date' value='$anio' disabled='' class='form-control'>
+					</div>
+					<div class='col-lg-7 col-md-7 col-sm-7'>
+					<label for='pobEdadTrabajar2' class='text-label'>Población en edad de trabajar</label>        
+					<input id='pobEdadTrabajar2' type='text' value='$pobEdadTrabajar' oninput='calcularCrecPob2()' class='form-control'>
+					</div>
+					</div>
 
-                    <div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
+					<div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
 
-                    <div class='col-lg-12 col-md-12 col-sm-12'>
-                         <div class='col-lg-6 col-md-6 col-sm-6'>
-                              <label for='pobPotActiva2' class='text-label'>Población activa</label>     
-                              <input id='pobPotActiva2' type='text' value='$pobPotActiva' class='form-control'>
-                         </div>
-                         <div class='col-lg-6 col-md-6 col-sm-6'>
-                              <label for='pobPotInactiva2' class='text-label'>Población inactiva</label>     
-                              <input id='pobPotInactiva2' type='text' value='$pobPotInactiva' class='form-control'>
-                         </div>
-                     </div>
+					<div class='col-lg-12 col-md-12 col-sm-12'>
+					<div class='col-lg-6 col-md-6 col-sm-6'>
+					<label for='pobPotActiva2' class='text-label'>Población activa</label>     
+					<input id='pobPotActiva2' type='text' value='$pobPotActiva' class='form-control'>
+					</div>
+					<div class='col-lg-6 col-md-6 col-sm-6'>
+					<label for='pobPotInactiva2' class='text-label'>Población inactiva</label>     
+					<input id='pobPotInactiva2' type='text' value='$pobPotInactiva' class='form-control'>
+					</div>
+					</div>
 
-                    <div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
+					<div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
 
-                    <div class='col-lg-12 col-md-12 col-sm-12'>
-                         <div class='col-lg-6 col-md-6 col-sm-6'>
-                              <label for='numPerMen2' class='text-label'>Numero de personas menores</label>     
-                              <input id='numPerMen2' type='text' value='$numPerMen' class='form-control'>
-                         </div>
-                         <div class='col-lg-6 col-md-6 col-sm-6'>
-                              <label for='numPerMay2' class='text-label'>Numero de personas mayores</label>     
-                              <input id='numPerMay2' type='text' value='$numPerMay' class='form-control'>
-                         </div>
-                     </div>
+					<div class='col-lg-12 col-md-12 col-sm-12'>
+					<div class='col-lg-6 col-md-6 col-sm-6'>
+					<label for='numPerMen2' class='text-label'>Numero de personas menores</label>     
+					<input id='numPerMen2' type='text' value='$numPerMen' class='form-control'>
+					</div>
+					<div class='col-lg-6 col-md-6 col-sm-6'>
+					<label for='numPerMay2' class='text-label'>Numero de personas mayores</label>     
+					<input id='numPerMay2' type='text' value='$numPerMay' class='form-control'>
+					</div>
+					</div>
 
-                    <div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
+					<div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
 
-                    <div class='col-lg-12 col-md-12 col-sm-12'>
-                         <div class='col-lg-6 col-md-6 col-sm-6'>
-                              <label for='numPerInd2' class='text-label'>Numero de personas independientes</label>     
-                              <input id='numPerInd2' type='text' value='$numPerInd' class='form-control'>
-                         </div>
-                         <div class='col-lg-6 col-md-6 col-sm-6'>
-                              <label for='numPerDep2' class='text-label'>Numero de personas dependientes</label>     
-                              <input id='numPerDep2' type='text' value='$numPerDep' class='form-control'>
-                         </div>
-                     </div>
+					<div class='col-lg-12 col-md-12 col-sm-12'>
+					<div class='col-lg-6 col-md-6 col-sm-6'>
+					<label for='numPerInd2' class='text-label'>Numero de personas independientes</label>     
+					<input id='numPerInd2' type='text' value='$numPerInd' class='form-control'>
+					</div>
+					<div class='col-lg-6 col-md-6 col-sm-6'>
+					<label for='numPerDep2' class='text-label'>Numero de personas dependientes</label>     
+					<input id='numPerDep2' type='text' value='$numPerDep' class='form-control'>
+					</div>
+					</div>
 
-                    <div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
+					<div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
 
-                    <div class='col-lg-12 col-md-12 col-sm-12'>
-                         <div class='col-lg-6 col-md-6 col-sm-6'>
-                              <label for='pobHom2' class='text-label'>Población de hombres</label>     
-                              <input id='pobHom2' type='text' value='$pobHom' class='form-control'> 
-                         </div>
-                         <div class='col-lg-6 col-md-6 col-sm-6'>
-                              <label for='pobMuj2' class='text-label'>Población de mujeres</label>     
-                              <input id='pobMuj2' type='text' value='$pobMuj' class='form-control'>
-                         </div>
-                     </div>
+					<div class='col-lg-12 col-md-12 col-sm-12'>
+					<div class='col-lg-6 col-md-6 col-sm-6'>
+					<label for='pobHom2' class='text-label'>Población de hombres</label>     
+					<input id='pobHom2' type='text' value='$pobHom' class='form-control'> 
+					</div>
+					<div class='col-lg-6 col-md-6 col-sm-6'>
+					<label for='pobMuj2' class='text-label'>Población de mujeres</label>     
+					<input id='pobMuj2' type='text' value='$pobMuj' class='form-control'>
+					</div>
+					</div>
 
-                    <div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
+					<div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
 
-                    <div class='col-lg-12 col-md-12 col-sm-12'>
-                         <div class='col-lg-4 col-md-4 col-sm-4'>
-                              <label for='pobZonCab2' class='text-label'>Población zona cabecera</label>     
-                              <input id='pobZonCab2' type='text' value='$pobZonCab' class='form-control'>
-                         </div>
-                         <div class='col-lg-4 col-md-4 col-sm-4'>
-                              <label for='pobZonRes2' class='text-label'>Población zona resto</label>     
-                              <input id='pobZonRes2' type='text' value='$pobZonRes' oninput='calcularIndRuralidad2()' class='form-control'>
-                         </div>
-                         <div class='col-lg-4 col-md-4 col-sm-4'>
-                              <label for='indRuralidad2' class='text-label'>Indice de ruralidad</label>     
-                              <input id='indRuralidad2' type='text' value='$indRuralidad' disabled='' class='form-control'>
-                         </div>
-                     </div>
+					<div class='col-lg-12 col-md-12 col-sm-12'>
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='pobZonCab2' class='text-label'>Población zona cabecera</label>     
+					<input id='pobZonCab2' type='text' value='$pobZonCab' class='form-control'>
+					</div>
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='pobZonRes2' class='text-label'>Población zona resto</label>     
+					<input id='pobZonRes2' type='text' value='$pobZonRes' oninput='calcularIndRuralidad2()' class='form-control'>
+					</div>
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='indRuralidad2' class='text-label'>Indice de ruralidad</label>     
+					<input id='indRuralidad2' type='text' value='$indRuralidad' disabled='' class='form-control'>
+					</div>
+					</div>
 
-                    <div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
+					<div class='col-lg-12 col-md-12 col-sm-12'><br></div> 
 
-                    <div class='col-lg-12 col-md-12 col-sm-12'>
-                         <div class='col-lg-6 col-md-6 col-sm-6'>
-                              <label for='pobTotal2' class='text-label'>Población total</label>     
-                              <input id='pobTotal2' type='text' value='$pobTotal' oninput='calcularIndRuralidad2()' class='form-control'>
-                         </div>
-                         <div id='recibirCrecPob2' class='col-lg-6 col-md-6 col-sm-6'>
-                             
-                              <label for='crecPob2' class='text-label'>Crecimiento poblacional</label>     
-                              <input id='crecPob2' type='text' value='$crecPob' disabled='' class='form-control'>
-                              
-                         </div>
-                     </div>";
+					<div class='col-lg-12 col-md-12 col-sm-12'>
+					<div class='col-lg-6 col-md-6 col-sm-6'>
+					<label for='pobTotal2' class='text-label'>Población total</label>     
+					<input id='pobTotal2' type='text' value='$pobTotal' oninput='calcularIndRuralidad2()' class='form-control'>
+					</div>
+					<div id='recibirCrecPob2' class='col-lg-6 col-md-6 col-sm-6'>
 
-			$html .="<input id='idD' type='text' value='$id' style='display: none;'>";
+					<label for='crecPob2' class='text-label'>Crecimiento poblacional</label>     
+					<input id='crecPob2' type='text' value='$crecPob' disabled='' class='form-control'>
+
+					</div>
+					</div>";
+
+			$html .= "<input id='idD' type='text' value='$id' style='display: none;'>";
+		
 		};
 
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
 
 	}
 
-
+	// Muestra la tabla de demografias en la vista de información
 	public function mostrarDemografia(){
 
 		$idMunicipio = $_GET['idMunicipio'];
 
 		$resultados = DB::table('demografias')
-						->select('demografias.anioD', 'demografias.pobEdadTrabajar', 'demografias.pobPotActiva', 'demografias.pobPotInactiva', 'demografias.numPerMen', 'demografias.numPerMay', 'demografias.numPerInd', 'demografias.numPerDep', 'demografias.pobHom', 'demografias.pobMuj', 'demografias.pobZonCab', 'demografias.pobZonRes', 'demografias.indRuralidad', 'demografias.pobTotal', 'demografias.crecPob')
+						->select(DB::raw('YEAR(anioD) as YEARanioD'),
+								'demografias.pobEdadTrabajar',
+								'demografias.pobPotActiva',
+								'demografias.pobPotInactiva',
+								'demografias.numPerMen',
+								'demografias.numPerMay',
+								'demografias.numPerInd',
+								'demografias.numPerDep',
+								'demografias.pobHom',
+								'demografias.pobMuj',
+								'demografias.pobZonCab',
+								'demografias.pobZonRes',
+								'demografias.indRuralidad',
+								'demografias.pobTotal',
+								'demografias.crecPob')
 						->where('demografias.municipio_id', '=', $idMunicipio)
 						->orderBy('demografias.anioD', 'asc')
 						->get();
 
 		$html = "";
-		$html .="<table class='table table-bordered'>
+		$html .= "<table class='table table-bordered'>
 				<thead class='thead-s'>
 				<tr>
 				<th>Datos</th>";
 
 		foreach ($resultados as $resultado) {
-			$anio = $resultado->anioD;
+			$anio = $resultado->YEARanioD;
 			
 			$html .= "<th>$anio</th>";
+		
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				</thead>
 				</tbody>
 				<tr class='border-dotted'>
@@ -399,9 +441,10 @@ class DemografiaController extends Controller
 			$pobEdadTrabajar = $resultado->pobEdadTrabajar;
 			
 			$html .= "<td>$pobEdadTrabajar</td>";
+		
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Póblacion potencialmente activa</td>";
 
@@ -409,9 +452,10 @@ class DemografiaController extends Controller
 			$pobPotActiva = $resultado->pobPotActiva;
 			
 			$html .= "<td>$pobPotActiva</td>";
+		
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Póblacion potencialmente inactiva</td>";
 
@@ -419,9 +463,10 @@ class DemografiaController extends Controller
 			$pobPotInactiva = $resultado->pobPotInactiva;
 			
 			$html .= "<td>$pobPotInactiva</td>";
+		
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Numero de personas menores a 15 años</td>";
 
@@ -429,9 +474,10 @@ class DemografiaController extends Controller
 			$numPerMen = $resultado->numPerMen;
 			
 			$html .= "<td>$numPerMen</td>";
+		
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Numero de personas mayores a 64 años</td>";
 
@@ -439,9 +485,10 @@ class DemografiaController extends Controller
 			$numPerMay = $resultado->numPerMay;
 			
 			$html .= "<td>$numPerMay</td>"; 
+		
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Numero de personas independientes</td>";
 
@@ -449,9 +496,10 @@ class DemografiaController extends Controller
 			$numPerInd = $resultado->numPerInd;
 			
 			$html .= "<td>$numPerInd</td>";
+		
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Numero de personas dependientes</td>";
 
@@ -459,9 +507,10 @@ class DemografiaController extends Controller
 			$numPerDep = $resultado->numPerDep;
 			
 			$html .= "<td>$numPerDep</td>";
+		
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Población por género -Hombres";
 
@@ -469,9 +518,10 @@ class DemografiaController extends Controller
 			$pobHom = $resultado->pobHom;
 			
 			$html .= "<td>$pobHom</td>";
+		
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Población por género -Mujeres";
 
@@ -479,9 +529,10 @@ class DemografiaController extends Controller
 			$pobMuj = $resultado->pobMuj;
 			
 			$html .= "<td>$pobMuj</td>";
+		
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Población por zona -Cabecera";
 
@@ -489,9 +540,10 @@ class DemografiaController extends Controller
 			$pobZonCab = $resultado->pobZonCab;
 			
 			$html .= "<td>$pobZonCab</td>";
+		
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Población por zona -Resto";
 
@@ -499,9 +551,10 @@ class DemografiaController extends Controller
 			$pobZonRes = $resultado->pobZonRes;
 			
 			$html .= "<td>$pobZonRes</td>";
+		
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Índice de ruralidad";
 
@@ -509,9 +562,10 @@ class DemografiaController extends Controller
 			$indRuralidad = $resultado->indRuralidad;
 			
 			$html .= "<td>$indRuralidad</td>";
+		
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr class='border-dotted'>
 				<td>Población total";
 
@@ -519,9 +573,10 @@ class DemografiaController extends Controller
 			$pobTotal = $resultado->pobTotal;
 			
 			$html .= "<td>$pobTotal</td>";
+		
 		};
 
-		$html .="</tr>
+		$html .= "</tr>
 				<tr>
 				<td>Crecimiento poblacionall";
 
@@ -529,107 +584,114 @@ class DemografiaController extends Controller
 			$crecPob = $resultado->crecPob;
 			
 			$html .= "<td>$crecPob</td>";
+		
 		};	
 
-		$html .="</tr>
+		$html .= "</tr>
 				</tbody>
 				</table>";	
 
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
 
 	}
 
-
+	// Calcula el crecimiento poblacional
 	public function calcularCrecPob(){
 
 		$anioD = $_GET['anioD'];
 		$pobEdadTrabajarActual = $_GET['pobEdadTrabajar'];
 
 		$resultados = DB::table('demografias')
-					->select('demografias.pobEdadTrabajar')
-					->where('demografias.anioD', '<', $anioD)
-					->orderBy('anioD', 'desc')
-					->limit(1)
-					->get();
+						->select('demografias.pobEdadTrabajar')
+						->where('demografias.anioD', '<', $anioD)
+						->orderBy('anioD', 'desc')
+						->limit(1)
+						->get();
 		
 		$html = "";
 		$ban = False;
 
 		foreach ($resultados as $resultado) {
 			$pobEdadTrabajarAnterior = $resultado->pobEdadTrabajar;
-			$ban = True;					
+			$ban = True;
+		
 		};
 
 		if($ban == True){
 
 			$pobEdadTrabajarTotal = number_format((float)(log(($pobEdadTrabajarActual / $pobEdadTrabajarAnterior))*100), 2, '.', '')."%";
 
-			$html = "<label for='crecPob'>Crecimiento poblacional</label>     
-                <input id='crecPob' type='text' placeholder='Crecimiento poblacional' value='$pobEdadTrabajarTotal' disabled=''>";
+			$html = "<label for='crecPob' class='text-label'>Crecimiento poblacional</label>
+					<input id='crecPob' type='text' placeholder='Crecimiento poblacional' value='$pobEdadTrabajarTotal' disabled='' class='form-control'>";
 
 		}else{
 
-			$html = "<label for='crecPob'>Crecimiento poblacional</label>     
-                <input id='crecPob' type='text' placeholder='Crecimiento poblacional' value='N/A' disabled=''>";
+			$html = "<label for='crecPob' class='text-label'>Crecimiento poblacional</label> 
+					<input id='crecPob' type='text' placeholder='Crecimiento poblacional' value='N/A' disabled='' class='form-control'>";
 
 		}
 
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
 
 	}
 
-
+	// Calcula el crecimiento poblacional para el actualizar
 	public function calcularCrecPob2(){
 
 		$anioD = $_GET['anioD'];
 		$pobEdadTrabajarActual = $_GET['pobEdadTrabajar'];
 
-		$sql = $conn->prepare('SELECT pobEdadTrabajar FROM demografias WHERE YEAR(anioD) < :anioD ORDER BY anioD DESC LIMIT 1');
-
 		$resultados = DB::table('demografias')
-					->select('demografias.pobEdadTrabajar')
-					->where('demografias.anioD', '<', $anioD)
-					->orderBy('anioD', 'desc')
-					->limit(1)
-					->get();
+						->select('demografias.pobEdadTrabajar')
+						->where('demografias.anioD', '<', $anioD)
+						->orderBy('anioD', 'desc')
+						->limit(1)
+						->get();
 
 		$html = "";
 		$ban = False;
 
 		foreach ($resultados as $resultado) {
 			$pobEdadTrabajarAnterior = $resultado->pobEdadTrabajar;
-			$ban = True;					
+			$ban = True;
+		
 		};
 
 		if($ban == True){
 
-		$pobEdadTrabajarTotal = number_format((float)(log(($pobEdadTrabajarActual / $pobEdadTrabajarAnterior))*100), 2, '.', '')."%";
+			$pobEdadTrabajarTotal = number_format((float)(log(($pobEdadTrabajarActual / $pobEdadTrabajarAnterior))*100), 2, '.', '')."%";
 
-			$html = "<label for='crecPob'>Crecimiento poblacional</label>     
-                <input id='crecPob2' type='text' placeholder='Crecimiento poblacional' value='$pobEdadTrabajarTotal' disabled=''>";
+			$html = "<label for='crecPob' class='text-label'>Crecimiento poblacional</label>
+					<input id='crecPob2' type='text' placeholder='Crecimiento poblacional' value='$pobEdadTrabajarTotal' disabled='' class='form-control'>";
 
 		}else{
 
-			$html = "<label for='crecPob'>Crecimiento poblacional</label>     
-                <input id='crecPob' type='text' placeholder='Crecimiento poblacional' value='N/A' disabled=''>";
+			$html = "<label for='crecPob' class='text-label'>Crecimiento poblacional</label> 
+					<input id='crecPob2' type='text' placeholder='Crecimiento poblacional' value='N/A' disabled='' class='form-control'>";
 
 		}
 
-		return Response::json(array('html' => $html, 'departamentos' => $departamentos->toArray()));
+		return Response::json(array('html' => $html, ));
+
 	}
 
+	// Muestra la tabla demografia en la vista del administrador
 	public function mostrarTablaDemografia(){
 
 		$idMunicipio = $_GET['idMunicipio'];
 
 		$resultados = DB::table('demografias')
-            ->select('demografias.id', 'demografias.anioD', 'demografias.indRuralidad', 'demografias.pobTotal', 'demografias.crecPob')
+            ->select('demografias.id',
+        			DB::raw('YEAR(anioD) as YEARanioD'),
+        			'demografias.indRuralidad',
+        			'demografias.pobTotal',
+        			'demografias.crecPob')
             ->where('demografias.municipio_id', '=', $idMunicipio)
             ->orderBy('anioD')
             ->get();
 
 		$html = "";
-		$html .="<table class='table table-striped table-bordered table-hover'>
+		$html .= "<table class='table table-striped table-bordered table-hover'>
 				<thead>
 				<tr>
 				<th>Año</th>
@@ -642,28 +704,28 @@ class DemografiaController extends Controller
 				<tbody>";
 
 		foreach ($resultados as $resultado) {
-
 			$id = $resultado->id;
-			$anio = $resultado->anioD;
+			$anio = $resultado->YEARanioD;
 			$indRuralidad = $resultado->indRuralidad;
 			$pobTotal = $resultado->pobTotal;
 			$crecPob = $resultado->crecPob;
 			
-			$html .="<tr>
+			$html .= "<tr>
 					<td>$anio</td>
 					<td>$indRuralidad</td>
 					<td>$pobTotal</td>
 					<td>$crecPob</td>
 					<td><a id='$id' href='#' class='btn btn-success' data-toggle='modal' data-target='#modalMostrarActualizar'>Editar</a></td>
 					</tr>";
+		
 		};
 
-		$html .="</tbody>
+		$html .= "</tbody>
 				</table>";
 
 		// <a id='$id' href='#' class='btn btn-danger'>Borrar</a>
 
-		return Response::json(array('html' => $html,));
+		return Response::json(array('html' => $html, ));
 
 	}
 

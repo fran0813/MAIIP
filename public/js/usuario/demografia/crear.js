@@ -1,15 +1,15 @@
-$( document ).ready(function() {
+$(document).ready(function(){
     
     var hoy = new Date();
 	var dd = hoy.getDate();
 	var mm = hoy.getMonth()+1; //hoy es 0!
 	var yyyy = hoy.getFullYear();
 
-	if(dd < 10) {
+	if(dd < 10){
 	    dd='0'+dd;
 	} 
 
-	if(mm < 10) {
+	if(mm < 10){
 	    mm='0'+mm;
 	} 
 
@@ -22,6 +22,7 @@ $( document ).ready(function() {
 
 });
 
+// Calcular el indice de ruralidad
 function calcularIndRuralidad(){
 
 	var pobZonRes = $("#pobZonRes").val();
@@ -32,6 +33,7 @@ function calcularIndRuralidad(){
 
 }
 
+// Calcula el crecimiento poblacional
 function calcularCrecPob(){
 
 	var anio2 = $("#anio").val();
@@ -42,17 +44,17 @@ function calcularCrecPob(){
 		method: "GET",
 		url: "/demografia/calcularCrecPob",
 		dataType: 'json',
-		data: { anioD: anio, pobEdadTrabajar: pobEdadTrabajar}
+		data: { anioD: anio,
+				pobEdadTrabajar: pobEdadTrabajar}
 	})
 
-	.done(function(response) {
-		
+	.done(function(response){
 		$('#recibirCrecPob').html(response.html);
-		
 	});
 
 }
 
+// Crear la demografia
 $("#formCrear").on("submit", function(){
 
 	var anio = $("#anio").val();
@@ -79,14 +81,28 @@ $("#formCrear").on("submit", function(){
 		method: "GET",
 		url: "/demografia/crearDemografia",
 		dataType: 'json',
-		data: { anioD: anio, comprobar: comprobar, pobEdadTrabajar: pobEdadTrabajar, pobPotActiva: pobPotActiva, municipio_id: municipio, 
-			pobPotInactiva: pobPotInactiva, numPerMen: numPerMen, numPerMay: numPerMay, numPerInd: numPerInd,
-			numPerDep: numPerDep, pobHom: pobHom, pobMuj: pobMuj, pobZonCab: pobZonCab, 
-			pobZonRes: pobZonRes, indRuralidad: indRuralidad, pobTotal: pobTotal, crecPob: crecPob, 
-			created_at: created_at, updated_at: updated_at}
+		data: { anioD: anio,
+				comprobar: comprobar,
+				pobEdadTrabajar: pobEdadTrabajar,
+				pobPotActiva: pobPotActiva,
+				municipio_id: municipio,
+				pobPotInactiva: pobPotInactiva,
+				numPerMen: numPerMen,
+				numPerMay: numPerMay,
+				numPerInd: numPerInd,
+				numPerDep: numPerDep,
+				pobHom: pobHom,
+				pobMuj: pobMuj,
+				pobZonCab: pobZonCab,
+				pobZonRes: pobZonRes,
+				indRuralidad: indRuralidad,
+				pobTotal: pobTotal,
+				crecPob: crecPob,
+				created_at: created_at,
+				updated_at: updated_at}
 	})
 
-	.done(function(response) {
+	.done(function(response){
 		$('#respuesta').html(response.html);
 		refrescar();		
 	});
@@ -95,19 +111,27 @@ $("#formCrear").on("submit", function(){
 
 }); 
 
+// Actualiza la tabla de demografia despues de crear
 function refrescar(){
 
 	var municipio = $("#municipio").val();
 
-		$.ajax({
-			method: "GET",
-			url: "/demografia/mostrarTablaDemografia",
-			dataType: 'json',
-			data: { idMunicipio: municipio }
-		})
+	$.ajax({
+		method: "GET",
+		url: "/demografia/mostrarTablaDemografia",
+		dataType: 'json',
+		data: { idMunicipio: municipio }
+	})
 
-		.done(function(response) {
-			$('#tablaDemografia').html(response.html);
-		});
+	.done(function(response){
+		$('#tablaDemografia').html(response.html);
+	});
+
+}
+
+// Limpia el label de respuesta
+function limpiarRespuesta(){
+
+	$('#respuesta').html(" ");
 
 }

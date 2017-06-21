@@ -1,9 +1,13 @@
+// Muestra los datos y las graficas de las demografias
 function mostrarTablasD(){
+
 	mostrarTablaDememografia();
 	mostrarGrafica1Dem();
 	mostrarGrafica2Dem();
+
 }
 
+// Muestra los datos de demografia en la vista de información
 function mostrarTablaDememografia(){
 
 	var municipio = $("#municipio").val();
@@ -21,6 +25,7 @@ function mostrarTablaDememografia(){
 
 }
 
+// Muestra la grafica de índice de ruralidad v.s crecimiento demografico
 function mostrarGrafica1Dem(){
 
 	var municipio = $("#municipio").val();
@@ -38,6 +43,7 @@ function mostrarGrafica1Dem(){
 
 }
 
+// Muestra la grafica de población total
 function mostrarGrafica2Dem(){
 
 	var municipio = $("#municipio").val();

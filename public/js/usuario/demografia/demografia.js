@@ -1,3 +1,4 @@
+// Muestra lo tabla de demografias en la vista del administrador
 function mostrarDatos() {
 
 	var municipio = $("#municipio").val();

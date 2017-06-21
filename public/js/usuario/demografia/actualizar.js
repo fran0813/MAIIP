@@ -18,6 +18,7 @@ $( document ).ready(function() {
 
 });
 
+// Calcular el indice de ruralidad
 function calcularIndRuralidad2(){
 
 	var pobZonRes = $("#pobZonRes2").val();
@@ -28,6 +29,7 @@ function calcularIndRuralidad2(){
 
 }
 
+// Calcula el crecimiento poblacional
 function calcularCrecPob2(){
 
 	var anio2 = $("#anio2").val();
@@ -38,15 +40,17 @@ function calcularCrecPob2(){
 		method: "GET",
 		url: "/demografia/calcularCrecPob2",
 		dataType: 'json',
-		data: { anioD: anio, pobEdadTrabajar: pobEdadTrabajar}
+		data: { anioD: anio,
+				pobEdadTrabajar: pobEdadTrabajar}
 	})
 
 	.done(function(response) {
-		$('#recibirCrecPob2').html(response.html);		
+		$('#recibirCrecPob2').html(response.html);
 	});
 
 }
 
+// Actualiza la demografia
 $("#formActualizar").on("submit", function(){
 
 	var idD = $("#idD").val();
@@ -70,15 +74,26 @@ $("#formActualizar").on("submit", function(){
 		method: "GET",
 		url: "/demografia/actualizarDemografia",
 		dataType: 'json',
-		data: { idD: idD, pobEdadTrabajar: pobEdadTrabajar, pobPotActiva: pobPotActiva, 
-			pobPotInactiva: pobPotInactiva, numPerMen: numPerMen, numPerMay: numPerMay, numPerInd: numPerInd,
-			numPerDep: numPerDep, pobHom: pobHom, pobMuj: pobMuj, pobZonCab: pobZonCab, 
-			pobZonRes: pobZonRes, indRuralidad: indRuralidad, pobTotal: pobTotal, crecPob: crecPob, 
-			updated_at: updated_at}
+		data: { idD: idD,
+				pobEdadTrabajar: pobEdadTrabajar,
+				pobPotActiva: pobPotActiva,
+				pobPotInactiva: pobPotInactiva,
+				numPerMen: numPerMen,
+				numPerMay: numPerMay,
+				numPerInd: numPerInd,
+				numPerDep: numPerDep,
+				pobHom: pobHom,
+				pobMuj: pobMuj,
+				pobZonCab: pobZonCab,
+				pobZonRes: pobZonRes,
+				indRuralidad: indRuralidad,
+				pobTotal: pobTotal,
+				crecPob: crecPob,
+				updated_at: updated_at}
 	})
 
 	.done(function(response) {
-		$('#respuesta2').html(response.html);		
+		$('#respuesta2').html(response.html);
 	});
 
 	return false;
