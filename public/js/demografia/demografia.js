@@ -1,4 +1,4 @@
-// Muestra los datos y las graficas de las demografias
+// Muestra los datos y las graficas de las demografia
 function mostrarTablasD(){
 
 	mostrarTablaDememografia();
@@ -19,7 +19,7 @@ function mostrarTablaDememografia(){
 		data: { idMunicipio: municipio }
 	})
 
-	.done(function(response) {
+	.done(function(response){
 		$('#demografias').html(response.html);
 	});
 
@@ -37,7 +37,7 @@ function mostrarGrafica1Dem(){
 		data: { idMunicipio: municipio }
 	})
 
-	.done(function(response) {
+	.done(function(response){
 		$('#grafica1').html(response.html);
 	});
 
@@ -55,7 +55,7 @@ function mostrarGrafica2Dem(){
 		data: { idMunicipio: municipio }
 	})
 
-	.done(function(response) {
+	.done(function(response){
 		$('#grafica2').html(response.html);
 	});
 

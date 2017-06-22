@@ -14,6 +14,7 @@ $( document ).ready(function() {
 
 });
 
+// Funcion para establecer un departamento
 function establecerDepartamento() {
 
 	var departamento = $("#departamento").val();
@@ -34,6 +35,7 @@ function establecerDepartamento() {
 
 }
 
+// Funcion para establecer un municipio
 function establecerMunicipio() {
 
 	var municipio = $("#municipio").val();
@@ -54,6 +56,7 @@ function establecerMunicipio() {
 
 }
 
+// Muestra los municipios
 function mostrarMunicipios() {
 
 	var departamento = $("#departamento").val();
@@ -71,6 +74,7 @@ function mostrarMunicipios() {
 
 }
 
+// Muestra el codigo
 function mostrarCodigo() {
 
 	var departamento = $("#departamento").val();
@@ -89,6 +93,7 @@ function mostrarCodigo() {
 
 }
 
+// Muestra los años de generalidades y territorio
 function mostrarAñoGT() {
 
 	var municipio = $("#municipio").val();
@@ -106,6 +111,7 @@ function mostrarAñoGT() {
 
 }
 
+// Muestra los años de vivienda y servicios publicos
 function mostrarAñoVSP() {
 
 	var municipio = $("#municipio").val();
@@ -123,6 +129,7 @@ function mostrarAñoVSP() {
 
 }
 
+// Muestra los años de salud
 function mostrarAñoS() {
 
 	var municipio = $("#municipio").val();

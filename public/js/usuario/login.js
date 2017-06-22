@@ -4,15 +4,15 @@ $("#form").on("submit", function(){
 	var password = $("#password").val();
 		
 	$.ajax({
-		method: "POST",
-		url: "/js/usuario/login.php",
+		method: "GET",
+		url: "/admin",
 		dataType: 'json',
 		data: { username: username, password: password }
 	})
 
 	.done(function(response) {
 
-		if(response == "true"){
+		if(response.html == "true"){
 
 			location.href="/admin/principal";
 

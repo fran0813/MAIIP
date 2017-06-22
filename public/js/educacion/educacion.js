@@ -1,9 +1,13 @@
+// Muestra los datos y las graficas de las educación
 function mostrarTablasE(){
+
 	mostrarTablaEducacion();
 	mostrarGrafica1E();
 	mostrarGrafica2E();
+	
 }
 
+// Muestra los datos de educación en la vista de información
 function mostrarTablaEducacion(){
 
 	var municipio = $("#municipio").val();
@@ -21,6 +25,7 @@ function mostrarTablaEducacion(){
 
 }
 
+// Muestra la grafica de matriculas por genero
 function mostrarGrafica1E(){
 
 	var municipio = $("#municipio").val();
@@ -38,6 +43,7 @@ function mostrarGrafica1E(){
 
 }
 
+// Muestra la grafica de matriculas por nivel
 function mostrarGrafica2E(){
 
 	var municipio = $("#municipio").val();
