@@ -108,3 +108,7 @@ Route::group(['prefix' => 'educacion'], function(){
 	Route::get('/mostrarEducacion', 'EducacionController@mostrarEducacion');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
