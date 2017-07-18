@@ -7,6 +7,18 @@
 	<ol class="breadcrumb">
 		<li class="color-breadcrumbs"><a href="{{ url('/informacion') }}"><b>Información</b></a></li>
 		<li class="active"><b>Generalidades y territorio</b></li>
+		@if ( ! Auth::guest() )
+			<li>
+				<a href="{{ route('logout') }}"
+					onclick="event.preventDefault();
+							 document.getElementById('logout-form').submit();">
+					Salir
+				</a>
+				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+					{{ csrf_field() }}
+				</form>
+			</li>
+		@endif
 	</ol>
 
 	@endsection
@@ -14,11 +26,11 @@
 	@section('selects')
 
 		@include('information.base.partials.selectsGT')
-	
+
 	@endsection
 
 	@section('tables')
-	
+
 	<div class="col-sm-12 col-md-12 col-lg-12">
 
 		<div class="col-sm-2 col-md-2 col-lg-2 pull-right">
@@ -29,8 +41,8 @@
 
 			<br>
 			<br>
-			
-		</div>		
+
+		</div>
 
 	</div>
 
@@ -150,10 +162,10 @@
 
 	</div>
 
-	@endsection	
+	@endsection
 
 	@section('javascripttable')
-	
+
 		<script src="{{ asset('js/generalidadesterritorio/generalidadesterritorio.js') }}"></script>
 
 	@endsection

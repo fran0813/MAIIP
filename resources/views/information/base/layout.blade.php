@@ -4,6 +4,18 @@
 
 	<li><a href="{{ url('/') }}">Inicio <span class="sr-only">(current)</span></a></li>
 	<li class="active"><a href="{{ url('/informacion') }}">Información</a></li>
+	@if ( ! Auth::guest() )
+		<li>
+			<a href="{{ route('logout') }}"
+				onclick="event.preventDefault();
+						 document.getElementById('logout-form').submit();">
+				Salir
+			</a>
+			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+				{{ csrf_field() }}
+			</form>
+		</li>
+	@endif
 
 	@endsection
 
@@ -16,12 +28,12 @@
 		<div class="col-sm-6 col-md-6 col-lg-6">
 
 			@yield('breadcrumbs')
-			
+
 		</div>
 
 		{{-- Codigo - Departamentos - Municipios --}}
 		<div class="col-sm-6 col-md-6 col-lg-6">
-			
+
 			@yield('selects')
 
 		</div>
@@ -31,7 +43,7 @@
 
 	</div>
 
-	
+
 	<div class="col-sm-12 col-md-12 col-lg-12">
 
 		<br>
@@ -43,9 +55,9 @@
 		<div class="col-sm-10 col-md-10 col-lg-10" style="background-color: #fff;padding: 18px;">
 
 			@yield('tables')
-			
+
 		</div>
-		
+
 	</div>
 
 	@endsection
@@ -53,7 +65,7 @@
 	@section('javascript')
 
 		<script src="{{ asset('js/principal/principal.js') }}"></script>
-	
+
 	@endsection
 
 	@yield('javascripttable')

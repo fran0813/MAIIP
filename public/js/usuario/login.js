@@ -1,8 +1,9 @@
+/*
 $("#form").on("submit", function(){
 
 	var username = $("#username").val();
 	var password = $("#password").val();
-		
+
 	$.ajax({
 		method: "GET",
 		url: "/admin",
@@ -25,4 +26,5 @@ $("#form").on("submit", function(){
 
 	return false;
 
-}); 
+});
+*/
