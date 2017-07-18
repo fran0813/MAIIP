@@ -20,7 +20,7 @@ Route::get('/', function(){
 Route::get('informacion', 'MainsController@index');
 
 // ruta para login
-Route::get('login', 'MainsController@login');
+//Route::get('login', 'MainsController@login');
 Route::get('admin', 'MainsController@admin');
 
 // rutas para tablas

@@ -8,6 +8,11 @@ use \Response;
 
 class AdminsController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     // Pagina para el inicio de sesión para el administrador
     public function index()
     {

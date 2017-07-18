@@ -6,7 +6,7 @@
 
 	<li class="active"><a href="{{ url('/') }}">Inicio <span class="sr-only">(current)</span></a></li>
 	<li><a href="{{ url('/informacion') }}">Información</a></li>
-	
+
 	@endsection
 
 	@section('content')
@@ -16,7 +16,7 @@
 
 		{{-- Slider --}}
 		<div class="col-sm-12 col-md-12 col-lg-12">
-			
+
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 
 			  	{{-- Indicators --}}
@@ -90,7 +90,7 @@
 			<br>
 
 		</div>
-		
+
 	</div>
 
 	@endsection

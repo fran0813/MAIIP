@@ -8,6 +8,9 @@ use \Response;
 
 class GeneralidadesterritorioController extends Controller
 {
+	public function __construct(){
+		$this->middleware('auth');
+	}
 	// Función para actualizar los datos de generalidades y territorio
 	public function actualizarGeneralidadesterritorio(){
 
@@ -132,11 +135,11 @@ class GeneralidadesterritorioController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$ban = True;
-		
+
 		};
 
 		if($ban == False){
-			
+
 			$generalidadesterritorios = array('anioGT' => $anioGT,
 											'temperatura' => $temperatura,
 											'alturaNivMar' => $alturaNivMar,
@@ -155,7 +158,7 @@ class GeneralidadesterritorioController extends Controller
 
 			foreach ($resultados as $resultado) {
 				$generalidadterritorio_id = $resultado->id;
-			
+
 			};
 
 			$generalidades = array('ruralG' => $ruralG,
@@ -203,11 +206,11 @@ class GeneralidadesterritorioController extends Controller
 
 	}
 
-	// Muestra los datos que seran actualizados en generalidades y territorio 
+	// Muestra los datos que seran actualizados en generalidades y territorio
 	public function mostrarActualizarGeneralidadesterritorio(){
 
 		$idGT = $_GET['idGT'];
-		
+
 		$resultados = DB::table('generalidadesterritorios')
 						->join('generalidades', 'generalidadesterritorios.id', 'generalidades.generalidadterritorio_id')
 						->join('territorios', 'generalidadesterritorios.id', 'territorios.generalidadterritorio_id')
@@ -244,15 +247,15 @@ class GeneralidadesterritorioController extends Controller
 
 			$html .= "<div class='col-lg-12 col-md-12 col-sm-12'>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='anio2' class='text-label'>Año</label>       
+					<label for='anio2' class='text-label'>Año</label>
 					<input id='anio2' type='date'value='$anio' disabled='' class='form-control'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='temperatura' class='text-label'>Temperatura</label>        
+					<label for='temperatura' class='text-label'>Temperatura</label>
 					<input id='temperatura2' type='text' value='$temperatura' class='form-control'>
 					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>                    
-					<label for='alturaNivMar' class='text-label'>Altura sobre el nivel del mar</label>     
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='alturaNivMar' class='text-label'>Altura sobre el nivel del mar</label>
 					<input id='alturaNivMar2' type='text' value='$alturaNivMar' class='form-control'>
 					</div>
 					</div>
@@ -264,16 +267,16 @@ class GeneralidadesterritorioController extends Controller
 
 					<label for='ruralG' class='text-label'>Generalidades</label>
 					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>              
-					<label for='ruralG' class='text-label'>Rural</label>       
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='ruralG' class='text-label'>Rural</label>
 					<input id='ruralG2' type='text' value='$ruralG' oninput='calcularTotalG2()' class='form-control'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4' >
-					<label for='urbanoG' class='text-label'>Urbano</label>     
+					<label for='urbanoG' class='text-label'>Urbano</label>
 					<input id='urbanoG2' type='text' value='$urbanoG' oninput='calcularTotalG2()' class='form-control'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='totalG' class='text-label'>Total</label>       
+					<label for='totalG' class='text-label'>Total</label>
 					<input id='totalG2' type='text' value='$totalG' disabled='' class='form-control'>
 					</div>
 					</div>
@@ -289,15 +292,15 @@ class GeneralidadesterritorioController extends Controller
 					<label for='constRural' class='text-label'><i class='fa fa-chevron-right' aria-hidden='true'></i> Construida</label>
 					</div>
 					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px;'>
-					<label for='constRural' class='text-label'>Rural</label>                          
+					<label for='constRural' class='text-label'>Rural</label>
 					<input id='constRural2' type='text' value='$constRural' oninput='calcularConstTotal2()' class='form-control'>
 					</div>
 					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-right: 0px'>
-					<label for='constUrbano' class='text-label'>Urbano</label>     
+					<label for='constUrbano' class='text-label'>Urbano</label>
 					<input id='constUrbano2' type='text' value='$constUrbano' oninput='calcularConstTotal2()' class='form-control'>
 					</div>
 					<div class='col-lg-12 col-md-12 col-sm-12' style='padding-left: 0px; padding-right: 0px'><br>
-					<label for='constTotal' class='text-label'>Total</label>       
+					<label for='constTotal' class='text-label'>Total</label>
 					<input id='constTotal2' type='text' value='$constTotal' disabled='' class='form-control'>
 					</div>
 					</div>
@@ -307,15 +310,15 @@ class GeneralidadesterritorioController extends Controller
 					<label for='terrRural' class='text-label'><i class='fa fa-chevron-right' aria-hidden='true'></i> Terreno</label>
 					</div>
 					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px;'>
-					<label for='terrRural' class='text-label' >Rural</label>         
+					<label for='terrRural' class='text-label' >Rural</label>
 					<input id='terrRural2' type='text' value='$terrRural' oninput='calcularTerrTotal2()' class='form-control'>
 					</div>
 					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-right: 0px'>
-					<label for='terrUrbano' class='text-label' >Urbano</label>     
+					<label for='terrUrbano' class='text-label' >Urbano</label>
 					<input id='terrUrbano2' type='text' value='$terrUrbano' oninput='calcularTerrTotal2()' class='form-control'>
 					</div>
 					<div class='col-lg-12 col-md-12 col-sm-12' style='padding-left: 0px; padding-right: 0px'><br>
-					<label for='terrTotal' class='text-label' >Total</label>     
+					<label for='terrTotal' class='text-label' >Total</label>
 					<input id='terrTotal2' type='text' value='$terrTotal' disabled='' class='form-control'>
 					</div>
 					</div>
@@ -328,15 +331,15 @@ class GeneralidadesterritorioController extends Controller
 					<label for='ruralP' class='text-label'>Predios</label>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='ruralP' class='text-label'>Rural</label>       
+					<label for='ruralP' class='text-label'>Rural</label>
 					<input id='ruralP2' type='text' value='$ruralP' oninput='calcularTotalP2()' class='form-control'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='urbanoP' class='text-label'>Urbano</label>    
+					<label for='urbanoP' class='text-label'>Urbano</label>
 					<input id='urbanoP2' type='text' value='$urbanoP' oninput='calcularTotalP2()' class='form-control'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='totalP' class='text-label'>Total</label>      
+					<label for='totalP' class='text-label'>Total</label>
 					<input id='totalP2' type='text' value='$totalP' disabled='' class='form-control'>
 					</div>
 					</div>
@@ -344,7 +347,7 @@ class GeneralidadesterritorioController extends Controller
 					<div class='col-lg-12 col-md-12 col-sm-12'><br></div>";
 
 			$html .= "<input id='idGT' type='text' value='$id' style='display: none;'>";
-		
+
 		};
 
 		return Response::json(array('html' => $html, ));
@@ -383,16 +386,16 @@ class GeneralidadesterritorioController extends Controller
 				<tbody>
 				<tr class='border-dotted'>
 				<td>Temperatura Media(°C)</td>";
-							
+
 		foreach ($resultados as $resultado) {
 			$temperatura = $resultado->temperatura;
 
 			if($temperatura == 0){
 				$temperatura = "N.D.";
 			}
-			
+
 			$html .= "<td>$temperatura</td>";
-								
+
 		};
 
 		$html .= "</tr>
@@ -405,7 +408,7 @@ class GeneralidadesterritorioController extends Controller
 			if($alturaNivMar == 0){
 				$alturaNivMar= "N.D.";
 			}
-			
+
 			$html .= "<td>$alturaNivMar</td>";
 
 		};
@@ -434,7 +437,7 @@ class GeneralidadesterritorioController extends Controller
 			$ruralP = $resultado->ruralP;
 
 			$html .= "<td>$ruralP</td>";
-		
+
 		};
 
 		$html .= "</tr>
@@ -444,7 +447,7 @@ class GeneralidadesterritorioController extends Controller
 		foreach ($resultados as $resultado) {
 			$urbanoP = $resultado->urbanoP;
 
-			$html .= "<td>$urbanoP</td>";							
+			$html .= "<td>$urbanoP</td>";
 		};
 
 		$html .= "</tr>
@@ -455,7 +458,7 @@ class GeneralidadesterritorioController extends Controller
 			$totalP = $resultado->totalP;
 
 			$html .= "<td>$totalP</td>";
-		
+
 		};
 
 		$html .= "</tr>
@@ -480,9 +483,9 @@ class GeneralidadesterritorioController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$ruralG = $resultado->ruralG;
-		
+
 			$html .= "<td>$ruralG</td>";
-								
+
 		};
 
 		$html .= "</tr>
@@ -504,7 +507,7 @@ class GeneralidadesterritorioController extends Controller
 
 			$html .= "<td>$totalG</td>";
 		}
-		
+
 		$html .= "</tr>
 				</tbody>
 				</table>
@@ -531,7 +534,7 @@ class GeneralidadesterritorioController extends Controller
 
 			$html .= "<td>$constRural</td>
 						<td>$terrRural</td>";
-		
+
 		};
 
 		$html .= "</tr>
@@ -543,7 +546,7 @@ class GeneralidadesterritorioController extends Controller
 			$terrUrbano = $resultado->terrUrbano;
 
 			$html .= "<td>$constUrbano</td>
-						<td>$terrUrbano</td>";						
+						<td>$terrUrbano</td>";
 		};
 
 		$html .= "</tr>
@@ -556,7 +559,7 @@ class GeneralidadesterritorioController extends Controller
 
 			$html .= "<td>$constTotal</td>
 						<td>$terrTotal</td>";
-		
+
 		};
 
 		$html .= "</tr>
@@ -596,7 +599,7 @@ class GeneralidadesterritorioController extends Controller
 				<tbody>";
 
 		foreach ($resultados as $resultado) {
-			
+
 			$id = $resultado->id;
 			$anio = $resultado->YEARanioGT;
 			$temperatura = $resultado->temperatura;
@@ -609,14 +612,14 @@ class GeneralidadesterritorioController extends Controller
 			if($alturaNivMar == 0){
 				$alturaNivMar= "N.D.";
 			}
-			
+
 			$html .= "<tr>
 					<td>$anio</td>
 					<td>$temperatura</td>
 					<td>$alturaNivMar</td>
 					<td><a id='$id' href='#' class='btn btn-success' data-toggle='modal' data-target='#modalMostrarActualizar'>Editar</a></td>
 					</tr>";
-		
+
 		};
 
 		$html .= "</tbody>
