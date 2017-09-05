@@ -19,9 +19,6 @@ Route::get('/', function(){
 // ruta para mostrar la información
 Route::get('informacion', 'MainsController@index');
 
-// ruta para login
-Route::get('login', 'MainsController@login');
-Route::get('admin', 'MainsController@admin');
 
 // rutas para tablas
 Route::group(['prefix' => 'tabla'], function(){
@@ -34,7 +31,7 @@ Route::group(['prefix' => 'tabla'], function(){
 
 // rutas para admin
 Route::group(['prefix' => 'admin'], function(){
-	Route::get('principal', 'AdminsController@index');
+	// Route::get('principal', 'AdminsController@index');
 	Route::get('generalidadesterritorio', 'AdminsController@tableGeneralidadesterritorio');
 	Route::get('demografia', 'AdminsController@tableDemografia');
 	Route::get('viviendaserviciospublicos', 'AdminsController@tableViviendasserviciospublicosa');
@@ -108,3 +105,7 @@ Route::group(['prefix' => 'educacion'], function(){
 	Route::get('/mostrarEducacion', 'EducacionController@mostrarEducacion');
 });
 
+
+Auth::routes();
+
+Route::get('/admin/principal', 'HomeController@index')->name('home');

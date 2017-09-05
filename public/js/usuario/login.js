@@ -1,28 +1,28 @@
-$("#form").on("submit", function(){
+// $("#form").on("submit", function(){
 
-	var username = $("#username").val();
-	var password = $("#password").val();
+// 	var username = $("#username").val();
+// 	var password = $("#password").val();
 		
-	$.ajax({
-		method: "GET",
-		url: "/admin",
-		dataType: 'json',
-		data: { username: username, password: password }
-	})
+// 	$.ajax({
+// 		method: "GET",
+// 		url: "/admin",
+// 		dataType: 'json',
+// 		data: { username: username, password: password }
+// 	})
 
-	.done(function(response) {
+// 	.done(function(response) {
 
-		if(response.html == "true"){
+// 		if(response.html == "true"){
 
-			location.href="/admin/principal";
+// 			location.href="/admin/principal";
 
-		}else{
+// 		}else{
 
-			$('#respuesta').html("Usuario o contraseña incorrecta");
+// 			$('#respuesta').html("Usuario o contraseña incorrecta");
 
-		}
-	});
+// 		}
+// 	});
 
-	return false;
+// 	return false;
 
-}); 
+// }); 

@@ -17,7 +17,7 @@
 	<div class="col-md-12 col-lg-12 col-sm-12 text-center">	
 
 		<center><img class="img-responsive" src="{{ asset('img/logo.png') }}" alt="No found" width="18%"></center>
-		<h1>Bienvenido administrador {{-- {{$value = Session::get('key')}} --}}</h1>
+		<h1>Bienvenido  </h1>
 
 	</div>
 @endsection

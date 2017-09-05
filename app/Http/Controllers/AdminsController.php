@@ -9,10 +9,10 @@ use \Response;
 class AdminsController extends Controller
 {
     // Pagina para el inicio de sesión para el administrador
-    public function index()
-    {
-        return view('user.admin.main');
-    }
+    // public function index()
+    // {
+    //     return view('user.admin.main');
+    // }
 
     // Crud de la tabla generalidades y territorio
     public function tableGeneralidadesterritorio()

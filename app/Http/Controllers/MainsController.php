@@ -20,34 +20,33 @@ class MainsController extends Controller
   }
 
   // Redirecciona al login
-  public function login()
-  {
-    return view('user.login');
-  }
+  // public function login()
+  // {
+  //   return view('user.login');
+  // }
 
-  // Muestra los departamentos
-  public function admin(Request $request){
+  // public function admin(Request $request){
 
-    $username = $_GET['username'];
-    $password = $_GET['password'];
+  //   $username = $_GET['username'];
+  //   $password = $_GET['password'];
 
-    $resultados = DB::table('usuarios')
-                    ->select('usuarios.*')
-                    ->where('usuarios.usuario', $username)
-                    ->where('usuarios.contrasenia', $password)
-                    ->orWhere('usuarios.email', $username)
-                    ->where('usuarios.contrasenia', $password)
-                    ->get();
+  //   $resultados = DB::table('usuarios')
+  //                   ->select('usuarios.*')
+  //                   ->where('usuarios.usuario', $username)
+  //                   ->where('usuarios.contrasenia', $password)
+  //                   ->orWhere('usuarios.email', $username)
+  //                   ->where('usuarios.contrasenia', $password)
+  //                   ->get();
 
-    $html = "false";
+  //   $html = "false";
 
-    foreach ($resultados as $resultado) {
-      $html = "true";
+  //   foreach ($resultados as $resultado) {
+  //     $html = "true";
 
-    };
+  //   };
 
-    return Response::json(array('html' => $html, ));
+  //   return Response::json(array('html' => $html, ));
 
-  }
+  // }
 
 }
