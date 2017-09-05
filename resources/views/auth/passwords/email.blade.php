@@ -13,7 +13,11 @@
                         </div>
                     @endif
 
+<<<<<<< HEAD
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('password.email') }}">
+=======
+                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
+>>>>>>> 1081fc498ce777691b18e9fb47db8644a5b29bf9
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

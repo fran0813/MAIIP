@@ -1,12 +1,24 @@
 @extends('information.base.layout')
 
-	@section('title', 'Demografia')   
+	@section('title', 'Demografia')
 
 	@section('breadcrumbs')
 
 	<ol class="breadcrumb">
 		<li class="color-breadcrumbs"><a href="{{ url('/informacion') }}"><b>Información</b></a></li>
 		<li class="active"><b>Demografia</b></li>
+		{{-- @if ( ! Auth::guest() )
+			<li>
+				<a href="{{ route('logout') }}"
+					onclick="event.preventDefault();
+							 document.getElementById('logout-form').submit();">
+					Salir
+				</a>
+				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+					{{ csrf_field() }}
+				</form>
+			</li>
+		@endif --}}
 	</ol>
 
 	@endsection
@@ -14,13 +26,13 @@
 	@section('selects')
 
 		@include('information.base.partials.selectsD')
-	
+
 	@endsection
-	
+
 	@section('tables')
 
 	<div class="col-sm-12 col-md-12 col-lg-12">
-		
+
 		<div id="demografias" class="col-sm-12 col-md-12 col-lg-12">
 
 			{{-- Datos --}}
@@ -105,7 +117,7 @@
 					</tr>
 				</tbody>
 			</table>
-			
+
 		</div>
 
 	</div>
@@ -125,7 +137,7 @@
 	@endsection
 
 	@section('javascripttable')
-	
+
 		<script type="text/javascript" src="{{ url('https://www.gstatic.com/charts/loader.js') }}"></script>
 		<script src="{{ asset('js/demografia/demografia.js') }}"></script>
 

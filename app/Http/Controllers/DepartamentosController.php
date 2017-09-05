@@ -9,6 +9,7 @@ use \Response;
 class DepartamentosController extends Controller
 {
 	public function __construct(){
+		$this->middleware('auth');
 	}
 
 	// Establece un departamento cuando es seleccionado
@@ -31,10 +32,10 @@ class DepartamentosController extends Controller
 
 		$departamento_select = null;
 
-		if($request->session()->get("departamento_select") ){			
+		if($request->session()->get("departamento_select") ){
 
 			$departamento_select = $request->session()->get("departamento_select");
-			
+
 		}
 
 		$html = "";
@@ -67,7 +68,7 @@ class DepartamentosController extends Controller
 		return Response::json(array('msg' => "ok",));
 
 	}
-	
+
 	// Muestra los municipios
 	public function mostrarMunicipios(Request $request){
 
@@ -82,13 +83,13 @@ class DepartamentosController extends Controller
 
 		$municipio_select = null;
 
-		if ($request->session()->get("municipio_select")){			
+		if ($request->session()->get("municipio_select")){
 			$municipio_select = $request->session()->get("municipio_select");
 		}
 
 		$html = "";
 		$html .= "<option>Seleccione un municipio</option>";
-		
+
 		foreach ($municipios as $municipio) {
 			$id = $municipio->id;
 			$nombre = $municipio->nombre;
@@ -127,7 +128,7 @@ class DepartamentosController extends Controller
 		foreach ($resultados as $resultado) {
 			$coddep = $resultado->codigoD;
 			$codmun = $resultado->codigoM;
-			
+
 			$html .= "<input class='form-control' type='text' disabled='true' value='$coddep$codmun'>";
 
 		};
@@ -157,7 +158,7 @@ class DepartamentosController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioGT;
-			
+
 			$html .= "<option value='$anio'>$anio</option>";
 
 		};
@@ -181,7 +182,7 @@ class DepartamentosController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioVSP;
-			
+
 			$html .= "<option value='$anio'>$anio</option>";
 
 		};
@@ -205,7 +206,7 @@ class DepartamentosController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioS;
-			
+
 			$html .= "<option value='$anio'>$anio</option>";
 
 		};
@@ -213,5 +214,5 @@ class DepartamentosController extends Controller
 		return Response::json(array('html' => $html,));
 
 	}
-	
+
 }

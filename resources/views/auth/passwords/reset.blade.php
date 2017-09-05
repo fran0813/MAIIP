@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
+<<<<<<< HEAD
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('password.request') }}">
+=======
+                    <form class="form-horizontal" method="POST" action="{{ route('password.request') }}">
+>>>>>>> 1081fc498ce777691b18e9fb47db8644a5b29bf9
                         {{ csrf_field() }}
 
                         <input type="hidden" name="token" value="{{ $token }}">

@@ -8,6 +8,9 @@ use \Response;
 
 class SaludController extends Controller
 {
+	public function __construct(){
+		$this->middleware('auth');
+	}
 	// Función para actualizar los datos de salud
 	public function actualizarSalud(){
 
@@ -188,7 +191,7 @@ class SaludController extends Controller
 				function drawChart() {
 				var data = google.visualization.arrayToDataTable([
 				['Año', 'Tasa BCG', 'Tasa DPT', 'Tasa Hepatitis B', 'Tasa  HIB', 'Tasa  Polio', 'Tasa  Triple viral'],";
-		
+
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioS;
 			$tasVacBCG = $resultado->tasVacBCG;
@@ -228,7 +231,7 @@ class SaludController extends Controller
 
 		$idMunicipio = $_GET['idMunicipio'];
 		$anioS = $_GET['anioS'];
-		
+
 		$resultados = DB::table('salud')
 						->join('discapacidades', 'salud.id', 'discapacidades.salud_id')
 						->select(DB::raw('YEAR(anioS) as YEARanioS'),
@@ -249,7 +252,7 @@ class SaludController extends Controller
 		         'Dificultad para moverse o para caminar por si',
 		         'Dificultad para salir a la calle sin ayuda o compañía',
 		         'Total de población con Discapacidad'],";
-		
+
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioS;
 			$difBaMov = $resultado->difBaMov;
@@ -283,11 +286,11 @@ class SaludController extends Controller
 
 	}
 
-	// Muestra los datos que seran actualizados en salud 
+	// Muestra los datos que seran actualizados en salud
 	public function mostrarActualizarSalud(){
 
 		$idS = $_GET['idS'];
-		
+
 		$resultados = DB::table('salud')
 						->join('vacunaciones', 'salud.id', 'vacunaciones.salud_id')
 						->join('discapacidades', 'salud.id', 'discapacidades.salud_id')
@@ -300,7 +303,7 @@ class SaludController extends Controller
 		$html = "";
 
 		foreach ($resultados as $resultado) {
-            $id = $resultado->id;               
+            $id = $resultado->id;
             $anio = $resultado->DATEanioS;
             $tasVacBCG = $resultado->tasVacBCG;
             $tasVacDPT = $resultado->tasVacDPT;
@@ -316,7 +319,7 @@ class SaludController extends Controller
 
 			$html .= "<div class='col-lg-12 col-md-12 col-sm-12'>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='anio2' class='text-label'>Año</label>       
+					<label for='anio2' class='text-label'>Año</label>
 					<input id='anio2' type='date' class='form-control' value='$anio' disabled=''>
 					</div>
 					</div>
@@ -327,16 +330,16 @@ class SaludController extends Controller
 					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
 					<label for='tasVacBCG2' class='text-label'><strong>Vacunación</strong></label>
 					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>              
-					<label for='tasVacBCG2' class='text-label'>BCG</label>       
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='tasVacBCG2' class='text-label'>BCG</label>
 					<input id='tasVacBCG2' type='text' placeholder='Tasa de BCG' class='form-control' value='$tasVacBCG'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='tasVacDPT2' class='text-label'>DPT</label>     
+					<label for='tasVacDPT2' class='text-label'>DPT</label>
 					<input id='tasVacDPT2' type='text' placeholder='Tasa de DPT' class='form-control' value='$tasVacDPT'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='tasVacHepatitisB2' class='text-label'>Hepatitis B</label>       
+					<label for='tasVacHepatitisB2' class='text-label'>Hepatitis B</label>
 					<input id='tasVacHepatitisB2' type='text' placeholder='Tasa de Hepatitis B' class='form-control' value='$tasVacHepatitisB'>
 					</div>
 					<br>
@@ -345,15 +348,15 @@ class SaludController extends Controller
 					<br>
 					<br>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='tasVacHIB2' class='text-label'>HIB</label>       
+					<label for='tasVacHIB2' class='text-label'>HIB</label>
 					<input id='tasVacHIB2' type='text' placeholder='Tasa de HIB' class='form-control' value='$tasVacHIB'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='tasVacPolio2' class='text-label'>Polio</label>       
+					<label for='tasVacPolio2' class='text-label'>Polio</label>
 					<input id='tasVacPolio2' type='text' placeholder='Tasa de Polio' class='form-control' value='$tasVacPolio'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='tasVacTripleViral2' class='text-label'>Triple viral</label>       
+					<label for='tasVacTripleViral2' class='text-label'>Triple viral</label>
 					<input id='tasVacTripleViral2' type='text' placeholder='Tasa de Triple viral' class='form-control' value='$tasVacTripleViral'>
 					</div>
 					</div>
@@ -364,16 +367,16 @@ class SaludController extends Controller
 					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
 					<label for='difBaMov2' class='text-label'><strong>Discapacidades</strong></label>
 					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>              
-					<label for='difBaMov2' class='text-label'>Dificultad para bañarse o moverse</label>       
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='difBaMov2' class='text-label'>Dificultad para bañarse o moverse</label>
 					<input id='difBaMov2' type='text' placeholder='Total' class='form-control' value='$difBaMov'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='difEntApr2' class='text-label'>Dificultad para entender o aprender</label>     
+					<label for='difEntApr2' class='text-label'>Dificultad para entender o aprender</label>
 					<input id='difEntApr2' type='text' placeholder='Total' class='form-control' value='$difEntApr'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='totalDis2' class='text-label'>Total de población con Discapacidad</label>       
+					<label for='totalDis2' class='text-label'>Total de población con Discapacidad</label>
 					<input id='totalDis2' type='text' placeholder='Total' class='form-control' value='$totalDis'>
 					</div>
 					<br>
@@ -382,11 +385,11 @@ class SaludController extends Controller
 					<br>
 					<br>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='difSalirCalle2' class='text-label'>Dificultad para salir a la calle sin ayuda o compañia</label>     
+					<label for='difSalirCalle2' class='text-label'>Dificultad para salir a la calle sin ayuda o compañia</label>
 					<input id='difSalirCalle2' type='text' placeholder='Total' class='form-control' value='$difSalirCalle'>
-					</div>                    
+					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='difMovCam2' class='text-label'>Dificultad para moverse o para caminar por si</label>       
+					<label for='difMovCam2' class='text-label'>Dificultad para moverse o para caminar por si</label>
 					<input id='difMovCam2' type='text' placeholder='Total' class='form-control' value='$difMovCam'>
 					</div>
 					</div>
@@ -405,7 +408,7 @@ class SaludController extends Controller
 
 		$idMunicipio = $_GET['idMunicipio'];
 		$anioS = $_GET['anioS'];
-		
+
 		$resultados = DB::table('salud')
 						->join('vacunaciones', 'salud.id', 'vacunaciones.salud_id')
 						->join('discapacidades', 'salud.id', 'discapacidades.salud_id')
@@ -434,9 +437,9 @@ class SaludController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$tasVacBCG = $resultado->tasVacBCG;
-			
+
 			$html .= "<td>$tasVacBCG</td>";
-								
+
 		};
 
 		$html .= "</tr>
@@ -467,7 +470,7 @@ class SaludController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$tasVacHIB = $resultado->tasVacHIB;
-			
+
 			$html .= "<td>$tasVacHIB</td>";
 
 		};
@@ -478,7 +481,7 @@ class SaludController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$tasVacPolio = $resultado->tasVacPolio;
-			
+
 			$html .= "<td>$tasVacPolio</td>";
 
 		};
@@ -489,7 +492,7 @@ class SaludController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$tasVacTripleViral = $resultado->tasVacTripleViral;
-			
+
 			$html .= "<td>$tasVacTripleViral</td>";
 
 		};
@@ -527,7 +530,7 @@ class SaludController extends Controller
 		foreach ($resultados as $resultado) {
 			$difEntApr = $resultado->difEntApr;
 
-			$html .= "<td>$difEntApr</td>";							
+			$html .= "<td>$difEntApr</td>";
 		};
 
 		$html .= "</tr>
@@ -574,7 +577,7 @@ class SaludController extends Controller
 	public function mostrarTablaSalud(){
 
 		$idMunicipio = $_GET['idMunicipio'];
-	
+
 		$resultados = DB::table('salud')
             ->join('vacunaciones', 'salud.id', 'vacunaciones.salud_id')
             ->select('salud.anioS', 'vacunaciones.*')
@@ -603,7 +606,7 @@ class SaludController extends Controller
 			$tasVacBCG = $resultado->tasVacBCG;
 			$tasVacDPT = $resultado->tasVacDPT;
 			$tasVacHepatitisB = $resultado->tasVacHepatitisB;
-			
+
 			$html .= "<tr>
 					<td>$anio</td>
 					<td>$tasVacBCG</td>

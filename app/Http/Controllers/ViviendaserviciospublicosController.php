@@ -8,6 +8,9 @@ use \Response;
 
 class ViviendaserviciospublicosController extends Controller
 {
+	public function __construct(){
+		$this->middleware('auth');
+	}
 	// Función para actualizar los datos de vivienda y servicios publicos
 	public function actualizarViviendaserviciospublicos(){
 
@@ -170,7 +173,7 @@ class ViviendaserviciospublicosController extends Controller
 		$municipio_id = $_GET['municipio_id'];
 		$created_at = $_GET['created_at'];
 		$updated_at = $_GET['updated_at'];
-		
+
 		$resultados = DB::table('viviendasserviciospublicos')
 						->select('viviendasserviciospublicos.*')
 						->where(DB::raw('YEAR(anioVSP)'), $comprobar)
@@ -423,7 +426,7 @@ class ViviendaserviciospublicosController extends Controller
 
 	}
 
-	// Muestra los datos que seran actualizados en vivienda y servicios publicos 
+	// Muestra los datos que seran actualizados en vivienda y servicios publicos
 	public function mostrarActualizarViviendaserviciospublicos(){
 
 		$idVSP = $_GET['idVSP'];
@@ -492,7 +495,7 @@ class ViviendaserviciospublicosController extends Controller
 
 			$html .= "<div class='col-lg-12 col-md-12 col-sm-12'>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='anio' class='text-label'>Año</label>       
+					<label for='anio' class='text-label'>Año</label>
 					<input id='anio' type='date' class='form-control' value='$anio' disabled=''>
 					</div>
 					</div>
@@ -503,16 +506,16 @@ class ViviendaserviciospublicosController extends Controller
 					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
 					<label for='cabViv2' class='text-label'><strong>Viviendas</strong></label>
 					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>              
-					<label for='cabViv2' class='text-label'>Cabecera</label>       
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='cabViv2' class='text-label'>Cabecera</label>
 					<input id='cabViv2' type='text' placeholder='cabecera viviendas' oninput='calcularTotalCabViv2()' class='form-control' value='$cabViv'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='rurViv2' class='text-label'>Rural</label>     
+					<label for='rurViv2' class='text-label'>Rural</label>
 					<input id='rurViv2' type='text' placeholder='Rural viviendas' oninput='calcularTotalCabViv2()' class='form-control' value='$rurViv'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='totalViv2' class='text-label'>Total</label>       
+					<label for='totalViv2' class='text-label'>Total</label>
 					<input id='totalViv2' type='text' placeholder='Total' disabled='' class='form-control' value='$totalViv'>
 					</div>
 					</div>
@@ -523,16 +526,16 @@ class ViviendaserviciospublicosController extends Controller
 					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
 					<label for='cabHog2' class='text-label'><strong>Hogares</strong></label>
 					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>              
-					<label for='cabHog2' class='text-label'>Cabecera</label>       
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='cabHog2' class='text-label'>Cabecera</label>
 					<input id='cabHog2' type='text' placeholder='cabecera hogares' oninput='calcularTotalCabHog2()' class='form-control' value='$cabHog'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='rurHog2' class='text-label'>Rural</label>     
+					<label for='rurHog2' class='text-label'>Rural</label>
 					<input id='rurHog2' type='text' placeholder='Rural hogares' oninput='calcularTotalCabHog2()' class='form-control' value='$rurHog'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='totalHog2' class='text-label'>Total</label>       
+					<label for='totalHog2' class='text-label'>Total</label>
 					<input id='totalHog2' type='text' placeholder='Total' disabled='' class='form-control' value='$totalHog'>
 					</div>
 					</div>
@@ -543,16 +546,16 @@ class ViviendaserviciospublicosController extends Controller
 					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
 					<label for='cabHogViv2' class='text-label'><strong>Hogares por vivienda</strong></label>
 					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>              
-					<label for='cabHogViv2' class='text-label'>Cabecera</label>       
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='cabHogViv2' class='text-label'>Cabecera</label>
 					<input id='cabHogViv2' type='text' placeholder='cabecera hogares por vivienda' oninput='calcularTotalCabHogViv2()' class='form-control' value='$cabHogViv'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='rurHogViv2' class='text-label'>Rural</label>     
+					<label for='rurHogViv2' class='text-label'>Rural</label>
 					<input id='rurHogViv2' type='text' placeholder='Rural hogares por vivienda' oninput='calcularTotalCabHogViv2()' class='form-control' value='$rurHogViv'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='totalHogViv2' class='text-label'>Total</label>       
+					<label for='totalHogViv2' class='text-label'>Total</label>
 					<input id='totalHogViv2' type='text' placeholder='Total' disabled='' class='form-control' value='$totalHogViv'>
 					</div>
 					</div>
@@ -563,16 +566,16 @@ class ViviendaserviciospublicosController extends Controller
 					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
 					<label for='cabPerHog2' class='text-label'><strong>Personas por hogar</strong></label>
 					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>              
-					<label for='cabPerHog2' class='text-label'>Cabecera</label>       
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='cabPerHog2' class='text-label'>Cabecera</label>
 					<input id='cabPerHog2' type='text' placeholder='cabecera personas por hogar' oninput='calcularTotalCabPerHog2()' class='form-control' value='$cabPerHog'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='rurPerHog2' class='text-label'>Rural</label>     
+					<label for='rurPerHog2' class='text-label'>Rural</label>
 					<input id='rurPerHog2' type='text' placeholder='Rural personas por hogar' oninput='calcularTotalCabPerHog2()' class='form-control' value='$rurPerHog'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='totalPerHog2' class='text-label'>Total</label>       
+					<label for='totalPerHog2' class='text-label'>Total</label>
 					<input id='totalPerHog2' type='text' placeholder='Total' disabled='' class='form-control' value='$totalPerHog'>
 					</div>
 					</div>
@@ -583,16 +586,16 @@ class ViviendaserviciospublicosController extends Controller
 					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
 					<label for='cabPerViv2' class='text-label'><strong>Personas por vivienda</strong></label>
 					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>              
-					<label for='cabPerViv2' class='text-label'>Cabecera</label>       
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='cabPerViv2' class='text-label'>Cabecera</label>
 					<input id='cabPerViv2' type='text' placeholder='cabecera personas por vivienda' oninput='calcularTotalCabPerViv2()' class='form-control' value='$cabPerViv'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='rurPerViv2' class='text-label'>Rural</label>     
+					<label for='rurPerViv2' class='text-label'>Rural</label>
 					<input id='rurPerViv2' type='text' placeholder='Rural personas por vivienda' oninput='calcularTotalCabPerViv2()' class='form-control' value='$rurPerViv'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='totalPerViv2' class='text-label'>Total</label>       
+					<label for='totalPerViv2' class='text-label'>Total</label>
 					<input id='totalPerViv2' type='text' placeholder='Total' disabled='' class='form-control' value='$totalPerViv'>
 					</div>
 					</div>
@@ -603,16 +606,16 @@ class ViviendaserviciospublicosController extends Controller
 					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
 					<label for='cabCA2' class='text-label'><strong>Cobertura alcantarillado</strong></label>
 					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>              
-					<label for='cabCA2' class='text-label'>Cabecera</label>       
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='cabCA2' class='text-label'>Cabecera</label>
 					<input id='cabCA2' type='text' placeholder='Cabecera' class='form-control' value='$cabCA'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='centPobCA2' class='text-label'>Centros poblados</label>     
+					<label for='centPobCA2' class='text-label'>Centros poblados</label>
 					<input id='centPobCA2' type='text' placeholder='Centros poblados' class='form-control' value='$centPobCA'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='rurDispCA2' class='text-label'>Rural dispersos</label>       
+					<label for='rurDispCA2' class='text-label'>Rural dispersos</label>
 					<input id='rurDispCA2' type='text' placeholder='Rural dispersos' class='form-control' value='$rurDispCA'>
 					</div>
 					</div>
@@ -623,16 +626,16 @@ class ViviendaserviciospublicosController extends Controller
 					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
 					<label for='cabCAs2' class='text-label'><strong>Cobertura aseo</strong></label>
 					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>              
-					<label for='cabCAs2' class='text-label'>Cabecera</label>       
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='cabCAs2' class='text-label'>Cabecera</label>
 					<input id='cabCAs2' type='text' placeholder='Cabecera' class='form-control' value='$cabCAs'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='centPobCAs2' class='text-label'>Centros poblados</label>     
+					<label for='centPobCAs2' class='text-label'>Centros poblados</label>
 					<input id='centPobCAs2' type='text' placeholder='Centros poblados' class='form-control' value='$centPobCAs'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='rurDispCAs2' class='text-label'>Rural dispersos</label>       
+					<label for='rurDispCAs2' class='text-label'>Rural dispersos</label>
 					<input id='rurDispCAs2' type='text' placeholder='Rural dispersos' class='form-control' value='$rurDispCAs'>
 					</div>
 					</div>
@@ -643,16 +646,16 @@ class ViviendaserviciospublicosController extends Controller
 					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
 					<label for='cabCG2' class='text-label'><strong>Cobertura gas</strong></label>
 					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>              
-					<label for='cabCG2' class='text-label'>Cabecera</label>       
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='cabCG2' class='text-label'>Cabecera</label>
 					<input id='cabCG2' type='text' placeholder='Cabecera' class='form-control' value='$cabCG'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='centPobCG2' class='text-label'>Centros poblados</label>     
+					<label for='centPobCG2' class='text-label'>Centros poblados</label>
 					<input id='centPobCG2' type='text' placeholder='Centros poblados' class='form-control' value='$centPobCG'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='rurDispCG2' class='text-label'>Rural dispersos</label>       
+					<label for='rurDispCG2' class='text-label'>Rural dispersos</label>
 					<input id='rurDispCG2' type='text' placeholder='Rural dispersos' class='form-control' value='$rurDispCG'>
 					</div>
 					</div>
@@ -663,16 +666,16 @@ class ViviendaserviciospublicosController extends Controller
 					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
 					<label for='cabCT2' class='text-label'><strong>Cobertura telefono</strong></label>
 					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>              
-					<label for='cabCT2' class='text-label'>Cabecera</label>       
+					<div class='col-lg-4 col-md-4 col-sm-4'>
+					<label for='cabCT2' class='text-label'>Cabecera</label>
 					<input id='cabCT2' type='text' placeholder='Cabecera' class='form-control' value='$cabCT'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='centPobCT2' class='text-label'>Centros poblados</label>     
+					<label for='centPobCT2' class='text-label'>Centros poblados</label>
 					<input id='centPobCT2' type='text' placeholder='Centros poblados' class='form-control' value='$centPobCT'>
 					</div>
 					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='rurDispCT2' class='text-label'>Rural dispersos</label>       
+					<label for='rurDispCT2' class='text-label'>Rural dispersos</label>
 					<input id='rurDispCT2' type='text' placeholder='Rural dispersos' class='form-control' value='$rurDispCT'>
 					</div>
 					</div>
@@ -692,7 +695,7 @@ class ViviendaserviciospublicosController extends Controller
 
 		$idMunicipio = $_GET['idMunicipio'];
 		$anioVSP = $_GET['anioVSP'];
-	
+
 		$resultados = DB::table('viviendasserviciospublicos')
 						->join('coberturaalcantarillado', 'viviendasserviciospublicos.id', 'coberturaalcantarillado.viviendaserviciopublico_id')
 						->join('coberturaaseo', 'viviendasserviciospublicos.id', 'coberturaaseo.viviendaserviciopublico_id')
@@ -724,16 +727,16 @@ class ViviendaserviciospublicosController extends Controller
 				<tbody>
 				<tr class='border-dotted'>
 				<td>Viviendas</td>";
-							
+
 		foreach ($resultados as $resultado) {
 			$cabViv = $resultado->cabViv;
 			$rurViv = $resultado->rurViv;
 			$totalViv = $resultado->totalViv;
-			
+
 			$html .= "<td>$cabViv</td>
 					<td>$rurViv</td>
 					<td>$totalViv</td>";
-								
+
 		};
 
 		$html .= "</tr>
@@ -744,7 +747,7 @@ class ViviendaserviciospublicosController extends Controller
 			$cabHog = $resultado->cabHog;
 			$rurHog = $resultado->rurHog;
 			$totalHog = $resultado->totalHog;
-			
+
 			$html .= "<td>$cabHog</td>
 					<td>$rurHog</td>
 					<td>$totalHog</td>";
@@ -759,7 +762,7 @@ class ViviendaserviciospublicosController extends Controller
 			$cabHogViv = $resultado->cabHogViv;
 			$rurHogViv = $resultado->rurHogViv;
 			$totalHogViv = $resultado->totalHogViv;
-			
+
 			$html .= "<td>$cabHogViv</td>
 					<td>$rurHogViv</td>
 					<td>$totalHogViv</td>";
@@ -774,7 +777,7 @@ class ViviendaserviciospublicosController extends Controller
 			$cabPerHog = $resultado->cabPerHog;
 			$rurPerHog = $resultado->rurPerHog;
 			$totalPerHog = $resultado->totalPerHog;
-			
+
 			$html .= "<td>$cabPerHog</td>
 					<td>$rurPerHog</td>
 					<td>$totalPerHog</td>";
@@ -789,7 +792,7 @@ class ViviendaserviciospublicosController extends Controller
 			$cabPerViv = $resultado->cabPerViv;
 			$rurPerViv = $resultado->rurPerViv;
 			$totalPerViv = $resultado->totalPerViv;
-			
+
 			$html .= "<td>$cabPerViv</td>
 					<td>$rurPerViv</td>
 					<td>$totalPerViv</td>";
@@ -830,7 +833,7 @@ class ViviendaserviciospublicosController extends Controller
 		foreach ($resultados as $resultado) {
 			$centPobCA = $resultado->centPobCA;
 
-			$html .= "<td>$centPobCA</td>";							
+			$html .= "<td>$centPobCA</td>";
 		};
 
 		$html .= "</tr>
@@ -866,9 +869,9 @@ class ViviendaserviciospublicosController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$cabCAs = $resultado->cabCAs;
-		
+
 			$html .= "<td>$cabCAs</td>";
-								
+
 		};
 
 		$html .= "</tr>
@@ -890,7 +893,7 @@ class ViviendaserviciospublicosController extends Controller
 
 			$html .= "<td>$rurDispCAs</td>";
 		}
-		
+
 		$html .= "</tr>
 				</tbody>
 				</table>
@@ -913,9 +916,9 @@ class ViviendaserviciospublicosController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$cabCG = $resultado->cabCG;
-		
+
 			$html .= "<td>$cabCG</td>";
-								
+
 		};
 
 		$html .= "</tr>
@@ -937,7 +940,7 @@ class ViviendaserviciospublicosController extends Controller
 
 			$html .= "<td>$rurDispCG</td>";
 		}
-		
+
 		$html .= "</tr>
 				</tbody>
 				</table>
@@ -960,9 +963,9 @@ class ViviendaserviciospublicosController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$cabCT = $resultado->cabCT;
-		
+
 			$html .= "<td>$cabCT</td>";
-								
+
 		};
 
 		$html .= "</tr>
@@ -984,7 +987,7 @@ class ViviendaserviciospublicosController extends Controller
 
 			$html .= "<td>$rurDispCT</td>";
 		}
-		
+
 		$html .= "</tr>
 				</tbody>
 				</table>
@@ -1041,7 +1044,7 @@ class ViviendaserviciospublicosController extends Controller
 			$totalViv = $resultado->totalViv;
 			$totalHog = $resultado->totalHog;
 			$totalHogViv = $resultado->totalHogViv;
-			
+
 			$html .= "<tr>
 					<td>$anio</td>
 					<td>$totalViv</td>

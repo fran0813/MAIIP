@@ -10,9 +10,6 @@ use \Response;
 class MainsController extends Controller
 {
 
-  public function __construct(){
-  }
-
   // Redirecciona a la pagina principal
   public function index()
   {
