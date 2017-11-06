@@ -8,9 +8,9 @@ use \Response;
 
 class GeneralidadesterritorioController extends Controller
 {
-	public function __construct(){
-		$this->middleware('auth');
-	}
+	// public function __construct(){
+	// 	$this->middleware('auth');
+	// }
 	// Función para actualizar los datos de generalidades y territorio
 	public function actualizarGeneralidadesterritorio(){
 

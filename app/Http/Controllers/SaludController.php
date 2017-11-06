@@ -8,9 +8,9 @@ use \Response;
 
 class SaludController extends Controller
 {
-	public function __construct(){
-		$this->middleware('auth');
-	}
+	// public function __construct(){
+	// 	$this->middleware('auth');
+	// }
 	// Función para actualizar los datos de salud
 	public function actualizarSalud(){
 

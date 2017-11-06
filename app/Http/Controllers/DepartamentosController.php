@@ -8,9 +8,9 @@ use \Response;
 
 class DepartamentosController extends Controller
 {
-	public function __construct(){
-		$this->middleware('auth');
-	}
+	// public function __construct(){
+	// 	$this->middleware('auth');
+	// }
 
 	// Establece un departamento cuando es seleccionado
 	public function establecerDepartamento(Request $request){

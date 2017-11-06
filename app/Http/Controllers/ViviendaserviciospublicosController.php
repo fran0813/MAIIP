@@ -8,9 +8,9 @@ use \Response;
 
 class ViviendaserviciospublicosController extends Controller
 {
-	public function __construct(){
-		$this->middleware('auth');
-	}
+	// public function __construct(){
+	// 	$this->middleware('auth');
+	// }
 	// Función para actualizar los datos de vivienda y servicios publicos
 	public function actualizarViviendaserviciospublicos(){
 
