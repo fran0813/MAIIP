@@ -219,6 +219,11 @@ class DemografiaController extends Controller
 				var data = google.visualization.arrayToDataTable([
 				['Año', 'Población total'],";
 
+		$html .= "// Create the data table.
+		        var data = new google.visualization.DataTable();
+		        data.addColumn('string', 'Topping');
+		        data.addColumn('number', 'Slices');";
+
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioD;
 			$pobTotal = $resultado->pobTotal;
