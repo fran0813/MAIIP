@@ -10,25 +10,21 @@ class Generalidadterritorio extends Model
 
     protected $fillable = ['anioGT', 'temperatura', 'alturaNivMar', 'municipio_id'];
 
-    // Relacion muchos a uno con municipio
     public function municipio()
     {
         return $this->belongsTo('App\Municipio');
     }
 
-    // Relacion uno a uno con generalidad
     public function generalidad()
     {
         return $this->hasOne('App\Generalidad');
     }
 
-    // Relacion uno a uno con territorio
     public function territorio()
     {
         return $this->hasOne('App\Territorio');
     }
 
-    // Relacion uno a uno con predios
     public function predio()
     {
         return $this->hasOne('App\Predio');

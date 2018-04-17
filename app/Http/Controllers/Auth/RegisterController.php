@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use \Response;
 
 class RegisterController extends Controller
 {
@@ -27,7 +32,33 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/principal';
+    // protected $redirectTo = '/home';
+
+    public function authenticated(Request $request)
+    {
+        $email = Auth::user()->email;
+
+        $users = User::where('email', $email)
+                    ->get();
+        foreach ($users as $user) {
+            $active = $user->active;
+        };
+
+        if ($active == 'True') {            
+            // Logic that determines where to send the user
+            if($request->user()->hasRole('SuperAdmin')){
+                return redirect('/superAdmin/');
+            }
+            if($request->user()->hasRole('Admin')){
+                return redirect('/admin/');
+            }
+            // if($request->user()->hasRole('User')){
+            //     return redirect('/user/');
+            // }
+        } else {
+            Auth::logout();
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -49,7 +80,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:usuarios',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -58,23 +89,18 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return User
+     * @return \App\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-
-            'usuario' => $data['name'],
-            'contrasenia' => $data['password'],
-            'nombre' => " - ",
-            'apellido' => " - ",
-            'cedula' => "0",
-            'telefono' => "0",
-            'tipo' => "admin",
-
         ]);
+
+        $user->roles()->attach(Role::where('name', 'User')->first());
+
+        return $user;
     }
 }

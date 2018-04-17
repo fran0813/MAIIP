@@ -10,7 +10,6 @@ class Matriculaporgenero extends Model
 
     protected $fillable = ['femenino', 'masculino','educacion_id'];
 
-    // Relacion uno a uno con educacion
     public function educacion()
     {
         return $this->belongsTo('App\Educacion');

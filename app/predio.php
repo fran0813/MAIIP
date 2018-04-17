@@ -10,7 +10,6 @@ class Predio extends Model
 
     protected $fillable = ['ruralP', 'urbanoP', 'totalP', 'generalidadterritorio_id'];
 
-    // Relacion uno a uno con generalidadterritorio
     public function generalidadterritorio()
     {
         return $this->belongsTo('App\Generalidadterritorio');

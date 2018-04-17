@@ -11,100 +11,122 @@
 |
 */
 
-// ruta principal
-Route::get('/', function(){
-	return view('index');
+Route::get('/', function () {
+    return view('user.index');
 });
 
-// ruta para mostrar la información
-Route::get('informacion', 'MainsController@index');
+Auth::routes();
 
-// rutas para tablas
-Route::group(['prefix' => 'tabla'], function(){
-	Route::get('generalidadesterritorio', 'TablesController@generalidadesterritorio');
-	Route::get('demografia', 'TablesController@demografia');
-	Route::get('viviendaserviciospublicos', 'TablesController@viviendasserviciospublicos');
-	Route::get('salud', 'TablesController@salud');
-	Route::get('educacion', 'TablesController@educacion');
+Route::group(['prefix' => 'superAdmin'], function()
+{
+	Route::get('/', 'SuperAdminController@index')->middleware('auth');
+	Route::get('/activarUsuario', 'SuperAdminController@activarUsuario')->middleware('auth');
+
+	Route::post('/ActualizarActivarUsuario', 'SuperAdminController@ActualizarActivarUsuario')->middleware('auth');
+
+	Route::post('/mostrarTablaActivarUsuario', 'SuperAdminController@mostrarTablaActivarUsuario')->middleware('auth');
 });
 
-// rutas para admin
-Route::group(['prefix' => 'admin'], function(){
-	// Route::get('principal', 'AdminsController@index');
-	Route::get('generalidadesterritorio', 'AdminsController@tableGeneralidadesterritorio');
-	Route::get('demografia', 'AdminsController@tableDemografia');
-	Route::get('viviendaserviciospublicos', 'AdminsController@tableViviendasserviciospublicosa');
-	Route::get('salud', 'AdminsController@tableSalud');
-	Route::get('educacion', 'AdminsController@tableEducacion');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin'], function()
+{
+	Route::get('/', 'AdminController@index')->middleware('auth');
+	Route::get('generalidadesterritorio', 'AdminController@tableGeneralidadesterritorio')->middleware('auth');
+	Route::get('demografia', 'AdminController@tableDemografia')->middleware('auth');
+	Route::get('viviendaserviciospublicos', 'AdminController@tableViviendasserviciospublicosa')->middleware('auth');
+	Route::get('salud', 'AdminController@tableSalud')->middleware('auth');
+	Route::get('educacion', 'AdminController@tableEducacion')->middleware('auth');
+
+	Route::get('municipio', 'AdminController@tablemunicipio')->middleware('auth');
+	Route::get('/mostrarMunicipio', 'AdminController@mostrarTablaMunicipio')->middleware('auth');
+	Route::post('/actualizarMunicipio', 'AdminController@actualizarMunicipio')->middleware('auth');
+	Route::post('/borrarMunicipio', 'AdminController@borrarMunicipio')->middleware('auth');
+	Route::post('/crearMunicipio', 'AdminController@crearMunicipio')->middleware('auth');
+	Route::post('/mostrarActualizarMunicipio', 'AdminController@mostrarActualizarMunicipio')->middleware('auth');
+
+	Route::get('/mostrarDepartamentos', 'AdminController@mostrarDepartamentos')->middleware('auth');
+	Route::get('/mostrarMunicipios', 'AdminController@mostrarMunicipios')->middleware('auth');
+
+	Route::post('/establecerDepartamento', 'AdminController@establecerDepartamento')->middleware('auth');
+	Route::post('/establecerMunicipio', 'AdminController@establecerMunicipio')->middleware('auth');
 });
 
-Route::group(['prefix' => 'departamentos'], function(){
-	Route::get('/mostrarDepartamentos', 'DepartamentosController@mostrarDepartamentos');
-	Route::post('/establecerDepartamento', 'DepartamentosController@establecerDepartamento');
-	Route::get('/mostrarMunicipios', 'DepartamentosController@mostrarMunicipios');
-	Route::post('/establecerMunicipio', 'DepartamentosController@establecerMunicipio');
-	Route::get('/mostrarCodigo', 'DepartamentosController@mostrarCodigo');
-	Route::get('/mostrarAñoGT', 'DepartamentosController@mostrarAñoGT');
-	Route::get('/mostrarAñoVSP', 'DepartamentosController@mostrarAñoVSP');
-	Route::get('/mostrarAñoS', 'DepartamentosController@mostrarAñoS');
+Route::group(['prefix' => '/'], function()
+{
+	Route::get('informacion', 'UserController@index');
+
+	Route::get('/mostrarCodigo', 'UserController@mostrarCodigo');
+	Route::get('/mostrarAñoGT', 'UserController@mostrarAñoGT');
+	Route::get('/mostrarAñoVSP', 'UserController@mostrarAñoVSP');
+	Route::get('/mostrarAñoS', 'UserController@mostrarAñoS');
+
+	Route::get('/mostrarDepartamentos', 'UserController@mostrarDepartamentos');
+	Route::get('/mostrarMunicipios', 'UserController@mostrarMunicipios');
+
+	Route::post('/establecerDepartamento', 'UserController@establecerDepartamento');
+	Route::post('/establecerMunicipio', 'UserController@establecerMunicipio');
 });
 
 Route::group(['prefix' => 'generalidadesterritorio'], function(){
-	Route::get('/mostrarTablaGeneralidadesterritorio', 'GeneralidadesterritorioController@mostrarTablaGeneralidadesterritorio');
-	Route::get('/actualizarGeneralidadesterritorio', 'GeneralidadesterritorioController@actualizarGeneralidadesterritorio');
-	Route::get('/borrarGeneralidadesterritorio', 'GeneralidadesterritorioController@borrarGeneralidadesterritorio');
-	Route::get('/crearGeneralidadesterritorio', 'GeneralidadesterritorioController@crearGeneralidadesterritorio');
-	Route::get('/mostrarActualizarGeneralidadesterritorio', 'GeneralidadesterritorioController@mostrarActualizarGeneralidadesterritorio');
+	Route::get('/mostrarTablaGeneralidadesterritorio', 'GeneralidadesterritorioController@mostrarTablaGeneralidadesterritorio')->middleware('auth');
+	Route::post('/actualizarGeneralidadesterritorio', 'GeneralidadesterritorioController@actualizarGeneralidadesterritorio')->middleware('auth');
+	Route::post('/borrarGeneralidadesterritorio', 'GeneralidadesterritorioController@borrarGeneralidadesterritorio')->middleware('auth');
+	Route::post('/crearGeneralidadesterritorio', 'GeneralidadesterritorioController@crearGeneralidadesterritorio')->middleware('auth');
+	Route::post('/mostrarActualizarGeneralidadesterritorio', 'GeneralidadesterritorioController@mostrarActualizarGeneralidadesterritorio')->middleware('auth');
 	Route::get('/mostrarGeneralidadesterritorio', 'GeneralidadesterritorioController@mostrarGeneralidadesterritorio');
 });
 
 Route::group(['prefix' => 'demografia'], function(){
-	Route::get('/calcularCrecPob', 'DemografiaController@calcularCrecPob');
-	Route::get('/calcularCrecPob2', 'DemografiaController@calcularCrecPob2');
-	Route::get('/mostrarTablaDemografia', 'DemografiaController@mostrarTablaDemografia');
-	Route::get('/actualizarDemografia', 'DemografiaController@actualizarDemografia');
-	Route::get('/borrarDemografia', 'DemografiaController@borrarDemografia');
-	Route::get('/crearDemografia', 'DemografiaController@crearDemografia');
+	Route::post('/calcularCrecPob', 'DemografiaController@calcularCrecPob')->middleware('auth');
+	Route::post('/calcularCrecPob2', 'DemografiaController@calcularCrecPob2')->middleware('auth');
+	Route::get('/mostrarTablaDemografia', 'DemografiaController@mostrarTablaDemografia')->middleware('auth');
+	Route::post('/actualizarDemografia', 'DemografiaController@actualizarDemografia')->middleware('auth');
+	Route::post('/borrarDemografia', 'DemografiaController@borrarDemografia')->middleware('auth');
+	Route::post('/crearDemografia', 'DemografiaController@crearDemografia')->middleware('auth');
 	Route::get('/grafica1Demografia', 'DemografiaController@grafica1Demografia');
 	Route::get('/grafica2Demografia', 'DemografiaController@grafica2Demografia');
-	Route::get('/mostrarActualizarDemografia', 'DemografiaController@mostrarActualizarDemografia');
+	Route::post('/mostrarActualizarDemografia', 'DemografiaController@mostrarActualizarDemografia')->middleware('auth');
 	Route::get('/mostrarDemografia', 'DemografiaController@mostrarDemografia');
 });
 
 Route::group(['prefix' => 'viviendaserviciospublicos'], function(){
-	Route::get('/mostrarTablaViviendaserviciospublicos', 'ViviendaserviciospublicosController@mostrarTablaViviendaserviciospublicos');
-	Route::get('/actualizarViviendaserviciospublicos', 'ViviendaserviciospublicosController@actualizarViviendaserviciospublicos');
-	Route::get('/borrarViviendaserviciospublicos', 'ViviendaserviciospublicosController@borrarViviendaserviciospublicos');
-	Route::get('/crearViviendaserviciospublicos', 'ViviendaserviciospublicosController@crearViviendaserviciospublicos');
+	Route::get('/mostrarTablaViviendaserviciospublicos', 'ViviendaserviciospublicosController@mostrarTablaViviendaserviciospublicos')->middleware('auth');
+	Route::post('/actualizarViviendaserviciospublicos', 'ViviendaserviciospublicosController@actualizarViviendaserviciospublicos')->middleware('auth');
+	Route::post('/borrarViviendaserviciospublicos', 'ViviendaserviciospublicosController@borrarViviendaserviciospublicos')->middleware('auth');
+	Route::post('/crearViviendaserviciospublicos', 'ViviendaserviciospublicosController@crearViviendaserviciospublicos')->middleware('auth');
 	Route::get('/grafica1Viviendaserviciospublicos', 'ViviendaserviciospublicosController@grafica1Viviendaserviciospublicos');
 	Route::get('/grafica2Viviendaserviciospublicos', 'ViviendaserviciospublicosController@grafica2Viviendaserviciospublicos');
-	Route::get('/mostrarActualizarViviendaserviciospublicos', 'ViviendaserviciospublicosController@mostrarActualizarViviendaserviciospublicos');
+	Route::post('/mostrarActualizarViviendaserviciospublicos', 'ViviendaserviciospublicosController@mostrarActualizarViviendaserviciospublicos')->middleware('auth');
 	Route::get('/mostrarViviendaserviciospublicos', 'ViviendaserviciospublicosController@mostrarViviendaserviciospublicos');
 });
 
 Route::group(['prefix' => 'salud'], function(){
-	Route::get('/mostrarTablaSalud', 'SaludController@mostrarTablaSalud');
-	Route::get('/actualizarSalud', 'SaludController@actualizarSalud');
-	Route::get('/borrarSalud', 'SaludController@borrarSalud');
-	Route::get('/crearSalud', 'SaludController@crearSalud');
+	Route::get('/mostrarTablaSalud', 'SaludController@mostrarTablaSalud')->middleware('auth');
+	Route::post('/actualizarSalud', 'SaludController@actualizarSalud')->middleware('auth');
+	Route::post('/borrarSalud', 'SaludController@borrarSalud')->middleware('auth');
+	Route::post('/crearSalud', 'SaludController@crearSalud')->middleware('auth');
 	Route::get('/grafica1Salud', 'SaludController@grafica1Salud');
 	Route::get('/grafica2Salud', 'SaludController@grafica2Salud');
-	Route::get('/mostrarActualizarSalud', 'SaludController@mostrarActualizarSalud');
+	Route::post('/mostrarActualizarSalud', 'SaludController@mostrarActualizarSalud')->middleware('auth');
 	Route::get('/mostrarSalud', 'SaludController@mostrarSalud');
 });
 
 Route::group(['prefix' => 'educacion'], function(){
-	Route::get('/mostrarTablaEducacion', 'EducacionController@mostrarTablaEducacion');
-	Route::get('/actualizarEducacion', 'EducacionController@actualizarEducacion');
-	Route::get('/borrarEducacion', 'EducacionController@borrarEducacion');
-	Route::get('/crearEducacion', 'EducacionController@crearEducacion');
+	Route::get('/mostrarTablaEducacion', 'EducacionController@mostrarTablaEducacion')->middleware('auth');
+	Route::post('/actualizarEducacion', 'EducacionController@actualizarEducacion')->middleware('auth');
+	Route::post('/borrarEducacion', 'EducacionController@borrarEducacion')->middleware('auth');
+	Route::post('/crearEducacion', 'EducacionController@crearEducacion')->middleware('auth');
 	Route::get('/grafica1Educacion', 'EducacionController@grafica1Educacion');
 	Route::get('/grafica2Educacion', 'EducacionController@grafica2Educacion');
-	Route::get('/mostrarActualizarEducacion', 'EducacionController@mostrarActualizarEducacion');
+	Route::post('/mostrarActualizarEducacion', 'EducacionController@mostrarActualizarEducacion')->middleware('auth');
 	Route::get('/mostrarEducacion', 'EducacionController@mostrarEducacion');
 });
 
-
-Auth::routes();
-
-Route::get('/admin/principal', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'tabla'], function(){
+	Route::get('generalidadesterritorio', 'TableController@generalidadesterritorio');
+	Route::get('demografia', 'TableController@demografia');
+	Route::get('viviendaserviciospublicos', 'TableController@viviendasserviciospublicos');
+	Route::get('salud', 'TableController@salud');
+	Route::get('educacion', 'TableController@educacion');
+});

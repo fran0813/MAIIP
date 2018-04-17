@@ -10,7 +10,6 @@ class Territorio extends Model
 
     protected $fillable = ['constRural', 'constUrbano', 'constTotal', 'terrRural', 'terrUrbano', 'terrTotal', 'generalidadterritorio_id'];
 
-    // Relacion uno a uno con generalidadterritorio
     public function generalidadterritorio()
     {
         return $this->belongsTo('App\Generalidadterritorio');

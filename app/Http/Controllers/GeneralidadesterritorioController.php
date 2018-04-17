@@ -5,214 +5,164 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use \Response;
+use App\Generalidadterritorio;
+use App\Generalidad;
+use App\Territorio;
+use App\Predio;
 
 class GeneralidadesterritorioController extends Controller
 {
-	// public function __construct(){
-	// 	$this->middleware('auth');
-	// }
-	// Función para actualizar los datos de generalidades y territorio
-	public function actualizarGeneralidadesterritorio(){
+	public function actualizarGeneralidadesterritorio(Request $request)
+	{
+		$idGT = $_POST['idGT'];
+		$temperatura = $_POST['temperatura'];
+		$alturaNivMar = $_POST['alturaNivMar'];
+		$ruralG = $_POST['ruralG'];
+		$urbanoG = $_POST['urbanoG'];
+		$totalG = $_POST['totalG'];
+		$constRural = $_POST['constRural'];
+		$constUrbano = $_POST['constUrbano'];
+		$constTotal = $_POST['constTotal'];
+		$terrRural = $_POST['terrRural'];
+		$terrUrbano = $_POST['terrUrbano'];
+		$terrTotal = $_POST['terrTotal'];
+		$ruralP = $_POST['ruralP'];
+		$urbanoP = $_POST['urbanoP'];
+		$totalP = $_POST['totalP'];
 
-		$idGT = $_GET['idGT'];
-		$temperatura = $_GET['temperatura'];
-		$alturaNivMar = $_GET['alturaNivMar'];
-		$ruralG = $_GET['ruralG'];
-		$urbanoG = $_GET['urbanoG'];
-		$totalG = $_GET['totalG'];
-		$constRural = $_GET['constRural'];
-		$constUrbano = $_GET['constUrbano'];
-		$constTotal = $_GET['constTotal'];
-		$terrRural = $_GET['terrRural'];
-		$terrUrbano = $_GET['terrUrbano'];
-		$terrTotal = $_GET['terrTotal'];
-		$ruralP = $_GET['ruralP'];
-		$urbanoP = $_GET['urbanoP'];
-		$totalP = $_GET['totalP'];
-		$updated_at = $_GET['updated_at'];
+		$generalidad_territorio_update = Generalidadterritorio::find($idGT);
+        $generalidad_territorio_update->temperatura = $temperatura;
+        $generalidad_territorio_update->alturaNivMar = $alturaNivMar;
+        $generalidad_territorio_update->save();
 
-		$generalidadesterritorios = array('temperatura' => $temperatura,
-										'alturaNivMar' => $alturaNivMar,
-										'updated_at' => $updated_at, );
+		$generalidad_update = Generalidad::find($idGT);
+        $generalidad_update->ruralG = $ruralG;
+        $generalidad_update->urbanoG = $urbanoG;
+        $generalidad_update->totalG = $totalG;
+        $generalidad_update->save();
 
-		DB::table('generalidadesterritorios')
-			->where('id', $idGT)
-			->update($generalidadesterritorios);
+		$territorio_update = Territorio::find($idGT);
+        $territorio_update->constRural = $constRural;
+        $territorio_update->constUrbano = $constUrbano;
+        $territorio_update->constTotal = $constTotal;
+        $territorio_update->terrRural = $terrRural;
+        $territorio_update->terrUrbano = $terrUrbano;
+        $territorio_update->terrTotal = $terrTotal;
+        $territorio_update->save();
 
-		$generalidades = array('ruralG' => $ruralG,
-							'urbanoG' => $urbanoG,
-							'urbanoG' => $urbanoG,
-							'totalG' => $totalG,
-							'updated_at' => $updated_at, );
-
-		DB::table('generalidades')
-			->where('generalidadterritorio_id', $idGT)
-			->update($generalidades);
-
-		$territorios = array('constRural' => $constRural,
-							'constUrbano' => $constUrbano,
-							'constTotal' => $constTotal,
-							'terrRural' => $terrRural,
-							'terrUrbano' => $terrUrbano,
-							'terrTotal' => $terrTotal,
-							'updated_at' => $updated_at, );
-
-		DB::table('territorios')
-			->where('generalidadterritorio_id', $idGT)
-			->update($territorios);
-
-		$predios = array('ruralP' => $ruralP,
-						'urbanoP' => $urbanoP,
-						'totalP' => $totalP,
-						'updated_at' => $updated_at, );
-
-		DB::table('predios')
-			->where('generalidadterritorio_id', $idGT)
-			->update($predios);
+		$predio_update = Predio::find($idGT);
+        $predio_update->ruralP = $ruralP;
+        $predio_update->urbanoP = $urbanoP;
+        $predio_update->totalP = $totalP;
+        $predio_update->save();
 
 		$html = "Se actualizaron los datos correctamente";
 
-		return Response::json(array('html' => $html, ));
-
+		return Response::json(array('html' => $html));
 	}
 
-	// Función para eliminar los datos de generalidades y territorio
-	public function borrarGeneralidadesterritorio(){
-
+	public function borrarGeneralidadesterritorio(Request $request)
+	{
 		$idGT = $_GET['idGT'];
 
-		DB::table('generalidades')
-			->where('generalidadterritorio_id', $idGT)
-			->delete();
+		$generalidad_territorio_delete = Generalidad::find($idGT);
+        $generalidad_territorio_delete->delete();
 
-		DB::table('territorios')
-			->where('generalidadterritorio_id', $idGT)
-			->delete();
+        $generalidad_delete = Territorio::find($idGT);
+        $generalidad_delete->delete();
 
-		DB::table('predios')
-			->where('generalidadterritorio_id', $idGT)
-			->delete();
+        $territorio_delete = Predio::find($idGT);
+        $territorio_delete->delete();
 
-		DB::table('generalidadesterritorios')
-			->where('id', $idGT)
-			->delete();
+        $predio_delete = Generalidadterritorio::find($idGT);
+        $predio_delete->delete();
 
 		$html = "Se eliminaron los datos correctamente";
 
-		return Response::json(array('html' => $html, ));
-
+		return Response::json(array('html' => $html));
 	}
 
-	// Función para crear los datos de generalidades y territorio
-	public function crearGeneralidadesterritorio(){
-
-		$anioGT = $_GET['anioGT'];
-		$comprobar = $_GET['comprobar'];
-		$temperatura = $_GET['temperatura'];
-		$alturaNivMar = $_GET['alturaNivMar'];
-		$municipio_id = $_GET['municipio_id'];
-		$ruralG = $_GET['ruralG'];
-		$urbanoG = $_GET['urbanoG'];
-		$totalG = $_GET['totalG'];
-		$constRural = $_GET['constRural'];
-		$constUrbano = $_GET['constUrbano'];
-		$constTotal = $_GET['constTotal'];
-		$terrRural = $_GET['terrRural'];
-		$terrUrbano = $_GET['terrUrbano'];
-		$terrTotal = $_GET['terrTotal'];
-		$ruralP = $_GET['ruralP'];
-		$urbanoP = $_GET['urbanoP'];
-		$totalP = $_GET['totalP'];
-		$created_at = $_GET['created_at'];
-		$updated_at = $_GET['updated_at'];
-
-		$resultados = DB::table('generalidadesterritorios')
-						->select('generalidadesterritorios.*')
-						->where(DB::raw('YEAR(anioGT)'), $comprobar)
-						->get();
-
+	public function crearGeneralidadesterritorio(Request $request)
+	{
+		$anioGT = $_POST['anioGT'];
+		$comprobar = $_POST['comprobar'];
+		$temperatura = $_POST['temperatura'];
+		$alturaNivMar = $_POST['alturaNivMar'];
+		$municipio_id = $_POST['municipio_id'];
+		$ruralG = $_POST['ruralG'];
+		$urbanoG = $_POST['urbanoG'];
+		$totalG = $_POST['totalG'];
+		$constRural = $_POST['constRural'];
+		$constUrbano = $_POST['constUrbano'];
+		$constTotal = $_POST['constTotal'];
+		$terrRural = $_POST['terrRural'];
+		$terrUrbano = $_POST['terrUrbano'];
+		$terrTotal = $_POST['terrTotal'];
+		$ruralP = $_POST['ruralP'];
+		$urbanoP = $_POST['urbanoP'];
+		$totalP = $_POST['totalP'];
 		$ban = False;
 
+		$resultados = Generalidadterritorio::where(DB::raw('YEAR(anioGT)'), $comprobar)
+						->get();
 		foreach ($resultados as $resultado) {
 			$ban = True;
+		}
 
-		};
+		if ($ban == False) {
 
-		if($ban == False){
+			$generalidad_territorio_create = new Generalidadterritorio;
+		    $generalidad_territorio_create->anioGT = $anioGT;
+		    $generalidad_territorio_create->temperatura = $temperatura;
+		    $generalidad_territorio_create->alturaNivMar = $alturaNivMar;
+		    $generalidad_territorio_create->municipio_id = $municipio_id;
+		    $generalidad_territorio_create->save();
 
-			$generalidadesterritorios = array('anioGT' => $anioGT,
-											'temperatura' => $temperatura,
-											'alturaNivMar' => $alturaNivMar,
-											'municipio_id' => $municipio_id,
-											'created_at' => $created_at,
-											'updated_at' => $updated_at, );
-
-			DB::table('generalidadesterritorios')
-				->insert($generalidadesterritorios);
-
-			$resultados = DB::table('generalidadesterritorios')
-						->select('generalidadesterritorios.*')
-						->orderBy('id', 'desc')
+			$resultados = Generalidadterritorio::orderBy('id', 'desc')
 						->limit(1)
 						->get();
-
 			foreach ($resultados as $resultado) {
 				$generalidadterritorio_id = $resultado->id;
 
-			};
+			}
 
-			$generalidades = array('ruralG' => $ruralG,
-								'urbanoG' => $urbanoG,
-								'totalG' => $totalG,
-								'generalidadterritorio_id' => $generalidadterritorio_id,
-								'created_at' => $created_at,
-								'updated_at' => $updated_at, );
+			$generalidad_create = new Generalidad;
+		    $generalidad_create->ruralG = $ruralG;
+		    $generalidad_create->urbanoG = $urbanoG;
+		    $generalidad_create->totalG = $totalG;
+		    $generalidad_create->generalidadterritorio_id = $generalidadterritorio_id;
+		    $generalidad_create->save();
 
-			DB::table('generalidades')
-				->insert($generalidades);
+			$territorios_create = new Territorio;
+		    $territorios_create->constRural = $constRural;
+		    $territorios_create->constUrbano = $constUrbano;
+		    $territorios_create->constTotal = $constTotal;
+		    $territorios_create->terrRural = $terrRural;
+		    $territorios_create->terrUrbano = $terrUrbano;
+		    $territorios_create->terrTotal = $terrTotal;
+		    $territorios_create->generalidadterritorio_id = $generalidadterritorio_id;
+		    $territorios_create->save();
 
-			$territorios = array('constRural' => $constRural,
-								'constUrbano' => $constUrbano,
-								'constTotal' => $constTotal,
-								'terrRural' => $terrRural,
-								'terrUrbano' => $constUrbano,
-								'terrTotal' => $terrTotal,
-								'generalidadterritorio_id' => $generalidadterritorio_id,
-								'created_at' => $created_at,
-								'updated_at' => $updated_at, );
-
-			DB::table('territorios')
-				->insert($territorios);
-
-			$predios = array('ruralP' => $ruralP,
-							'urbanoP' => $urbanoP,
-							'totalP' => $totalP,
-							'generalidadterritorio_id' => $generalidadterritorio_id,
-							'created_at' => $created_at,
-							'updated_at' => $updated_at, );
-
-			DB::table('predios')
-				->insert($predios);
+			$predio_create = new Predio;
+		    $predio_create->ruralP = $ruralP;
+		    $predio_create->urbanoP = $urbanoP;
+		    $predio_create->totalP = $totalP;
+		    $predio_create->generalidadterritorio_id = $generalidadterritorio_id;
+		    $predio_create->save();
 
 			$html = "Se registrarón los datos correctamente";
-
-		}else{
-
+		} else {
 			$html = "Ya se encuentra registrado ese año";
-
 		}
 
-		return Response::json(array('html' => $html, ));
-
+		return Response::json(array('html' => $html));
 	}
 
-	// Muestra los datos que seran actualizados en generalidades y territorio
-	public function mostrarActualizarGeneralidadesterritorio(){
+	public function mostrarActualizarGeneralidadesterritorio(Request $request)
+	{
+		$idGT = $_POST['idGT'];
 
-		$idGT = $_GET['idGT'];
-
-		$resultados = DB::table('generalidadesterritorios')
-						->join('generalidades', 'generalidadesterritorios.id', 'generalidades.generalidadterritorio_id')
+		$resultados = Generalidadterritorio::join('generalidades', 'generalidadesterritorios.id', 'generalidades.generalidadterritorio_id')
 						->join('territorios', 'generalidadesterritorios.id', 'territorios.generalidadterritorio_id')
 						->join('predios', 'generalidadesterritorios.id', 'predios.generalidadterritorio_id')
 						->select('generalidadesterritorios.id',
@@ -224,9 +174,6 @@ class GeneralidadesterritorioController extends Controller
 								'predios.*')
 						->where('generalidadesterritorios.id', $idGT)
 						->get();
-
-		$html = "";
-
 		foreach ($resultados as $resultado) {
 			$id = $resultado->id;
 			$anio = $resultado->DATEanioGT;
@@ -244,136 +191,33 @@ class GeneralidadesterritorioController extends Controller
 			$ruralP = $resultado->ruralP;
 			$urbanoP = $resultado->urbanoP;
 			$totalP = $resultado->totalP;
+		}
 
-			$html .= "<div class='col-lg-12 col-md-12 col-sm-12'>
-					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='anio2' class='text-label'>Año</label>
-					<input id='anio2' type='date'value='$anio' disabled='' class='form-control'>
-					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='temperatura' class='text-label'>Temperatura</label>
-					<input id='temperatura2' type='text' value='$temperatura' class='form-control'>
-					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='alturaNivMar' class='text-label'>Altura sobre el nivel del mar</label>
-					<input id='alturaNivMar2' type='text' value='$alturaNivMar' class='form-control'>
-					</div>
-					</div>
-
-					<div class='col-lg-12 col-md-12 col-sm-12'><br></div>
-
-					<div class='col-lg-12 col-md-12 col-sm-12'>
-					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
-
-					<label for='ruralG' class='text-label'>Generalidades</label>
-					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='ruralG' class='text-label'>Rural</label>
-					<input id='ruralG2' type='text' value='$ruralG' oninput='calcularTotalG2()' class='form-control'>
-					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4' >
-					<label for='urbanoG' class='text-label'>Urbano</label>
-					<input id='urbanoG2' type='text' value='$urbanoG' oninput='calcularTotalG2()' class='form-control'>
-					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='totalG' class='text-label'>Total</label>
-					<input id='totalG2' type='text' value='$totalG' disabled='' class='form-control'>
-					</div>
-					</div>
-
-					<div class='col-lg-12 col-md-12 col-sm-12'><br></div>
-
-					<div class='col-lg-12 col-md-12 col-sm-12'>
-					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
-					<label for='constRural'>Territorio</label>
-					</div>
-					<div class='col-lg-6 col-md-6 col-sm-6'>
-					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 16px; padding-left: 0px; padding-right: 0px'>
-					<label for='constRural' class='text-label'><i class='fa fa-chevron-right' aria-hidden='true'></i> Construida</label>
-					</div>
-					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px;'>
-					<label for='constRural' class='text-label'>Rural</label>
-					<input id='constRural2' type='text' value='$constRural' oninput='calcularConstTotal2()' class='form-control'>
-					</div>
-					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-right: 0px'>
-					<label for='constUrbano' class='text-label'>Urbano</label>
-					<input id='constUrbano2' type='text' value='$constUrbano' oninput='calcularConstTotal2()' class='form-control'>
-					</div>
-					<div class='col-lg-12 col-md-12 col-sm-12' style='padding-left: 0px; padding-right: 0px'><br>
-					<label for='constTotal' class='text-label'>Total</label>
-					<input id='constTotal2' type='text' value='$constTotal' disabled='' class='form-control'>
-					</div>
-					</div>
-
-					<div class='col-lg-6 col-md-6 col-sm-6'>
-					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 16px; padding-left: 0px; padding-right: 0px'>
-					<label for='terrRural' class='text-label'><i class='fa fa-chevron-right' aria-hidden='true'></i> Terreno</label>
-					</div>
-					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px;'>
-					<label for='terrRural' class='text-label' >Rural</label>
-					<input id='terrRural2' type='text' value='$terrRural' oninput='calcularTerrTotal2()' class='form-control'>
-					</div>
-					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-right: 0px'>
-					<label for='terrUrbano' class='text-label' >Urbano</label>
-					<input id='terrUrbano2' type='text' value='$terrUrbano' oninput='calcularTerrTotal2()' class='form-control'>
-					</div>
-					<div class='col-lg-12 col-md-12 col-sm-12' style='padding-left: 0px; padding-right: 0px'><br>
-					<label for='terrTotal' class='text-label' >Total</label>
-					<input id='terrTotal2' type='text' value='$terrTotal' disabled='' class='form-control'>
-					</div>
-					</div>
-					</div>
-
-					<div class='col-lg-12 col-md-12 col-sm-12'><br></div>
-
-					<div class='col-lg-12 col-md-12 col-sm-12'>
-					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
-					<label for='ruralP' class='text-label'>Predios</label>
-					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='ruralP' class='text-label'>Rural</label>
-					<input id='ruralP2' type='text' value='$ruralP' oninput='calcularTotalP2()' class='form-control'>
-					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='urbanoP' class='text-label'>Urbano</label>
-					<input id='urbanoP2' type='text' value='$urbanoP' oninput='calcularTotalP2()' class='form-control'>
-					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='totalP' class='text-label'>Total</label>
-					<input id='totalP2' type='text' value='$totalP' disabled='' class='form-control'>
-					</div>
-					</div>
-
-					<div class='col-lg-12 col-md-12 col-sm-12'><br></div>";
-
-			$html .= "<input id='idGT' type='text' value='$id' style='display: none;'>";
-
-		};
-
-		return Response::json(array('html' => $html, ));
-
+		return Response::json(array('id' => $id,
+									'anio' => $anio,
+									'temperatura' => $temperatura,
+									'alturaNivMar' => $alturaNivMar,
+									'ruralG' => $ruralG,
+									'urbanoG' => $urbanoG,
+									'totalG' => $totalG,
+									'constRural' => $constRural,
+									'constUrbano' => $constUrbano,
+									'constTotal' => $constTotal,
+									'terrRural' => $terrRural,
+									'terrUrbano' => $terrUrbano,
+									'terrTotal' => $terrTotal,
+									'ruralP' => $ruralP,
+									'urbanoP' => $urbanoP,
+									'totalP' => $totalP,
+								));
 	}
 
-	// Muestra la tabla de generalidades y territorio en la vista de información
-	public function mostrarGeneralidadesterritorio(){
-
+	public function mostrarGeneralidadesterritorio(Request $request)
+	{
 		$idMunicipio = $_GET['idMunicipio'];
 		$anioGT = $_GET['anioGT'];
-
-		$resultados = DB::table('generalidadesterritorios')
-						->join('generalidades', 'generalidadesterritorios.id', 'generalidades.generalidadterritorio_id')
-						->join('territorios', 'generalidadesterritorios.id', 'territorios.generalidadterritorio_id')
-						->join('predios', 'generalidadesterritorios.id', 'predios.generalidadterritorio_id')
-						->select('generalidadesterritorios.*',
-								'generalidades.*',
-								'territorios.*',
-								'predios.*')
-						->where(DB::raw('YEAR(anioGT)'), $anioGT)
-						->get();
-
 		$html = "";
 
-		// Tabla de datos principales
 		$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
 
 				<table class='table table-bordered'>
@@ -387,16 +231,25 @@ class GeneralidadesterritorioController extends Controller
 				<tr class='border-dotted'>
 				<td>Temperatura Media(°C)</td>";
 
+		$resultados = Generalidadterritorio::join('generalidades', 'generalidadesterritorios.id', 'generalidades.generalidadterritorio_id')
+						->join('territorios', 'generalidadesterritorios.id', 'territorios.generalidadterritorio_id')
+						->join('predios', 'generalidadesterritorios.id', 'predios.generalidadterritorio_id')
+						->select('generalidadesterritorios.*',
+								'generalidades.*',
+								'territorios.*',
+								'predios.*')
+						->where(DB::raw('YEAR(anioGT)'), $anioGT)
+						->get();
 		foreach ($resultados as $resultado) {
 			$temperatura = $resultado->temperatura;
 
-			if($temperatura == 0){
+			if ($temperatura == 0) {
 				$temperatura = "N.D.";
 			}
 
 			$html .= "<td>$temperatura</td>";
 
-		};
+		}
 
 		$html .= "</tr>
 				<tr'>
@@ -405,13 +258,13 @@ class GeneralidadesterritorioController extends Controller
 		foreach ($resultados as $resultado) {
 			$alturaNivMar = $resultado->alturaNivMar;
 
-			if($alturaNivMar == 0){
+			if ($alturaNivMar == 0) {
 				$alturaNivMar= "N.D.";
 			}
 
 			$html .= "<td>$alturaNivMar</td>";
 
-		};
+		}
 
 		$html .= "</tr>
 				</tbody>
@@ -419,7 +272,6 @@ class GeneralidadesterritorioController extends Controller
 
 				</div>";
 
-		// Tabla de predios
 		$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
 
 				<table class='table table-bordered'>
@@ -438,7 +290,7 @@ class GeneralidadesterritorioController extends Controller
 
 			$html .= "<td>$ruralP</td>";
 
-		};
+		}
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
@@ -448,7 +300,7 @@ class GeneralidadesterritorioController extends Controller
 			$urbanoP = $resultado->urbanoP;
 
 			$html .= "<td>$urbanoP</td>";
-		};
+		}
 
 		$html .= "</tr>
 				<tr>
@@ -459,7 +311,7 @@ class GeneralidadesterritorioController extends Controller
 
 			$html .= "<td>$totalP</td>";
 
-		};
+		}
 
 		$html .= "</tr>
 				</tbody>
@@ -486,7 +338,7 @@ class GeneralidadesterritorioController extends Controller
 
 			$html .= "<td>$ruralG</td>";
 
-		};
+		}
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
@@ -514,7 +366,6 @@ class GeneralidadesterritorioController extends Controller
 
 				</div>";
 
-		// Tabla de territorio
 		$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
 				<table class='table table-bordered'>
 				<thead class='thead-s'>
@@ -535,7 +386,7 @@ class GeneralidadesterritorioController extends Controller
 			$html .= "<td>$constRural</td>
 						<td>$terrRural</td>";
 
-		};
+		}
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
@@ -547,7 +398,7 @@ class GeneralidadesterritorioController extends Controller
 
 			$html .= "<td>$constUrbano</td>
 						<td>$terrUrbano</td>";
-		};
+		}
 
 		$html .= "</tr>
 				<tr>
@@ -560,7 +411,7 @@ class GeneralidadesterritorioController extends Controller
 			$html .= "<td>$constTotal</td>
 						<td>$terrTotal</td>";
 
-		};
+		}
 
 		$html .= "</tr>
 				</tbody>
@@ -568,17 +419,16 @@ class GeneralidadesterritorioController extends Controller
 
 				</div>";
 
-		return Response::json(array('html' => $html, ));
+		return Response::json(array('html' => $html));
 
 	}
 
-	// Muestra la tabla generalidades y territorio en la vista del administrador
-	public function mostrarTablaGeneralidadesterritorio(){
-
+	public function mostrarTablaGeneralidadesterritorio(Request $request)
+	{
 		$idMunicipio = $_GET['idMunicipio'];
+		$html = "";
 
-		$resultados = DB::table('generalidadesterritorios')
-						->select('generalidadesterritorios.id',
+		$resultados = Generalidadterritorio::select('generalidadesterritorios.id',
 								DB::raw('YEAR(anioGT) as YEARanioGT'),
 								'generalidadesterritorios.temperatura',
 								'generalidadesterritorios.alturaNivMar')
@@ -586,7 +436,6 @@ class GeneralidadesterritorioController extends Controller
 						->orderBy('anioGT')
 						->get();
 
-		$html = "";
 		$html .= "<table class='table table-striped table-bordered table-hover'>
 				<thead>
 				<tr>
@@ -617,18 +466,16 @@ class GeneralidadesterritorioController extends Controller
 					<td>$anio</td>
 					<td>$temperatura</td>
 					<td>$alturaNivMar</td>
-					<td><a id='$id' href='#' class='btn btn-success' data-toggle='modal' data-target='#modalMostrarActualizar'>Editar</a></td>
+					<td><a id='$id' href='#' class='btn btn-success' data-toggle='modal' data-target='#modalMostrarActualizar' value='editar'>Editar</a></td>
 					</tr>";
-
-		};
+		}
 
 		$html .= "</tbody>
 				</table>";
 
 		// <a id='$id' href='#' class='btn btn-danger'>Borrar</a>
 
-		return Response::json(array('html' => $html, ));
-
+		return Response::json(array('html' => $html));
 	}
 
 }

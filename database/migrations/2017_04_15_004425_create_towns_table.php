@@ -13,13 +13,13 @@ class CreateTownsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Municipios', function (Blueprint $table) {
+        Schema::create('municipios', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('codigoM')->unique();
             $table->string('nombre', 45);
             $table->string('catMun', 10);
             $table->integer('departamento_id')->unsigned();
-            $table->foreign('departamento_id')->references('id')->on('Departamentos');
+            $table->foreign('departamento_id')->references('id')->on('departamentos');
             $table->timestamps();
         });
     }

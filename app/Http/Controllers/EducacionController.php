@@ -5,261 +5,238 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use \Response;
+use App\Educacion;
+use App\Matriculaporgenero;
+use App\Matriculapornivel;
 
 class EducacionController extends Controller
 {
-	// public function __construct(){
-	// 	$this->middleware('auth');
-	// }
-	// Función para actualizar los datos de educación
-    public function actualizarEducacion(){
+    public function actualizarEducacion(Request $request)
+    {
+		$idE = $_POST['idE'];
+		$rurJardin = $_POST['rurJardin'];
+		$urbJardin = $_POST['urbJardin'];
+		$rurTrans = $_POST['rurTrans'];
+		$urbTrans = $_POST['urbTrans'];
+		$rurPrim = $_POST['rurPrim'];
+		$urbPrim = $_POST['urbPrim'];
+		$rurSecu = $_POST['rurSecu'];
+		$urbSecu = $_POST['urbSecu'];
+		$rurMedia = $_POST['rurMedia'];
+		$urbMedia = $_POST['urbMedia'];
+		$jardin = $_POST['jardin'];
+		$trans = $_POST['trans'];
+		$prim = $_POST['prim'];
+		$secu = $_POST['secu'];
+		$media = $_POST['media'];
+		$femenino = $_POST['femenino'];
+		$masculino = $_POST['masculino'];
 
-		$idE = $_GET['idE'];
-		$rurJardin = $_GET['rurJardin'];
-		$urbJardin = $_GET['urbJardin'];
-		$rurTrans = $_GET['rurTrans'];
-		$urbTrans = $_GET['urbTrans'];
-		$rurPrim = $_GET['rurPrim'];
-		$urbPrim = $_GET['urbPrim'];
-		$rurSecu = $_GET['rurSecu'];
-		$urbSecu = $_GET['urbSecu'];
-		$rurMedia = $_GET['rurMedia'];
-		$urbMedia = $_GET['urbMedia'];
-		$jardin = $_GET['jardin'];
-		$trans = $_GET['trans'];
-		$prim = $_GET['prim'];
-		$secu = $_GET['secu'];
-		$media = $_GET['media'];
-		$femenino = $_GET['femenino'];
-		$masculino = $_GET['masculino'];
-		$updated_at = $_GET['updated_at'];
+		$educacion_update = Educacion::find($idE);
+        $educacion_update->rurJardin = $rurJardin;
+        $educacion_update->urbJardin = $urbJardin;
+        $educacion_update->rurTrans = $rurTrans;
+        $educacion_update->urbTrans = $urbTrans;
+        $educacion_update->rurPrim = $rurPrim;
+        $educacion_update->urbPrim = $urbPrim;
+        $educacion_update->rurSecu = $rurSecu;
+        $educacion_update->urbSecu = $urbSecu;
+        $educacion_update->rurMedia = $rurMedia;
+        $educacion_update->urbMedia = $urbMedia;
+        $educacion_update->save();
 
-		$educacion = array('rurJardin' => $rurJardin,
-						'urbJardin' => $urbJardin,
-						'rurTrans' => $rurTrans,
-						'urbTrans' => $urbTrans,
-						'rurPrim' => $rurPrim,
-						'urbPrim' => $urbPrim,
-						'rurSecu' => $rurSecu,
-						'urbSecu' => $urbSecu,
-						'rurMedia' => $rurMedia,
-						'urbMedia' => $urbMedia,
-						'updated_at' => $updated_at, );
+		$matricula_por_nivel_update = Matriculapornivel::find($idE);
+        $matricula_por_nivel_update->jardin = $jardin;
+        $matricula_por_nivel_update->trans = $trans;
+        $matricula_por_nivel_update->prim = $prim;
+        $matricula_por_nivel_update->secu = $secu;
+        $matricula_por_nivel_update->media = $media;
+        $matricula_por_nivel_update->save();
 
-		DB::table('educacion')
-			->where('id', $idE)
-			->update($educacion);
-
-		$matriculapornivel = array('jardin' => $rurJardin,
-								'trans' => $urbJardin,
-								'prim' => $rurTrans,
-								'secu' => $urbTrans,
-								'media' => $rurPrim,
-								'updated_at' => $updated_at, );
-
-		DB::table('matriculapornivel')
-			->where('educacion_id', $idE)
-			->update($matriculapornivel);
-
-		$matriculaporgenero = array('femenino' => $rurJardin,
-								'masculino' => $urbJardin,
-								'updated_at' => $updated_at, );
-
-		DB::table('matriculaporgenero')
-			->where('educacion_id', $idE)
-			->update($matriculaporgenero);
+		$matricula_por_genero_update = Matriculaporgenero::find($idE);
+        $matricula_por_genero_update->femenino = $jardin;
+        $matricula_por_genero_update->masculino = $masculino;
+        $matricula_por_genero_update->save();
 
 		$html = "Se actualizaron los datos correctamente";
 
-		return Response::json(array('html' => $html, ));
-
+		return Response::json(array('html' => $html));
 	}
 
-	// Función para eliminar los datos de educación
-	public function borrarEducacion(){
-
+	public function borrarEducacion(Request $request)
+	{
 		$idE = $_GET['idE'];
 
-		DB::table('matriculapornivel')
-			->where('educacion_id', $idE)
-			->delete();
+		$matricula_por_nivel_delete = Matriculapornivel::find($idE);
+        $matricula_por_nivel_delete->delete();
 
-		DB::table('matriculaporgenero')
-			->where('educacion_id', $idE)
-			->delete();
+		$matricula_por_genero_delete = Matriculaporgenero::find($idE);
+        $matricula_por_genero_delete->delete();
 
-		DB::table('educacion')
-			->where('id', $idE)
-			->delete();
+		$educacion_delete = Educacion::find($idE);
+        $educacion_delete->delete();
 
 		$html = "Se eliminaron los datos correctamente";
 
-		return Response::json(array('html' => $html, ));
-
+		return Response::json(array('html' => $html));
 	}
 
-	// Función para crear los datos de educación
-	public function crearEducacion(){
-
-		$anioE = $_GET['anioE'];
-		$comprobar = $_GET['comprobar'];
-		$rurJardin = $_GET['rurJardin'];
-		$urbJardin = $_GET['urbJardin'];
-		$rurTrans = $_GET['rurTrans'];
-		$urbTrans = $_GET['urbTrans'];
-		$rurPrim = $_GET['rurPrim'];
-		$urbPrim = $_GET['urbPrim'];
-		$rurSecu = $_GET['rurSecu'];
-		$urbSecu = $_GET['urbSecu'];
-		$rurMedia = $_GET['rurMedia'];
-		$urbMedia = $_GET['urbMedia'];
-		$jardin = $_GET['jardin'];
-		$trans = $_GET['trans'];
-		$prim = $_GET['prim'];
-		$secu = $_GET['secu'];
-		$media = $_GET['media'];
-		$femenino = $_GET['femenino'];
-		$masculino = $_GET['masculino'];
-		$municipio_id = $_GET['municipio_id'];
-		$created_at = $_GET['created_at'];
-		$updated_at = $_GET['updated_at'];
-
-		$resultados = DB::table('educacion')
-						->select('educacion.*')
-						->where(DB::raw('YEAR(anioE)'), $comprobar)
-						->get();
-
+	public function crearEducacion(Request $request)
+	{
+		$anioE = $_POST['anioE'];
+		$comprobar = $_POST['comprobar'];
+		$rurJardin = $_POST['rurJardin'];
+		$urbJardin = $_POST['urbJardin'];
+		$rurTrans = $_POST['rurTrans'];
+		$urbTrans = $_POST['urbTrans'];
+		$rurPrim = $_POST['rurPrim'];
+		$urbPrim = $_POST['urbPrim'];
+		$rurSecu = $_POST['rurSecu'];
+		$urbSecu = $_POST['urbSecu'];
+		$rurMedia = $_POST['rurMedia'];
+		$urbMedia = $_POST['urbMedia'];
+		$jardin = $_POST['jardin'];
+		$trans = $_POST['trans'];
+		$prim = $_POST['prim'];
+		$secu = $_POST['secu'];
+		$media = $_POST['media'];
+		$femenino = $_POST['femenino'];
+		$masculino = $_POST['masculino'];
+		$municipio_id = $_POST['municipio_id'];
 		$ban = False;
 
+		$resultados = Educacion::where(DB::raw('YEAR(anioE)'), $comprobar)
+						->get();
 		foreach ($resultados as $resultado) {
 			$ban = True;
-
-		};
+		}
 
 		if($ban == False){
 
-			$educacion = array('anioE' => $anioE,
-							'rurJardin' => $rurJardin,
-							'urbJardin' => $urbJardin,
-							'rurTrans' => $rurTrans,
-							'urbTrans' => $urbTrans,
-							'rurPrim' => $rurPrim,
-							'urbPrim' => $urbPrim,
-							'rurSecu' => $rurSecu,
-							'urbSecu' => $urbSecu,
-							'rurMedia' => $rurMedia,
-							'urbMedia' => $urbMedia,
-							'municipio_id' => $municipio_id,
-							'created_at' => $created_at,
-							'updated_at' => $updated_at, );
+			$educacion_create = new Educacion;
+		    $educacion_create->anioE = $anioE;
+	        $educacion_create->rurJardin = $rurJardin;
+	        $educacion_create->urbJardin = $urbJardin;
+	        $educacion_create->rurTrans = $rurTrans;
+	        $educacion_create->urbTrans = $urbTrans;
+	        $educacion_create->rurPrim = $rurPrim;
+	        $educacion_create->urbPrim = $urbPrim;
+	        $educacion_create->rurSecu = $rurSecu;
+	        $educacion_create->urbSecu = $urbSecu;
+	        $educacion_create->rurMedia = $rurMedia;
+	        $educacion_create->urbMedia = $urbMedia;
+	       	$educacion_create->municipio_id = $municipio_id;
+		    $educacion_create->save();
 
-			DB::table('educacion')
-				->insert($educacion);
-
-			$resultados = DB::table('educacion')
-						->select('educacion.*')
-						->orderBy('id', 'desc')
+			$resultados = Educacion::orderBy('id', 'desc')
 						->limit(1)
 						->get();
-
 			foreach ($resultados as $resultado) {
 				$educacion_id = $resultado->id;
+			}
 
-			};
+			$matricula_por_nivel_create = new Matriculapornivel;
+	        $matricula_por_nivel_create->jardin = $jardin;
+	        $matricula_por_nivel_create->trans = $trans;
+	        $matricula_por_nivel_create->prim = $prim;
+	        $matricula_por_nivel_create->secu = $secu;
+	        $matricula_por_nivel_create->media = $media;
+	        $matricula_por_nivel_create->educacion_id = $educacion_id;
+	        $matricula_por_nivel_create->save();
 
-			$matriculapornivel = array('jardin' => $jardin,
-								'trans' => $trans,
-								'prim' => $prim,
-								'secu' => $secu,
-								'media' => $media,
-								'educacion_id' => $educacion_id,
-								'created_at' => $created_at,
-								'updated_at' => $updated_at, );
-
-			DB::table('matriculapornivel')
-				->insert($matriculapornivel);
-
-			$matriculaporgenero = array('femenino' => $femenino,
-								'masculino' => $masculino,
-								'educacion_id' => $educacion_id,
-								'created_at' => $created_at,
-								'updated_at' => $updated_at, );
-
-			DB::table('matriculaporgenero')
-				->insert($matriculaporgenero);
+			$matricula_por_genero_create = new Matriculaporgenero;
+	        $matricula_por_genero_create->femenino = $femenino;
+	        $matricula_por_genero_create->masculino = $masculino;
+	        $matricula_por_genero_create->educacion_id = $educacion_id;
+	        $matricula_por_genero_create->save();
 
 			$html = "Se registrarón los datos correctamente";
-
-		}else{
-
+		} else {
 			$html = "Ya se encuentra registrado ese año";
-
 		}
 
-		return Response::json(array('html' => $html, ));
-
+		return Response::json(array('html' => $html));
 	}
 
-	// Muestra la grafica de matriculas por genero
-	public function grafica1Educacion(){
-
+	public function grafica1Educacion(Request $request)
+	{
 		$idMunicipio = $_GET['idMunicipio'];
+		$html = "";
 
-		$resultados = DB::table('educacion')
-						->join('matriculaporgenero', 'educacion.id', 'matriculaporgenero.educacion_id')
+		$html = "<script type='text/javascript'>";
+
+        $html .= "// Load the Visualization API and the corechart package.
+				google.charts.load('current', {'packages':['corechart']});
+
+				// Set a callback to run when the Google Visualization API is loaded.
+				google.charts.setOnLoadCallback(drawChart);";
+
+		$html .= "// Callback that creates and populates a data table,
+				// instantiates the pie chart, passes in the data and
+				// draws it.
+				function drawChart() {";
+
+		$html .= "var data = google.visualization.arrayToDataTable([
+				['Año', 'Femenino', 'Masculino'],";
+
+		$resultados = Educacion::join('matriculaporgenero', 'educacion.id', 'matriculaporgenero.educacion_id')
 						->select(DB::raw('YEAR(anioE) as YEARanioE'),
 								'matriculaporgenero.femenino',
 								'matriculaporgenero.masculino')
 						->where('educacion.municipio_id', $idMunicipio)
 						->orderBy('educacion.anioE', 'asc')
 						->get();
-
-		$html = "";
-		$html .= "<script type='text/javascript'>
-				google.charts.load('current', {'packages':['corechart']});
-				google.charts.setOnLoadCallback(drawChart);
-
-				function drawChart() {
-				var data = google.visualization.arrayToDataTable([
-				['Año', 'Femenino', 'Masculino'],";
-
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioE;
 			$femenino = $resultado->femenino;
 			$masculino = $resultado->masculino;
 
 			$html .= "['$anio', $femenino, $masculino],";
+		}
 
-		};
+		$html .= "]);";
 
-		$html .= "]);
+		$html .= "// Set chart options
+		        	var options = {	title: 'Matriculas por genero',
+		        					curveType: 'function',
+			        				legend: { position: 'rigth' },
+			        				colors: ['#e9473f', '#131FBD']};";	
 
-	        	var options = {
-		        title: 'Matriculas por genero',
-		        curveType: 'function',
-		        legend: { position: 'rigth' },
-		        colors: ['#e9473f', '#131FBD']
-	        	};
+		$html .= "// Instantiate and draw our chart, passing in some options.
+		        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+		        chart.draw(data, options);";
 
-	        	var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+		$html .= "}";
 
-	        	chart.draw(data, options);
-	     		}
-				</script>
+		$html .= "</script>";
 
-				<div id='curve_chart' style='width: 900px; height: 500px'></div>";
+		$html .= "<div id='curve_chart' style='width: 900px; height: 500px'></div>";
 
-		return Response::json(array('html' => $html, ));
-
+		return Response::json(array('html' => $html));
 	}
 
-	// Muestra la grafica de matriculas por nivel
-	public function grafica2Educacion(){
-
+	public function grafica2Educacion(Request $request)
+	{
 		$idMunicipio = $_GET['idMunicipio'];
+		$html = "";
 
-		$resultados = DB::table('educacion')
-						->join('matriculapornivel', 'educacion.id', 'matriculapornivel.educacion_id')
+		$html = "<script type='text/javascript'>";
+
+        $html .= "// Load the Visualization API and the corechart package.
+				google.charts.load('current', {'packages':['corechart']});
+
+				// Set a callback to run when the Google Visualization API is loaded.
+				google.charts.setOnLoadCallback(drawChart);";
+
+		$html .= "// Callback that creates and populates a data table,
+				// instantiates the pie chart, passes in the data and
+				// draws it.
+				function drawChart() {";
+
+		$html .= "var data = google.visualization.arrayToDataTable([
+				['Año', 'Jardin', 'Transición', 'Primaria', 'Secundaria', 'Media'],";
+
+		$resultados = Educacion::join('matriculapornivel', 'educacion.id', 'matriculapornivel.educacion_id')
 						->select(DB::raw('YEAR(anioE) as YEARanioE'),
 								'matriculapornivel.jardin',
 								'matriculapornivel.trans',
@@ -269,16 +246,6 @@ class EducacionController extends Controller
 						->where('educacion.municipio_id', $idMunicipio)
 						->orderBy('educacion.anioE', 'asc')
 						->get();
-
-		$html = "";
-		$html .= "<script type='text/javascript'>
-				google.charts.load('current', {'packages':['corechart']});
-				google.charts.setOnLoadCallback(drawChart);
-
-				function drawChart() {
-				var data = google.visualization.arrayToDataTable([
-				['Año', 'Jardin', 'Transición', 'Primaria', 'Secundaria', 'Media'],";
-
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioE;
 			$jardin = $resultado->jardin;
@@ -288,37 +255,35 @@ class EducacionController extends Controller
 			$media = $resultado->media;
 
 			$html .= "['$anio', $jardin, $trans, $prim, $secu, $media],";
+		}
 
-		};
+		$html .= "]);";
 
-		$html .= "]);
+		$html .= "// Set chart options
+		        	var options = {	title: 'Matriculas por nivel',
+		        					curveType: 'function',
+			        				legend: { position: 'rigth' },
+			        				colors: ['#e9473f', '#397ACB', '#F8EF01']};";	
 
-				var options = {
-				title: 'Matriculas por nivel',
-				bar: {groupWidth: '20%'},
-				legend: { position: 'rigth' },
-				colors: ['#e9473f', '#397ACB', '#F8EF01']
-				};
+		$html .= "// Instantiate and draw our chart, passing in some options.
+		        var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
+		        chart.draw(data, options);";
 
-				var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
+		$html .= "}";
 
-				chart.draw(data, options);
-					}
-				</script>
+		$html .= "</script>";
 
-				<div id='columnchart_values' style='width: 900px; height: 300px;'></div>";
+		$html .= "<div id='columnchart_values' style='width: 900px; height: 300px;'></div>";
 
-		return Response::json(array('html' => $html, ));
-
+		return Response::json(array('html' => $html));
 	}
 
-	// Muestra los datos que seran actualizados en educación
-	public function mostrarActualizarEducacion(){
+	public function mostrarActualizarEducacion(Request $request)
+	{
+		$idE = $_POST['idE'];
+		$html = "";
 
-		$idE = $_GET['idE'];
-
-		$resultados = DB::table('educacion')
-						->join('matriculaporgenero', 'educacion.id', 'matriculaporgenero.educacion_id')
+		$resultados = Educacion::join('matriculaporgenero', 'educacion.id', 'matriculaporgenero.educacion_id')
 						->join('matriculapornivel', 'educacion.id', 'matriculapornivel.educacion_id')
 						->select(DB::raw('DATE(anioE) as DATEanioE'),
 								'educacion.rurJardin',
@@ -335,9 +300,6 @@ class EducacionController extends Controller
 								'matriculapornivel.*')
 						->where('educacion.id', $idE)
 						->get();
-
-		$html = "";
-
 		foreach ($resultados as $resultado) {
 
 			$id = $resultado->id;
@@ -362,147 +324,43 @@ class EducacionController extends Controller
 
 			$femenino = $resultado->femenino;
 			$masculino = $resultado->masculino;
+		}
 
-			$html .= "<div class='col-lg-12 col-md-12 col-sm-12'>
-					<div class='col-lg-5 col-md-5 col-sm-5'>
-					<label for='anio2' class='text-label'>Año</label>
-					<input id='anio2' type='date' class='form-control' value='$anio' disabled=''>
-					</div>
-					</div>
-
-					<div class='col-lg-12 col-md-12 col-sm-12'><br></div>
-
-					<div class='col-lg-12 col-md-12 col-sm-12'>
-					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
-					<label for='rurJardin2' class='text-label'><strong>Educacion</strong></label>
-					</div>
-					<div class='col-lg-6 col-md-6 col-sm-6'>
-					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 16px; padding-left: 0px; padding-right: 0px'>
-					<label for='rurJardin2' class='text-label'><i class='fa fa-chevron-right' aria-hidden='true'></i> Rural</label>
-					</div>
-					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px;'>
-					<label for='rurJardin2' class='text-label'>Prejardin y jardin</label>
-					<input id='rurJardin2' type='text' placeholder='Prejardin y jardin' class='form-control' value='$rurJardin' oninput='calcularJardin2()'>
-					</div>
-					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-right: 0px'>
-					<label for='rurTrans2' class='text-label'>Transición</label>
-					<input id='rurTrans2' type='text' placeholder='Transición' class='form-control' value='$rurTrans' oninput='calcularTransicion2()'>
-					</div>
-					<br>
-					<br>
-					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px'>
-					<label for='rurPrim2' class='text-label'>Primaria</label>
-					<input id='rurPrim2' type='text' placeholder='Primaria' class='form-control' value='$rurPrim' oninput='calcularPrimaria2()'>
-					</div>
-					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-right: 0px;'>
-					<label for='rurSecu2' class='text-label'>Secundaria</label>
-					<input id='rurSecu2' type='text' placeholder='Secundaria' class='form-control' value='$rurSecu' oninput='calcularSecundaria2()'>
-					</div>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px;'>
-					<label for='rurMedia2' class='text-label'>Media</label>
-					<input id='rurMedia2' type='text' placeholder='Media' class='form-control' value='$rurMedia' oninput='calcularMedia2()'>
-					</div>
-					</div>
-
-					<div class='col-lg-6 col-md-6 col-sm-6'>
-					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 16px; padding-left: 0px; padding-right: 0px'>
-					<label for='urbJardin2' class='text-label'><i class='fa fa-chevron-right' aria-hidden='true'></i> Rural</label>
-					</div>
-					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px;'>
-					<label for='urbJardin2' class='text-label'>Prejardin y jardin</label>
-					<input id='urbJardin2' type='text' placeholder='Prejardin y jardin' class='form-control' value='$urbJardin' oninput='calcularJardin2()'>
-					</div>
-					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-right: 0px'>
-					<label for='urbTrans2' class='text-label'>Transición</label>
-					<input id='urbTrans2' type='text' placeholder='Transición' class='form-control' value='$urbTrans' oninput='calcularTransicion2()'>
-					</div>
-					<br>
-					<br>
-					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px'>
-					<label for='urbPrim2' class='text-label'>Primaria</label>
-					<input id='urbPrim2' type='text' placeholder='Primaria' class='form-control' value='$urbPrim' oninput='calcularPrimaria2()'>
-					</div>
-					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-right: 0px;'>
-					<label for='urbSecu2' class='text-label'>Secundaria</label>
-					<input id='urbSecu2' type='text' placeholder='Secundaria' class='form-control'value='$urbSecu' oninput='calcularSecundaria2()'>
-					</div>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<div class='col-lg-6 col-md-6 col-sm-6' style='padding-left: 0px;'>
-					<label for='urbMedia2' class='text-label'>Media</label>
-					<input id='urbMedia2' type='text' placeholder='Media' class='form-control' value='$urbMedia' oninput='calcularMedia2()'>
-					</div>
-					</div>
-					</div>
-					<div class='col-lg-12 col-md-12 col-sm-12'><br></div>
-
-					<div class='col-lg-12 col-md-12 col-sm-12'>
-					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
-					<label for='jardin2' class='text-label'><strong>Matriculas por nivel</strong></label>
-					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='jardin2' class='text-label'>Prejardin y jardin</label>
-					<input id='jardin2' type='text' placeholder='Prejardin y jardin' class='form-control' value='$jardin' disabled=''>
-					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='trans2' class='text-label'>Transición</label>
-					<input id='trans2' type='text' placeholder='Transición' class='form-control' value='$trans' disabled=''>
-					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='prim2' class='text-label'>Primaria</label>
-					<input id='prim2' type='text' placeholder='Primaria' class='form-control' value='$prim' disabled=''>
-					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='secu2' class='text-label'>Secundaria</label>
-					<input id='secu2' type='text' placeholder='Secundaria' class='form-control' value='$secu' disabled=''>
-					</div>
-					<div class='col-lg-4 col-md-4 col-sm-4'>
-					<label for='media2' class='text-label'>Media</label>
-					<input id='media2' type='text' placeholder='Media' class='form-control' value='$media' disabled=''>
-					</div>
-					</div>
-
-					<div class='col-lg-12 col-md-12 col-sm-12'><br></div>
-
-					<div class='col-lg-12 col-md-12 col-sm-12'>
-					<div class='col-lg-12 col-md-12 col-sm-12' style='font-size: 18px'>
-					<label for='femenino2' class='text-label'><strong>Matriculas por genero</strong></label>
-					</div>
-					<div class='col-lg-6 col-md-6 col-sm-6'>
-					<label for='femenino2' class='text-label'>Femenino</label>
-					<input id='femenino2' type='text' placeholder='Femenino' class='form-control' value='$femenino' oninput='validarGenero2()'>
-					</div>
-					<div class='col-lg-6 col-md-6 col-sm-6'>
-					<label for='masculino2' class='text-label'>Masculino</label>
-					<input id='masculino2' type='text' placeholder='Masculino' class='form-control' value='$masculino' oninput='validarGenero2()'>
-					</div>
-					</div>
-
-					<div class='col-lg-12 col-md-12 col-sm-12'><br></div>";
-
-			$html .= "<input id='idE' type='text' value='$id' style='display: none;'>";
-
-		};
-
-		return Response::json(array('html' => $html, ));
-
+		return Response::json(array('id' => $id,
+									'anio' => $anio,
+									'rurJardin' => $rurJardin,
+									'urbJardin' => $urbJardin,
+									'rurTrans' => $rurTrans,
+									'urbTrans' => $urbTrans,
+									'rurPrim' => $rurPrim,
+									'urbPrim' => $urbPrim,
+									'rurSecu' => $rurSecu,
+									'urbSecu' => $urbSecu,
+									'rurMedia' => $rurMedia,
+									'urbMedia' => $urbMedia,
+									'jardin' => $jardin,
+									'trans' => $trans,
+									'prim' => $prim,
+									'secu' => $secu,
+									'media' => $media,
+									'femenino' => $femenino,
+									'masculino' => $masculino,
+								));
 	}
 
-	// Muestra la tabla de educación en la vista de información
-	public function mostrarEducacion(){
-
+	public function mostrarEducacion(Request $request)
+	{
 		$idMunicipio = $_GET['idMunicipio'];
+		$html = "";
 
-		$resultados = DB::table('educacion')
-						->join('matriculaporgenero', 'educacion.id', 'matriculaporgenero.educacion_id')
+		$html .= "<div class='col-sm-12 col-md-12 col-lg-12'>
+
+				<table class='table table-bordered table-hover'>
+				<thead class='thead-s'>
+				<tr>
+				<th>Datos</th>";
+
+		$resultados = Educacion::join('matriculaporgenero', 'educacion.id', 'matriculaporgenero.educacion_id')
 						->join('matriculapornivel', 'educacion.id', 'matriculapornivel.educacion_id')
 						->select(DB::raw('YEAR(anioE) as YEARanioE'),
 								'educacion.rurJardin',
@@ -520,21 +378,11 @@ class EducacionController extends Controller
 						->where('educacion.municipio_id', $idMunicipio)
 						->orderBy('educacion.anioE', 'asc')
 						->get();
-
-		$html = "";
-		$html .= "<div class='col-sm-12 col-md-12 col-lg-12'>
-
-				<table class='table table-bordered table-hover'>
-				<thead class='thead-s'>
-				<tr>
-				<th>Datos</th>";
-
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioE;
 
 			$html .= "<th>$anio</th>";
-
-		};
+		}
 
 		$html .= "</tr>
 				</thead>
@@ -653,7 +501,6 @@ class EducacionController extends Controller
 
 			</div>";
 
-		// Tabla de matriculas por nivel
 		$html .= "<div class='col-sm-12 col-md-12 col-lg-12'>
 
 			<table class='table table-bordered table-hover'>
@@ -741,7 +588,6 @@ class EducacionController extends Controller
 
 			</div>";
 
-		// Tabla de matriculas por genero
 		$html .= "<div class='col-sm-12 col-md-12 col-lg-12'>
 
 			<table class='table table-bordered table-hover'>
@@ -786,18 +632,31 @@ class EducacionController extends Controller
 
 			</div>";
 
-		return Response::json(array('html' => $html, ));
-
+		return Response::json(array('html' => $html));
 	}
 
-	// Muestra la tabla educación en la vista del administrador
-	public function mostrarTablaEducacion(){
-
+	public function mostrarTablaEducacion(Request $request)
+	{
 		$idMunicipio = $_GET['idMunicipio'];
+		$html = "";
 
-		$resultados = DB::table('educacion')
-						->select('educacion.id',
-								DB::raw('YEAR(anioE) as YEARanioE'),
+		$html .= "<table class='table table-striped table-bordered table-hover'>
+				<thead>
+				<tr>
+				<th>Año</th>
+				<th>Jardin</th>
+				<th>Transición</th>
+				<th>Primaria</th>
+				<th>Secundaria</th>
+				<th>Educación media</th>
+				<th>Funciones</th>
+				</tr>
+				</thead>
+				<tbody>";
+
+		$resultados = Educacion::join('matriculaporgenero', 'educacion.id', 'matriculaporgenero.educacion_id')
+						->join('matriculapornivel', 'educacion.id', 'matriculapornivel.educacion_id')
+						->select(DB::raw('YEAR(anioE) as YEARanioE'),
 								'educacion.rurJardin',
 								'educacion.urbJardin',
 								'educacion.rurTrans',
@@ -807,52 +666,38 @@ class EducacionController extends Controller
 								'educacion.rurSecu',
 								'educacion.urbSecu',
 								'educacion.rurMedia',
-								'educacion.urbMedia')
+								'educacion.urbMedia',
+								'matriculaporgenero.*',
+								'matriculapornivel.*')
 						->where('educacion.municipio_id', $idMunicipio)
-						->orderBy('anioE')
+						->orderBy('educacion.anioE')
 						->get();
-
-		$html = "";
-		$html .= "<table class='table table-striped table-bordered table-hover'>
-				<thead>
-				<tr>
-				<th>Año</th>
-				<th>Jardin en zona rural</th>
-				<th>Jardin en zona urbana</th>
-				<th>Transición en zona rural</th>
-				<th>Transición en zona urbana</th>
-				<th>Funciones</th>
-				</tr>
-				</thead>
-				<tbody>";
-
 		foreach ($resultados as $resultado) {
-
 			$id = $resultado->id;
 			$anio = $resultado->YEARanioE;
-			$rurJardin = $resultado->rurJardin;
-			$urbJardin = $resultado->urbJardin;
-			$rurTrans = $resultado->rurTrans;
-			$urbTrans = $resultado->urbTrans;
+			$jardin = $resultado->jardin;
+			$trans = $resultado->trans;
+			$prim = $resultado->prim;
+			$secu = $resultado->secu;
+			$media = $resultado->media;
 
 			$html .= "<tr>
 					<td>$anio</td>
-					<td>$rurJardin</td>
-					<td>$urbJardin</td>
-					<td>$rurTrans</td>
-					<td>$urbTrans</td>
-					<td><a id='$id' href='#' class='btn btn-success' data-toggle='modal' data-target='#modalMostrarActualizar'>Editar</a></td>
+					<td>$jardin</td>
+					<td>$trans</td>
+					<td>$prim</td>
+					<td>$secu</td>
+					<td>$media</td>
+					<td><a id='$id' href='#' class='btn btn-success' data-toggle='modal' data-target='#modalMostrarActualizar' value='editar'>Editar</a></td>
 					</tr>";
 
-		};
+		}
 
 		$html .= "</tbody>
 				</table>";
 
 		// <a id='$id' href='#' class='btn btn-danger'>Borrar</a>
 
-		return Response::json(array('html' => $html, ));
-
+		return Response::json(array('html' => $html));
 	}
-
 }

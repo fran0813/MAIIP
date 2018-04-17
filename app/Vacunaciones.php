@@ -10,7 +10,6 @@ class Vacunaciones extends Model
 
     protected $fillable = ['tasVacBCG', 'tasVacDPT', 'tasVacHepatitisB', 'tasVacHIB','tasVacPolio','tasVacTripleViral','salud_id'];
 
-    // Relacion uno a uno con salud
     public function salud()
     {
         return $this->belongsTo('App\Salud');
