@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use Storage;
+use File;
 use \Response;
 use App\Departamento;
 use App\Municipio;
@@ -242,5 +245,72 @@ class AdminController extends Controller
       // <a id='$id' href='#' class='btn btn-danger'>Borrar</a>
 
       return Response::json(array('html' => $html));
+    }
+
+    public function subiendoArchivoMunicipio()
+    {
+        return view('admin.municipio.subiendoArchivoMunicipio');
+    }
+
+    public function guardarArchivoMunicipio(Request $request)
+    {
+      $file = $request->file('file');
+      $name = $file->getClientOriginalName();
+      Storage::disk('public')->put($name,  File::get($file));
+
+      $request->session()->put('nameArchivo', $name);
+
+      return redirect('/admin/subiendoArchivoMunicipio');
+    }
+
+    public function subirRespuestaMunicipio(Request $request)
+    {     
+      try
+      { 
+          $nameArchivo = null;
+          if ($request->session()->get("nameArchivo")) {
+              $nameArchivo = $request->session()->get("nameArchivo");
+          }   
+
+          Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+          {
+            $data = array();
+            $time = date('Y/m/d H:i');
+
+            $results = $reader->get();
+
+            foreach ($results as $result)
+            {
+              $data[] = array('codigoM' => $result->codigo, 'nombre' => $result->nombre, 'catMun' => $result->categoria, 'departamento_id' => $result->departamento_id, 'created_at' => $time, 'updated_at' => $time);
+            }
+
+            // print_r($data);
+            Municipio::insert($data);
+          });
+          $html = "Se ha subido los datos con éxito";
+
+          return Response::json(array('html' => $html));  
+        }catch (Exception $e)
+        {
+          $html = "Ocurrio un error".$e;
+
+        return Response::json(array('html' => $html));   
+      }
+    }
+
+    public function descargarMunicipio(Request $request)
+    {
+      $data = array();
+
+      Excel::create('Municipio', function($excel) {
+ 
+          $excel->sheet('Importar', function($sheet) {
+
+              $data[] = array('codigo' => "", 'nombre' => "", 'categoria' => "", 'departamento_id' => "");
+
+              $sheet->fromArray($data);
+
+          });
+      })->export('xls');
     }
 }

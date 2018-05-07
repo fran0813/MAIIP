@@ -50,6 +50,11 @@ Route::group(['prefix' => 'admin'], function()
 
 	Route::post('/establecerDepartamento', 'AdminController@establecerDepartamento')->middleware('auth');
 	Route::post('/establecerMunicipio', 'AdminController@establecerMunicipio')->middleware('auth');
+
+	Route::get('/subiendoArchivoMunicipio', 'AdminController@subiendoArchivoMunicipio')->middleware('auth');
+	Route::post('/guardarArchivoMunicipio', 'AdminController@guardarArchivoMunicipio')->middleware('auth');
+	Route::post('/subirRespuestaMunicipio', 'AdminController@subirRespuestaMunicipio')->middleware('auth');
+	Route::get('/descargarMunicipio', 'AdminController@descargarMunicipio')->middleware('auth');
 });
 
 Route::group(['prefix' => '/'], function()
