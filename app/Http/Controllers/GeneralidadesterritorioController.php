@@ -478,4 +478,144 @@ class GeneralidadesterritorioController extends Controller
 		return Response::json(array('html' => $html));
 	}
 
+	public function subiendoArchivoGeneralidadesTerritorio()
+    {
+        return view('admin.generalidadesTerritorio.subiendoArchivoGeneralidadesTerritorio');
+    }
+
+    public function guardarArchivoGeneralidadesTerritorio(Request $request)
+    {
+      $file = $request->file('file');
+      $name = $file->getClientOriginalName();
+      Storage::disk('public')->put($name,  File::get($file));
+
+      $request->session()->put('nameArchivoGeneralidadesTerritorio', $name);
+
+      return redirect('/admin/subiendoArchivoGeneralidadesTerritorio');
+    }
+
+    public function subirRespuestaGeneralidadesTerritorio(Request $request)
+    {     
+      try { 
+
+      $nameArchivo = null;
+      $html = "";
+
+      if ($request->session()->get("nameArchivoGeneralidadesTerritorio")) {
+          $nameArchivo = $request->session()->get("nameArchivoGeneralidadesTerritorio");
+      }   
+
+      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      {
+        $booleanMunicipio = False;
+        $booleanAño = False;
+        $data1 = array();
+        $data2 = array();
+        $data3 = array();
+        $data4 = array();
+        $time = date('Y/m/d H:i');
+
+        $results = $reader->get();
+
+        foreach ($results as $result) {
+
+	        $resultados = Municipio::where('nombre', $result->municipio)
+	          ->limit(1)
+	          ->get();
+
+	        foreach ($resultados as $resultado) {
+	          $id = $resultado->id;
+	          $booleanMunicipio = True;
+	        }
+
+	          if ($booleanMunicipio == True) {
+
+	          	$resultados = Generalidadterritorio::where(DB::raw('YEAR(anioGT)'), $result->anio)
+	          				->limit(1)
+							->get();
+			    foreach ($resultados as $resultado) {
+			      $booleanAño = True;
+			    }
+
+			    if ($booleanAño = False) {
+			    	
+		            $data1[] = array('anioGT' => $result->anio.'/01/01 00:00:00', 'temperatura' => $result->temperatura, 'alturaNivMar' => $result->altura_sobre_el_nivel_del_mar, 'municipio_id' => $id, 'created_at' => $time, 'updated_at' => $time);
+
+		            Generalidadterritorio::insert($data1);
+
+		            $resultados = Generalidadterritorio::orderBy('id', 'desc')
+							->limit(1)
+							->get();
+					foreach ($resultados as $resultado) {
+						$generalidadterritorio_id = $resultado->id;
+					}
+
+		            $data2[] = array('ruralG' => $result->rural_generalidades, 'urbanoG' => $result->urbano_generalidades, 'totalG' => $result->total_generalidades, 'generalidadterritorio_id' => $generalidadterritorio_id, 'created_at' => $time, 'updated_at' => $time);
+
+		            $data3[] = array('constRural' => $result->construccion_rural, 'constUrbano' => $result->construccion_urbana, 'constTotal' => $result->construccion_total, 'terrRural' => $result->territorio_rural, 'terrUrbano' => $result->territorio_urbana, 'terrTotal' => $result->territorio_total, 'generalidadterritorio_id' => $generalidadterritorio_id, 'created_at' => $time, 'updated_at' => $time);
+
+		            $data4[] = array('ruralP' => $result->rural_predio, 'urbanoP' => $result->urbano_predio, 'totalP' => $result->total_predio, 'generalidadterritorio_id' => $generalidadterritorio_id, 'created_at' => $time, 'updated_at' => $time);
+
+		            Generalidad::insert($data2);
+		            Territorio::insert($data3);
+		            Predio::insert($data4);
+
+					$data1 = array();
+					$data2 = array();
+					$data3 = array();
+					$data4 = array();
+
+		            // $html .= "<h1 class='text-center' style='margin-top: 0px;''>Se ha subido los datos correctamente</h1>";
+	        	} else {
+	        		// $html .= "<h1 class='text-center' style='margin-top: 0px;''>Año no disponible.$result->anio</h1>";
+	        	}
+	            
+	          } else {
+	            // $html = ."<h1 class='text-center' style='margin-top: 0px;''>No se encontro el departamento.$result->departamento</h1>";
+	          }
+	        
+	        }   
+        
+      });
+
+      } catch (Exception $e) {
+
+        // $html .= "<h1 class='text-center' style='margin-top: 0px;''>currio un error.$e</h1>";
+
+      }
+
+      // return Response::json(array('html' => $html, 'boolean' => $booleanMunicipio));
+    }
+
+    public function descargarMunicipio(Request $request)
+    {
+      $data = array();
+
+      Excel::create('GeneralidadesTerritorio', function($excel) {
+ 
+          $excel->sheet('Importar', function($sheet) {
+
+              $data[] = array('año' => "",
+              				 'municipio' => "",
+              				 'temperatura' => "",
+              				 'altura_sobre_el_nivel_del_mar' => "",
+              				 'rural_generalidades' => "",
+              				 'urbano_generalidades' => "",
+              				 'total_generalidades' => "",
+              				 'construccion_rural' => "",
+              				 'construccion_urbana' => "",
+              				 'construccion_total' => "",
+              				 'territorio_rural' => "",
+              				 'territorio_urbana' => "",
+              				 'territorio_total' => "",
+              				 'rural_predio' => "",
+              				 'urbano_predio' => "",
+              				 'total_predio' => "");
+
+              $sheet->fromArray($data);
+
+          });
+      })->export('xls');
+    }
+
 }

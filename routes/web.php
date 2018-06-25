@@ -55,6 +55,31 @@ Route::group(['prefix' => 'admin'], function()
 	Route::post('/guardarArchivoMunicipio', 'AdminController@guardarArchivoMunicipio')->middleware('auth');
 	Route::post('/subirRespuestaMunicipio', 'AdminController@subirRespuestaMunicipio')->middleware('auth');
 	Route::get('/descargarMunicipio', 'AdminController@descargarMunicipio')->middleware('auth');
+
+	Route::get('/subiendoArchivoGeneralidadesTerritorio', 'AdminController@subiendoArchivoGeneralidadesTerritorio')->middleware('auth');
+	Route::post('/guardarArchivoGeneralidadesTerritorio', 'AdminController@guardarArchivoGeneralidadesTerritorio')->middleware('auth');
+	Route::post('/subirRespuestaGeneralidadesTerritorio', 'AdminController@subirRespuestaGeneralidadesTerritorio')->middleware('auth');
+	Route::get('/descargarGeneralidadesTerritorio', 'AdminController@descargarGeneralidadesTerritorio')->middleware('auth');
+
+	Route::get('/subiendoArchivoDemografia', 'AdminController@subiendoArchivoDemografia')->middleware('auth');
+	Route::post('/guardarArchivoDemografia', 'AdminController@guardarArchivoDemografia')->middleware('auth');
+	Route::post('/subirRespuestaDemografia', 'AdminController@subirRespuestaDemografia')->middleware('auth');
+	Route::get('/descargarDemografia', 'AdminController@descargarDemografia')->middleware('auth');
+
+	Route::get('/subiendoArchivoEducacion', 'AdminController@subiendoArchivoEducacion')->middleware('auth');
+	Route::post('/guardarArchivoEducacion', 'AdminController@guardarArchivoEducacion')->middleware('auth');
+	Route::post('/subirRespuestaEducacion', 'AdminController@subirRespuestaEducacion')->middleware('auth');
+	Route::get('/descargarEducacion', 'AdminController@descargarEducacion')->middleware('auth');
+
+	Route::get('/subiendoArchivoSalud', 'AdminController@subiendoArchivoSalud')->middleware('auth');
+	Route::post('/guardarArchivoSalud', 'AdminController@guardarArchivoSalud')->middleware('auth');
+	Route::post('/subirRespuestaSalud', 'AdminController@subirRespuestaSalud')->middleware('auth');
+	Route::get('/descargarSalud', 'AdminController@descargarSalud')->middleware('auth');
+
+	Route::get('/subiendoArchivoViviendaServiciosPublicos', 'AdminController@subiendoArchivoViviendaServiciosPublicos')->middleware('auth');
+	Route::post('/guardarArchivoViviendaServiciosPublicos', 'AdminController@guardarArchivoViviendaServiciosPublicos')->middleware('auth');
+	Route::post('/subirRespuestaViviendaServiciosPublicos', 'AdminController@subirRespuestaViviendaServiciosPublicos')->middleware('auth');
+	Route::get('/descargarViviendaServiciosPublicos', 'AdminController@descargarViviendaServiciosPublicos')->middleware('auth');
 });
 
 Route::group(['prefix' => '/'], function()

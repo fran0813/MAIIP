@@ -700,4 +700,169 @@ class EducacionController extends Controller
 
 		return Response::json(array('html' => $html));
 	}
+
+	public function subiendoArchivoEducacion()
+    {
+        return view('admin.educacion.subiendoArchivoEducacion');
+    }
+
+    public function guardarArchivoEducacion(Request $request)
+    {
+      $file = $request->file('file');
+      $name = $file->getClientOriginalName();
+      Storage::disk('public')->put($name,  File::get($file));
+
+      $request->session()->put('nameArchivoEducacion', $name);
+
+      return redirect('/admin/subiendoArchivoEducacion');
+    }
+
+    public function subirRespuestaEducacion(Request $request)
+    {     
+      try { 
+
+      $nameArchivo = null;
+      $html = "";
+
+      if ($request->session()->get("nameArchivoEducacion")) {
+          $nameArchivo = $request->session()->get("nameArchivoEducacion");
+      }   
+
+      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      {
+        $booleanMunicipio = False;
+        $booleanAño = False;
+        $data1 = array();
+        $data2 = array();
+        $data3 = array();
+        $time = date('Y/m/d H:i');
+
+        $results = $reader->get();
+
+        foreach ($results as $result) {
+
+	        $resultados = Municipio::where('nombre', $result->municipio)
+	          ->limit(1)
+	          ->get();
+
+	        foreach ($resultados as $resultado) {
+	          $id = $resultado->id;
+	          $booleanMunicipio = True;
+	        }
+
+          if ($booleanMunicipio == True) {
+
+          	$resultados = Educacion::where(DB::raw('YEAR(anioE)'), $result->anio)
+          				->limit(1)
+						->get();
+		    foreach ($resultados as $resultado) {
+		      $booleanAño = True;
+		    }
+
+		    if ($booleanAño = False) {
+		    	
+	            $data1[] = array('anioE' => $result->anio.'/01/01 00:00:00',
+	                           'rurJardin' => $result->rural_jardin,
+	                           'urbJardin' => $result->urbano_jardin,
+	                           'rurTrans' => $result->rural_transicion,
+	                           'urbTrans' => $result->urbano_transicion,
+	                           'rurPrim' => $result->rural_primaria,
+	                           'urbPrim' => $result->urbano_primaria,
+	                           'rurSecu' => $result->rural_secundaria,
+	                           'urbSecu' => $result->urbano_secundaria,
+	                           'rurMedia' => $result->rural_media,
+	                           'urbMedia' => $result->urbano_media,
+	                           'municipio_id' => $id,
+	                           'created_at' => $time,
+	                           'updated_at' => $time);
+
+	           	Educacion::insert($data1);
+
+	           	$resultados = Educacion::orderBy('id', 'desc')
+							->limit(1)
+							->get();
+				foreach ($resultados as $resultado) {
+					$educacion_id = $resultado->id;
+				}
+
+				$sumaJardin = $result->rural_jardin + $result->urbano_jardin;
+				$sumaTransicion = $result->rural_transicion + $result->urbano_transicion;
+				$sumaPrimaria = $result->rural_primaria + $result->urbano_primaria;
+				$sumaSecundaria = $result->rural_secundaria + $result->urbano_secundaria;
+				$sumaMedia = $result->rural_media + $result->urbano_media;
+
+			    $data2[] = array('jardin' => $sumaJardin,
+	                           'trans' => $sumaTransicion,
+	                           'prim' => $sumaPrimaria,
+	                           'secu' => $sumaSecundaria,
+	                           'media' => $sumaMedia,
+	                           'educacion_id' => $educacion_id,
+	                           'created_at' => $time,
+	                           'updated_at' => $time);
+
+			    $data3[] = array('femenino' => $result->femenino,
+	                           'masculino' => $result->masculino,
+	                           'educacion_id' => $educacion_id,
+	                           'created_at' => $time,
+	                           'updated_at' => $time);
+
+			    Matriculapornivel::insert($data2);
+			    Matriculaporgenero::insert($data3);
+
+			    $data1 = array();
+			    $data2 = array();
+			    $data3 = array();
+
+	            // return redirect('/admin/responder');
+	            // $html .= "<h1 class='text-center' style='margin-top: 0px;''>Se ha subido los datos correctamente</h1>";
+        	} else {
+        		// $html .= "<h1 class='text-center' style='margin-top: 0px;''>Año no disponible.$result->anio</h1>";
+        	}
+            
+          } else {
+            // $html = ."<h1 class='text-center' style='margin-top: 0px;''>No se encontro el departamento.$result->departamento</h1>";
+          }
+
+		    
+        }
+      });
+
+      } catch (Exception $e) {
+
+        // $html .= "<h1 class='text-center' style='margin-top: 0px;''>currio un error.$e</h1>";
+
+      }
+
+      // return Response::json(array('html' => $html, 'boolean' => $booleanMunicipio));
+    }
+
+    public function descargarEducacion(Request $request)
+    {
+      $data = array();
+
+      Excel::create('Educacion', function($excel) {
+ 
+          $excel->sheet('Importar', function($sheet) {
+
+              $data[] = array('año' => "",
+              				'municipio' => "",
+              				 'rural_jardin' => "",
+	                           'urbano_jardin' => "",
+	                           'rural_transicion' => "",
+	                           'urbano_transicion' => "",
+	                           'rural_primaria' => "",
+	                           'urbano_primaria' => "",
+	                           'rural_secundaria' => "",
+	                           'urbano_secundaria' => "",
+	                           'rural_media' => "",
+	                           'urbano_media' => "",
+	                           'femenino' => "",
+	                           'masculino' => "");
+
+              $sheet->fromArray($data);
+
+          });
+      })->export('xls');
+    }
+
 }

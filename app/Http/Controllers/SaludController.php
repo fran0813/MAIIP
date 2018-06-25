@@ -512,4 +512,156 @@ class SaludController extends Controller
 
 		return Response::json(array('html' => $html));
 	}
+
+	public function subiendoArchivoSalud()
+    {
+        return view('admin.salud.subiendoArchivoSalud');
+    }
+
+    public function guardarArchivoSalud(Request $request)
+    {
+      $file = $request->file('file');
+      $name = $file->getClientOriginalName();
+      Storage::disk('public')->put($name,  File::get($file));
+
+      $request->session()->put('nameArchivoSalud', $name);
+
+      return redirect('/admin/subiendoArchivoSalud');
+    }
+
+    public function subirRespuestaSalud(Request $request)
+    {     
+      try { 
+
+      $nameArchivo = null;
+      $html = "";
+
+      if ($request->session()->get("nameArchivoSalud")) {
+          $nameArchivo = $request->session()->get("nameArchivoSalud");
+      }   
+
+      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      {
+        $booleanMunicipio = False;
+        $booleanAño = False;
+        $data1 = array();
+        $data2 = array();
+        $data3 = array();
+        $time = date('Y/m/d H:i');
+
+        $results = $reader->get();
+
+        foreach ($results as $result) {
+
+	        $resultados = Municipio::where('nombre', $result->municipio)
+	          ->limit(1)
+	          ->get();
+
+	        foreach ($resultados as $resultado) {
+	          $id = $resultado->id;
+	          $booleanMunicipio = True;
+	        }
+
+          if ($booleanMunicipio == True) {
+
+          	$resultados = Salud::where(DB::raw('YEAR(anioS)'), $result->anio)
+          				->limit(1)
+						->get();
+		    foreach ($resultados as $resultado) {
+		      $booleanAño = True;
+		    }
+
+		    if ($booleanAño = False) {
+		    	
+	            $data1[] = array('anioS' => $result->anio.'/01/01 00:00:00',
+	                           'municipio_id' => $id,
+	                           'created_at' => $time,
+	                           'updated_at' => $time);
+
+	           	Salud::insert($data1);
+
+	           	$resultados = Salud::orderBy('id', 'desc')
+							->limit(1)
+							->get();
+				foreach ($resultados as $resultado) {
+					$salud_id = $resultado->id;
+				}
+
+			    $data2[] = array('difBaMov' => $result->dificultades_bañarse_moverse,
+	                           'difEntApr' => $result->dificultades_aprender_entender,
+	                           'difMovCam' => $result->dificultades_moverse_caminar,
+	                           'difSalirCalle' => $result->dificultades_salir_calle,
+	                           'totalDis' => $result->total_discapacitados,
+	                           'salud_id' => $salud_id,
+	                           'created_at' => $time,
+	                           'updated_at' => $time);
+
+			    $data3[] = array('tasVacBCG' => $result->tasa_vacunacion_bcg,
+	                           'tasVacDPT' => $result->tasa_vacunacion_dpt,
+	                           'tasVacHepatitisB' => $result->tasa_vacunacion_hepatitis_b,
+	                           'tasVacHIB' => $result->tasa_vacunacion_hib,
+	                           'tasVacPolio' => $result->tasa_vacunacion_polio,
+	                           'tasVacTripleViral' => $result->tasa_vacunacion_triple_viral,
+	                           'salud_id' => $salud_id,
+	                           'created_at' => $time,
+	                           'updated_at' => $time);
+
+			    Discapacidades::insert($data2);
+			    Vacunaciones::insert($data3);
+
+			    $data1 = array();
+			    $data2 = array();
+			    $data3 = array();
+
+	            // return redirect('/admin/responder');
+	            // $html .= "<h1 class='text-center' style='margin-top: 0px;''>Se ha subido los datos correctamente</h1>";
+        	} else {
+        		// $html .= "<h1 class='text-center' style='margin-top: 0px;''>Año no disponible.$result->anio</h1>";
+        	}
+            
+          } else {
+            // $html = ."<h1 class='text-center' style='margin-top: 0px;''>No se encontro el departamento.$result->departamento</h1>";
+          }
+
+		    
+        }
+      });
+
+      } catch (Exception $e) {
+
+        // $html .= "<h1 class='text-center' style='margin-top: 0px;''>currio un error.$e</h1>";
+
+      }
+
+      // return Response::json(array('html' => $html, 'boolean' => $booleanMunicipio));
+    }
+
+    public function descargarSalud(Request $request)
+    {
+      $data = array();
+
+      Excel::create('Salud', function($excel) {
+ 
+          $excel->sheet('Importar', function($sheet) {
+
+              $data[] = array('año' => "",
+              				'municipio' => "",
+              				 'dificultades_bañarse_moverse' => "",
+	                           'dificultades_aprender_entender' => "",
+	                           'dificultades_moverse_caminar' => "",
+	                           'dificultades_salir_calle' => "",
+	                           'total_discapacitados' => "",
+	                           'tasa_vacunacion_bcg' => "",
+	                           'tasa_vacunacion_dpt' => "",
+	                           'tasa_vacunacion_hepatitis_b' => "",
+	                           'tasa_vacunacion_hib' => "",
+	                           'tasa_vacunacion_polio' => "",
+	                           'tasa_vacunacion_triple_viral' => "");
+
+              $sheet->fromArray($data);
+
+          });
+      })->export('xls');
+    }
+
 }

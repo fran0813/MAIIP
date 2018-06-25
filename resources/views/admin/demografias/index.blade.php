@@ -8,7 +8,7 @@
     
     <div id="crear" class="col-sm-2 col-md-2 col-lg-2" hidden="">
        <a href="#" style="margin-left: 10px;" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalCrear" onclick="limpiarRespuesta()">Crear</a> 
-       <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#">Importar</a>      
+       <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalImportarDemografia">Importar</a>      
     </div>
 
 </div>
@@ -25,6 +25,7 @@
 
 @include('admin.modal.demografia.crear')
 @include('admin.modal.demografia.mostrarActualizar')
+@include('admin.modal.demografia.importar')
 @endsection
 
 @section('javascript')

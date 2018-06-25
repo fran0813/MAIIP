@@ -834,4 +834,203 @@ class ViviendaserviciospublicosController extends Controller
 
 		return Response::json(array('html' => $html));
 	}
+
+	public function subiendoArchivoViviendaServiciosPublicos()
+    {
+        return view('admin.viviendasserviciospublicos.subiendoArchivoViviendaServiciosPublicos');
+    }
+
+    public function guardarArchivoViviendaServiciosPublicos(Request $request)
+    {
+      $file = $request->file('file');
+      $name = $file->getClientOriginalName();
+      Storage::disk('public')->put($name,  File::get($file));
+
+      $request->session()->put('nameArchivoViviendaServiciosPublicos', $name);
+
+      return redirect('/admin/subiendoArchivoViviendaServiciosPublicos');
+    }
+
+    public function subirRespuestaViviendaServiciosPublicos(Request $request)
+    {     
+      try { 
+
+      $nameArchivo = null;
+      $html = "";
+
+      if ($request->session()->get("nameArchivoViviendaServiciosPublicos")) {
+          $nameArchivo = $request->session()->get("nameArchivoViviendaServiciosPublicos");
+      }   
+
+      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      {
+        $booleanMunicipio = False;
+        $booleanAño = False;
+        $data1 = array();
+        $data2 = array();
+        $data3 = array();
+        $data4 = array();
+        $data5 = array();
+        $time = date('Y/m/d H:i');
+
+        $results = $reader->get();
+
+        foreach ($results as $result) {
+
+	        $resultados = Municipio::where('nombre', $result->municipio)
+	          ->limit(1)
+	          ->get();
+
+	        foreach ($resultados as $resultado) {
+	          $id = $resultado->id;
+	          $booleanMunicipio = True;
+	        }
+
+          if ($booleanMunicipio == True) {
+
+          	$resultados = Viviendaserviciopublico::where(DB::raw('YEAR(anioVSP)'), $result->anio)
+          				->limit(1)
+						->get();
+		    foreach ($resultados as $resultado) {
+		      $booleanAño = True;
+		    }
+
+		    if ($booleanAño = False) {
+		    	
+	            $data1[] = array('anioVSP' => $result->anio.'/01/01 00:00:00',
+	                           'cabViv' =>  $result->cabecera_vivienda,
+	                           'cabHog' =>  $result->cabecera_hogar,
+	                           'cabHogViv' =>  $result->cabecera_hogares_por_vivienda,
+	                           'cabPerHog' =>  $result->cabecera_personas_por_hogar,
+	                           'cabPerViv' =>  $result->cabecera_personas_por_vivienda,
+	                           'rurViv' =>  $result->rural_vivienda,
+	                           'rurHog' =>  $result->rural_hogar,
+	                           'rurHogViv' =>  $result->rural_hogares_por_vivienda,
+	                           'rurPerHog' =>  $result->rural_personas_por_hogar,
+	                           'rurPerViv' =>  $result->rural_personas_por_vivienda,
+	                           'totalViv' =>  $result->total_vivienda,
+	                           'totalHog' =>  $result->total_hogar,
+	                           'totalHogViv' =>  $result->total_hogares_por_vivienda,
+	                           'totalPerHog' =>  $result->total_personas_por_hogar,
+	                           'totalPerViv' =>  $result->total_personas_por_vivienda,
+	                           'municipio_id' => $id,
+	                           'created_at' => $time,
+	                           'updated_at' => $time);
+
+	           	Viviendaserviciopublico::insert($data1);
+
+	           	$resultados = Viviendaserviciopublico::orderBy('id', 'desc')
+							->limit(1)
+							->get();
+				foreach ($resultados as $resultado) {
+					$viviendaserviciopublico_id = $resultado->id;
+				}
+
+			    $data2[] = array('cabCA' => $result->cabecera_cobertura_alcantarillado,
+	                           'centPobCA' => $result->centros_poblados_cobertura_alcantarillado,
+	                           'rurDispCA' => $result->rural_disperso_cobertura_alcantarillado,
+	                           'viviendaserviciopublico_id' => $viviendaserviciopublico_id,
+	                           'created_at' => $time,
+	                           'updated_at' => $time);
+
+			    $data3[] = array('cabCAs' => $result->cabecera_cobertura_aseo,
+	                           'centPobCAs' => $result->centros_poblados_cobertura_aseo,
+	                           'rurDispCAs' => $result->rural_disperso_cobertura_aseo,
+	                           'viviendaserviciopublico_id' => $viviendaserviciopublico_id,
+	                           'created_at' => $time,
+	                           'updated_at' => $time);
+
+			    $data4[] = array('cabCG' => $result->cabecera_cobertura_gas,
+	                           'centPobCG' => $result->centros_poblados_cobertura_gas,
+	                           'rurDispCG' => $result->rural_disperso_cobertura_gas,
+	                           'viviendaserviciopublico_id' => $viviendaserviciopublico_id,
+	                           'created_at' => $time,
+	                           'updated_at' => $time);
+
+			    $data5[] = array('cabCT' => $result->cabecera_cobertura_telefono,
+	                           'centPobCT' => $result->centros_poblados_cobertura_telefono,
+	                           'rurDispCT' => $result->rural_disperso_cobertura_telefono,
+	                           'viviendaserviciopublico_id' => $viviendaserviciopublico_id,
+	                           'created_at' => $time,
+	                           'updated_at' => $time);
+
+			    Coberturaalcantarillado::insert($data2);
+			    Coberturaaseo::insert($data3);
+			    Coberturagas::insert($data4);
+			    Coberturatelefono::insert($data5);
+
+			    $data1 = array();
+			    $data2 = array();
+			    $data3 = array();
+			    $data4 = array();
+			    $data5 = array();
+
+	            // return redirect('/admin/responder');
+	            // $html .= "<h1 class='text-center' style='margin-top: 0px;''>Se ha subido los datos correctamente</h1>";
+        	} else {
+        		// $html .= "<h1 class='text-center' style='margin-top: 0px;''>Año no disponible.$result->anio</h1>";
+        	}
+            
+          } else {
+            // $html = ."<h1 class='text-center' style='margin-top: 0px;''>No se encontro el departamento.$result->departamento</h1>";
+          }
+
+		    
+        }
+      });
+
+      } catch (Exception $e) {
+
+        // $html .= "<h1 class='text-center' style='margin-top: 0px;''>currio un error.$e</h1>";
+
+      }
+
+      // return Response::json(array('html' => $html, 'boolean' => $booleanMunicipio));
+    }
+
+    public function descargarViviendaServiciosPublicos(Request $request)
+    {
+      $data = array();
+
+      Excel::create('ViviendaServiciosPublicos', function($excel) {
+ 
+          $excel->sheet('Importar', function($sheet) {
+
+              $data[] = array('año' => "",
+              				'municipio' => "",
+              				 'cabecera_vivienda' => "",
+	                           'cabecera_hogar' => "",
+	                           'cabecera_hogares_por_vivienda' => "",
+	                           'cabecera_personas_por_hogar' => "",
+	                           'cabecera_personas_por_vivienda' => "",
+	                           'rural_vivienda' => "",
+	                           'rural_hogar' => "",
+	                           'rural_hogares_por_vivienda' => "",
+	                           'rural_personas_por_hogar' => "",
+	                           'rural_personas_por_vivienda' => "",
+	                           'total_vivienda' => "",
+	                           'total_hogar' => "",
+	                           'total_hogares_por_vivienda' => "",
+	                           'total_personas_por_hogar' => "",
+	                           'total_personas_por_vivienda' => "",
+	                       'cabecera_cobertura_alcantarillado' => "",
+	                           'centros_poblados_cobertura_alcantarillado' => "",
+	                           'rural_disperso_cobertura_alcantarillado' => "",
+	                           'cabecera_cobertura_aseo' => "",
+	                           'centros_poblados_cobertura_aseo' => "",
+	                           'rural_disperso_cobertura_aseo' => "",
+	                       'cabecera_cobertura_gas' => "",
+	                           'centros_poblados_cobertura_gas' => "",
+	                           'rural_disperso_cobertura_gas' => "",
+	                           'cabecera_cobertura_telefono' => "",
+	                           'centros_poblados_cobertura_telefono' => "",
+	                           'rural_disperso_cobertura_telefono' => "");
+
+              $sheet->fromArray($data);
+
+          });
+      })->export('xls');
+    }
+
 }
+

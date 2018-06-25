@@ -25,6 +25,7 @@
 
 @include('admin.modal.educacion.crear')
 @include('admin.modal.educacion.mostrarActualizar')
+@include('admin.modal.educacion.importar')
 @endsection
 
 @section('javascript')

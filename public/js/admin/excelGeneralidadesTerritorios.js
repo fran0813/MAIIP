@@ -12,7 +12,7 @@ function subirRespuestas()
 	$.ajax({
 		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 		method: "POST",
-		url: "/admin/subirRespuestaMunicipio",
+		url: "/admin/subirRespuestaGeneralidadesTerritorio",
 		dataType: 'json',
 		data: {  }
 	})
@@ -20,20 +20,20 @@ function subirRespuestas()
 	.done(function(response){
 		$('#loader').fadeOut(1000);
 		$('#subiendo').hide();
-// console.log(response);
-		// $('#subiendo').html(response.html).fadeIn(2000);
 
-		// if (response.boolean == "True") {
+		$('#subiendo').html(response.html).fadeIn(2000);
+
+		if (response.boolean == "True") {
 			
 			setTimeout(function(){
-				location.href ="/admin/municipio";
+				location.href ="/admin/generalidadesterritorio";
 			}, 1000);
 
-		// } else {
+		} else {
 			
-		// 	setTimeout(function(){
-		// 		// location.href ="/admin/municipio";
-		// 	}, 3000);
-		// }
+			setTimeout(function(){
+				location.href ="/admin/generalidadesterritorio";
+			}, 3000);
+		}
 	});
 }

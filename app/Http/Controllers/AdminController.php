@@ -258,44 +258,72 @@ class AdminController extends Controller
       $name = $file->getClientOriginalName();
       Storage::disk('public')->put($name,  File::get($file));
 
-      $request->session()->put('nameArchivo', $name);
+      $request->session()->put('nameArchivoMunicipio', $name);
 
       return redirect('/admin/subiendoArchivoMunicipio');
     }
 
     public function subirRespuestaMunicipio(Request $request)
     {     
-      try
-      { 
-          $nameArchivo = null;
-          if ($request->session()->get("nameArchivo")) {
-              $nameArchivo = $request->session()->get("nameArchivo");
-          }   
+      
+      $nameArchivo = null;
+      $html = "a";
 
-          Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
-          {
-            $data = array();
-            $time = date('Y/m/d H:i');
+      if ($request->session()->get("nameArchivoMunicipio")) {
+          $nameArchivo = $request->session()->get("nameArchivoMunicipio");
+      }   
 
-            $results = $reader->get();
+      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      {
+        $booleanDepartamento = False;
+        $booleanCodigo = False;
+        $data = array();
+        $time = date('Y/m/d H:i');
 
-            foreach ($results as $result)
-            {
-              $data[] = array('codigoM' => $result->codigo, 'nombre' => $result->nombre, 'catMun' => $result->categoria, 'departamento_id' => $result->departamento_id, 'created_at' => $time, 'updated_at' => $time);
+        $results = $reader->get();
+
+        foreach ($results as $result) {
+
+          $resultados = Departamento::where('nombre', $result->departamento)
+            ->limit(1)
+            ->get();
+
+          foreach ($resultados as $resultado) {
+            $id = $resultado->id;
+            $booleanDepartamento = True;
+          }
+
+          if ($booleanDepartamento == True) {
+
+            $resultados2 = Municipio::where('codigoM', $result->codigo)
+              ->limit(1)
+              ->get();
+            foreach ($resultados2 as $resultado) {
+              $booleanCodigo = True;
             }
 
-            // print_r($data);
-            Municipio::insert($data);
-          });
-          $html = "Se ha subido los datos con éxito";
+            if ($booleanCodigo == False) {
 
-          return Response::json(array('html' => $html));  
-        }catch (Exception $e)
-        {
-          $html = "Ocurrio un error".$e;
+              $data[] = array('codigoM' => $result->codigo, 'nombre' => $result->nombre, 'catMun' => $result->categoria, 'departamento_id' => $id, 'created_at' => $time, 'updated_at' => $time);
 
-        return Response::json(array('html' => $html));   
-      }
+              // $html .= "<h1 class='text-center' style='margin-top: 0px;'>Se ha subido los datos correctamente</h1>";
+            } else {
+              // $html .= "<h1 class='text-center' style='margin-top: 0px;>el código ya éxiste.$result->codigo</h1>";
+            }   
+              
+          } else {
+            // $html .= "<h1 class='text-center' style='margin-top: 0px;'>No se encontro el departamento.$result->departamento</h1>";
+          }
+        
+        }
+
+        Municipio::insert($data);
+             
+      });
+// $html = "";
+      // return Response::json(array('html' => $html)); 
+      // return Response::json(array('html' => $html, 'boolean' => $booleanDepartamento)); 
+
     }
 
     public function descargarMunicipio(Request $request)
@@ -306,7 +334,7 @@ class AdminController extends Controller
  
           $excel->sheet('Importar', function($sheet) {
 
-              $data[] = array('codigo' => "", 'nombre' => "", 'categoria' => "", 'departamento_id' => "");
+              $data[] = array('codigo' => "", 'nombre' => "", 'categoria' => "", 'departamento' => "");
 
               $sheet->fromArray($data);
 

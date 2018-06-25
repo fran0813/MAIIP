@@ -70,15 +70,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="cabHogViv2" class="text-label">Cabecera</label>       
-                        <input id="cabHogViv2" type="number" pattern="[0-9]+" min="0" placeholder="cabecera hogares por vivienda" oninput="calcularTotalCabHogViv2()" class="form-control" required>
+                        <input id="cabHogViv2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="cabecera hogares por vivienda" oninput="calcularTotalCabHogViv2()" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="rurHogViv2" class="text-label">Rural</label>     
-                        <input id="rurHogViv2" type="number" pattern="[0-9]+" min="0" placeholder="Rural hogares por vivienda" oninput="calcularTotalCabHogViv2()" class="form-control" required>
+                        <input id="rurHogViv2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Rural hogares por vivienda" oninput="calcularTotalCabHogViv2()" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="totalHogViv2" class="text-label">Total</label>       
-                        <input id="totalHogViv2" type="number" pattern="[0-9]+" min="0" placeholder="Total" disabled="" class="form-control" required>
+                        <input id="totalHogViv2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Total" disabled="" class="form-control" required>
                     </div>
                 </div>
 
@@ -90,15 +90,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="cabPerHog2" class="text-label">Cabecera</label>       
-                        <input id="cabPerHog2" type="number" pattern="[0-9]+" min="0" placeholder="cabecera personas por hogar" oninput="calcularTotalCabPerHog2()" class="form-control" required>
+                        <input id="cabPerHog2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="cabecera personas por hogar" oninput="calcularTotalCabPerHog2()" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="rurPerHog2" class="text-label">Rural</label>     
-                        <input id="rurPerHog2" type="number" pattern="[0-9]+" min="0" placeholder="Rural personas por hogar" oninput="calcularTotalCabPerHog2()" class="form-control" required>
+                        <input id="rurPerHog2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Rural personas por hogar" oninput="calcularTotalCabPerHog2()" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="totalPerHog2" class="text-label">Total</label>       
-                        <input id="totalPerHog2" type="number" pattern="[0-9]+" min="0" placeholder="Total" disabled="" class="form-control" required>
+                        <input id="totalPerHog2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Total" disabled="" class="form-control" required>
                     </div>
                 </div>
 
@@ -110,15 +110,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="cabPerViv2" class="text-label">Cabecera</label>       
-                        <input id="cabPerViv2" type="number" pattern="[0-9]+" min="0" placeholder="cabecera personas por vivienda" oninput="calcularTotalCabPerViv2()" class="form-control" required>
+                        <input id="cabPerViv2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="cabecera personas por vivienda" oninput="calcularTotalCabPerViv2()" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="rurPerViv2" class="text-label">Rural</label>     
-                        <input id="rurPerViv2" type="number" pattern="[0-9]+" min="0" placeholder="Rural personas por vivienda" oninput="calcularTotalCabPerViv2()" class="form-control" required>
+                        <input id="rurPerViv2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Rural personas por vivienda" oninput="calcularTotalCabPerViv2()" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="totalPerViv2" class="text-label">Total</label>       
-                        <input id="totalPerViv2" type="number" pattern="[0-9]+" min="0" placeholder="Total" disabled="" class="form-control" required>
+                        <input id="totalPerViv2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Total" disabled="" class="form-control" required>
                     </div>
                 </div>
 
@@ -130,15 +130,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="cabCA2" class="text-label">Cabecera</label>       
-                        <input id="cabCA2" type="number" pattern="[0-9]+" min="0" placeholder="Cabecera" class="form-control" required>
+                        <input id="cabCA2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Cabecera" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="centPobCA2" class="text-label">Centros poblados</label>     
-                        <input id="centPobCA2" type="number" pattern="[0-9]+" min="0" placeholder="Centros poblados" class="form-control" required>
+                        <input id="centPobCA2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Centros poblados" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="rurDispCA2" class="text-label">Rural dispersos</label>       
-                        <input id="rurDispCA2" type="number" pattern="[0-9]+" min="0" placeholder="Rural dispersos" class="form-control" required>
+                        <input id="rurDispCA2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Rural dispersos" class="form-control" required>
                     </div>
                 </div>
 
@@ -150,15 +150,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="cabCAs2" class="text-label">Cabecera</label>       
-                        <input id="cabCAs2" type="number" pattern="[0-9]+" min="0" placeholder="Cabecera" class="form-control" required>
+                        <input id="cabCAs2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Cabecera" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="centPobCAs2" class="text-label">Centros poblados</label>     
-                        <input id="centPobCAs2" type="number" pattern="[0-9]+" min="0" placeholder="Centros poblados" class="form-control" required>
+                        <input id="centPobCAs2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Centros poblados" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="rurDispCAs2" class="text-label">Rural dispersos</label>       
-                        <input id="rurDispCAs2" type="number" pattern="[0-9]+" min="0" placeholder="Rural dispersos" class="form-control" required>
+                        <input id="rurDispCAs2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Rural dispersos" class="form-control" required>
                     </div>
                 </div>
 
@@ -170,15 +170,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="cabCG2" class="text-label">Cabecera</label>       
-                        <input id="cabCG2" type="number" pattern="[0-9]+" min="0" placeholder="Cabecera" class="form-control" required>
+                        <input id="cabCG2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Cabecera" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="centPobCG2" class="text-label">Centros poblados</label>     
-                        <input id="centPobCG2" type="number" pattern="[0-9]+" min="0" placeholder="Centros poblados" class="form-control" required>
+                        <input id="centPobCG2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Centros poblados" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="rurDispCG2" class="text-label">Rural dispersos</label>       
-                        <input id="rurDispCG2" type="number" pattern="[0-9]+" min="0" placeholder="Rural dispersos" class="form-control" required>
+                        <input id="rurDispCG2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Rural dispersos" class="form-control" required>
                     </div>
                 </div>
 
@@ -190,15 +190,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="cabCT2" class="text-label">Cabecera</label>       
-                        <input id="cabCT2" type="number" pattern="[0-9]+" min="0" placeholder="Cabecera" class="form-control" required>
+                        <input id="cabCT2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Cabecera" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="centPobCT2" class="text-label">Centros poblados</label>     
-                        <input id="centPobCT2" type="number" pattern="[0-9]+" min="0" placeholder="Centros poblados" class="form-control" required>
+                        <input id="centPobCT2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Centros poblados" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="rurDispCT2" class="text-label">Rural dispersos</label>       
-                        <input id="rurDispCT2" type="number" pattern="[0-9]+" min="0" placeholder="Rural dispersos" class="form-control" required>
+                        <input id="rurDispCT2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Rural dispersos" class="form-control" required>
                     </div>
                 </div>
 

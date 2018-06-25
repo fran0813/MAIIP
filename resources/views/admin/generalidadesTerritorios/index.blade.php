@@ -7,7 +7,7 @@
     
     <div id="crear" class="col-sm-2 col-md-2 col-lg-2" hidden="">
        <a href="#" style="margin-left: 10px;" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalCrear" onclick="limpiarRespuesta()">Crear</a> 
-       <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#">Importar</a>      
+       <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalImportarGeneralidadesTerritorio">Importar</a>      
     </div>
 
 </div>
@@ -24,6 +24,7 @@
 
 @include('admin.modal.generalidadesterritorio.crear')
 @include('admin.modal.generalidadesterritorio.mostrarActualizar')
+@include('admin.modal.generalidadesterritorio.importar')
 @endsection
 
 @section('javascript')

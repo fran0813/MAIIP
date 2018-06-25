@@ -12,7 +12,7 @@ function subirRespuestas()
 	$.ajax({
 		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 		method: "POST",
-		url: "/admin/subirRespuestaMunicipio",
+		url: "/admin/subirRespuestaSalud",
 		dataType: 'json',
 		data: {  }
 	})
@@ -26,7 +26,7 @@ function subirRespuestas()
 		// if (response.boolean == "True") {
 			
 			setTimeout(function(){
-				location.href ="/admin/municipio";
+				location.href ="/admin/salud";
 			}, 1000);
 
 		// } else {

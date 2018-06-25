@@ -25,6 +25,7 @@
 
 @include('admin.modal.salud.crear')
 @include('admin.modal.salud.mostrarActualizar')
+@include('admin.modal.salud.importar')
 @endsection
 
 @section('javascript')

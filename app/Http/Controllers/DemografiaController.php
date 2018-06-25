@@ -594,4 +594,139 @@ class DemografiaController extends Controller
 
 		return Response::json(array('html' => $html));
 	}
+
+	public function subiendoArchivoDemografia()
+    {
+        return view('admin.demografias.subiendoArchivoDemografia');
+    }
+
+    public function guardarArchivoDemografia(Request $request)
+    {
+      $file = $request->file('file');
+      $name = $file->getClientOriginalName();
+      Storage::disk('public')->put($name,  File::get($file));
+
+      $request->session()->put('nameArchivoDemografia', $name);
+
+      return redirect('/admin/subiendoArchivoDemografia');
+    }
+
+    public function subirRespuestaDemografia(Request $request)
+    {     
+      try { 
+
+      $nameArchivo = null;
+      $html = "";
+
+      if ($request->session()->get("nameArchivoDemografia")) {
+          $nameArchivo = $request->session()->get("nameArchivoDemografia");
+      }   
+
+      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      {
+        $booleanMunicipio = False;
+        $booleanAño = False;
+        $data = array();
+        $time = date('Y/m/d H:i');
+
+        $results = $reader->get();
+
+        foreach ($results as $result) {
+
+	        $resultados = Municipio::where('nombre', $result->municipio)
+	          ->limit(1)
+	          ->get();
+
+	        foreach ($resultados as $resultado) {
+	          $id = $resultado->id;
+	          $booleanMunicipio = True;
+	        }
+
+          if ($booleanMunicipio == True) {
+
+          	$resultados = Demografia::where(DB::raw('YEAR(anioD)'), $result->anio)
+          				->limit(1)
+						->get();
+		    foreach ($resultados as $resultado) {
+		      $booleanAño = True;
+		    }
+
+		    if ($booleanAño = False) {
+		    	
+	            $data[] = array('anioD' => $result->anio.'/01/01 00:00:00',
+	                           'pobEdadTrabajar' => $result->poblacion_edad_trabajar,
+	                           'pobPotActiva' => $result->poblacion_potencial_activa,
+	                           'numPerMen' => $result->numero_personas_menores,
+	                           'numPerMay' => $result->numero_personas_mayores,
+	                           'numPerInd' => $result->numero_personas_independiente,
+	                           'numPerDep' => $result->numero_personas_dependiente,
+	                           'pobHom' => $result->poblacion_hombre,
+	                           'pobMuj' => $result->poblacion_mujer,
+	                           'pobZonCab' => $result->poblacion_zona_cabecera,
+	                           'pobZonRes' => $result->poblacion_zona_restante,
+	                           'indRuralidad' => $result->indice_de_ruralidad,
+	                           'pobTotal' => $result->poblacion_total,
+	                           'crecPob' => $result->crecimiento_poblacionl,
+	                           'municipio_id' => $id,
+	                           'created_at' => $time,
+	                           'updated_at' => $time);
+
+	            Demografia::insert($data);
+
+		   		$data = array();
+
+
+	            // return redirect('/admin/responder');
+	            // $html .= "<h1 class='text-center' style='margin-top: 0px;''>Se ha subido los datos correctamente</h1>";
+        	} else {
+        		// $html .= "<h1 class='text-center' style='margin-top: 0px;''>Año no disponible.$result->anio</h1>";
+        	}
+            
+          } else {
+            // $html = ."<h1 class='text-center' style='margin-top: 0px;''>No se encontro el departamento.$result->departamento</h1>";
+          }
+
+		   
+        }
+      });
+
+      } catch (Exception $e) {
+
+        // $html .= "<h1 class='text-center' style='margin-top: 0px;''>currio un error.$e</h1>";
+
+      }
+
+      // return Response::json(array('html' => $html, 'boolean' => $booleanMunicipio));
+    }
+
+    public function descargarDemografia(Request $request)
+    {
+      $data = array();
+
+      Excel::create('Demografia', function($excel) {
+ 
+          $excel->sheet('Importar', function($sheet) {
+
+              $data[] = array('año' => "",
+              				 'municipio' => "",
+              				 'poblacion_edad_trabajar' => "",
+              				 'poblacion_potencial_activa' => "",
+              				 'numero_personas_menores' => "",
+              				 'numero_personas_mayores' => "",
+              				 'numero_personas_independiente' => "",
+              				 'numero_personas_dependiente' => "",
+              				 'poblacion_hombre' => "",
+              				 'poblacion_mujer' => "",
+              				 'poblacion_zona_cabecera' => "",
+              				 'poblacion_zona_restante' => "",
+              				 'indice_de_ruralidad' => "",
+              				 'poblacion_total' => "",
+              				 'crecimiento_poblacionl' => "");
+
+              $sheet->fromArray($data);
+
+          });
+      })->export('xls');
+    }
+
 }
