@@ -37,6 +37,7 @@ Route::group(['prefix' => 'admin'], function()
 	Route::get('viviendaserviciospublicos', 'AdminController@tableViviendasserviciospublicosa')->middleware('auth');
 	Route::get('salud', 'AdminController@tableSalud')->middleware('auth');
 	Route::get('educacion', 'AdminController@tableEducacion')->middleware('auth');
+	Route::get('seguridadviolencia', 'AdminController@tableSeguridadviolencia')->middleware('auth');
 
 	Route::get('municipio', 'AdminController@tablemunicipio')->middleware('auth');
 	Route::get('/mostrarMunicipio', 'AdminController@mostrarTablaMunicipio')->middleware('auth');
@@ -80,6 +81,11 @@ Route::group(['prefix' => 'admin'], function()
 	Route::post('/guardarArchivoViviendaServiciosPublicos', 'AdminController@guardarArchivoViviendaServiciosPublicos')->middleware('auth');
 	Route::post('/subirRespuestaViviendaServiciosPublicos', 'AdminController@subirRespuestaViviendaServiciosPublicos')->middleware('auth');
 	Route::get('/descargarViviendaServiciosPublicos', 'AdminController@descargarViviendaServiciosPublicos')->middleware('auth');
+
+	Route::get('/subiendoArchivoSeguridadViolencia', 'AdminController@subiendoArchivoSeguridadViolencia')->middleware('auth');
+	Route::post('/guardarArchivoSeguridadViolencia', 'AdminController@guardarArchivoSeguridadViolencia')->middleware('auth');
+	Route::post('/subirRespuestaSeguridadViolencia', 'AdminController@subirRespuestaSeguridadViolencia')->middleware('auth');
+	Route::get('/descargarSeguridadViolencia', 'AdminController@descargarSeguridadViolencia')->middleware('auth');
 });
 
 Route::group(['prefix' => '/'], function()
@@ -90,6 +96,7 @@ Route::group(['prefix' => '/'], function()
 	Route::get('/mostrarAñoGT', 'UserController@mostrarAñoGT');
 	Route::get('/mostrarAñoVSP', 'UserController@mostrarAñoVSP');
 	Route::get('/mostrarAñoS', 'UserController@mostrarAñoS');
+	Route::get('/mostrarAñoSV', 'UserController@mostrarAñoSV');
 
 	Route::get('/mostrarDepartamentos', 'UserController@mostrarDepartamentos');
 	Route::get('/mostrarMunicipios', 'UserController@mostrarMunicipios');
@@ -153,10 +160,21 @@ Route::group(['prefix' => 'educacion'], function(){
 	Route::get('/mostrarEducacion', 'EducacionController@mostrarEducacion');
 });
 
+Route::group(['prefix' => 'seguridadviolencia'], function(){
+	Route::get('/mostrarTablaSeguridadviolencia', 'DemografiaController@mostrarTablaSeguridadviolencia')->middleware('auth');
+	Route::post('/actualizarSeguridadviolencia', 'DemografiaController@actualizarSeguridadviolencia')->middleware('auth');
+	Route::post('/borrarSeguridadviolencia', 'DemografiaController@borrarSeguridadviolencia')->middleware('auth');
+	Route::post('/crearSeguridadviolencia', 'DemografiaController@crearSeguridadviolencia')->middleware('auth');
+	Route::get('/grafica1Seguridadviolencia', 'DemografiaController@grafica1Seguridadviolencia');
+	Route::post('/mostrarActualizarSeguridadviolencia', 'DemografiaController@mostrarActualizarSeguridadviolencia')->middleware('auth');
+	Route::get('/mostrarSeguridadviolencia', 'DemografiaController@mostrarSeguridadviolencia');
+});
+
 Route::group(['prefix' => 'tabla'], function(){
 	Route::get('generalidadesterritorio', 'TableController@generalidadesterritorio');
 	Route::get('demografia', 'TableController@demografia');
 	Route::get('viviendaserviciospublicos', 'TableController@viviendasserviciospublicos');
 	Route::get('salud', 'TableController@salud');
 	Route::get('educacion', 'TableController@educacion');
+	Route::get('seguridadviolencia', 'TableController@seguridadviolencia');
 });

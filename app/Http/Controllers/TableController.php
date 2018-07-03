@@ -33,4 +33,9 @@ class TableController extends Controller
     {
       return view('user.tables.educacion');
     }
+
+    public function seguridadviolencia()
+    {
+      return view('user.tables.seguridadviolencia');
+    }
 }
