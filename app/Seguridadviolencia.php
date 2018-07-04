@@ -18,7 +18,7 @@ class Seguridadviolencia extends Model
             'vioInt',
             'casTot',
             'casTasHom',
-            'municipio_id';];
+            'municipio_id'];
 
     public function municipio()
     {

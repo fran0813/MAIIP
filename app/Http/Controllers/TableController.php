@@ -38,4 +38,9 @@ class TableController extends Controller
     {
       return view('user.tables.seguridadviolencia');
     }
+
+    public function economicosocial()
+    {
+      return view('user.tables.economicosocial');
+    }
 }

@@ -209,6 +209,11 @@ class SeguridadviolenciaController extends Controller
 
 		$resultados = Seguridadviolencia::join('delito', 'seguridadviolencia.id', 'delito.seguridadviolencia_id')
 						->select(DB::raw('YEAR(anioSV) as YEARanioSV'),
+							'seguridadviolencia.tasHom',
+								'seguridadviolencia.tasLesPer',
+								'seguridadviolencia.tasDesEscTot',
+								'seguridadviolencia.tasIncDen',
+								'seguridadviolencia.tasMueAcc',
 								'delito.*')
 						->where('salud.municipio_id', $idMunicipio)
 						->where(DB::raw('YEAR(anioSV)'), $anioSV)
@@ -263,27 +268,27 @@ class SeguridadviolenciaController extends Controller
 		foreach ($resultados as $resultado) {
             $id = $resultado->id;
             $anio = $resultado->DATEanioS;
-           	$tasDesEscTot = $resultado->tasDesEscTot;;
-			$tasHom = $resultado->tasHom;;
-			$tasIncDen = $resultado->tasIncDen;;
-			$tasLesPer = $resultado->tasLesPer;;
-			$tasMueAcc = $resultado->tasMueAcc;;
-			$tasSui = $resultado->tasSui;;
-			$vioInt = $resultado->vioInt;;
-			$casTot = $resultado->casTot;;
-			$casTasHom = $resultado->casTasHom;;
-			$tot = $resultado->tot;;
-			$hom = $resultado->hom;;
-			$muj = $resultado->muj;;
-			$fatTot = $resultado->fatTot;;
-			$fatHom = $resultado->fatHom;;
-			$fatMuj = $resultado->fatMuj;;
-			$noFatTot = $resultado->noFatTot;;
-			$noFatHom = $resultado->noFatHom;;
-			$noFatMuj = $resultado->noFatMuj;;
-			$may = $resultado->may;;
-			$otrFam = $resultado->otrFam;;
-			$inf = $resultado->inf;;
+           	$tasDesEscTot = $resultado->tasDesEscTot;
+			$tasHom = $resultado->tasHom;
+			$tasIncDen = $resultado->tasIncDen;
+			$tasLesPer = $resultado->tasLesPer;
+			$tasMueAcc = $resultado->tasMueAcc;
+			$tasSui = $resultado->tasSui;
+			$vioInt = $resultado->vioInt;
+			$casTot = $resultado->casTot;
+			$casTasHom = $resultado->casTasHom;
+			$tot = $resultado->tot;
+			$hom = $resultado->hom;
+			$muj = $resultado->muj;
+			$fatTot = $resultado->fatTot;
+			$fatHom = $resultado->fatHom;
+			$fatMuj = $resultado->fatMuj;
+			$noFatTot = $resultado->noFatTot;
+			$noFatHom = $resultado->noFatHom;
+			$noFatMuj = $resultado->noFatMuj;
+			$may = $resultado->may;
+			$otrFam = $resultado->otrFam;
+			$inf = $resultado->inf;
 		}
 
 		return Response::json(array('id' => $id,
@@ -494,13 +499,13 @@ class SeguridadviolenciaController extends Controller
 				</thead>
 				<tbody>";
 
-		$resultados = Salud::join('vacunaciones', 'salud.id', 'vacunaciones.salud_id')
+		$resultados = Seguridadviolencia::join('vacunaciones', 'salud.id', 'vacunaciones.salud_id')
             ->select('salud.anioS', 'vacunaciones.*')
             ->select('salud.id',
             		 DB::raw('YEAR(anioS) as YEARanioS'),
             		 'vacunaciones.*')
             ->where('salud.municipio_id', $idMunicipio)
-            ->orderBy('anioS')
+            ->orderBy('anioSV')
             ->get();
 		foreach ($resultados as $resultado) {
 			$id = $resultado->id;
@@ -526,31 +531,31 @@ class SeguridadviolenciaController extends Controller
 		return Response::json(array('html' => $html));
 	}
 
-	public function subiendoArchivoSeguridadviolencia()
+	public function subiendoArchivoSeguridadViolencia()
     {
-        return view('admin.Seguridadviolencia.subiendoArchivoSeguridadviolencia');
+        return view('admin.seguridadviolencia.subiendoArchivoSeguridadViolencia');
     }
 
-    public function guardarArchivoSeguridadviolencia(Request $request)
+    public function guardarArchivoSeguridadViolencia(Request $request)
     {
       $file = $request->file('file');
       $name = $file->getClientOriginalName();
       Storage::disk('public')->put($name,  File::get($file));
 
-      $request->session()->put('nameArchivoSeguridadviolencia', $name);
+      $request->session()->put('nameArchivoSeguridadViolencia', $name);
 
-      return redirect('/admin/subiendoArchivoSeguridadviolencia');
+      return redirect('/admin/subiendoArchivoSeguridadViolencia');
     }
 
-    public function subirRespuestaSeguridadviolencia(Request $request)
+    public function subirRespuestaSeguridadViolencia(Request $request)
     {     
       try { 
 
       $nameArchivo = null;
       $html = "";
 
-      if ($request->session()->get("nameArchivoSeguridadviolencia")) {
-          $nameArchivo = $request->session()->get("nameArchivoSeguridadviolencia");
+      if ($request->session()->get("nameArchivoSeguridadViolencia")) {
+          $nameArchivo = $request->session()->get("nameArchivoSeguridadViolencia");
       }   
 
       Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
@@ -674,7 +679,7 @@ class SeguridadviolenciaController extends Controller
     {
       $data = array();
 
-      Excel::create('Seguridadviolencia', function($excel) {
+      Excel::create('SeguridadViolencia', function($excel) {
  
           $excel->sheet('Importar', function($sheet) {
 

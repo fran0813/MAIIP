@@ -15,7 +15,7 @@ function mostrarDatos()
 		$.ajax({
 			headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 			method: "GET",
-			url: "/demografia/mostrarTablaSeguridadviolencia",
+			url: "/seguridadviolencia/mostrarTablaSeguridadviolencia",
 			dataType: 'json',
 			data: { idMunicipio: municipio }
 		})
@@ -40,7 +40,7 @@ $("#tablaSeguridadViolencia").on("click", "a", function()
 	var id = $(this).attr("id");
 
 	if (value == "editar") {
-		mostrarActualizarGeneralidadesterritorio(id);
+		mostrarActualizarSeguridadviolencia(id);
 	} else if(value == "eliminar") {
 		// $.ajax({
 		// 	headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -56,14 +56,14 @@ $("#tablaSeguridadViolencia").on("click", "a", function()
 	}
 });	
 
-function mostrarActualizarGeneralidadesterritorio(id)
+function mostrarActualizarSeguridadviolencia(id)
 {
 	$('#respuesta2').hide();
 
 	$.ajax({
 		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 		method: "POST",
-		url: "/seguridadviolencia/mostrarActualizarSeguridadViolencia",
+		url: "/seguridadviolencia/mostrarActualizarSeguridadviolencia",
 		dataType: 'json',
 		data: { idSV: id }
 	})
@@ -71,20 +71,27 @@ function mostrarActualizarGeneralidadesterritorio(id)
 	.done(function(response) {
 		$("#idD").val(response.id);
 		$("#anio2").val(response.anio);
-		$("#pobEdadTrabajar2").val(response.pobEdadTrabajar);
-		$("#pobPotActiva2").val(response.pobPotActiva);
-		$("#pobPotInactiva2").val(response.pobPotInactiva);
-		$("#numPerMen2").val(response.numPerMen);
-		$("#numPerMay2").val(response.numPerMay);
-		$("#numPerInd2").val(response.numPerInd);
-		$("#numPerDep2").val(response.numPerDep);
-		$("#pobHom2").val(response.pobHom);
-		$("#pobMuj2").val(response.pobMuj);
-		$("#pobZonCab2").val(response.pobZonCab);
-		$("#pobZonRes2").val(response.pobZonRes);
-		$("#indRuralidad2").val(response.indRuralidad);
-		$("#pobTotal2").val(response.pobTotal);
-		$("#crecPob2").val(response.crecPob);
+		$("tasDesEscTot2").val(response.tasDesEscTot);
+		$("tasHom2").val(response.tasHom);
+		$("tasIncDen2").val(response.tasIncDen);
+		$("tasLesPer2").val(response.tasLesPer);
+		$("tasMueAcc2").val(response.tasMueAcc);
+		$("tasSui2").val(response.tasSui);
+		$("vioInt2").val(response.vioInt);
+		$("casTot2").val(response.casTot);
+		$("casTasHom2").val(response.casTasHom);
+		$("tot2").val(response.tot);
+		$("hom2").val(response.tot);
+		$("muj2").val(response.muj);
+		$("fatTot2").val(response.fatTot);
+		$("fatHom2").val(response.fatHom);
+		$("fatMuj2").val(response.fatMuj);
+		$("noFatTot2").val(response.noFatTot);
+		$("noFatHom2").val(response.noFatHom);
+		$("noFatMuj2").val(response.noFatMuj);
+		$("may2").val(response.may);
+		$("otrFam2").val(response.otrFam);
+		$("inf2").val(response.inf);
 	});
 }
 
@@ -112,20 +119,27 @@ $("#formCrear").on("submit", function()
 {
 	var anio = $("#anio").val();
 	var comprobar = parseInt(anio.substr(0,4));
-	var pobEdadTrabajar = $("#pobEdadTrabajar").val();
-	var pobPotActiva = $("#pobPotActiva").val();
-	var pobPotInactiva = $("#pobPotInactiva").val();
-	var numPerMen = $("#numPerMen").val();
-	var numPerMay= $("#numPerMay").val();
-	var numPerInd = $("#numPerInd").val();
-	var numPerDep = $("#numPerDep").val();
-	var pobHom= $("#pobHom").val();
-	var pobMuj = $("#pobMuj").val();
-	var pobZonCab = $("#pobZonCab").val();
-	var pobZonRes = $("#pobZonRes").val();
-	var indRuralidad = $("#indRuralidad").val();
-	var pobTotal = $("#pobTotal").val();
-	var crecPob = $("#crecPob").val();
+	var tasDesEscTot = $("tasDesEscTot").val();
+	var tasHom = $("tasHom").val();
+	var tasIncDen = $("tasIncDen").val();
+	var tasLesPer = $("tasLesPer").val();
+	var tasMueAcc = $("tasMueAcc").val();
+	var tasSui = $("tasSui").val();
+	var vioInt = $("vioInt").val();
+	var casTot = $("casTot").val();
+	var casTasHom = $("casTasHom").val();
+	var tot = $("tot").val();
+	var hom = $("hom").val();
+	var muj = $("muj").val();
+	var fatTot = $("fatTot").val();
+	var fatHom = $("fatHom").val();
+	var fatMuj = $("fatMuj").val();
+	var noFatTot = $("noFatTot").val();
+	var noFatHom = $("noFatHom").val();
+	var noFatMuj = $("noFatMuj").val();
+	var may = $("may").val();
+	var otrFam = $("otrFam").val();
+	var inf = $("inf").val();
 	var municipio = $("#municipio").val();
 
 	$.ajax({
@@ -135,21 +149,28 @@ $("#formCrear").on("submit", function()
 		dataType: 'json',
 		data: { anioD: anio,
 				comprobar: comprobar,
-				pobEdadTrabajar: pobEdadTrabajar,
-				pobPotActiva: pobPotActiva,
 				municipio_id: municipio,
-				pobPotInactiva: pobPotInactiva,
-				numPerMen: numPerMen,
-				numPerMay: numPerMay,
-				numPerInd: numPerInd,
-				numPerDep: numPerDep,
-				pobHom: pobHom,
-				pobMuj: pobMuj,
-				pobZonCab: pobZonCab,
-				pobZonRes: pobZonRes,
-				indRuralidad: indRuralidad,
-				pobTotal: pobTotal,
-				crecPob: crecPob }
+				tasDesEscTot: tasDesEscTot,
+				tasHom: tasHom,
+				tasIncDen: tasIncDen,
+				tasLesPer: tasLesPer,
+				tasMueAcc: tasMueAcc,
+				tasSui: tasSui,
+				vioInt: vioInt,
+				casTot: casTot,
+				casTasHom: casTasHom,
+				tot: tot,
+				hom: hom,
+				muj: muj,
+				fatTot: fatTot,
+				fatHom: fatHom,
+				fatMuj: fatMuj,
+				noFatTot: noFatTot,
+				noFatHom: noFatHom,
+				noFatMuj: noFatMuj,
+				may: may,
+				otrFam: otrFam,
+				inf: inf, }
 	})
 
 	.done(function(response){
@@ -169,20 +190,27 @@ function limpiarRespuesta()
 $("#formActualizar").on("submit", function()
 {
 	var idD = $("#idD").val();
-	var pobEdadTrabajar = $("#pobEdadTrabajar2").val();
-	var pobPotActiva = $("#pobPotActiva2").val();
-	var pobPotInactiva = $("#pobPotInactiva2").val();
-	var numPerMen = $("#numPerMen2").val();
-	var numPerMay= $("#numPerMay2").val();
-	var numPerInd = $("#numPerInd2").val();
-	var numPerDep = $("#numPerDep2").val();
-	var pobHom = $("#pobHom2").val();
-	var pobMuj = $("#pobMuj2").val();
-	var pobZonCab = $("#pobZonCab2").val();
-	var pobZonRes = $("#pobZonRes2").val();
-	var indRuralidad = $("#indRuralidad2").val();
-	var pobTotal = $("#pobTotal2").val();
-	var crecPob = $("#crecPob2").val();
+	var tasDesEscTot = $("tasDesEscTot").val();
+	var tasHom = $("tasHom").val();
+	var tasIncDen = $("tasIncDen").val();
+	var tasLesPer = $("tasLesPer").val();
+	var tasMueAcc = $("tasMueAcc").val();
+	var tasSui = $("tasSui").val();
+	var vioInt = $("vioInt").val();
+	var casTot = $("casTot").val();
+	var casTasHom = $("casTasHom").val();
+	var tot = $("tot").val();
+	var hom = $("hom").val();
+	var muj = $("muj").val();
+	var fatTot = $("fatTot").val();
+	var fatHom = $("fatHom").val();
+	var fatMuj = $("fatMuj").val();
+	var noFatTot = $("noFatTot").val();
+	var noFatHom = $("noFatHom").val();
+	var noFatMuj = $("noFatMuj").val();
+	var may = $("may").val();
+	var otrFam = $("otrFam").val();
+	var inf = $("inf").val();
 
 	$.ajax({
 		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -190,20 +218,27 @@ $("#formActualizar").on("submit", function()
 		url: "/seguridadviolencia/actualizarSeguridadviolencia",
 		dataType: 'json',
 		data: { idD: idD,
-				pobEdadTrabajar: pobEdadTrabajar,
-				pobPotActiva: pobPotActiva,
-				pobPotInactiva: pobPotInactiva,
-				numPerMen: numPerMen,
-				numPerMay: numPerMay,
-				numPerInd: numPerInd,
-				numPerDep: numPerDep,
-				pobHom: pobHom,
-				pobMuj: pobMuj,
-				pobZonCab: pobZonCab,
-				pobZonRes: pobZonRes,
-				indRuralidad: indRuralidad,
-				pobTotal: pobTotal,
-				crecPob: crecPob }
+				tasDesEscTot: tasDesEscTot,
+				tasHom: tasHom,
+				tasIncDen: tasIncDen,
+				tasLesPer: tasLesPer,
+				tasMueAcc: tasMueAcc,
+				tasSui: tasSui,
+				vioInt: vioInt,
+				casTot: casTot,
+				casTasHom: casTasHom,
+				tot: tot,
+				hom: hom,
+				muj: muj,
+				fatTot: fatTot,
+				fatHom: fatHom,
+				fatMuj: fatMuj,
+				noFatTot: noFatTot,
+				noFatHom: noFatHom,
+				noFatMuj: noFatMuj,
+				may: may,
+				otrFam: otrFam,
+				inf: inf, }
 	})
 
 	.done(function(response) {

@@ -12,7 +12,7 @@ function subirRespuestas()
 	$.ajax({
 		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 		method: "POST",
-		url: "/admin/subirRespuestaSeguridadviolencia",
+		url: "/admin/subirRespuestaEconomicoSocial",
 		dataType: 'json',
 		data: {  }
 	})
@@ -26,7 +26,7 @@ function subirRespuestas()
 		// if (response.boolean == "True") {
 			
 			setTimeout(function(){
-				location.href ="/admin/seguridadviolencia";
+				location.href ="/admin/economicosocial";
 			}, 1000);
 
 		// } else {
