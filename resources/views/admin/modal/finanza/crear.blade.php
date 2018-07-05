@@ -6,7 +6,7 @@
 
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Crear Educación</h4>
+              <h4 class="modal-title">Crear Finanza</h4>
             </div>
             
             <div id="modalCrear" class="modal-body" style="border: transparent; overflow-y: auto;">

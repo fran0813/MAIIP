@@ -13,13 +13,13 @@ class CreateCrimeTable extends Migration
      */
     public function up()
     {
-        Schema::create('delitoSexual', function (Blueprint $table) {
+        Schema::create('DelitoSexual', function (Blueprint $table) {
             $table->increments('id');
             $table->double('tot', 5, 2);
             $table->double('hom', 5, 2);
             $table->double('muj', 5, 2);
             $table->integer('seguridadviolencia_id')->unsigned();
-            $table->foreign('seguridadviolencia_id')->references('id')->on('seguridadViolencia');
+            $table->foreign('seguridadviolencia_id')->references('id')->on('SeguridadViolencia');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateCrimeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delitoSexual');
+        Schema::dropIfExists('DelitoSexual');
     }
 }

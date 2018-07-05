@@ -19,8 +19,8 @@ function mostrarTablaEconomicosocial()
 
 		.done(function(response){
 			$('#economicosocial').html(response.html);
-			mostrarGrafica1Dem();
-			mostrarGrafica2Dem();
+			mostrarGrafica1ES();
+			mostrarGrafica2ES();
 		});
 	} else {
 		$('#grafica1').hide();
@@ -111,7 +111,7 @@ function mostrarTablaEconomicosocial()
 	}
 }
 
-function mostrarGrafica1Dem()
+function mostrarGrafica1ES()
 {
 	var municipio = $("#municipio").val();
 
@@ -133,7 +133,7 @@ function mostrarGrafica1Dem()
 	}
 }
 
-function mostrarGrafica2Dem()
+function mostrarGrafica2ES()
 {
 	var municipio = $("#municipio").val();
 

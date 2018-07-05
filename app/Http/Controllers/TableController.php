@@ -43,4 +43,9 @@ class TableController extends Controller
     {
       return view('user.tables.economicosocial');
     }
+
+    public function finanza()
+    {
+      return view('user.tables.finanza');
+    }
 }

@@ -13,7 +13,7 @@ class CreateViolenceSecurityTable extends Migration
      */
     public function up()
     {
-        Schema::create('seguridadViolencia', function (Blueprint $table) {
+        Schema::create('SeguridadViolencia', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('anioSV')->unique();
             $table->double('tasDesEscTot', 5, 2);
@@ -38,6 +38,6 @@ class CreateViolenceSecurityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seguridadViolencia');
+        Schema::dropIfExists('SeguridadViolencia');
     }
 }

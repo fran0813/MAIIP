@@ -39,6 +39,7 @@ Route::group(['prefix' => 'admin'], function()
 	Route::get('educacion', 'AdminController@tableEducacion')->middleware('auth');
 	Route::get('seguridadviolencia', 'AdminController@tableSeguridadviolencia')->middleware('auth');
 	Route::get('economicosocial', 'AdminController@tableeconomicosocial')->middleware('auth');
+	Route::get('finanza', 'AdminController@tablefinanza')->middleware('auth');
 
 	Route::get('municipio', 'AdminController@tablemunicipio')->middleware('auth');
 	Route::get('/mostrarMunicipio', 'AdminController@mostrarTablaMunicipio')->middleware('auth');
@@ -92,6 +93,11 @@ Route::group(['prefix' => 'admin'], function()
 	Route::post('/guardarArchivoEconomicoSocial', 'AdminController@guardarArchivoEconomicoSocial')->middleware('auth');
 	Route::post('/subirRespuestaEconomicoSocial', 'AdminController@subirRespuestaEconomicoSocial')->middleware('auth');
 	Route::get('/descargarEconomicoSocial', 'AdminController@descargarEconomicoSocial')->middleware('auth');
+
+	Route::get('/subiendoArchivoFinanza', 'AdminController@subiendoArchivoFinanza')->middleware('auth');
+	Route::post('/guardarArchivoFinanza', 'AdminController@guardarArchivoFinanza')->middleware('auth');
+	Route::post('/subirRespuestaFinanza', 'AdminController@subirRespuestaFinanza')->middleware('auth');
+	Route::get('/descargarFinanza', 'AdminController@descargarFinanza')->middleware('auth');
 });
 
 Route::group(['prefix' => '/'], function()
@@ -103,6 +109,8 @@ Route::group(['prefix' => '/'], function()
 	Route::get('/mostrarAñoVSP', 'UserController@mostrarAñoVSP');
 	Route::get('/mostrarAñoS', 'UserController@mostrarAñoS');
 	Route::get('/mostrarAñoSV', 'UserController@mostrarAñoSV');
+	Route::get('/mostrarAñoES', 'UserController@mostrarAñoES');
+	Route::get('/mostrarAñoF', 'UserController@mostrarAñoF');
 
 	Route::get('/mostrarDepartamentos', 'UserController@mostrarDepartamentos');
 	Route::get('/mostrarMunicipios', 'UserController@mostrarMunicipios');
@@ -167,24 +175,36 @@ Route::group(['prefix' => 'educacion'], function(){
 });
 
 Route::group(['prefix' => 'seguridadviolencia'], function(){
-	Route::get('/mostrarTablaSeguridadviolencia', 'Seguridadvolencia@mostrarTablaSeguridadviolencia')->middleware('auth');
-	Route::post('/actualizarSeguridadviolencia', 'Seguridadvolencia@actualizarSeguridadviolencia')->middleware('auth');
-	Route::post('/borrarSeguridadviolencia', 'Seguridadvolencia@borrarSeguridadviolencia')->middleware('auth');
-	Route::post('/crearSeguridadviolencia', 'Seguridadvolencia@crearSeguridadviolencia')->middleware('auth');
-	Route::get('/grafica1Seguridadviolencia', 'Seguridadvolencia@grafica1Seguridadviolencia');
-	Route::post('/mostrarActualizarSeguridadviolencia', 'Seguridadvolencia@mostrarActualizarSeguridadviolencia')->middleware('auth');
-	Route::get('/mostrarSeguridadviolencia', 'Seguridadvolencia@mostrarSeguridadviolencia');
+	Route::get('/mostrarTablaSeguridadviolencia', 'SeguridadvolenciaController@mostrarTablaSeguridadviolencia')->middleware('auth');
+	Route::post('/actualizarSeguridadviolencia', 'SeguridadvolenciaController@actualizarSeguridadviolencia')->middleware('auth');
+	Route::post('/borrarSeguridadviolencia', 'SeguridadvolenciaController@borrarSeguridadviolencia')->middleware('auth');
+	Route::post('/crearSeguridadviolencia', 'SeguridadvolenciaController@crearSeguridadviolencia')->middleware('auth');
+	Route::get('/grafica1Seguridadviolencia', 'SeguridadvolenciaController@grafica1Seguridadviolencia');
+	Route::post('/mostrarActualizarSeguridadviolencia', 'SeguridadvolenciaController@mostrarActualizarSeguridadviolencia')->middleware('auth');
+	Route::get('/mostrarSeguridadviolencia', 'SeguridadvolenciaController@mostrarSeguridadviolencia');
 });
 
 Route::group(['prefix' => 'economicosocial'], function(){
-	Route::get('/mostrarTablaEconomicosocial', 'Economicosocial@mostrarTablaEconomicosocial')->middleware('auth');
-	Route::post('/actualizarEconomicosocial', 'Economicosocial@actualizarEconomicosocial')->middleware('auth');
-	Route::post('/borrarEconomicosocial', 'Economicosocial@borrarEconomicosocial')->middleware('auth');
-	Route::post('/crearEconomicosocial', 'Economicosocial@crearEconomicosocial')->middleware('auth');
-	Route::get('/grafica1Economicosocial', 'Economicosocial@grafica1Economicosocial');
-	Route::get('/grafica2Economicosocial', 'Economicosocial@grafica2Economicosocial');
-	Route::post('/mostrarActualizarEconomicosocial', 'Economicosocial@mostrarActualizarEconomicosocial')->middleware('auth');
-	Route::get('/mostrarEconomicosocial', 'Economicosocial@mostrarEconomicosocial');
+	Route::get('/mostrarTablaEconomicosocial', 'EconomicosocialController@mostrarTablaEconomicosocial')->middleware('auth');
+	Route::post('/actualizarEconomicosocial', 'EconomicosocialController@actualizarEconomicosocial')->middleware('auth');
+	Route::post('/borrarEconomicosocial', 'EconomicosocialController@borrarEconomicosocial')->middleware('auth');
+	Route::post('/crearEconomicosocial', 'EconomicosocialController@crearEconomicosocial')->middleware('auth');
+	Route::get('/grafica1Economicosocial', 'EconomicosocialController@grafica1Economicosocial');
+	Route::get('/grafica2Economicosocial', 'EconomicosocialController@grafica2Economicosocial');
+	Route::post('/mostrarActualizarEconomicosocial', 'EconomicosocialController@mostrarActualizarEconomicosocial')->middleware('auth');
+	Route::get('/mostrarEconomicosocial', 'EconomicosocialController@mostrarEconomicosocial');
+});
+
+Route::group(['prefix' => 'finanza'], function(){
+	Route::get('/mostrarTablaFinanza', 'FinanzaController@mostrarTablaFinanza')->middleware('auth');
+	Route::post('/actualizarFinanza', 'FinanzaController@actualizarFinanza')->middleware('auth');
+	Route::post('/borrarFinanza', 'FinanzaController@borrarFinanza')->middleware('auth');
+	Route::post('/crearFinanza', 'FinanzaController@crearFinanza')->middleware('auth');
+	Route::get('/grafica1Finanza', 'FinanzaController@grafica1Finanza')
+	Route::get('/grafica2Finanza', 'FinanzaController@grafica2Finanza')
+	Route::get('/grafica3Finanza', 'FinanzaController@grafica3Finanza')
+	Route::post('/mostrarActualizarFinanza', 'FinanzaController@mostrarActualizarFinanza')->middleware('auth');
+	Route::get('/mostrarFinanza', 'FinanzaController@mostrarFinanza');
 });
 
 Route::group(['prefix' => 'tabla'], function(){
@@ -195,4 +215,5 @@ Route::group(['prefix' => 'tabla'], function(){
 	Route::get('educacion', 'TableController@educacion');
 	Route::get('seguridadviolencia', 'TableController@seguridadviolencia');
 	Route::get('economicosocial', 'TableController@economicosocial');
+	Route::get('finanza', 'TableController@finanza');
 });

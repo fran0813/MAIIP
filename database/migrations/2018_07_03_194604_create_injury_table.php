@@ -13,7 +13,7 @@ class CreateInjuryTable extends Migration
      */
     public function up()
     {
-        Schema::create('lesion', function (Blueprint $table) {
+        Schema::create('Lesion', function (Blueprint $table) {
             $table->increments('id');
             $table->double('fatTot', 5, 2);
             $table->double('fatHom', 5, 2);
@@ -22,7 +22,7 @@ class CreateInjuryTable extends Migration
             $table->double('noFatHom', 5, 2);
             $table->double('noFatMuj', 5, 2);
             $table->integer('seguridadviolencia_id')->unsigned();
-            $table->foreign('seguridadviolencia_id')->references('id')->on('seguridadViolencia');
+            $table->foreign('seguridadviolencia_id')->references('id')->on('SeguridadViolencia');
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ class CreateInjuryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lesion');
+        Schema::dropIfExists('Lesion');
     }
 }

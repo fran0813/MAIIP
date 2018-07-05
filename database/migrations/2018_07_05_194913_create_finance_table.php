@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateViolenceTable extends Migration
+class CreateFinanceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateViolenceTable extends Migration
      */
     public function up()
     {
-        Schema::create('Violencia', function (Blueprint $table) {
+        Schema::create('Finanza', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('may');
-            $table->integer('otrFam');
-            $table->integer('inf');
-            $table->integer('seguridadviolencia_id')->unsigned();
-            $table->foreign('seguridadviolencia_id')->references('id')->on('SeguridadViolencia');
+            $table->dateTime('anioF')->unique();
+            $table->integer('municipio_id')->unsigned();
+            $table->foreign('municipio_id')->references('id')->on('Municipios');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateViolenceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Violencia');
+        Schema::dropIfExists('Finanza');
     }
 }
