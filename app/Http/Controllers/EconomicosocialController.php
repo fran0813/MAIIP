@@ -129,7 +129,7 @@ class EconomicosocialController extends Controller
 
 	public function crearEconomicosocial(Request $request)
 	{
-		$anioVSP = $_POST['anioVSP'];
+		$anioES = $_POST['anioES'];
 		$comprobar = $_POST['comprobar'];
 		$numHecSemBos = $_POST['numHecSemBos'];
         $areAgrCosTot = $_POST['areAgrCosTot'];
@@ -183,6 +183,7 @@ class EconomicosocialController extends Controller
 		if ($ban == False) {
 
 			$economico_social_create = new Economicosocial;
+			$economico_social_create->anioES = $anioES;
 		    $economico_social_create->numHecSemBos = $numHecSemBos;
 	        $economico_social_create->areAgrCosTot = $areAgrCosTot;
 	        $economico_social_create->proAgrTot = $proAgrTot;
@@ -546,7 +547,8 @@ class EconomicosocialController extends Controller
 			        'incIpmUrb',
 					'unidadcomercial.*',
 					'indicepobrezamultidimensional.*')
-            ->where('economicosocial.id', $idES)
+            ->where('economicosocial.municipio_id', $idMunicipio)
+            ->where(DB::raw('YEAR(anioES)'), $anioES)
             ->get();
 		foreach ($resultados as $resultado) {
 			$cabViv = $resultado->cabViv;

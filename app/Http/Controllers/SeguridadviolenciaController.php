@@ -267,7 +267,7 @@ class SeguridadviolenciaController extends Controller
 						->get();
 		foreach ($resultados as $resultado) {
             $id = $resultado->id;
-            $anio = $resultado->DATEanioS;
+            $anio = $resultado->DATEanioSV;
            	$tasDesEscTot = $resultado->tasDesEscTot;
 			$tasHom = $resultado->tasHom;
 			$tasIncDen = $resultado->tasIncDen;
