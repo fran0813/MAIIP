@@ -59,45 +59,45 @@ Route::group(['prefix' => 'admin'], function()
 	Route::post('/subirRespuestaMunicipio', 'AdminController@subirRespuestaMunicipio')->middleware('auth');
 	Route::get('/descargarMunicipio', 'AdminController@descargarMunicipio')->middleware('auth');
 
-	Route::get('/subiendoArchivoGeneralidadesTerritorio', 'AdminController@subiendoArchivoGeneralidadesTerritorio')->middleware('auth');
-	Route::post('/guardarArchivoGeneralidadesTerritorio', 'AdminController@guardarArchivoGeneralidadesTerritorio')->middleware('auth');
-	Route::post('/subirRespuestaGeneralidadesTerritorio', 'AdminController@subirRespuestaGeneralidadesTerritorio')->middleware('auth');
-	Route::get('/descargarGeneralidadesTerritorio', 'AdminController@descargarGeneralidadesTerritorio')->middleware('auth');
+	Route::get('/subiendoArchivoGeneralidadesTerritorio', 'GeneralidadesterritorioController@subiendoArchivoGeneralidadesTerritorio')->middleware('auth');
+	Route::post('/guardarArchivoGeneralidadesTerritorio', 'GeneralidadesterritorioController@guardarArchivoGeneralidadesTerritorio')->middleware('auth');
+	Route::post('/subirRespuestaGeneralidadesTerritorio', 'GeneralidadesterritorioController@subirRespuestaGeneralidadesTerritorio')->middleware('auth');
+	Route::get('/descargarGeneralidadesTerritorio', 'GeneralidadesterritorioController@descargarGeneralidadesTerritorio')->middleware('auth');
 
-	Route::get('/subiendoArchivoDemografia', 'AdminController@subiendoArchivoDemografia')->middleware('auth');
-	Route::post('/guardarArchivoDemografia', 'AdminController@guardarArchivoDemografia')->middleware('auth');
-	Route::post('/subirRespuestaDemografia', 'AdminController@subirRespuestaDemografia')->middleware('auth');
-	Route::get('/descargarDemografia', 'AdminController@descargarDemografia')->middleware('auth');
+	Route::get('/subiendoArchivoDemografia', 'DemografiaController@subiendoArchivoDemografia')->middleware('auth');
+	Route::post('/guardarArchivoDemografia', 'DemografiaController@guardarArchivoDemografia')->middleware('auth');
+	Route::post('/subirRespuestaDemografia', 'DemografiaController@subirRespuestaDemografia')->middleware('auth');
+	Route::get('/descargarDemografia', 'DemografiaController@descargarDemografia')->middleware('auth');
 
-	Route::get('/subiendoArchivoEducacion', 'AdminController@subiendoArchivoEducacion')->middleware('auth');
-	Route::post('/guardarArchivoEducacion', 'AdminController@guardarArchivoEducacion')->middleware('auth');
-	Route::post('/subirRespuestaEducacion', 'AdminController@subirRespuestaEducacion')->middleware('auth');
-	Route::get('/descargarEducacion', 'AdminController@descargarEducacion')->middleware('auth');
+	Route::get('/subiendoArchivoEducacion', 'EducacionController@subiendoArchivoEducacion')->middleware('auth');
+	Route::post('/guardarArchivoEducacion', 'EducacionController@guardarArchivoEducacion')->middleware('auth');
+	Route::post('/subirRespuestaEducacion', 'EducacionController@subirRespuestaEducacion')->middleware('auth');
+	Route::get('/descargarEducacion', 'EducacionController@descargarEducacion')->middleware('auth');
 
-	Route::get('/subiendoArchivoSalud', 'AdminController@subiendoArchivoSalud')->middleware('auth');
-	Route::post('/guardarArchivoSalud', 'AdminController@guardarArchivoSalud')->middleware('auth');
-	Route::post('/subirRespuestaSalud', 'AdminController@subirRespuestaSalud')->middleware('auth');
-	Route::get('/descargarSalud', 'AdminController@descargarSalud')->middleware('auth');
+	Route::get('/subiendoArchivoSalud', 'SaludController@subiendoArchivoSalud')->middleware('auth');
+	Route::post('/guardarArchivoSalud', 'SaludController@guardarArchivoSalud')->middleware('auth');
+	Route::post('/subirRespuestaSalud', 'SaludController@subirRespuestaSalud')->middleware('auth');
+	Route::get('/descargarSalud', 'SaludController@descargarSalud')->middleware('auth');
 
-	Route::get('/subiendoArchivoViviendaServiciosPublicos', 'AdminController@subiendoArchivoViviendaServiciosPublicos')->middleware('auth');
-	Route::post('/guardarArchivoViviendaServiciosPublicos', 'AdminController@guardarArchivoViviendaServiciosPublicos')->middleware('auth');
-	Route::post('/subirRespuestaViviendaServiciosPublicos', 'AdminController@subirRespuestaViviendaServiciosPublicos')->middleware('auth');
-	Route::get('/descargarViviendaServiciosPublicos', 'AdminController@descargarViviendaServiciosPublicos')->middleware('auth');
+	Route::get('/subiendoArchivoViviendaServiciosPublicos', 'ViviendaserviciospublicosController@subiendoArchivoViviendaServiciosPublicos')->middleware('auth');
+	Route::post('/guardarArchivoViviendaServiciosPublicos', 'ViviendaserviciospublicosController@guardarArchivoViviendaServiciosPublicos')->middleware('auth');
+	Route::post('/subirRespuestaViviendaServiciosPublicos', 'ViviendaserviciospublicosController@subirRespuestaViviendaServiciosPublicos')->middleware('auth');
+	Route::get('/descargarViviendaServiciosPublicos', 'ViviendaserviciospublicosController@descargarViviendaServiciosPublicos')->middleware('auth');
 
-	Route::get('/subiendoArchivoSeguridadViolencia', 'AdminController@subiendoArchivoSeguridadViolencia')->middleware('auth');
-	Route::post('/guardarArchivoSeguridadViolencia', 'AdminController@guardarArchivoSeguridadViolencia')->middleware('auth');
-	Route::post('/subirRespuestaSeguridadViolencia', 'AdminController@subirRespuestaSeguridadViolencia')->middleware('auth');
-	Route::get('/descargarSeguridadViolencia', 'AdminController@descargarSeguridadViolencia')->middleware('auth');
+	Route::get('/subiendoArchivoSeguridadViolencia', 'SeguridadviolenciaController@subiendoArchivoSeguridadViolencia')->middleware('auth');
+	Route::post('/guardarArchivoSeguridadViolencia', 'SeguridadviolenciaController@guardarArchivoSeguridadViolencia')->middleware('auth');
+	Route::post('/subirRespuestaSeguridadViolencia', 'SeguridadviolenciaController@subirRespuestaSeguridadViolencia')->middleware('auth');
+	Route::get('/descargarSeguridadViolencia', 'SeguridadviolenciaController@descargarSeguridadViolencia')->middleware('auth');
 
-	Route::get('/subiendoArchivoEconomicoSocial', 'AdminController@subiendoArchivoEconomicoSocial')->middleware('auth');
-	Route::post('/guardarArchivoEconomicoSocial', 'AdminController@guardarArchivoEconomicoSocial')->middleware('auth');
-	Route::post('/subirRespuestaEconomicoSocial', 'AdminController@subirRespuestaEconomicoSocial')->middleware('auth');
-	Route::get('/descargarEconomicoSocial', 'AdminController@descargarEconomicoSocial')->middleware('auth');
+	Route::get('/subiendoArchivoEconomicoSocial', 'EconomicosocialController@subiendoArchivoEconomicoSocial')->middleware('auth');
+	Route::post('/guardarArchivoEconomicoSocial', 'EconomicosocialController@guardarArchivoEconomicoSocial')->middleware('auth');
+	Route::post('/subirRespuestaEconomicoSocial', 'EconomicosocialController@subirRespuestaEconomicoSocial')->middleware('auth');
+	Route::get('/descargarEconomicoSocial', 'EconomicosocialController@descargarEconomicoSocial')->middleware('auth');
 
-	Route::get('/subiendoArchivoFinanza', 'AdminController@subiendoArchivoFinanza')->middleware('auth');
-	Route::post('/guardarArchivoFinanza', 'AdminController@guardarArchivoFinanza')->middleware('auth');
-	Route::post('/subirRespuestaFinanza', 'AdminController@subirRespuestaFinanza')->middleware('auth');
-	Route::get('/descargarFinanza', 'AdminController@descargarFinanza')->middleware('auth');
+	Route::get('/subiendoArchivoFinanza', 'FinanzaController@subiendoArchivoFinanza')->middleware('auth');
+	Route::post('/guardarArchivoFinanza', 'FinanzaController@guardarArchivoFinanza')->middleware('auth');
+	Route::post('/subirRespuestaFinanza', 'FinanzaController@subirRespuestaFinanza')->middleware('auth');
+	Route::get('/descargarFinanza', 'FinanzaController@descargarFinanza')->middleware('auth');
 });
 
 Route::group(['prefix' => '/'], function()
@@ -175,13 +175,13 @@ Route::group(['prefix' => 'educacion'], function(){
 });
 
 Route::group(['prefix' => 'seguridadviolencia'], function(){
-	Route::get('/mostrarTablaSeguridadviolencia', 'SeguridadvolenciaController@mostrarTablaSeguridadviolencia')->middleware('auth');
-	Route::post('/actualizarSeguridadviolencia', 'SeguridadvolenciaController@actualizarSeguridadviolencia')->middleware('auth');
-	Route::post('/borrarSeguridadviolencia', 'SeguridadvolenciaController@borrarSeguridadviolencia')->middleware('auth');
-	Route::post('/crearSeguridadviolencia', 'SeguridadvolenciaController@crearSeguridadviolencia')->middleware('auth');
-	Route::get('/grafica1Seguridadviolencia', 'SeguridadvolenciaController@grafica1Seguridadviolencia');
-	Route::post('/mostrarActualizarSeguridadviolencia', 'SeguridadvolenciaController@mostrarActualizarSeguridadviolencia')->middleware('auth');
-	Route::get('/mostrarSeguridadviolencia', 'SeguridadvolenciaController@mostrarSeguridadviolencia');
+	Route::get('/mostrarTablaSeguridadviolencia', 'SeguridadviolenciaController@mostrarTablaSeguridadviolencia')->middleware('auth');
+	Route::post('/actualizarSeguridadviolencia', 'SeguridadviolenciaController@actualizarSeguridadviolencia')->middleware('auth');
+	Route::post('/borrarSeguridadviolencia', 'SeguridadviolenciaController@borrarSeguridadviolencia')->middleware('auth');
+	Route::post('/crearSeguridadviolencia', 'SeguridadviolenciaController@crearSeguridadviolencia')->middleware('auth');
+	Route::get('/grafica1Seguridadviolencia', 'SeguridadviolenciaController@grafica1Seguridadviolencia');
+	Route::post('/mostrarActualizarSeguridadviolencia', 'SeguridadviolenciaController@mostrarActualizarSeguridadviolencia')->middleware('auth');
+	Route::get('/mostrarSeguridadviolencia', 'SeguridadviolenciaController@mostrarSeguridadviolencia');
 });
 
 Route::group(['prefix' => 'economicosocial'], function(){
@@ -200,9 +200,9 @@ Route::group(['prefix' => 'finanza'], function(){
 	Route::post('/actualizarFinanza', 'FinanzaController@actualizarFinanza')->middleware('auth');
 	Route::post('/borrarFinanza', 'FinanzaController@borrarFinanza')->middleware('auth');
 	Route::post('/crearFinanza', 'FinanzaController@crearFinanza')->middleware('auth');
-	Route::get('/grafica1Finanza', 'FinanzaController@grafica1Finanza')
-	Route::get('/grafica2Finanza', 'FinanzaController@grafica2Finanza')
-	Route::get('/grafica3Finanza', 'FinanzaController@grafica3Finanza')
+	Route::get('/grafica1Finanza', 'FinanzaController@grafica1Finanza');
+	Route::get('/grafica2Finanza', 'FinanzaController@grafica2Finanza');
+	Route::get('/grafica3Finanza', 'FinanzaController@grafica3Finanza');
 	Route::post('/mostrarActualizarFinanza', 'FinanzaController@mostrarActualizarFinanza')->middleware('auth');
 	Route::get('/mostrarFinanza', 'FinanzaController@mostrarFinanza');
 });

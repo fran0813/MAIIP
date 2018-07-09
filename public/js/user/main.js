@@ -141,3 +141,54 @@ function mostrarAñoS()
 		$('#añoS').html(response.html);
 	});
 }
+
+function mostrarAñoSV()
+{
+	var municipio = $("#municipio").val();
+
+	$.ajax({
+		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+		method: "GET",
+		url: "/mostrarAñoSV",
+		dataType: 'json',
+		data: { idMunicipio: municipio }
+	})
+
+	.done(function(response) {
+		$('#añoSV').html(response.html);
+	});
+}
+
+function mostrarAñoES()
+{
+	var municipio = $("#municipio").val();
+
+	$.ajax({
+		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+		method: "GET",
+		url: "/mostrarAñoES",
+		dataType: 'json',
+		data: { idMunicipio: municipio }
+	})
+
+	.done(function(response) {
+		$('#añoES').html(response.html);
+	});
+}
+
+function mostrarAñoF()
+{
+	var municipio = $("#municipio").val();
+
+	$.ajax({
+		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+		method: "GET",
+		url: "/mostrarAñoF",
+		dataType: 'json',
+		data: { idMunicipio: municipio }
+	})
+
+	.done(function(response) {
+		$('#añoF').html(response.html);
+	});
+}

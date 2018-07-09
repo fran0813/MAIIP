@@ -15,9 +15,9 @@ class CreateGeneralitiesTable extends Migration
     {
         Schema::create('Generalidades', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('ruralG', 5, 2);
-            $table->double('urbanoG', 5, 2);
-            $table->double('totalG', 5, 2);
+            $table->double('ruralG', 14, 4);
+            $table->double('urbanoG', 14, 4);
+            $table->double('totalG', 14, 4);
             $table->integer('generalidadterritorio_id')->unsigned();
             $table->foreign('generalidadterritorio_id')->references('id')->on('GeneralidadesTerritorios');
             $table->timestamps();

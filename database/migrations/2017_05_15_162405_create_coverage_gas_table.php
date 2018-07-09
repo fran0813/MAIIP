@@ -15,9 +15,9 @@ class CreateCoverageGasTable extends Migration
     {
         Schema::create('CoberturaGas', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('cabCG', 4, 2);
-            $table->double('centPobCG', 4, 2);
-            $table->double('rurDispCG', 4, 2);
+            $table->double('cabCG', 14, 4);
+            $table->double('centPobCG', 14, 4);
+            $table->double('rurDispCG', 14, 4);
             $table->integer('viviendaserviciopublico_id')->unsigned();
             $table->foreign('viviendaserviciopublico_id')->references('id')->on('ViviendasServiciosPublicos');
             $table->timestamps();

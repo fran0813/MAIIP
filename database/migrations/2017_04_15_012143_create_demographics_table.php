@@ -27,9 +27,9 @@ class CreateDemographicsTable extends Migration
             $table->integer('pobMuj');
             $table->integer('pobZonCab');
             $table->integer('pobZonRes');
-            $table->string('indRuralidad', 10);
+            $table->integer('indRuralidad');
             $table->integer('pobTotal');
-            $table->string('crecPob', 10);
+            $table->integer('crecPob');
             $table->integer('municipio_id')->unsigned();
             $table->foreign('municipio_id')->references('id')->on('Municipios');
             $table->timestamps();

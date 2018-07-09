@@ -15,12 +15,12 @@ class CreateVaccionationsTable extends Migration
     {
         Schema::create('Vacunaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('tasVacBCG', 5, 2);
-            $table->double('tasVacDPT', 5, 2);
-            $table->double('tasVacHepatitisB', 5, 2);
-            $table->double('tasVacHIB', 5, 2);
-            $table->double('tasVacPolio', 5, 2);
-            $table->double('tasVacTripleViral', 5, 2);
+            $table->double('tasVacBCG', 14, 4);
+            $table->double('tasVacDPT', 14, 4);
+            $table->double('tasVacHepatitisB', 14, 4);
+            $table->double('tasVacHIB', 14, 4);
+            $table->double('tasVacPolio', 14, 4);
+            $table->double('tasVacTripleViral', 14, 4);
             $table->integer('salud_id')->unsigned();
             $table->foreign('salud_id')->references('id')->on('Salud');
             $table->timestamps();

@@ -16,15 +16,15 @@ class CreateViolenceSecurityTable extends Migration
         Schema::create('SeguridadViolencia', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('anioSV')->unique();
-            $table->double('tasDesEscTot', 5, 2);
-            $table->double('tasHom', 5, 2);
-            $table->double('tasIncDen', 5, 2);
-            $table->double('tasLesPer', 5, 2);
-            $table->double('tasMueAcc', 5, 2);
-            $table->double('tasSui', 5, 2);
-            $table->double('vioInt', 5, 2);
-            $table->double('casTot', 5, 2);
-            $table->double('casTasHom', 5, 2);
+            $table->double('tasDesEscTot', 14, 4);
+            $table->double('tasHom', 14, 4);
+            $table->double('tasIncDen', 14, 4);
+            $table->double('tasLesPer', 14, 4);
+            $table->double('tasMueAcc', 14, 4);
+            $table->double('tasSui', 14, 4);
+            $table->double('vioInt', 14, 4);
+            $table->double('casTot', 14, 4);
+            $table->double('casTasHom', 14, 4);
             $table->integer('municipio_id')->unsigned();
             $table->foreign('municipio_id')->references('id')->on('Municipios');
             $table->timestamps();

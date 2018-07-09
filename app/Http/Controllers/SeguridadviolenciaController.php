@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use Storage;
+use File;
 use \Response;
 use App\Seguridadviolencia;
 use App\Delito;
 use App\Lesion;
 use App\Violencia;
+
 
 class SeguridadviolenciaController extends Controller
 {
@@ -207,14 +212,14 @@ class SeguridadviolenciaController extends Controller
 		$html .= "var data = google.visualization.arrayToDataTable([
 				['Año', 'Tasa BCG', 'Tasa DPT', 'Tasa Hepatitis B', 'Tasa  HIB', 'Tasa  Polio', 'Tasa  Triple viral'],";
 
-		$resultados = Seguridadviolencia::join('delito', 'seguridadviolencia.id', 'delito.seguridadviolencia_id')
+		$resultados = Seguridadviolencia::join('delitosexual', 'seguridadviolencia.id', 'delitosexual.seguridadviolencia_id')
 						->select(DB::raw('YEAR(anioSV) as YEARanioSV'),
 							'seguridadviolencia.tasHom',
 								'seguridadviolencia.tasLesPer',
 								'seguridadviolencia.tasDesEscTot',
 								'seguridadviolencia.tasIncDen',
 								'seguridadviolencia.tasMueAcc',
-								'delito.*')
+								'delitosexual.*')
 						->where('salud.municipio_id', $idMunicipio)
 						->where(DB::raw('YEAR(anioSV)'), $anioSV)
 						->get();
@@ -256,11 +261,11 @@ class SeguridadviolenciaController extends Controller
 		$idSV = $_POST['idSV'];
 		$html = "";
 
-		$resultados = Seguridadviolencia::join('delito', 'seguridadviolencia.id', 'delito.seguridadviolencia_id')
+		$resultados = Seguridadviolencia::join('delitosexual', 'seguridadviolencia.id', 'delitosexual.seguridadviolencia_id')
 						->join('lesion', 'seguridadviolencia.id', 'lesion.seguridadviolencia_id')
 						->join('violencia', 'seguridadviolencia.id', 'violencia.seguridadviolencia_id')
 						->select(DB::raw('DATE(anioSV) as DATEanioSV'),
-								'delito.*',
+								'delitosexual.*',
 								'lesion.*',
 								'violencia.*')
 						->where('seguridadviolencia.id', $idSV)
@@ -329,82 +334,116 @@ class SeguridadviolenciaController extends Controller
 				<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
 				<tr>
-				<th>Tasa de Vacunación</th>
-				<th>Valores</th>
+				<th>Seguridad y violencia</th>
+				<th>valores</th>
 				</tr>
 				</thead>
 				<tbody>
 				<tr class='border-dotted'>
-				<td>BCG</td>";
+				<td>Población en edad de trabajar</td>";
 
-		$resultados = Seguridadviolencia::join('delito', 'seguridadviolencia.id', 'delito.seguridadviolencia_id')
+		$resultados = Seguridadviolencia::join('delitosexual', 'seguridadviolencia.id', 'delitosexual.seguridadviolencia_id')
 						->join('lesion', 'seguridadviolencia.id', 'lesion.seguridadviolencia_id')
 						->join('violencia', 'seguridadviolencia.id', 'violencia.seguridadviolencia_id')
 						->select(DB::raw('YEAR(anioSV) as YEARanioSV'),
-								'discapacidades.*',
-								'vacunaciones.*')
+								'delitosexual.*',
+								'lesion.*',
+								'violencia.*')
 						->where('seguridadviolencia.municipio_id', $idMunicipio)
 						->where(DB::raw('YEAR(anioSV)'), $anioSV)
 						->get();
 		foreach ($resultados as $resultado) {
-			$tasVacBCG = $resultado->tasVacBCG;
+			$tasDesEscTot = $resultado->tasDesEscTot;
 
-			$html .= "<td>$tasVacBCG</td>";
-
-		};
-
-		$html .= "</tr>
-				<tr class='border-dotted'>
-				<td>DPT</td>";
-
-		foreach ($resultados as $resultado) {
-			$tasVacDPT = $resultado->tasVacDPT;
-
-			$html .= "<td>$tasVacDPT</td>";
+			$html .= "<td>$tasDesEscTot</td>";
 
 		};
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Hepatitis B</td>";
+				<td>Tasa de homicidio</td>";
 
 		foreach ($resultados as $resultado) {
-			$tasVacHepatitisB = $resultado->tasVacHepatitisB;
+			$tasHom = $resultado->tasHom;
 
-			$html .= "<td>$tasVacHepatitisB</td>";
+			$html .= "<td>$tasHom</td>";
 
 		};
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>HIB</td>";
+				<td>Tasa de incidencia dengue</td>";
 
 		foreach ($resultados as $resultado) {
-			$tasVacHIB = $resultado->tasVacHIB;
+			$tasIncDen = $resultado->tasIncDen;
 
-			$html .= "<td>$tasVacHIB</td>";
+			$html .= "<td>$tasIncDen</td>";
 
 		};
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Polio</td>";
+				<td>Tasa de lesiones personales</td>";
 
 		foreach ($resultados as $resultado) {
-			$tasVacPolio = $resultado->tasVacPolio;
+			$tasLesPer = $resultado->tasLesPer;
 
-			$html .= "<td>$tasVacPolio</td>";
+			$html .= "<td>$tasLesPer</td>";
 
 		};
 
 		$html .= "</tr>
-				<tr>
-				<td>Triple viral</td>";
+				<tr class='border-dotted'>
+				<td>Tasa de muertes por accidentes de tránsito</td>";
 
 		foreach ($resultados as $resultado) {
-			$tasVacTripleViral = $resultado->tasVacTripleViral;
+			$tasMueAcc = $resultado->tasMueAcc;
 
-			$html .= "<td>$tasVacTripleViral</td>";
+			$html .= "<td>$tasMueAcc</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Tasa de suicidios</td>";
+
+		foreach ($resultados as $resultado) {
+			$tasSui = $resultado->tasSui;
+
+			$html .= "<td>$tasSui</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Violencia interpersonal</td>";
+
+		foreach ($resultados as $resultado) {
+			$vioInt = $resultado->vioInt;
+
+			$html .= "<td>$vioInt</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Casos totales</td>";
+
+		foreach ($resultados as $resultado) {
+			$casTot = $resultado->casTot;
+
+			$html .= "<td>$casTot</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Casos y tasa homicidios</td>";
+
+		foreach ($resultados as $resultado) {
+			$casTasHom = $resultado->casTasHom;
+
+			$html .= "<td>$casTasHom</td>";
 
 		};
 
@@ -419,58 +458,158 @@ class SeguridadviolenciaController extends Controller
 				<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
 				<tr>
-				<th>Discapacidades</th>
+				<th>Lesiones</th>
 				<th>Valores</th>
 				</tr>
 				</thead>
 				<tbody>
 				<tr class='border-dotted'>
-				<td>Dificultad para bañarse o moverse</td>";
+				<td>Lesiones fatales total</td>";
 
 		foreach ($resultados as $resultado) {
-			$difBaMov = $resultado->difBaMov;
+			$fatTot = $resultado->fatTot;
 
-			$html .= "<td>$difBaMov</td>";
+			$html .= "<td>$fatTot</td>";
 		};
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Dificultad para entender o aprender</td>";
+				<td>Lesiones fatales hombre</td>";
 
 		foreach ($resultados as $resultado) {
-			$difEntApr = $resultado->difEntApr;
+			$fatHom = $resultado->fatHom;
 
-			$html .= "<td>$difEntApr</td>";
+			$html .= "<td>$fatHom</td>";
 		};
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Dificultad para moverse o para caminar por si</td>";
+				<td>Lesiones fatales mujer</td>";
 
 		foreach ($resultados as $resultado) {
-			$difMovCam = $resultado->difMovCam;
+			$fatMuj = $resultado->fatMuj;
 
-			$html .= "<td>$difMovCam</td>";
+			$html .= "<td>$fatMuj</td>";
 		};
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Dificultad para salir a la calle sin ayuda o compañía</td>";
+				<td>Lesiones no fatales total</td>";
 
 		foreach ($resultados as $resultado) {
-			$difSalirCalle = $resultado->difSalirCalle;
+			$noFatTot = $resultado->noFatTot;
 
-			$html .= "<td>$difSalirCalle</td>";
+			$html .= "<td>$noFatTot</td>";
 		};
 
 		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Lesiones no fatales hombre</td>";
+
+		foreach ($resultados as $resultado) {
+			$noFatHom = $resultado->noFatHom;
+
+			$html .= "<td>$noFatHom</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Lesiones no fatales mujer</td>";
+
+		foreach ($resultados as $resultado) {
+			$noFatMuj = $resultado->noFatMuj;
+
+			$html .= "<td>$noFatMuj</td>";
+		};
+
+		$html .= "</tr>
+				</tbody>
+				</table>
+
+				</div>";
+
+		$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
+
+				<table class='table table-bordered table-hover'>
+				<thead class='thead-s'>
 				<tr>
-				<td>Total de población con Discapacidad</td>";
+				<th>Delitos sexuales</th>
+				<th>Valores</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class='border-dotted'>
+				<td>Total</td>";
 
 		foreach ($resultados as $resultado) {
-			$totalDis = $resultado->totalDis;
+			$tot = $resultado->tot;
 
-			$html .= "<td>$totalDis</td>";
+			$html .= "<td>$tot</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Hombre</td>";
+
+		foreach ($resultados as $resultado) {
+			$hom = $resultado->hom;
+
+			$html .= "<td>$hom</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Mujer</td>";
+
+		foreach ($resultados as $resultado) {
+			$muj = $resultado->muj;
+
+			$html .= "<td>$muj</td>";
+		};
+
+		$html .= "</tr>
+				</tbody>
+				</table>
+
+				</div>";
+
+		$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
+
+				<table class='table table-bordered table-hover'>
+				<thead class='thead-s'>
+				<tr>
+				<th>Violencia</th>
+				<th>Valores</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class='border-dotted'>
+				<td>Violencia a personas mayores</td>";
+
+		foreach ($resultados as $resultado) {
+			$may = $resultado->may;
+
+			$html .= "<td>$may</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Violencia entre otros familiares</td>";
+
+		foreach ($resultados as $resultado) {
+			$otrFam = $resultado->otrFam;
+
+			$html .= "<td>$otrFam</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Violencia Infantil</td>";
+
+		foreach ($resultados as $resultado) {
+			$inf = $resultado->inf;
+
+			$html .= "<td>$inf</td>";
 		};
 
 		$html .= "</tr>
@@ -491,34 +630,39 @@ class SeguridadviolenciaController extends Controller
 				<thead>
 				<tr>
 				<th>Año</th>
-				<th>Tasa de vacunación contra el BCG</th>
-				<th>Tasa de vacunación contra el DPT</th>
-				<th>Tasa de vacunación contra la hepatitis B</th>
+				<th>Tasa de deserción escolar total</th>
+				<th>Tasa de homicidios</th>
+				<th>Tasa de incidencia dengue</th>
+				<th>Tasa de suicidios</th>
 				<th>Funciones</th>
 				</tr>
 				</thead>
 				<tbody>";
 
-		$resultados = Seguridadviolencia::join('vacunaciones', 'salud.id', 'vacunaciones.salud_id')
-            ->select('salud.anioS', 'vacunaciones.*')
-            ->select('salud.id',
-            		 DB::raw('YEAR(anioS) as YEARanioS'),
-            		 'vacunaciones.*')
-            ->where('salud.municipio_id', $idMunicipio)
+		$resultados = Seguridadviolencia::join('delitosexual', 'seguridadviolencia.id', 'delitosexual.seguridadviolencia_id')
+						->join('lesion', 'seguridadviolencia.id', 'lesion.seguridadviolencia_id')
+						->join('violencia', 'seguridadviolencia.id', 'violencia.seguridadviolencia_id')
+						->select(DB::raw('YEAR(anioSV) as YEARanioSV'),
+								'delitosexual.*',
+								'lesion.*',
+								'violencia.*')
+						->where('seguridadviolencia.municipio_id', $idMunicipio)
             ->orderBy('anioSV')
             ->get();
 		foreach ($resultados as $resultado) {
 			$id = $resultado->id;
 			$anio = $resultado->YEARanioS;
-			$tasVacBCG = $resultado->tasVacBCG;
-			$tasVacDPT = $resultado->tasVacDPT;
-			$tasVacHepatitisB = $resultado->tasVacHepatitisB;
+			$tasHom = $resultado->tasHom;
+			$tasDesEscTot = $resultado->tasDesEscTot;
+			$tasIncDen = $resultado->tasIncDen;
+			$tasSui = $resultado->tasSui;
 
 			$html .= "<tr>
 					<td>$anio</td>
-					<td>$tasVacBCG</td>
-					<td>$tasVacDPT</td>
-					<td>$tasVacHepatitisB</td>
+					<td>$tasDesEscTot</td>
+					<td>$tasHom</td>
+					<td>$tasIncDen</td>
+					<td>$tasSui</td>
 					<td><a id='$id' href='#' class='btn btn-success' data-toggle='modal' data-target='#modalMostrarActualizar' value='editar'>Editar</a></td>
 					</tr>";
 		};
@@ -675,7 +819,7 @@ class SeguridadviolenciaController extends Controller
       // return Response::json(array('html' => $html, 'boolean' => $booleanMunicipio));
     }
 
-    public function descargarSeguridadviolencia(Request $request)
+    public function descargarSeguridadViolencia(Request $request)
     {
       $data = array();
 

@@ -11,6 +11,9 @@ use App\Municipio;
 use App\Generalidadterritorio;
 use App\Viviendaserviciopublico;
 use App\Salud;
+use App\Seguridadviolencia;
+use App\Economicosocial;
+use App\Finanza;
 
 class UserController extends Controller
 {
@@ -162,6 +165,60 @@ class UserController extends Controller
 						->get();
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioS;
+			$html .= "<option value='$anio'>$anio</option>";
+		};
+
+		return Response::json(array('html' => $html));
+	}
+
+	public function mostrarAñoSV(Request $request)
+	{
+		$html = "";
+		$idMunicipio = $_GET['idMunicipio'];
+
+		$html .= "<option>Año</option>";
+
+		$resultados = Seguridadviolencia::select(DB::raw('YEAR(anioSV) as YEARanioSV'))
+						->where('seguridadviolencia.municipio_id', $idMunicipio)
+						->get();
+		foreach ($resultados as $resultado) {
+			$anio = $resultado->YEARanioSV;
+			$html .= "<option value='$anio'>$anio</option>";
+		};
+
+		return Response::json(array('html' => $html));
+	}
+
+	public function mostrarAñoES(Request $request)
+	{
+		$html = "";
+		$idMunicipio = $_GET['idMunicipio'];
+
+		$html .= "<option>Año</option>";
+
+		$resultados = Economicosocial::select(DB::raw('YEAR(anioES) as YEARanioES'))
+						->where('economicosocial.municipio_id', $idMunicipio)
+						->get();
+		foreach ($resultados as $resultado) {
+			$anio = $resultado->YEARanioES;
+			$html .= "<option value='$anio'>$anio</option>";
+		};
+
+		return Response::json(array('html' => $html));
+	}
+
+	public function mostrarAñoF(Request $request)
+	{
+		$html = "";
+		$idMunicipio = $_GET['idMunicipio'];
+
+		$html .= "<option>Año</option>";
+
+		$resultados = Finanza::select(DB::raw('YEAR(anioF) as YEARanioF'))
+						->where('finanza.municipio_id', $idMunicipio)
+						->get();
+		foreach ($resultados as $resultado) {
+			$anio = $resultado->YEARanioF;
 			$html .= "<option value='$anio'>$anio</option>";
 		};
 

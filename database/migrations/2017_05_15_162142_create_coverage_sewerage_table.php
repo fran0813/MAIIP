@@ -15,9 +15,9 @@ class CreateCoverageSewerageTable extends Migration
     {
         Schema::create('CoberturaAlcantarillado', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('cabCA', 4, 2);
-            $table->double('centPobCA', 4, 2);
-            $table->double('rurDispCA', 4, 2);
+            $table->double('cabCA', 14, 4);
+            $table->double('centPobCA', 14, 4);
+            $table->double('rurDispCA', 14, 4);
             $table->integer('viviendaserviciopublico_id')->unsigned();
             $table->foreign('viviendaserviciopublico_id')->references('id')->on('ViviendasServiciosPublicos');
             $table->timestamps();

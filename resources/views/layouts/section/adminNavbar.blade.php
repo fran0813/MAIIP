@@ -68,13 +68,13 @@
                         <a href="{{ url('/admin/educacion') }}"><i class="fa fa-book fa-fw"></i> Educación</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-unlock-alt fa-fw"></i> Seguiridad y Violencia</a>
+                        <a href="{{ url('/admin/seguridadviolencia') }}"><i class="fa fa-unlock-alt fa-fw"></i> Seguiridad y Violencia</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-users fa-fw"></i> Económico-Social</a>
+                        <a href="{{ url('/admin/economicosocial') }}"><i class="fa fa-users fa-fw"></i> Económico-Social</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-usd fa-fw"></i> Finanzas</a>
+                        <a href="{{ url('/admin/finanza') }}"><i class="fa fa-usd fa-fw"></i> Finanzas</a>
                     </li>
                 </ul>
             </div>

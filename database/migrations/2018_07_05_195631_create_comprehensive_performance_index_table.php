@@ -15,12 +15,12 @@ class CreateComprehensivePerformanceIndexTable extends Migration
     {
         Schema::create('IndiceDesempeñoIntegral', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('desIntCapAdm', 12, 4);
-            $table->double('desIntEfiTot', 12, 4);
-            $table->double('desIntGes', 12, 4);
-            $table->double('desIntIndInt', 12, 4);
-            $table->double('desIntReqLeg', 12, 4);
-            $table->double('desIntIndDesFis', 12, 4);            
+            $table->double('desIntCapAdm', 14, 4);
+            $table->double('desIntEfiTot', 14, 4);
+            $table->double('desIntGes', 14, 4);
+            $table->double('desIntIndInt', 14, 4);
+            $table->double('desIntReqLeg', 14, 4);
+            $table->double('desIntIndDesFis', 14, 4);            
             $table->integer('finanza_id')->unsigned();
             $table->foreign('finanza_id')->references('id')->on('Finanza');
             $table->timestamps();

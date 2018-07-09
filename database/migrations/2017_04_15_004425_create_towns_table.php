@@ -16,8 +16,8 @@ class CreateTownsTable extends Migration
         Schema::create('municipios', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('codigoM')->unique();
-            $table->string('nombre', 45);
-            $table->string('catMun', 10);
+            $table->string('nombre', 100);
+            $table->string('catMun', 50);
             $table->integer('departamento_id')->unsigned();
             $table->foreign('departamento_id')->references('id')->on('departamentos');
             $table->timestamps();

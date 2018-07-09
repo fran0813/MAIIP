@@ -47,6 +47,21 @@ class AdminController extends Controller
       return view('admin.educacion.index');
     }
 
+    public function tableSeguridadviolencia()
+    {
+      return view('admin.seguridadviolencia.index');
+    }
+
+    public function tableEconomicosocial()
+    {
+      return view('admin.economicosocial.index');
+    }
+
+    public function tableFinanza()
+    {
+      return view('admin.finanza.index');
+    }
+
     public function tableMunicipio()
     {
       return view('admin.municipio.index');

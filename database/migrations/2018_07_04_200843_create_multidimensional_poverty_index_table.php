@@ -15,21 +15,21 @@ class CreateMultidimensionalPovertyIndexTable extends Migration
     {
         Schema::create('IndicePobrezaMultidimensional', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('altTasDepEco', 5, 2);
-            $table->double('ana', 5, 2);
-            $table->double('bajLogEdu', 5, 2);
-            $table->double('barAccSerSal', 5, 2);
-            $table->double('barAccSerCiu', 5, 2);
-            $table->double('empInf', 5, 2);
-            $table->double('hac', 5, 2);
-            $table->double('inaEliExc', 5, 2);
-            $table->double('inaEsc', 5, 2);
-            $table->double('parIna', 5, 2);
-            $table->double('pisIna', 5, 2);
-            $table->double('rezEsc', 5, 2);
-            $table->double('sinAccFueAgMej', 5, 2);
-            $table->double('sinAseSal', 5, 2);
-            $table->double('traInf', 5, 2);
+            $table->double('altTasDepEco', 14, 4);
+            $table->double('ana', 14, 4);
+            $table->double('bajLogEdu', 14, 4);
+            $table->double('barAccSerSal', 14, 4);
+            $table->double('barAccSerCiu', 14, 4);
+            $table->double('empInf', 14, 4);
+            $table->double('hac', 14, 4);
+            $table->double('inaEliExc', 14, 4);
+            $table->double('inaEsc', 14, 4);
+            $table->double('parIna', 14, 4);
+            $table->double('pisIna', 14, 4);
+            $table->double('rezEsc', 14, 4);
+            $table->double('sinAccFueAgMej', 14, 4);
+            $table->double('sinAseSal', 14, 4);
+            $table->double('traInf', 14, 4);
             $table->integer('economicosocial_id')->unsigned();
             $table->foreign('economicosocial_id')->references('id')->on('EconomicoSocial');
             $table->timestamps();

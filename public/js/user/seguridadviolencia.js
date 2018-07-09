@@ -27,78 +27,149 @@ function mostrarTablaSeguridadviolencia()
 	} else {
 		$('#grafica1').hide();
 		$('#seguridadviolencia').html("<div class='col-sm-6 col-md-6 col-lg-6'>"+
+									"<table class='table table-bordered table-hover'>"+
+									"<thead class='thead-s'>"+
+									"<tr>"+
+									"<th>Seguridad y violencia</th>"+
+									"<th>Valores</th>"+
+									"</tr>"+
+									"</thead>"+
+									"<tbody>"+
+									"<tr class='border-dotted'>"+
+									"<td>Tasa de deserción escolar total</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Tasa de homicidios</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Tasa de incidencia dengue</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Tasa de lesiones personales</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Tasa de muertes por accidentes de tránsito</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Tasa de suicidios</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Violencia interpersonal</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Casos totales</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Casos y tasa homicidios</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"</tbody>"+
+									"</table>"+
 
-						"<table class='table table-bordered table-hover'>"+
-						"<thead class='thead-s'>"+
-						"<tr>"+
-						"<th>Tasa de Vacunación</th>"+
-						"<th>Valores</th>"+
-						"</tr>"+
-						"</thead>"+
-						"<tbody>"+
-						"<tr class='border-dotted'>"+
-						"<td>BCG</td>"+
-						"<td></td>"+
-						"</tr>"+
-						"<tr class='border-dotted'>"+
-						"<td>DPT</td>"+
-						"<td></td>"+
-						"</tr>"+
-						"<tr class='border-dotted'>"+
-						"<td>Hepatitis B</td>"+
-						"<td></td>"+
-						"</tr>"+
-						"<tr class='border-dotted'>"+
-						"<td>HIB</td>"+
-						"<td></td>"+
-						"</tr>"+
-						"<tr class='border-dotted'>"+
-						"<td>Polio</td>"+
-						"<td></td>"+
-						"</tr>"+
-						"<tr>"+
-						"<td>Triple viral</td>"+
-						"<td></td>"+
-						"</tr>"+
-						"</tbody>"+
-						"</table>"+
+									"</div>"+
 
-						"</div>"+
+									"<div class='col-sm-6 col-md-6 col-lg-6'>"+
 
-						"<div class='col-sm-6 col-md-6 col-lg-6'>"+
+									"<table class='table table-bordered table-hover'>"+
+									"<thead class='thead-s'>"+
+									"<tr>"+
+									"<th>lesiones</th>"+
+									"<th>Valores</th>"+
+									"</tr>"+
+									"</thead>"+
+									"<tbody>"+
+									"<tr class='border-dotted'>"+
+									"<td>Lesiones fatales total</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Lesiones fatales hombre</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Lesiones fatales mujer</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Lesiones no fatales total</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Lesiones no fatales hombre</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Lesiones no fatales mujer</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"</tbody>"+
+									"</table>"+
 
-						"<table class='table table-bordered table-hover'>"+
-						"<thead class='thead-s'>"+
-						"<tr>"+
-						"<th>Discapacidades</th>"+
-						"<th>Valores</th>"+
-						"</tr>"+
-						"</thead>"+
-						"<tbody>"+
-						"<tr class='border-dotted'>"+
-						"<td>Dificultad para bañarse o moverse</td>"+
-						"<td></td>"+
-						"</tr>"+
-						"<tr class='border-dotted'>"+
-						"<td>Dificultad para entender o aprender</td>"+
-						"<td></td>"+
-						"</tr>"+
-						"<tr class='border-dotted'>"+
-						"<td>Dificultad para moverse o para caminar por si</td>"+
-						"<td></td>"+
-						"</tr>"+
-						"<tr class='border-dotted'>"+
-						"<td>Dificultad para salir a la calle sin ayuda o compañía</td>"+
-						"<td></td>"+
-						"</tr>"+
-						"<tr>"+
-						"<td>Total de población con Discapacidad</td>"+
-						"<td></td>"+
-						"</tr>"+
-						"</tbody>"+
-						"</table>"+
+									"</div>"+
 
-						"</div>");
+									"<div class='col-sm-12 col-md-12 col-lg-12'></div>"+
+
+									"<div class='col-sm-6 col-md-6 col-lg-6'>"+
+
+									"<table class='table table-bordered table-hover'>"+
+									"<thead class='thead-s'>"+
+									"<tr>"+
+									"<th>Delitos sexuales</th>"+
+									"<th>Valores</th>"+
+									"</tr>"+
+									"</thead>"+
+									"<tbody>"+
+									"<tr class='border-dotted'>"+
+									"<td>Total</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Hombre</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Mujer</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"</tbody>"+
+									"</table>"+
+
+									"</div>"+
+
+									"<div class='col-sm-6 col-md-6 col-lg-6'>"+
+
+									"<table class='table table-bordered table-hover'>"+
+									"<thead class='thead-s'>"+
+									"<tr>"+
+									"<th>Violencia</th>"+
+									"<th>Valores</th>"+
+									"</tr>"+
+									"</thead>"+
+									"<tbody>"+
+									"<tr class='border-dotted'>"+
+									"<td>Violencia a personas mayores</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Violencia entre otros familiares</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"<tr class='border-dotted'>"+
+									"<td>Violencia Infantil</td>"+
+									"<td></td>"+
+									"</tr>"+
+									"</tbody>"+
+									"</table>"+
+
+									"</div>");
 	}
 }
 

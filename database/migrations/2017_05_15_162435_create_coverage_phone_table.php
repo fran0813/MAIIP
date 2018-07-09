@@ -15,9 +15,9 @@ class CreateCoveragePhoneTable extends Migration
     {
         Schema::create('CoberturaTelefono', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('cabCT', 4, 2);
-            $table->double('centPobCT', 4, 2);
-            $table->double('rurDispCT', 4, 2);
+            $table->double('cabCT', 14, 4);
+            $table->double('centPobCT', 14, 4);
+            $table->double('rurDispCT', 14, 4);
             $table->integer('viviendaserviciopublico_id')->unsigned();
             $table->foreign('viviendaserviciopublico_id')->references('id')->on('ViviendasServiciosPublicos');
             $table->timestamps();

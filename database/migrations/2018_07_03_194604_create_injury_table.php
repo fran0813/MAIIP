@@ -15,12 +15,12 @@ class CreateInjuryTable extends Migration
     {
         Schema::create('Lesion', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('fatTot', 5, 2);
-            $table->double('fatHom', 5, 2);
-            $table->double('fatMuj', 5, 2);
-            $table->double('noFatTot', 5, 2);
-            $table->double('noFatHom', 5, 2);
-            $table->double('noFatMuj', 5, 2);
+            $table->double('fatTot', 14, 4);
+            $table->double('fatHom', 14, 4);
+            $table->double('fatMuj', 14, 4);
+            $table->double('noFatTot', 14, 4);
+            $table->double('noFatHom', 14, 4);
+            $table->double('noFatMuj', 14, 4);
             $table->integer('seguridadviolencia_id')->unsigned();
             $table->foreign('seguridadviolencia_id')->references('id')->on('SeguridadViolencia');
             $table->timestamps();

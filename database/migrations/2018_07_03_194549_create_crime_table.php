@@ -15,9 +15,9 @@ class CreateCrimeTable extends Migration
     {
         Schema::create('DelitoSexual', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('tot', 5, 2);
-            $table->double('hom', 5, 2);
-            $table->double('muj', 5, 2);
+            $table->double('tot', 14, 4);
+            $table->double('hom', 14, 4);
+            $table->double('muj', 14, 4);
             $table->integer('seguridadviolencia_id')->unsigned();
             $table->foreign('seguridadviolencia_id')->references('id')->on('SeguridadViolencia');
             $table->timestamps();
