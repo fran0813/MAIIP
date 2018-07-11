@@ -47,7 +47,7 @@ $("#tablaSeguridadViolencia").on("click", "a", function()
 		// 	method: "GET",
 		// 	url: "/demografia/borrarDemografia",
 		// 	dataType: 'json',
-		// 	data: { idD: id }
+		// 	data: { idSV: id }
 		// })
 
 		// .done(function(response) {
@@ -69,7 +69,7 @@ function mostrarActualizarSeguridadviolencia(id)
 	})
 
 	.done(function(response) {
-		$("#idD").val(response.id);
+		$("#idSV").val(response.id);
 		$("#anio2").val(response.anio);
 		$("tasDesEscTot2").val(response.tasDesEscTot);
 		$("tasHom2").val(response.tasHom);
@@ -189,7 +189,7 @@ function limpiarRespuesta()
 
 $("#formActualizar").on("submit", function()
 {
-	var idD = $("#idD").val();
+	var idSV = $("#idSV").val();
 	var tasDesEscTot = $("tasDesEscTot").val();
 	var tasHom = $("tasHom").val();
 	var tasIncDen = $("tasIncDen").val();
@@ -217,7 +217,7 @@ $("#formActualizar").on("submit", function()
 		method: "POST",
 		url: "/seguridadviolencia/actualizarSeguridadviolencia",
 		dataType: 'json',
-		data: { idD: idD,
+		data: { idSV: idSV,
 				tasDesEscTot: tasDesEscTot,
 				tasHom: tasHom,
 				tasIncDen: tasIncDen,

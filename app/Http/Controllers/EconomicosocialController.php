@@ -525,43 +525,37 @@ class EconomicosocialController extends Controller
 				<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
 				<tr>
-				<th>Datos</th>
-				<th>Cabecera</th>
-				<th>Rural</th>
-				<th>Total</th>
+				<th>Unidades comerciales</th>
+				<th>Valores</th>
 				</tr>
 				</thead>
 				<tbody>
 				<tr class='border-dotted'>
-				<td>Viviendas</td>";
+				<td>Unidades comerciales</td>";
 
 		$resultados = Economicosocial::join('unidadcomercial', 'economicosocial.id', 'unidadcomercial.economicosocial_id')
 			->join('indicepobrezamultidimensional', 'economicosocial.id', 'indicepobrezamultidimensional.economicosocial_id')
 			->select('economicosocial.id',
 					DB::raw('DATE(anioES) as DATEanioES'),
-					'numHecSemBos',
-			        'areAgrCosTot',
-			        'proAgrTot',
-			        'proCar',
-			        'invBovTotMac',
-			        'invBovTotHem',
-			        'invBovTot',
-			        'incIpmTot',
-			        'incIpmRur',
-			        'incIpmUrb',
+					'economicosocial.numHecSemBos',
+			        'economicosocial.areAgrCosTot',
+			        'economicosocial.proAgrTot',
+			        'economicosocial.proCar',
+			        'economicosocial.invBovTotMac',
+			        'economicosocial.invBovTotHem',
+			        'economicosocial.invBovTot',
+			        'economicosocial.incIpmTot',
+			        'economicosocial.incIpmRur',
+			        'economicosocial.incIpmUrb',
 					'unidadcomercial.*',
 					'indicepobrezamultidimensional.*')
             ->where('economicosocial.municipio_id', $idMunicipio)
             ->where(DB::raw('YEAR(anioES)'), $anioES)
             ->get();
 		foreach ($resultados as $resultado) {
-			$cabViv = $resultado->cabViv;
-			$rurViv = $resultado->rurViv;
-			$totalViv = $resultado->totalViv;
+			$uniCom = $resultado->uniCom;
 
-			$html .= "<td>$cabViv</td>
-					<td>$rurViv</td>
-					<td>$totalViv</td>";
+			$html .= "<td>$uniCom</td>";
 
 		};
 
@@ -582,46 +576,155 @@ class EconomicosocialController extends Controller
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Hogares por vivienda</td>";
+				<td>Unidades de servicios</td>";
 
 		foreach ($resultados as $resultado) {
-			$cabHogViv = $resultado->cabHogViv;
-			$rurHogViv = $resultado->rurHogViv;
-			$totalHogViv = $resultado->totalHogViv;
+			$uniSer = $resultado->uniSer;
 
-			$html .= "<td>$cabHogViv</td>
-					<td>$rurHogViv</td>
-					<td>$totalHogViv</td>";
+			$html .= "<td>$uniSer</td>";
 
 		};
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Hogares</td>";
+				<td>Unidades grande comerciales</td>";
 
 		foreach ($resultados as $resultado) {
-			$cabPerHog = $resultado->cabPerHog;
-			$rurPerHog = $resultado->rurPerHog;
-			$totalPerHog = $resultado->totalPerHog;
+			$uniGraCom = $resultado->uniGraCom;
 
-			$html .= "<td>$cabPerHog</td>
-					<td>$rurPerHog</td>
-					<td>$totalPerHog</td>";
+			$html .= "<td>$uniGraCom</td>";
 
 		};
 
 		$html .= "</tr>
-				<tr>
-				<td>Personas por vivienda</td>";
+				<tr class='border-dotted'>
+				<td>Unidades grande industria</td>";
 
 		foreach ($resultados as $resultado) {
-			$cabPerViv = $resultado->cabPerViv;
-			$rurPerViv = $resultado->rurPerViv;
-			$totalPerViv = $resultado->totalPerViv;
+			$uniGraInd = $resultado->uniGraInd;
 
-			$html .= "<td>$cabPerViv</td>
-					<td>$rurPerViv</td>
-					<td>$totalPerViv</td>";
+			$html .= "<td>$uniGraInd</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Unidades grande servicios</td>";
+
+		foreach ($resultados as $resultado) {
+			$uniGraSer = $resultado->uniGraSer;
+
+			$html .= "<td>$uniGraSer</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Unidades industriales</td>";
+
+		foreach ($resultados as $resultado) {
+			$uniInd = $resultado->uniInd;
+
+			$html .= "<td>$uniInd</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Unidades mediana comerciales</td>";
+
+		foreach ($resultados as $resultado) {
+			$uniMedCom = $resultado->uniMedCom;
+
+			$html .= "<td>$uniMedCom</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Unidades mediana industria</td>";
+
+		foreach ($resultados as $resultado) {
+			$uniMedInd = $resultado->uniMedInd;
+
+			$html .= "<td>$uniMedInd</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Unidades mediana servicios</td>";
+
+		foreach ($resultados as $resultado) {
+			$uniMedSer = $resultado->uniMedSer;
+
+			$html .= "<td>$uniMedSer</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Unidades micro comerciales</td>";
+
+		foreach ($resultados as $resultado) {
+			$uniMicCom = $resultado->uniMicCom;
+
+			$html .= "<td>$uniMicCom</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Unidades micro industria</td>";
+
+		foreach ($resultados as $resultado) {
+			$uniMicInd = $resultado->uniMicInd;
+
+			$html .= "<td>$uniMicInd</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Unidades micro servicios</td>";
+
+		foreach ($resultados as $resultado) {
+			$uniMicSer = $resultado->uniMicSer;
+
+			$html .= "<td>$uniMicSer</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Unidades pequeña comerciales</td>";
+
+		foreach ($resultados as $resultado) {
+			$uniPeqCom = $resultado->uniPeqCom;
+
+			$html .= "<td>$uniPeqCom</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Unidades pequeña industria</td>";
+
+		foreach ($resultados as $resultado) {
+			$uniPeqInd = $resultado->uniPeqInd;
+
+			$html .= "<td>$uniPeqInd</td>";
+
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Unidades pequeña Servicios</td>";
+
+		foreach ($resultados as $resultado) {
+			$uniPeqSer = $resultado->uniPeqSer;
+
+			$html .= "<td>$uniPeqSer</td>";
 
 		};
 
@@ -636,40 +739,159 @@ class EconomicosocialController extends Controller
 				<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
 				<tr>
-				<th>Cobertura Alcantarillado</th>
+				<th>Índice de pobreza multidimensional por componentes</th>
 				<th>Valores</th>
 				</tr>
 				</thead>
 				<tbody>
 				<tr class='border-dotted'>
-				<td>Cabecera</td>";
+				<td>Alta tasa de dependencia económica</td>";
 
 		foreach ($resultados as $resultado) {
-			$cabCA = $resultado->cabCA;
+			$altTasDepEco = $resultado->altTasDepEco;
 
-			$html .= "<td>$cabCA</td>";
+			$html .= "<td>$altTasDepEco</td>";
 
 		};
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Centro poblados</td>";
+				<td>Analfabetismo</td>";
 
 		foreach ($resultados as $resultado) {
-			$centPobCA = $resultado->centPobCA;
+			$ana = $resultado->ana;
 
-			$html .= "<td>$centPobCA</td>";
+			$html .= "<td>$ana</td>";
 		};
 
 		$html .= "</tr>
-				<tr>
-				<td>Rural disperso</td>";
+				<tr class='border-dotted'>
+				<td>Bajo logro educativo</td>";
 
 		foreach ($resultados as $resultado) {
-			$rurDispCA = $resultado->rurDispCA;
+			$bajLogEdu = $resultado->bajLogEdu;
 
-			$html .= "<td>$rurDispCA</td>";
+			$html .= "<td>$bajLogEdu</td>";
+		};
 
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Barreras de acceso a servicio de salud</td>";
+
+		foreach ($resultados as $resultado) {
+			$barAccSerSal = $resultado->barAccSerSal;
+
+			$html .= "<td>$barAccSerSal</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Barreras de acceso a servicios para cuidado de la primera infancia</td>";
+
+		foreach ($resultados as $resultado) {
+			$barAccSerCiu = $resultado->barAccSerCiu;
+
+			$html .= "<td>$barAccSerCiu</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Empleo informal</td>";
+
+		foreach ($resultados as $resultado) {
+			$empInf = $resultado->empInf;
+
+			$html .= "<td>$empInf</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Hacinamiento</td>";
+
+		foreach ($resultados as $resultado) {
+			$hac = $resultado->hac;
+
+			$html .= "<td>$hac</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Inadecuada eliminación de excretas</td>";
+
+		foreach ($resultados as $resultado) {
+			$inaEliExc = $resultado->inaEliExc;
+
+			$html .= "<td>$inaEliExc</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Inasistencia escolar</td>";
+
+		foreach ($resultados as $resultado) {
+			$inaEsc = $resultado->inaEsc;
+
+			$html .= "<td>$inaEsc</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Paredes inadecuadas</td>";
+
+		foreach ($resultados as $resultado) {
+			$parIna = $resultado->parIna;
+
+			$html .= "<td>$parIna</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Pisos inadecuados</td>";
+
+		foreach ($resultados as $resultado) {
+			$pisIna = $resultado->pisIna;
+
+			$html .= "<td>$pisIna</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Rezago escolar</td>";
+
+		foreach ($resultados as $resultado) {
+			$rezEsc = $resultado->rezEsc;
+
+			$html .= "<td>$rezEsc</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Sin acceso a fuente de agua mejorada</td>";
+
+		foreach ($resultados as $resultado) {
+			$sinAccFueAgMej = $resultado->sinAccFueAgMej;
+
+			$html .= "<td>$sinAccFueAgMej</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Sin aseguramiento en salud</td>";
+
+		foreach ($resultados as $resultado) {
+			$sinAseSal = $resultado->sinAseSal;
+
+			$html .= "<td>$sinAseSal</td>";
+		};
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Trabajo infantil</td>";
+
+		foreach ($resultados as $resultado) {
+			$traInf = $resultado->traInf;
+
+			$html .= "<td>$traInf</td>";
 		};
 
 		$html .= "</tr>
@@ -678,136 +900,115 @@ class EconomicosocialController extends Controller
 
 				</div>";
 
-		$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
+		$html .= "<div class='col-sm-12 col-md-12 col-lg-12'></div>
+				<div class='col-sm-6 col-md-6 col-lg-6'>
 
 				<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
 				<tr>
-				<th>Cobertura aseo</th>
+				<th>Economico-social</th>
 				<th>Valores</th>
 				</tr>
 				</thead>
 				<tbody>
 				<tr class='border-dotted'>
-				<td>Cabecera</td>";
+				<td>Número de hectáreas sembradas con bosques por municipio área en bosques total</td>";
 
 		foreach ($resultados as $resultado) {
-			$cabCAs = $resultado->cabCAs;
+			$numHecSemBos = $resultado->numHecSemBos;
 
-			$html .= "<td>$cabCAs</td>";
+			$html .= "<td>$numHecSemBos</td>";
 
 		};
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Centro poblados</td>";
+				<td>Área agrícola cosechada total</td>";
 
 		foreach ($resultados as $resultado) {
-			$centPobCAs = $resultado->centPobCAs;
+			$areAgrCosTot = $resultado->areAgrCosTot;
 
-			$html .= "<td>$centPobCAs</td>";
+			$html .= "<td>$areAgrCosTot</td>";
 		}
-
-		$html .= "</tr>
-				<tr>
-				<td>Rural disperso</td>";
-
-		foreach ($resultados as $resultado) {
-			$rurDispCAs = $resultado->rurDispCAs;
-
-			$html .= "<td>$rurDispCAs</td>";
-		}
-
-		$html .= "</tr>
-				</tbody>
-				</table>
-
-				</div>";
-
-		$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
-
-				<table class='table table-bordered table-hover'>
-				<thead class='thead-s'>
-				<tr>
-				<th>Cobertura aseo</th>
-				<th>Valores</th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr class='border-dotted'>
-				<td>Cabecera</td>";
-
-		foreach ($resultados as $resultado) {
-			$cabCG = $resultado->cabCG;
-
-			$html .= "<td>$cabCG</td>";
-
-		};
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Centro poblados</td>";
+				<td>Producción agrícola total</td>";
 
 		foreach ($resultados as $resultado) {
-			$centPobCG = $resultado->centPobCG;
+			$proAgrTot = $resultado->proAgrTot;
 
-			$html .= "<td>$centPobCG</td>";
+			$html .= "<td>$proAgrTot</td>";
 		}
-
-		$html .= "</tr>
-				<tr>
-				<td>Rural disperso</td>";
-
-		foreach ($resultados as $resultado) {
-			$rurDispCG = $resultado->rurDispCG;
-
-			$html .= "<td>$rurDispCG</td>";
-		}
-
-		$html .= "</tr>
-				</tbody>
-				</table>
-
-				</div>";
-
-		$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
-
-				<table class='table table-bordered table-hover'>
-				<thead class='thead-s'>
-				<tr>
-				<th>Cobertura aseo</th>
-				<th>Valores</th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr class='border-dotted'>
-				<td>Cabecera</td>";
-
-		foreach ($resultados as $resultado) {
-			$cabCT = $resultado->cabCT;
-
-			$html .= "<td>$cabCT</td>";
-
-		};
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Centro poblados</td>";
+				<td>Producción de carbón</td>";
 
 		foreach ($resultados as $resultado) {
-			$centPobCT = $resultado->centPobCT;
+			$proCar = $resultado->proCar;
 
-			$html .= "<td>$centPobCT</td>";
+			$html .= "<td>$proCar</td>";
 		}
 
 		$html .= "</tr>
-				<tr>
-				<td>Rural disperso</td>";
+				<tr class='border-dotted'>
+				<td>Inventario bovinos total machos</td>";
 
 		foreach ($resultados as $resultado) {
-			$rurDispCT = $resultado->rurDispCT;
+			$invBovTotMac = $resultado->invBovTotMac;
 
-			$html .= "<td>$rurDispCT</td>";
+			$html .= "<td>$invBovTotMac</td>";
+		}
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Inventario bovinos total hembras</td>";
+
+		foreach ($resultados as $resultado) {
+			$invBovTotHem = $resultado->invBovTotHem;
+
+			$html .= "<td>$invBovTotHem</td>";
+		}
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Inventario bovinos total</td>";
+
+		foreach ($resultados as $resultado) {
+			$invBovTot = $resultado->invBovTot;
+
+			$html .= "<td>$invBovTot</td>";
+		}
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Incidencia IPM total</td>";
+
+		foreach ($resultados as $resultado) {
+			$incIpmTot = $resultado->incIpmTot;
+
+			$html .= "<td>$incIpmTot</td>";
+		}
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Incidencia IPM urbano</td>";
+
+		foreach ($resultados as $resultado) {
+			$incIpmUrb = $resultado->incIpmUrb;
+
+			$html .= "<td>$incIpmUrb</td>";
+		}
+
+		$html .= "</tr>
+				<tr class='border-dotted'>
+				<td>Incidencia IPM urbano</td>";
+
+		foreach ($resultados as $resultado) {
+			$incIpmRur = $resultado->incIpmRur;
+
+			$html .= "<td>$incIpmRur</td>";
 		}
 
 		$html .= "</tr>
@@ -828,46 +1029,45 @@ class EconomicosocialController extends Controller
 				<thead>
 				<tr>
 				<th>Año</th>
-				<th>Total de viviendas</th>
-				<th>Total de hogares</th>
-				<th>Total de hogares por vivienda</th>
+				<th>Área agrícola cosechada total</th>
+				<th>Producción agrícola total</th>
+				<th>Producción de carbón</th>
 				<th>Funciones</th>
 				</tr>
 				</thead>
 				<tbody>";
 
-		$resultados = Viviendaserviciopublico::select('viviendasserviciospublicos.id',
-								DB::raw('YEAR(anioVSP) as YEARanioVSP'),
-								'viviendasserviciospublicos.cabHogViv',
-								'viviendasserviciospublicos.cabPerHog',
-								'viviendasserviciospublicos.cabPerViv',
-								'viviendasserviciospublicos.rurHogViv',
-								'viviendasserviciospublicos.rurPerHog',
-								'viviendasserviciospublicos.rurPerViv',
-								'viviendasserviciospublicos.totalHogViv',
-								'viviendasserviciospublicos.totalPerHog',
-								'viviendasserviciospublicos.totalPerViv',
-								'viviendasserviciospublicos.cabViv',
-								'viviendasserviciospublicos.cabHog',
-								'viviendasserviciospublicos.rurViv',
-								'viviendasserviciospublicos.rurHog',
-								'viviendasserviciospublicos.totalViv',
-								'viviendasserviciospublicos.totalHog')
-						->where('viviendasserviciospublicos.municipio_id', $idMunicipio)
-						->orderBy('anioVSP')
+		$resultados = Economicosocial::join('unidadcomercial', 'economicosocial.id', 'unidadcomercial.economicosocial_id')
+			->join('indicepobrezamultidimensional', 'economicosocial.id', 'indicepobrezamultidimensional.economicosocial_id')
+			->select('economicosocial.id',
+					DB::raw('DATE(anioES) as DATEanioES'),
+					'economicosocial.numHecSemBos',
+			        'economicosocial.areAgrCosTot',
+			        'economicosocial.proAgrTot',
+			        'economicosocial.proCar',
+			        'economicosocial.invBovTotMac',
+			        'economicosocial.invBovTotHem',
+			        'economicosocial.invBovTot',
+			        'economicosocial.incIpmTot',
+			        'economicosocial.incIpmRur',
+			        'economicosocial.incIpmUrb',
+					'unidadcomercial.*',
+					'indicepobrezamultidimensional.*')
+            ->where('economicosocial.municipio_id', $idMunicipio)
+						->orderBy('anioES')
 						->get();
 		foreach ($resultados as $resultado) {
 			$id = $resultado->id;
-			$anio = $resultado->YEARanioVSP;
-			$totalViv = $resultado->totalViv;
-			$totalHog = $resultado->totalHog;
-			$totalHogViv = $resultado->totalHogViv;
+			$anio = $resultado->DATEanioES;
+			$areAgrCosTot = $resultado->areAgrCosTot;
+			$proAgrTot = $resultado->proAgrTot;
+			$proCar = $resultado->proCar;
 
 			$html .= "<tr>
 					<td>$anio</td>
-					<td>$totalViv</td>
-					<td>$totalHog</td>
-					<td>$totalHogViv</td>
+					<td>$areAgrCosTot</td>
+					<td>$proAgrTot</td>
+					<td>$proCar</td>
 					<td><a id='$id' href='#' class='btn btn-success' data-toggle='modal' data-target='#modalMostrarActualizar' value='editar'>Editar</a></td>
 					</tr>";
 		}
@@ -940,17 +1140,20 @@ class EconomicosocialController extends Controller
 
 		    if ($booleanAño = False) {
 		    	
-	            $data1[] = array('anioEs' => $result->anio.'/01/01 00:00:00',
-	                           'numHecSemBos' => $result->numero_de_hectareas_sembradas_con_bosque,
-						        'areAgrCosTot' => $result->area_agricola_cosechada_total,
-						        'proAgrTot' => $result->produccion_agricola_total,
-						        'proCar' => $result->produccion_de_carbon,
-						        'invBovTotMac' => $result->inventario_bovinos_total_machos,
-						        'invBovTotHem' => $result->inventario_bovinos_total_hembras,
-						        'invBovTot' => $result->inventario_bovinos_total,
-						        'incIpmTot' => $result->incidencia_imp_total,
-						        'incIpmRur' => $result->incidencia_imp_rural,
-						        'incIpmUrb' => $result->incidencia_imp_urbana,
+		    	$invBovTot = $result->inventario_bovinos_total_machos + $result->inventario_bovinos_total_hembras;
+		    	$incIpmTot = $result->incidencia_ipm_rural + $result->incidencia_ipm_urbano;
+
+	            $data1[] = array('anioES' => $result->anio.'/01/01 00:00:00',
+	                           'numHecSemBos' => "",	
+							'areAgrCosTot' => $result->area_agricola_cosechada_total,		
+							'proAgrTot' => $result->produccion_agrícola_total,				
+							'proCar' => $result->produccion_de_carbón,						
+							'invBovTotMac' => $result->inventario_bovinos_total_machos,	
+							'invBovTotHem' => $result->inventario_bovinos_total_hembras,
+							'invBovTot' => $invBovTot,			
+							'incIpmTot' => $incIpmTot,				
+							'incIpmRur' => $result->incidencia_ipm_rural,
+							'incIpmUrb' => $result->incidencia_ipm_urbano,						
 	                           'municipio_id' => $id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
@@ -964,42 +1167,42 @@ class EconomicosocialController extends Controller
 					$economicosocial_id = $resultado->id;
 				}
 
-			    $data2[] = array('uniCom' => $result->unidades_comerciales,
-						        'uniSer' => $result->unidades_de_servicios,
-						        'uniGraCom' => $result->unidades_grande_comerciales,
-						        'uniGraInd' => $result->unidades_grande_industria,
-						        'uniGraSer' => $result->unidades_grande_servicios,
-						        'uniInd' => $result->unidades_industria,
-						        'uniMedCom' => $result->unidades_media_comerciales,
-						        'uniMedInd' => $result->unidades_media_industria,
-						        'uniMedSer' => $result->unidades_media_servicios,
-						        'uniMicCom' => $result->unidades_micro_comerciales,
-						        'uniMicInd' => $result->unidades_micro_industria,
-						        'uniMicSer' => $result->unidades_micro_servicios,
-						        'uniPeqCom' => $result->unidades_pequeña_comerciales,
-						        'uniPeqInd' => $result->unidades_pequeña_industria,
-						        'uniPeqSer' => $result->uniPeqSer,
-	                           'economicosocial_id' => $unidades_pequeña_servicios,
+			    $data2[] = array('uniCom' => $result->unidades_comerciales,			
+					'uniSer' => $result->unidades_de_servicios,				
+					'uniGraCom' => $result->unidades_grande_comerciales,					
+					'uniGraInd' => $result->unidades_grande_industria,					
+					'uniGraSer' => $result->unidades_grande_servicios,					
+					'uniInd' => $result->unidades_industriales,		
+					'uniMedCom' => $result->unidades_mediana_comerciales,				
+					'uniMedInd' => $result->unidades_mediana_industria,					
+					'uniMedSer' => $result->unidades_mediana_servicios,					
+					'uniMicCom' => $result->unidades_micro_comerciales,				
+					'uniMicInd' => $result->unidades_micro_industria,						
+					'uniMicSer' => $result->unidades_micro_servicios,						
+					'uniPeqCom' => $result->unidades_pequeña_comerciales,				
+					'uniPeqInd' => $result->unidades_pequeña_industria,					
+					'uniPeqSer' => $result->unidades_pequeña_Servicios,	
+	                           'economicosocial_id' => $economicosocial_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
 
 
-			    $data3[] = array('altTasDepEco' => $result->alta_tasa_dependencia_economica,
-						        'ana' => $result->analfabetismo,
-						        'bajLogEdu' => $result->bajo_logro_educativo,
-						        'barAccSerSal' => $result->barreras_de_acceso_a_servicio_de_salud,
-						        'barAccSerCiu' => $result->barreras_de_acceso_a_servicios_para_cuidados_de_la_primera_infancia,
-						        'empInf' => $result->empleo_informal,
-						        'hac' => $result->hacinamiento,
-						        'inaEliExc' => $result->inadecuacion_eliminacion_de_excretas,
-						        'inaEsc' => $result->inasistencia_escolar,
-						        'parIna' => $result->paredes_inadecuadas,
-						        'pisIna' => $result->pisos_inadecuados,
-						        'rezEsc' => $result->rezago_escolar,
-						        'sinAccFueAgMej' => $result->sin_acceso_a_fuente_de_agua_mejorada,
-						        'sinAseSal' => $result->sin_aseguramiento_en_salud,
-						        'traInf' => $result->trabajo_infantil,
-	                           'economicosocial_id' => $economicosocial_id,
+			    $data3[] = array('altTasDepEco' => $result->alta_tasa_de_dependencia_economica,
+					'ana' => $result->analfabetismo,	
+					'bajLogEdu' => $result->bajo_logro_educativo,	
+					'barAccSerSal' => $result->barreras_de_acceso_a_servicio_de_salud,	
+					'barAccSerCiu' => $result->barreras_de_acceso_a_servicios_para_cuidado_de_la_primera_infancia,	
+					'empInf' => $result->empleo_informal,		
+					'hac' => $result->hacinamiento,	
+					'inaEliExc' => $result->inadecuada_eliminación_de_excretas,	
+					'inaEsc' => $result->inasistencia_escolar,					
+					'parIna' => $result->paredes_inadecuadas,					
+					'pisIna' => $result->pisos_inadecuados,					
+					'rezEsc' => $result->rezago_escolar,					
+					'sinAccFueAgMej' => $result->sin_acceso_a_fuente_de_agua_mejorada,
+					'sinAseSal' => $result->sin_aseguramiento_en_salud,				
+					'traInf' => $result->trabajo_infantil,
+					          'economicosocial_id' => $economicosocial_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
 
@@ -1033,7 +1236,7 @@ class EconomicosocialController extends Controller
       // return Response::json(array('html' => $html, 'boolean' => $booleanMunicipio));
     }
 
-    public function descargarViviendaEconomicoSocial(Request $request)
+    public function descargarEconomicoSocial(Request $request)
     {
       $data = array();
 
@@ -1041,48 +1244,47 @@ class EconomicosocialController extends Controller
  
           $excel->sheet('Importar', function($sheet) {
 
-              $data[] = array('año' => "",
-              				'municipio' => "",
-              				 'numero_de_hectareas_sembradas_con_bosque' => "",
-						        'area_agricola_cosechada_total' => "",
-						        'produccion_agricola_total' => "",
-						        'produccion_de_carbon' => "",
-						        'inventario_bovinos_total_machos' => "",
-						        'inventario_bovinos_total_hembras' => "",
-						        'inventario_bovinos_total' => "",
-						        'incidencia_imp_total' => "",
-						        'incidencia_imp_rural' => "",
-						        'incidencia_imp_urbana' => "",
-						        'unidades_comerciales' => "",
-						        'unidades_de_servicios' => "",
-						        'unidades_grande_comerciales' => "",
-						        'unidades_grande_industria' => "",
-						        'unidades_grande_servicios' => "",
-						        'unidades_industria' => "",
-						        'unidades_media_comerciales' => "",
-						        'unidades_media_industria' => "",
-						        'unidades_media_servicios' => "",
-						        'unidades_micro_comerciales' => "",
-						        'unidades_micro_industria' => "",
-						        'unidades_micro_servicios' => "",
-						        'unidades_pequeña_comerciales' => "",
-						        'unidades_pequeña_industria' => "",
-						        'unidades_pequeña_servicios' => "",
-						        'alta_tasa_dependencia_economica' => "",
-						        'analfabetismo' => "",
-						        'bajo_logro_educativo' => "",
-						        'barreras_de_acceso_a_servicio_de_salud' => "",
-						        'barreras_de_acceso_a_servicios_para_cuidados_de_la_primera_infancia' => "",
-						        'empleo_informal' => "",
-						        'hacinamiento' => "",
-						        'inadecuacion_eliminacion_de_excretas' => "",
-						        'inasistencia_escolar' => "",
-						        'paredes_inadecuadas' => "",
-						        'pisos_inadecuados' => "",
-						        'rezago_escolar' => "",
-						        'sin_acceso_a_fuente_de_agua_mejorada' => "",
-						        'sin_aseguramiento_en_salud' => "",
-						        'trabajo_infantil' => "");
+              $data[] = array('año' => "", 
+                     		'municipio' => "",           				 
+					'unidades_comerciales' => "",		
+					'unidades_de_servicios' => "",			
+					'unidades_grande_comerciales' => "",				
+					'unidades_grande_industria' => "",				
+					'unidades_grande_servicios' => "",				
+					'unidades_industriales' => "",	
+					'unidades_mediana_comerciales' => "",				
+					'unidades_mediana_industria' => "",							
+					'unidades_mediana_servicios' => "",								
+					'unidades_micro_comerciales' => "",								
+					'unidades_micro_industria' => "",								
+					'unidades_micro_servicios' => "",								
+					'unidades_pequeña_comerciales' => "",							
+					'unidades_pequeña_industria' => "",								
+					'unidades_pequeña_servicios' => "",				
+					'alta_tasa_de_dependencia_economica' => "",						
+					'analfabetismo' => "",				
+					'bajo_logro_educativo' => "",				
+					'barreras_de_acceso_a_servicio_de_salud' => "",				
+					'barreras_de_acceso_a_servicios_para_cuidado_de_la_primera_infancia' => "",				
+					'empleo_informal' => "",					
+					'hacinamiento' => "",				
+					'inadecuada_eliminación_de_excretas' => "",						
+					'inasistencia_escolar' => "",								
+					'paredes_inadecuadas' => "",								
+					'pisos_inadecuados' => "",								
+					'rezago_escolar' => "",								
+					'sin_acceso_a_fuente_de_agua_mejorada' => "",				
+					'sin_aseguramiento_en_salud' => "",							
+					'trabajo_infantil' => "",				
+					'numero_de_hectáreas_sembradas_con_bosques_por_municipio_area_en_bosques_total' => "",	
+					'area_agricola_cosechada_total' => "",								
+					'produccion_agrícola_total' => "",								
+					'produccion_de_carbón' => "",								
+					'inventario_bovinos_total_machos' => "",					
+					'inventario_bovinos_total_hembras' => "",									
+					'incidencia_ipm_urbano' => "",								
+					'incidencia_ipm_rural' => "",
+					);
 
               $sheet->fromArray($data);
 

@@ -13,7 +13,7 @@
 
             <form id="formActualizar">
 
-                <input type="text" style="display: none;" id="idS">
+                <input type="text" style="display: none;" id="idSV">
 
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="col-lg-4 col-md-4 col-sm-4">

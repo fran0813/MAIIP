@@ -29,6 +29,26 @@ function mostrarDatos()
 	}
 }
 
+function calcularInventarioBovinos()
+{
+	var invBovTotMac = $("#invBovTotMac").val();
+	var invBovTotHem = $("#invBovTotHem").val();
+	var invBovTot = parseInt(invBovTotMac) + parseInt(invBovTotHem);
+	if (invBovTotMac != "" && invBovTotHem != "") {
+		$('#invBovTot').val(invBovTot);
+	}
+}
+
+function calcularIpm()
+{
+	var incIpmRur = $("#incIpmRur").val();
+	var incIpmUrb = $("#incIpmUrb").val();
+	var incIpmTot = parseFloat(incIpmRur) + parseFloat(incIpmUrb);
+	if (incIpmRur != "" && incIpmUrb != "") {
+		$('#incIpmTot').val(incIpmTot);
+	}
+}
+
 function mostrarCrear()
 {
 	$("#crear").show();
@@ -56,6 +76,26 @@ $("#tablaEconomicosocial").on("click", "a", function()
 	}
 });	
 
+function calcularInventarioBovinos2()
+{
+	var invBovTotMac = $("#invBovTotMac2").val();
+	var invBovTotHem = $("#invBovTotHem2").val();
+	var invBovTot = parseInt(invBovTotMac) + parseInt(invBovTotHem);
+	if (invBovTotMac != "" && invBovTotHem != "") {
+		$('#invBovTot2').val(invBovTot);
+	}
+}
+
+function calcularIpm2()
+{
+	var incIpmRur = $("#incIpmRur2").val();
+	var incIpmUrb = $("#incIpmUrb2").val();
+	var incIpmTot = parseFloat(incIpmRur) + parseFloat(incIpmUrb);
+	if (incIpmRur != "" && incIpmUrb != "") {
+		$('#incIpmTot2').val(incIpmTot);
+	}
+}
+
 function mostrarActualizarEconomicosocial(id)
 {
 	$('#respuesta2').hide();
@@ -65,11 +105,11 @@ function mostrarActualizarEconomicosocial(id)
 		method: "POST",
 		url: "/economicosocial/mostrarActualizarEconomicosocial",
 		dataType: 'json',
-		data: { idD: id }
+		data: { idES: id }
 	})
 
 	.done(function(response) {
-		$("#idD").val(response.id);
+		$("#idES").val(response.id);
 		$("#anio2").val(response.anio);
 		$('numHecSemBos').val(response.numHecSemBos);
         $('areAgrCosTot').val(response.areAgrCosTot);
@@ -244,7 +284,7 @@ function limpiarRespuesta()
 
 $("#formActualizar").on("submit", function()
 {
-	var idD = $("#idD").val();
+	var idES = $("#idES").val();
 	var numHecSemBos = $("numHecSemBos").val();
     var areAgrCosTot = $("areAgrCosTot").val();
     var proAgrTot = $("proAgrTot").val();
@@ -291,7 +331,7 @@ $("#formActualizar").on("submit", function()
 		method: "POST",
 		url: "/economicosocial/actualizarEconocimosocial",
 		dataType: 'json',
-		data: { idD: idD,
+		data: { idES: idES,
 				comprobar: comprobar,
 				numHecSemBos: numHecSemBos,
 			    areAgrCosTot: areAgrCosTot,

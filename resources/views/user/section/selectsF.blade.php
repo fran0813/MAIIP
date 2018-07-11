@@ -9,7 +9,7 @@
 </div>
 
 <div class="col-sm-5 col-md-5 col-lg-5">
-	<select id="municipio" class="form-control" onchange="mostrarCodigo();mostrarAñoVSP();establecerMunicipio();mostrarTablasVSP();">
+	<select id="municipio" class="form-control" onchange="mostrarCodigo();mostrarAñoF();establecerMunicipio();mostrarTablasVSP();">
 		<option>Seleccione un municipio</option>			
 	</select>
 </div>

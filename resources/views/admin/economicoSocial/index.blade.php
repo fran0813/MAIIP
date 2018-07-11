@@ -8,7 +8,7 @@
     
     <div id="crear" class="col-sm-2 col-md-2 col-lg-2" hidden="">
        <a href="#" style="margin-left: 10px;" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalCrear" onclick="limpiarRespuesta()">Crear</a> 
-       <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalImportarEconomicoSocial>Importar</a>      
+       <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalImportarEconomicoSocial">Importar</a>      
     </div>
 
 </div>
@@ -16,7 +16,7 @@
 <div class="col-lg-12 col-md-12 col-sm-12">
 	<div class="panel panel-default">
         <div class="panel-body">
-            <div id="tablaEconomicoSocial class="table-responsive">
+            <div id="tablaEconomicosocial" class="table-responsive">
                 <center><h3>Porfavor seleccione un <strong>Departamento</strong> y un <strong>Municipio</strong></h3></center>
             </div>
         </div>

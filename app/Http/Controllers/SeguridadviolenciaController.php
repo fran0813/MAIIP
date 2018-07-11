@@ -265,6 +265,15 @@ class SeguridadviolenciaController extends Controller
 						->join('lesion', 'seguridadviolencia.id', 'lesion.seguridadviolencia_id')
 						->join('violencia', 'seguridadviolencia.id', 'violencia.seguridadviolencia_id')
 						->select(DB::raw('DATE(anioSV) as DATEanioSV'),
+							'seguridadviolencia.tasDesEscTot',
+					            'seguridadviolencia.tasHom',
+					            'seguridadviolencia.tasIncDen',
+					            'seguridadviolencia.tasLesPer',
+					            'seguridadviolencia.tasMueAcc',
+					            'seguridadviolencia.tasSui',
+					            'seguridadviolencia.vioInt',
+					            'seguridadviolencia.casTot',
+					            'seguridadviolencia.casTasHom',
 								'delitosexual.*',
 								'lesion.*',
 								'violencia.*')
@@ -346,6 +355,15 @@ class SeguridadviolenciaController extends Controller
 						->join('lesion', 'seguridadviolencia.id', 'lesion.seguridadviolencia_id')
 						->join('violencia', 'seguridadviolencia.id', 'violencia.seguridadviolencia_id')
 						->select(DB::raw('YEAR(anioSV) as YEARanioSV'),
+								'seguridadviolencia.tasDesEscTot',
+					            'seguridadviolencia.tasHom',
+					            'seguridadviolencia.tasIncDen',
+					            'seguridadviolencia.tasLesPer',
+					            'seguridadviolencia.tasMueAcc',
+					            'seguridadviolencia.tasSui',
+					            'seguridadviolencia.vioInt',
+					            'seguridadviolencia.casTot',
+					            'seguridadviolencia.casTasHom',
 								'delitosexual.*',
 								'lesion.*',
 								'violencia.*')
@@ -528,7 +546,8 @@ class SeguridadviolenciaController extends Controller
 
 				</div>";
 
-		$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
+		$html .= "<div class='col-sm-12 col-md-12 col-lg-12'></div>
+				<div class='col-sm-6 col-md-6 col-lg-6'>
 
 				<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
@@ -643,6 +662,15 @@ class SeguridadviolenciaController extends Controller
 						->join('lesion', 'seguridadviolencia.id', 'lesion.seguridadviolencia_id')
 						->join('violencia', 'seguridadviolencia.id', 'violencia.seguridadviolencia_id')
 						->select(DB::raw('YEAR(anioSV) as YEARanioSV'),
+							'seguridadviolencia.tasDesEscTot',
+					            'seguridadviolencia.tasHom',
+					            'seguridadviolencia.tasIncDen',
+					            'seguridadviolencia.tasLesPer',
+					            'seguridadviolencia.tasMueAcc',
+					            'seguridadviolencia.tasSui',
+					            'seguridadviolencia.vioInt',
+					            'seguridadviolencia.casTot',
+					            'seguridadviolencia.casTasHom',
 								'delitosexual.*',
 								'lesion.*',
 								'violencia.*')

@@ -47,7 +47,7 @@ $("#tablaFinanza").on("click", "a", function()
 		// 	method: "GET",
 		// 	url: "/demografia/borrarDemografia",
 		// 	dataType: 'json',
-		// 	data: { idD: id }
+		// 	data: { idF: id }
 		// })
 
 		// .done(function(response) {
@@ -370,7 +370,7 @@ function limpiarRespuesta()
 
 $("#formActualizar").on("submit", function()
 {
-	var idD = $("#idD").val();
+	var idF = $("#idF").val();
 	var ingTot = $("ingTot").val();
 	var ingCor = $("ingCor").val();
 	var ingTri = $("ingTri").val();
@@ -459,7 +459,7 @@ $("#formActualizar").on("submit", function()
 		method: "POST",
 		url: "/finanza/actualizarFinanza",
 		dataType: 'json',
-		data: { idD: idD,
+		data: { idF: idF,
 				ingTot: ingTot,
 				ingCor: ingCor,
 				ingTri: ingTri,
