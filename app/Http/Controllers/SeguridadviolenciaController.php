@@ -210,7 +210,7 @@ class SeguridadviolenciaController extends Controller
 				function drawChart() {";
 
 		$html .= "var data = google.visualization.arrayToDataTable([
-				['Año', 'Tasa BCG', 'Tasa DPT', 'Tasa Hepatitis B', 'Tasa  HIB', 'Tasa  Polio', 'Tasa  Triple viral'],";
+				['Año', 'Tasa de delitos sexuales', 'Tasa de homicidios', 'Tasa lesiones personales', 'Tasa  deserción escolar total', 'Tasa  incidencia dengue', 'Tasa  muertes por accidentes de tránsito'],";
 
 		$resultados = Seguridadviolencia::join('delitosexual', 'seguridadviolencia.id', 'delitosexual.seguridadviolencia_id')
 						->select(DB::raw('YEAR(anioSV) as YEARanioSV'),
@@ -238,7 +238,7 @@ class SeguridadviolenciaController extends Controller
 		$html .= "]);";
 
 		$html .= "// Set chart options
-		        	var options = {	title: 'Vacunaciones',
+		        	var options = {	title: 'Tasas de violencia',
 		        					bar: {groupWidth: '20%'},
 			        				legend: { position: 'rigth' },
 			        				colors: ['#e9473f', '#397ACB', '#F8EF01']};";	

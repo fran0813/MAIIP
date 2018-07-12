@@ -440,6 +440,7 @@ class FinanzaController extends Controller
 	public function grafica1Finanza(Request $request)
 	{
 		$idMunicipio = $_GET['idMunicipio'];
+		$anioF = $_GET['anioF'];
 		$html = "";
 
 		$html = "<script type='text/javascript'>";
@@ -456,27 +457,35 @@ class FinanzaController extends Controller
 				function drawChart() {";
 
 		$html .= "var data = google.visualization.arrayToDataTable([
-				['Año', 'Femenino', 'Masculino'],";
+				['Año', 'INGRESOS TOTALES', 'INGRESOS CORRIENTES', 'GASTOS TOTALES', '2. GASTOS CORRIENTES'],";
 
-		$resultados = Educacion::join('matriculaporgenero', 'educacion.id', 'matriculaporgenero.educacion_id')
-						->select(DB::raw('YEAR(anioE) as YEARanioE'),
-								'matriculaporgenero.femenino',
-								'matriculaporgenero.masculino')
-						->where('educacion.municipio_id', $idMunicipio)
-						->orderBy('educacion.anioE', 'asc')
+		$resultados = Finanza::join('planfinanciero', 'finanza.id', 'planfinanciero.finanza_id')
+			->join('ejecucionpresupuesto', 'finanza.id', 'ejecucionpresupuesto.finanza_id')
+			->join('indicedesempeñointegral', 'finanza.id', 'indicedesempeñointegral.finanza_id')
+			->join('indicedesempeñofiscal', 'finanza.id', 'indicedesempeñofiscal.finanza_id')
+			->select('finanza.id',
+					DB::raw('YEAR(anioF) as DATEanioF'),
+					'planfinanciero.*',
+					'ejecucionpresupuesto.*',
+					'indicedesempeñointegral.*',
+					'indicedesempeñofiscal.*')
+						->where('finanza.municipio_id', $idMunicipio)
+						->where(DB::raw('YEAR(anioF)'), $anioF)
 						->get();
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioE;
-			$femenino = $resultado->femenino;
-			$masculino = $resultado->masculino;
+			$ingTot = $resultado->ingTot;
+			$ingCor = $resultado->ingCor;
+			$gasTot = $resultado->gasTot;
+			$gasCor = $resultado->gasCor;
 
-			$html .= "['$anio', $femenino, $masculino],";
+			$html .= "['$anio', $ingTot, $ingCor, $gasTot, $gasCor],";
 		}
 
 		$html .= "]);";
 
 		$html .= "// Set chart options
-		        	var options = {	title: 'Matriculas por genero',
+		        	var options = {	title: 'Ingresos vs Gastos',
 		        					curveType: 'function',
 			        				legend: { position: 'rigth' },
 			        				colors: ['#e9473f', '#131FBD']};";	
@@ -513,33 +522,37 @@ class FinanzaController extends Controller
 				function drawChart() {";
 
 		$html .= "var data = google.visualization.arrayToDataTable([
-				['Año', 'Jardin', 'Transición', 'Primaria', 'Secundaria', 'Media'],";
+				['Año', 'Desempeño Integral  Capacidad Administrativa', 'Desempeño Integral  Eficacia Total', 'Desempeño Integral  Gestión', 'Desempeño Integral Indice Integral', 'Desempeño Integral Requisitos Legales', 'Desempeño Integral  Indicador de desempeño Fiscal'],";
 
-		$resultados = Educacion::join('matriculapornivel', 'educacion.id', 'matriculapornivel.educacion_id')
-						->select(DB::raw('YEAR(anioE) as YEARanioE'),
-								'matriculapornivel.jardin',
-								'matriculapornivel.trans',
-								'matriculapornivel.prim',
-								'matriculapornivel.secu',
-								'matriculapornivel.media')
-						->where('educacion.municipio_id', $idMunicipio)
-						->orderBy('educacion.anioE', 'asc')
+		$resultados = Finanza::join('planfinanciero', 'finanza.id', 'planfinanciero.finanza_id')
+			->join('ejecucionpresupuesto', 'finanza.id', 'ejecucionpresupuesto.finanza_id')
+			->join('indicedesempeñointegral', 'finanza.id', 'indicedesempeñointegral.finanza_id')
+			->join('indicedesempeñofiscal', 'finanza.id', 'indicedesempeñofiscal.finanza_id')
+			->select('finanza.id',
+					DB::raw('YEAR(anioF) as DATEanioF'),
+					'planfinanciero.*',
+					'ejecucionpresupuesto.*',
+					'indicedesempeñointegral.*',
+					'indicedesempeñofiscal.*')
+						->where('finanza.municipio_id', $idMunicipio)
+						->where(DB::raw('YEAR(anioF)'), $anioF)
 						->get();
 		foreach ($resultados as $resultado) {
-			$anio = $resultado->YEARanioE;
-			$jardin = $resultado->jardin;
-			$trans = $resultado->trans;
-			$prim = $resultado->prim;
-			$secu = $resultado->secu;
-			$media = $resultado->media;
+			$anio = $resultado->DATEanioF;
+			$desIntCapAdm = $resultado->desIntCapAdm;
+			$desIntEfiTot = $resultado->desIntEfiTot;
+			$desIntGes = $resultado->desIntGes;
+			$desIntIndInt = $resultado->desIntIndInt;
+			$desIntReqLeg = $resultado->desIntReqLeg;
+			$desIntIndDesFis = $resultado->desIntIndDesFis;
 
-			$html .= "['$anio', $jardin, $trans, $prim, $secu, $media],";
+			$html .= "['$anio', $desIntCapAdm, $desIntEfiTot, $desIntGes, $desIntIndInt, $desIntReqLeg, $desIntIndDesFis],";
 		}
 
 		$html .= "]);";
 
 		$html .= "// Set chart options
-		        	var options = {	title: 'Matriculas por nivel',
+		        	var options = {	title: 'Índice de desempeño integral',
 		        					curveType: 'function',
 			        				legend: { position: 'rigth' },
 			        				colors: ['#e9473f', '#397ACB', '#F8EF01']};";	
@@ -576,40 +589,46 @@ class FinanzaController extends Controller
 				function drawChart() {";
 
 		$html .= "var data = google.visualization.arrayToDataTable([
-				['Año', 'Femenino', 'Masculino'],";
+				['Año', 'Indice de desempeño fiscal', 'Posición a nivel departamento'],";
 
-		$resultados = Educacion::join('matriculaporgenero', 'educacion.id', 'matriculaporgenero.educacion_id')
-						->select(DB::raw('YEAR(anioE) as YEARanioE'),
-								'matriculaporgenero.femenino',
-								'matriculaporgenero.masculino')
-						->where('educacion.municipio_id', $idMunicipio)
-						->orderBy('educacion.anioE', 'asc')
+		$resultados = Finanza::join('planfinanciero', 'finanza.id', 'planfinanciero.finanza_id')
+			->join('ejecucionpresupuesto', 'finanza.id', 'ejecucionpresupuesto.finanza_id')
+			->join('indicedesempeñointegral', 'finanza.id', 'indicedesempeñointegral.finanza_id')
+			->join('indicedesempeñofiscal', 'finanza.id', 'indicedesempeñofiscal.finanza_id')
+			->select('finanza.id',
+					DB::raw('YEAR(anioF) as DATEanioF'),
+					'planfinanciero.*',
+					'ejecucionpresupuesto.*',
+					'indicedesempeñointegral.*',
+					'indicedesempeñofiscal.*')
+						->where('finanza.municipio_id', $idMunicipio)
+						->where(DB::raw('YEAR(anioF)'), $anioF)
 						->get();
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioE;
-			$femenino = $resultado->femenino;
-			$masculino = $resultado->masculino;
+			$indDesFis = $resultado->indDesFis;
+			$posNivDep = $resultado->posNivDep;
 
-			$html .= "['$anio', $femenino, $masculino],";
+			$html .= "['$anio', $indDesFis, $posNivDep],";
 		}
 
 		$html .= "]);";
 
 		$html .= "// Set chart options
-		        	var options = {	title: 'Matriculas por genero',
+		        	var options = {	title: 'Índice de desempeño fiscal',
 		        					curveType: 'function',
 			        				legend: { position: 'rigth' },
 			        				colors: ['#e9473f', '#131FBD']};";	
 
 		$html .= "// Instantiate and draw our chart, passing in some options.
-		        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+		        var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart2'));
 		        chart.draw(data, options);";
 
 		$html .= "}";
 
 		$html .= "</script>";
 
-		$html .= "<div id='curve_chart' style='width: 900px; height: 500px'></div>";
+		$html .= "<div id='curve_chart2' style='width: 900px; height: 500px'></div>";
 
 		return Response::json(array('html' => $html));
 	}
@@ -622,13 +641,13 @@ class FinanzaController extends Controller
 		$resultados = Finanza::join('planfinanciero', 'finanza.id', 'planfinanciero.finanza_id')
 			->join('ejecucionpresupuesto', 'finanza.id', 'ejecucionpresupuesto.finanza_id')
 			->join('indicedesempeñointegral', 'finanza.id', 'indicedesempeñointegral.finanza_id')
-			->join('indicedesemepñofiscal', 'finanza.id', 'indicedesemepñofiscal.finanza_id')
+			->join('indicedesempeñofiscal', 'finanza.id', 'indicedesempeñofiscal.finanza_id')
 			->select('finanza.id',
 					DB::raw('DATE(anioF) as DATEanioF'),
 					'planfinanciero.*',
 					'ejecucionpresupuesto.*',
 					'indicedesempeñointegral.*',
-					'indicedesemepñofiscal.*')
+					'indicedesempeñofiscal.*')
             ->where('finanza.id', $idF)
             ->get();
 		foreach ($resultados as $resultado) {
@@ -721,87 +740,87 @@ class FinanzaController extends Controller
 
 		return Response::json(array('id' => $id,
 									'anio' => $anio,
-									'ingTot' = $ingTot,
-									'ingCor' = $ingCor,
-									'ingTri' = $ingTri,
-									'ingPre' = $ingPre,
-									'ingIndCom' = $ingIndCom,
-									'ingSobGas' = $ingSobGas,
-									'ingOtr' = $ingOtr,
-									'ingNoTri' = $ingNoTri,
-									'ingTra' = $ingTra,
-									'ingNivNac' = $ingNivNac,
-									'ingNoTriOtr' = $ingNoTriOtr,
-									'gasTot' = $gasTot,
-									'gasCor' = $gasCor,
-									'fun' = $fun,
-									'serFun' = $serFun,
-									'gasGen' = $gasGen,
-									'traPag' = $traPag,
-									'intDeuPub' = $intDeuPub,
-									'defAhoCor' = $defAhoCor,
-									'ingCap' = $ingCap,
-									'reg' = $reg,
-									'traNac' = $traNac,
-									'cof' = $cof,
-									'ingCapOtr' = $ingCapOtr,
-									'gasCap' = $gasCap,
-									'forBruCapFij' = $forBruCapFij,
-									'gasCapOtr' = $gasCapOtr,
-									'defSupTot' = $defSupTot,
-									'fin' = $fin,
-									'creNet' = $creNet,
-									'des' = $des,
-									'amo' = $amo,
-									'recBalVarDepOtr' = $recBalVarDepOtr,
-									'ejeIngTot' = $ejeIngTot,
-									'ejeIngCor' = $ejeIngCor,
-									'ejeIngTri' = $ejeIngTri,
-									'ejeIngPre' = $ejeIngPre,
-									'ejeIngIndCom' = $ejeIngIndCom,
-									'ejeIngSobGas' = $ejeIngSobGas,
-									'ejeIngOtr' = $ejeIngOtr,
-									'ejeIngNoTri' = $ejeIngNoTri,
-									'ejeIngTra' = $ejeIngTra,
-									'ejeIngNivNac' = $ejeIngNivNac,
-									'ejeIngNoTriOtr' = $ejeIngNoTriOtr,
-									'ejeGasTot' = $ejeGasTot,
-									'ejeGasCor' = $ejeGasCor,
-									'ejeFun' = $ejeFun,
-									'ejeSerFun' = $ejeSerFun,
-									'ejeGasGen' = $ejeGasGen,
-									'ejeTraPag' = $ejeTraPag,
-									'ejeIntDeuPub' = $ejeIntDeuPub,
-									'ejeDefAhoCor' = $ejeDefAhoCor,
-									'ejeIngCap' = $ejeIngCap,
-									'ejeReg' = $ejeReg,
-									'ejeTraNac' = $ejeTraNac,
-									'ejeCof' = $ejeCof,
-									'ejeIngCapOtr' = $ejeIngCapOtr,
-									'ejeGasCap' = $ejeGasCap,
-									'ejeForBruCapFij' = $ejeForBruCapFij,
-									'ejeGasCapOtr' = $ejeGasCapOtr,
-									'ejeDefSupTot' = $ejeDefSupTot,
-									'ejeFin' = $ejeFin,
-									'ejeCreNet' = $ejeCreNet,
-									'ejeDes' = $ejeDes,
-									'ejeAmo' = $ejeAmo,
-									'ejeRecBalVarDepOtr' = $ejeRecBalVarDepOtr,
-									'desIntCapAdm' = $desIntCapAdm,
-									'desIntEfiTot' = $desIntEfiTot,
-									'desIntGes' = $desIntGes,
-									'desIntIndInt' = $desIntIndInt,
-									'desIntReqLeg' = $desIntReqLeg,
-									'desIntIndDesFis' = $desIntIndDesFis,
-									'autGasFun' = $autGasFun,
-									'respSerDeu' = $respSerDeu,
-									'depTraNacReg' = $depTraNacReg,
-									'genRecPro' = $genRecPro,
-									'magInv' = $magInv,
-									'capAho' = $capAho,
-									'indDesFis' = $indDesFis,
-									'posNivNac' = $posNivNac,
-									'posNivDep' = $posNivDep,
+									'ingTot' => $ingTot,
+									'ingCor' => $ingCor,
+									'ingTri' => $ingTri,
+									'ingPre' => $ingPre,
+									'ingIndCom' => $ingIndCom,
+									'ingSobGas' => $ingSobGas,
+									'ingOtr' => $ingOtr,
+									'ingNoTri' => $ingNoTri,
+									'ingTra' => $ingTra,
+									'ingNivNac' => $ingNivNac,
+									'ingNoTriOtr' => $ingNoTriOtr,
+									'gasTot' => $gasTot,
+									'gasCor' => $gasCor,
+									'fun' => $fun,
+									'serFun' => $serFun,
+									'gasGen' => $gasGen,
+									'traPag' => $traPag,
+									'intDeuPub' => $intDeuPub,
+									'defAhoCor' => $defAhoCor,
+									'ingCap' => $ingCap,
+									'reg' => $reg,
+									'traNac' => $traNac,
+									'cof' => $cof,
+									'ingCapOtr' => $ingCapOtr,
+									'gasCap' => $gasCap,
+									'forBruCapFij' => $forBruCapFij,
+									'gasCapOtr' => $gasCapOtr,
+									'defSupTot' => $defSupTot,
+									'fin' => $fin,
+									'creNet' => $creNet,
+									'des' => $des,
+									'amo' => $amo,
+									'recBalVarDepOtr' => $recBalVarDepOtr,
+									'ejeIngTot' => $ejeIngTot,
+									'ejeIngCor' => $ejeIngCor,
+									'ejeIngTri' => $ejeIngTri,
+									'ejeIngPre' => $ejeIngPre,
+									'ejeIngIndCom' => $ejeIngIndCom,
+									'ejeIngSobGas' => $ejeIngSobGas,
+									'ejeIngOtr' => $ejeIngOtr,
+									'ejeIngNoTri' => $ejeIngNoTri,
+									'ejeIngTra' => $ejeIngTra,
+									'ejeIngNivNac' => $ejeIngNivNac,
+									'ejeIngNoTriOtr' => $ejeIngNoTriOtr,
+									'ejeGasTot' => $ejeGasTot,
+									'ejeGasCor' => $ejeGasCor,
+									'ejeFun' => $ejeFun,
+									'ejeSerFun' => $ejeSerFun,
+									'ejeGasGen' => $ejeGasGen,
+									'ejeTraPag' => $ejeTraPag,
+									'ejeIntDeuPub' => $ejeIntDeuPub,
+									'ejeDefAhoCor' => $ejeDefAhoCor,
+									'ejeIngCap' => $ejeIngCap,
+									'ejeReg' => $ejeReg,
+									'ejeTraNac' => $ejeTraNac,
+									'ejeCof' => $ejeCof,
+									'ejeIngCapOtr' => $ejeIngCapOtr,
+									'ejeGasCap' => $ejeGasCap,
+									'ejeForBruCapFij' => $ejeForBruCapFij,
+									'ejeGasCapOtr' => $ejeGasCapOtr,
+									'ejeDefSupTot' => $ejeDefSupTot,
+									'ejeFin' => $ejeFin,
+									'ejeCreNet' => $ejeCreNet,
+									'ejeDes' => $ejeDes,
+									'ejeAmo' => $ejeAmo,
+									'ejeRecBalVarDepOtr' => $ejeRecBalVarDepOtr,
+									'desIntCapAdm' => $desIntCapAdm,
+									'desIntEfiTot' => $desIntEfiTot,
+									'desIntGes' => $desIntGes,
+									'desIntIndInt' => $desIntIndInt,
+									'desIntReqLeg' => $desIntReqLeg,
+									'desIntIndDesFis' => $desIntIndDesFis,
+									'autGasFun' => $autGasFun,
+									'respSerDeu' => $respSerDeu,
+									'depTraNacReg' => $depTraNacReg,
+									'genRecPro' => $genRecPro,
+									'magInv' => $magInv,
+									'capAho' => $capAho,
+									'indDesFis' => $indDesFis,
+									'posNivNac' => $posNivNac,
+									'posNivDep' => $posNivDep,
 								));
 	}
 
@@ -815,271 +834,806 @@ class FinanzaController extends Controller
 				<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
 				<tr>
-				<th>Datos</th>";
+				<th>Plan financiero</th>
+				<th>Valores</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class='border-dotted'>
+				<td>Plan financiero Municipios INGRESOS TOTALES</td>";
 
 		$resultados = Finanza::join('planfinanciero', 'finanza.id', 'planfinanciero.finanza_id')
 			->join('ejecucionpresupuesto', 'finanza.id', 'ejecucionpresupuesto.finanza_id')
 			->join('indicedesempeñointegral', 'finanza.id', 'indicedesempeñointegral.finanza_id')
-			->join('indicedesemepñofiscal', 'finanza.id', 'indicedesemepñofiscal.finanza_id')
+			->join('indicedesempeñofiscal', 'finanza.id', 'indicedesempeñofiscal.finanza_id')
 			->select('finanza.id',
 					DB::raw('DATE(anioF) as DATEanioF'),
 					'planfinanciero.*',
 					'ejecucionpresupuesto.*',
 					'indicedesempeñointegral.*',
-					'indicedesemepñofiscal.*')
+					'indicedesempeñofiscal.*')
             ->where('finanza.municipio_id', $idMunicipio)
             ->where(DB::raw('YEAR(anioF)'), $anioF)
             ->get();
 		foreach ($resultados as $resultado) {
-			$anio = $resultado->YEARanioE;
+			$ingTot = $resultado->ingTot;
 
-			$html .= "<th>$anio</th>";
-		}
+			$html .= "<td>$ingTot</td>";
 
-		$html .= "</tr>
+		};		
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 1. INGRESOS CORRIENTES</td>";
+		foreach ($resultados as $resultado) {
+			$ingCor = $resultado->ingCor;
+
+			$html .= "<td>$ingCor</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 1.1. INGRESOS TRIBUTARIOS</td>";
+		foreach ($resultados as $resultado) {
+			$ingTri = $resultado->ingTri;
+
+			$html .= "<td>$ingTri</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 1.1.1. PREDIAL</td>";
+		foreach ($resultados as $resultado) {
+			$ingPre = $resultado->ingPre;
+
+			$html .= "<td>$ingPre</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 1.1.2. INDUSTRIA Y COMERCIO</td>";
+		foreach ($resultados as $resultado) {
+			$ingIndCom = $resultado->ingIndCom;
+
+			$html .= "<td>$ingIndCom</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios  1.1.3. SOBRETASAS A LA GASOLINA</td>";
+		foreach ($resultados as $resultado) {
+			$ingSobGas = $resultado->ingSobGas;
+
+			$html .= "<td>$ingSobGas</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 1.1.4. OTROS</td>";
+		foreach ($resultados as $resultado) {
+			$ingOtr = $resultado->ingOtr;
+
+			$html .= "<td>$ingOtr</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 1.2. INGRESOS NO TRIBUTARIOS</td>";
+		foreach ($resultados as $resultado) {
+			$ingNoTri = $resultado->ingNoTri;
+
+			$html .= "<td>$ingNoTri</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 1.3. TRANSFERENCIAS</td>";
+		foreach ($resultados as $resultado) {
+			$ingTra = $resultado->ingTra;
+
+			$html .= "<td>$ingTra</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 1.3.1. DEL NIVEL NACIONAL</td>";
+		foreach ($resultados as $resultado) {
+			$ingNivNac = $resultado->ingNivNac;
+
+			$html .= "<td>$ingNivNac</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 1.3.2. OTRAS</td>";
+		foreach ($resultados as $resultado) {
+			$ingNoTriOtr = $resultado->ingNoTriOtr;
+
+			$html .= "<td>$ingNoTriOtr</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios GASTOS TOTALES</td>";
+		foreach ($resultados as $resultado) {
+			$gasTot = $resultado->gasTot;
+
+			$html .= "<td>$gasTot</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 2. GASTOS CORRIENTES</td>";
+		foreach ($resultados as $resultado) {
+			$gasCor = $resultado->gasCor;
+
+			$html .= "<td>$gasCor</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 2.1. FUNCIONAMIENTO</td>";
+		foreach ($resultados as $resultado) {
+			$fun = $resultado->fun;
+
+			$html .= "<td>$fun</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 2.1.1. SERVICIOS PERSONALES</td>";
+		foreach ($resultados as $resultado) {
+			$serFun = $resultado->serFun;
+
+			$html .= "<td>$serFun</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 2.1.2. GASTOS GENERALES</td>";
+		foreach ($resultados as $resultado) {
+			$serFun = $resultado->serFun;
+
+			$html .= "<td>$serFun</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 2.1.3. TRANSFERENCIAS PAGADAS</td>";
+		foreach ($resultados as $resultado) {
+			$traPag = $resultado->traPag;
+
+			$html .= "<td>$traPag</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 2.2. INTERESES DEUDA PUBLICA</td>";
+		foreach ($resultados as $resultado) {
+			$intDeuPub = $resultado->intDeuPub;
+
+			$html .= "<td>$intDeuPub</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 3. DEFICIT O AHORRO CORRIENTE (1-2)</td>";
+		foreach ($resultados as $resultado) {
+			$defAhoCor = $resultado->defAhoCor;
+
+			$html .= "<td>$defAhoCor</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 4. INGRESOS DE CAPITAL</td>";
+		foreach ($resultados as $resultado) {
+			$ingCap = $resultado->ingCap;
+
+			$html .= "<td>$ingCap</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 4.1. REGALÍAS</td>";
+		foreach ($resultados as $resultado) {
+			$reg = $resultado->reg;
+
+			$html .= "<td>$reg</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 4.2. TRANSFERENCIAS NACIONALES (SGP, etc.)</td>";
+		foreach ($resultados as $resultado) {
+			$traNac = $resultado->traNac;
+
+			$html .= "<td>$traNac</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 4.3. COFINANCIACION</td>";
+		foreach ($resultados as $resultado) {
+			$cof = $resultado->cof;
+
+			$html .= "<td>$cof</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 4.4. OTROS</td>";
+		foreach ($resultados as $resultado) {
+			$ingCapOtr = $resultado->ingCapOtr;
+
+			$html .= "<td>$ingCapOtr</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 5. GASTOS DE CAPITAL (INVERSION)</td>";
+		foreach ($resultados as $resultado) {
+			$gasCap = $resultado->gasCap;
+
+			$html .= "<td>$gasCap</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 5.1.1.1. FORMACION BRUTAL DE CAPITAL FIJO</td>";
+		foreach ($resultados as $resultado) {
+			$forBruCapFij = $resultado->forBruCapFij;
+
+			$html .= "<td>$forBruCapFij</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 5.1.1.2. OTROS</td>";
+		foreach ($resultados as $resultado) {
+			$gasCapOtr = $resultado->gasCapOtr;
+
+			$html .= "<td>$gasCapOtr</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 6. DEFICIT O SUPERAVIT TOTAL (3+4-5)</td>";
+		foreach ($resultados as $resultado) {
+			$defSupTot = $resultado->defSupTot;
+
+			$html .= "<td>$defSupTot</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 7. FINANCIAMIENTO</td>";
+		foreach ($resultados as $resultado) {
+			$fin = $resultado->fin;
+
+			$html .= "<td>$fin</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 7.1. CREDITO NETO</td>";
+		foreach ($resultados as $resultado) {
+			$creNet = $resultado->creNet;
+
+			$html .= "<td>$creNet</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 7.1.1. DESEMBOLSOS (+)</td>";
+		foreach ($resultados as $resultado) {
+			$des = $resultado->des;
+
+			$html .= "<td>$des</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 7.1.2. AMORTIZACIONES (-)</td>";
+		foreach ($resultados as $resultado) {
+			$amo = $resultado->amo;
+
+			$html .= "<td>$amo</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Plan financiero Municipios 7.3. RECURSOS DEL BALANCE, VARIACION DE DEPOSITOS Y OTROS</td>";
+		foreach ($resultados as $resultado) {
+			$recBalVarDepOtr = $resultado->recBalVarDepOtr;
+
+			$html .= "<td>$recBalVarDepOtr</td>";
+
+		};
+
+	        $html .= "</tr>
+			</tbody>
+			</table>
+
+			</div>";
+
+	$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
+
+				<table class='table table-bordered table-hover'>
+				<thead class='thead-s'>
+				<tr>
+					<th>Ejecucion presupuesto</th>
+					<th>Valores</th>
+				</tr>
 				</thead>
 				<tbody>
 				<tr class='border-dotted'>
-				<td>Prejardin y jardin (rural)</td>";
-
+                	<td>INGRESOS TOTALES</td>";
 		foreach ($resultados as $resultado) {
-			$rurJardin = $resultado->rurJardin;
+			$ejeIngTot = $resultado->ejeIngTot;
 
-			$html .= "<td>$rurJardin</td>";
+			$html .= "<td>$ejeIngTot</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>1. INGRESOS CORRIENTES</td>";
+		foreach ($resultados as $resultado) {
+			$ejeIngCor = $resultado->ejeIngCor;
+
+			$html .= "<td>$ejeIngCor</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>1.1 INGRESOS TRIBUTARIOS</td>";
+		foreach ($resultados as $resultado) {
+			$ejeIngTri = $resultado->ejeIngTri;
+
+			$html .= "<td>$ejeIngTri</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>1.1.1. PREDIAL</td>";
+		foreach ($resultados as $resultado) {
+			$ejeIngPre = $resultado->ejeIngPre;
+
+			$html .= "<td>$ejeIngPre</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>1.1.2. INDUSTRIA Y COMERCIO</td>";
+		foreach ($resultados as $resultado) {
+			$ejeIngIndCom = $resultado->ejeIngIndCom;
+
+			$html .= "<td>$ejeIngIndCom</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>1.1.3. SOBRETASA A LA GASOLINA</td>";
+		foreach ($resultados as $resultado) {
+			$ejeIngSobGas = $resultado->ejeIngSobGas;
+
+			$html .= "<td>$ejeIngSobGas</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>1.1.4. OTROS</td>";
+		foreach ($resultados as $resultado) {
+			$ejeIngOtr = $resultado->ejeIngOtr;
+
+			$html .= "<td>$ejeIngOtr</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>1.2. INGRESOS NO TRIBUTARIOS</td>";
+		foreach ($resultados as $resultado) {
+			$ejeIngNoTri = $resultado->ejeIngNoTri;
+
+			$html .= "<td>$ejeIngNoTri</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>1.3. TRANSFERENCIAS</td>";
+		foreach ($resultados as $resultado) {
+			$ejeIngTra = $resultado->ejeIngTra;
+
+			$html .= "<td>$ejeIngTra</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>1.3.1. DEL NIVEL NACIONAL</td>";
+		foreach ($resultados as $resultado) {
+			$ejeIngNivNac = $resultado->ejeIngNivNac;
+
+			$html .= "<td>$ejeIngNivNac</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>1.3.2. OTRAS</td>";
+		foreach ($resultados as $resultado) {
+			$ejeIngNoTriOtr = $resultado->ejeIngNoTriOtr;
+
+			$html .= "<td>$ejeIngNoTriOtr</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+				     <td>GASTOS TOTALES</td>";
+		foreach ($resultados as $resultado) {
+			$ejeGasTot = $resultado->ejeGasTot;
+
+			$html .= "<td>$ejeGasTot</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>2. GASTOS CORRIENTES</td>";
+		foreach ($resultados as $resultado) {
+			$ejeGasCor = $resultado->ejeGasCor;
+
+			$html .= "<td>$ejeGasCor</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>2.1. FUNCIONAMIENTO</td>";
+		foreach ($resultados as $resultado) {
+			$ejeFun = $resultado->ejeFun;
+
+			$html .= "<td>$ejeFun</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>2.1.1. SERVICIOS PERSONALES</td>";
+		foreach ($resultados as $resultado) {
+			$ejeSerFun = $resultado->ejeSerFun;
+
+			$html .= "<td>$ejeSerFun</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>2.1.2. GASTOS GENERALES</td>";
+		foreach ($resultados as $resultado) {
+			$ejeGasGen = $resultado->ejeGasGen;
+
+			$html .= "<td>$ejeGasGen</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>2.1.3. TRANSFERENCIAS PAGADAS (NOMINA Y A ENTIDADES)</td>";
+		foreach ($resultados as $resultado) {
+			$ejeTraPag = $resultado->ejeTraPag;
+
+			$html .= "<td>$ejeTraPag</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>2.2. INTERESES DEUDA PUBLICA</td>";
+		foreach ($resultados as $resultado) {
+			$ejeIntDeuPub = $resultado->ejeIntDeuPub;
+
+			$html .= "<td>$ejeIntDeuPub</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>3. DEFICIT O AHORRO CORRIENTE (1-2)</td>";
+		foreach ($resultados as $resultado) {
+			$ejeDefAhoCor = $resultado->ejeDefAhoCor;
+
+			$html .= "<td>$ejeDefAhoCor</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>4. INGRESOS DE CAPITAL</td>";
+		foreach ($resultados as $resultado) {
+			$ejeIngCap = $resultado->ejeIngCap;
+
+			$html .= "<td>$ejeIngCap</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>4.1. REGALIAS</td>";
+		foreach ($resultados as $resultado) {
+			$ejeReg = $resultado->ejeReg;
+
+			$html .= "<td>$ejeReg</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>4.2. TRANSFERENCIAS NACIONALES (SGP, etc.)</td>";
+		foreach ($resultados as $resultado) {
+			$ejeTraNac = $resultado->ejeTraNac;
+
+			$html .= "<td>$ejeTraNac</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>4.3. COFINANCIACION</td>";
+		foreach ($resultados as $resultado) {
+			$ejeCof = $resultado->ejeCof;
+
+			$html .= "<td>$ejeCof</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>4.4. OTROS</td>";
+		foreach ($resultados as $resultado) {
+			$ejeIngCapOtr = $resultado->ejeIngCapOtr;
+
+			$html .= "<td>$ejeIngCapOtr</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>5. GASTOS DE CAPITAL (INVERSION)</td>";
+		foreach ($resultados as $resultado) {
+			$ejeGasCap = $resultado->ejeGasCap;
+
+			$html .= "<td>$ejeGasCap</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>5.1. FORMACION BRUTAL DE CAPITAL FIJO</td>";
+		foreach ($resultados as $resultado) {
+			$ejeForBruCapFij = $resultado->ejeForBruCapFij;
+
+			$html .= "<td>$ejeForBruCapFij</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>5.2. RESTO INVERSIONES</td>";
+		foreach ($resultados as $resultado) {
+			$ejeGasCapOtr = $resultado->ejeGasCapOtr;
+
+			$html .= "<td>$ejeGasCapOtr</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>6. DEFICIT O SUPERAVIT TOTAL (3+4-5)</td>";
+		foreach ($resultados as $resultado) {
+			$ejeDefSupTot = $resultado->ejeDefSupTot;
+
+			$html .= "<td>$ejeDefSupTot</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>7. FINANCIAMIENTO (7.1 + 7.2)</td>";
+		foreach ($resultados as $resultado) {
+			$ejeFin = $resultado->ejeFin;
+
+			$html .= "<td>$ejeFin</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>7.1. CREDITO INTERNO Y EXTERNO (7.1.1 - 7.1.2.)</td>";
+		foreach ($resultados as $resultado) {
+			$ejeCreNet = $resultado->ejeCreNet;
+
+			$html .= "<td>$ejeCreNet</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>7.1.1. DESEMBOLSOS (+)</td>";
+		foreach ($resultados as $resultado) {
+			$ejeDes = $resultado->ejeDes;
+
+			$html .= "<td>$ejeDes</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>7.1.2. AMORTIZACIONES (-)</td>";
+		foreach ($resultados as $resultado) {
+			$ejeAmo = $resultado->ejeAmo;
+
+			$html .= "<td>$ejeAmo</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>7.2. RECURSOS BALANCE, VAR. DEPOSITOS, OTROS</td>";
+		foreach ($resultados as $resultado) {
+			$ejeRecBalVarDepOtr = $resultado->ejeRecBalVarDepOtr;
+
+			$html .= "<td>$ejeRecBalVarDepOtr</td>";
 
 		};
 
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Prejardin y jardin (urbano)</td>";
+            $html .= "</tr>
+			</tbody>
+			</table>
 
+			</div>
+			<div class='col-sm-12 col-md-12 col-lg-12'></div>";
+
+	$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
+
+				<table class='table table-bordered table-hover'>
+				<thead class='thead-s'>
+				<tr>
+					<th>Indice de desempeño integral</th>
+					<th>Valores</th>
+				<th>Valores</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class='border-dotted'>
+	            	<td>Desempeño Integral  Capacidad Administrativa</td>";
 		foreach ($resultados as $resultado) {
-			$urbJardin = $resultado->urbJardin;
+			$desIntCapAdm = $resultado->desIntCapAdm;
 
-			$html .= "<td>$urbJardin</td>";
+			$html .= "<td>$desIntCapAdm</td>";
+
+		};
+           $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Desempeño Integral  Eficacia Total</td>";
+		foreach ($resultados as $resultado) {
+			$desIntEfiTot = $resultado->desIntEfiTot;
+
+			$html .= "<td>$desIntEfiTot</td>";
+
+		};
+           $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Desempeño Integral  Gestión</td>";
+		foreach ($resultados as $resultado) {
+			$desIntGes = $resultado->desIntGes;
+
+			$html .= "<td>$desIntGes</td>";
+
+		};
+           $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Desempeño Integral Indice Integral</td>";
+		foreach ($resultados as $resultado) {
+			$desIntIndInt = $resultado->desIntIndInt;
+
+			$html .= "<td>$desIntIndInt</td>";
+
+		};
+            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Desempeño Integral Requisitos Legales</td>";
+		foreach ($resultados as $resultado) {
+			$desIntReqLeg = $resultado->desIntReqLeg;
+
+			$html .= "<td>$desIntReqLeg</td>";
+
+		};
+           $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Desempeño Integral  Indicador de desempeño Fiscal</td>";
+		foreach ($resultados as $resultado) {
+			$desIntIndDesFis = $resultado->desIntIndDesFis;
+
+			$html .= "<td>$desIntIndDesFis</td>";
 
 		};
 
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Transición (rural)</td>";
-
-		foreach ($resultados as $resultado) {
-			$rurTrans = $resultado->rurTrans;
-
-			$html .= "<td>$rurTrans</td>";
-
-		};
-
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Transición (urbano)</td>";
-
-		foreach ($resultados as $resultado) {
-			$urbTrans = $resultado->urbTrans;
-
-			$html .= "<td>$urbTrans</td>";
-
-		};
-
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Primaria (rural)</td>";
-
-		foreach ($resultados as $resultado) {
-			$rurPrim = $resultado->rurPrim;
-
-			$html .= "<td>$rurPrim</td>";
-		};
-
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Primaria (urbano)</td>";
-
-		foreach ($resultados as $resultado) {
-			$urbPrim = $resultado->urbPrim;
-
-			$html .= "<td>$urbPrim</td>";
-
-		};
-
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Secundaria (rural)</td>";
-
-		foreach ($resultados as $resultado) {
-			$rurSecu = $resultado->rurSecu;
-
-			$html .= "<td>$rurSecu</td>";
-
-		};
-
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Secundaria (urbano)</td>";
-
-		foreach ($resultados as $resultado) {
-			$urbSecu = $resultado->urbSecu;
-
-			$html .= "<td>$urbSecu</td>";
-
-		};
-
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Media (rural)</td>";
-
-		foreach ($resultados as $resultado) {
-			$rurMedia = $resultado->rurMedia;
-
-			$html .= "<td>$rurMedia</td>";
-
-		};
-
-		$html .= "</tr>
-					<tr>
-						<td>Media (urbano)</td>";
-
-		foreach ($resultados as $resultado) {
-			$urbMedia = $resultado->urbMedia;
-
-			$html .= "<td>$urbMedia</td>";
-
-		};
-
-		$html .= "</tr>
-				</tbody>
+            $html .= "</tr>
+			</tbody>
 			</table>
 
 			</div>";
 
-		$html .= "<div class='col-sm-12 col-md-12 col-lg-12'>
+	$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
 
-			<table class='table table-bordered table-hover'>
+				<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
-					<tr>
-						<th>Matricula por nivel</th>";
-
-		foreach ($resultados as $resultado) {
-			$anio = $resultado->YEARanioE;
-
-			$html .= "<th>$anio</th>";
-
-		};
-
-		$html .= "</tr>
+				<tr>
+					<th>Indice de desempeño fiscal</th>
+					<th>Valores</th>
+				<</tr>
 				</thead>
 				<tbody>
-					<tr class='border-dotted'>
-						<td>Prejardin y jardin</td>";
-
+				<tr class='border-dotted'>
+					<td>Autofinanciación de los gastos de funcionamiento</td>";
 		foreach ($resultados as $resultado) {
-			$jardin = $resultado->jardin;
+			$autGasFun = $resultado->autGasFun;
 
-			$html .= "<td>$jardin</td>";
+			$html .= "<td>$autGasFun</td>";
+
+		};
+	            $html .= "</tr>
+				<tr class='border-dotted'>
+				 	<td>Respaldo del servicio de la deuda</td>";
+		foreach ($resultados as $resultado) {
+			$respSerDeu = $resultado->respSerDeu;
+
+			$html .= "<td>$respSerDeu</td>";
+
+		};
+	            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Dependencia de las transferencias de la Nación y las Regalías</td>";
+		foreach ($resultados as $resultado) {
+			$depTraNacReg = $resultado->depTraNacReg;
+
+			$html .= "<td>$depTraNacReg</td>";
+
+		};
+	            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Generación de recursos propios</td>";
+		foreach ($resultados as $resultado) {
+			$genRecPro = $resultado->genRecPro;
+
+			$html .= "<td>$genRecPro</td>";
+
+		};
+	            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Magnitud de la inversión</td>";
+		foreach ($resultados as $resultado) {
+			$magInv = $resultado->magInv;
+
+			$html .= "<td>$magInv</td>";
+
+		};
+	            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Capacidad de ahorro</td>";
+		foreach ($resultados as $resultado) {
+			$capAho = $resultado->capAho;
+
+			$html .= "<td>$capAho</td>";
+
+		};
+	            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Indicador de desempeño Fiscal</td>";
+		foreach ($resultados as $resultado) {
+			$indDesFis = $resultado->indDesFis;
+
+			$html .= "<td>$indDesFis</td>";
+
+		};
+	            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Posición a nivel nacional</td>";
+		foreach ($resultados as $resultado) {
+			$posNivNac = $resultado->posNivNac;
+
+			$html .= "<td>$posNivNac</td>";
+
+		};
+	            $html .= "</tr>
+				<tr class='border-dotted'>
+					<td>Posición a nivel departamento</td>";
+		foreach ($resultados as $resultado) {
+			$posNivDep = $resultado->posNivDep;
+
+			$html .= "<td>$posNivDep</td>";
 
 		};
 
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Transición</td>";
-
-		foreach ($resultados as $resultado) {
-			$trans = $resultado->trans;
-
-			$html .= "<td>$trans</td>";
-
-		};
-
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Primaria (rural)</td>";
-
-		foreach ($resultados as $resultado) {
-			$rurPrim = $resultado->rurPrim;
-
-			$html .= "<td>$rurPrim</td>";
-		};
-
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Primaria</td>";
-
-		foreach ($resultados as $resultado) {
-			$prim = $resultado->prim;
-
-			$html .= "<td>$prim</td>";
-
-		};
-
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Secundaria</td>";
-
-		foreach ($resultados as $resultado) {
-			$secu = $resultado->secu;
-
-			$html .= "<td>$secu</td>";
-
-		};
-
-		$html .= "</tr>
-					<tr>
-						<td>Media</td>";
-
-		foreach ($resultados as $resultado) {
-			$media = $resultado->media;
-
-			$html .= "<td>$media</td>";
-
-		};
-
-		$html .= "</tr>
-				</tbody>
-			</table>
-
-			</div>";
-
-		$html .= "<div class='col-sm-12 col-md-12 col-lg-12'>
-
-			<table class='table table-bordered table-hover'>
-				<thead class='thead-s'>
-					<tr>
-						<th>Matricula por genero</th>";
-
-		foreach ($resultados as $resultado) {
-			$anio = $resultado->YEARanioE;
-
-			$html .= "<th>$anio</th>";
-
-		};
-
-		$html .= "</tr>
-				</thead>
-				<tbody>
-					<tr class='border-dotted'>
-						<td>Femenino</td>";
-
-		foreach ($resultados as $resultado) {
-			$femenino = $resultado->femenino;
-
-			$html .= "<td>$femenino</td>";
-
-		};
-
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Masculino</td>";
-
-		foreach ($resultados as $resultado) {
-			$masculino = $resultado->masculino;
-
-			$html .= "<td>$masculino</td>";
-
-		};
-
-		$html .= "</tr>
-				</tbody>
+           $html .= "</tr>
+			</tbody>
 			</table>
 
 			</div>";
@@ -1096,11 +1650,9 @@ class FinanzaController extends Controller
 				<thead>
 				<tr>
 				<th>Año</th>
-				<th>Jardin</th>
-				<th>Transición</th>
-				<th>Primaria</th>
-				<th>Secundaria</th>
-				<th>Educación media</th>
+				<th>Desempeño Integral  Eficacia Total</th>
+				<th>Desempeño Integral  Gestión</th>
+				<th>Desempeño Integral Indice Integral</th>
 				<th>Funciones</th>
 				</tr>
 				</thead>
@@ -1109,32 +1661,28 @@ class FinanzaController extends Controller
 		$resultados = Finanza::join('planfinanciero', 'finanza.id', 'planfinanciero.finanza_id')
 			->join('ejecucionpresupuesto', 'finanza.id', 'ejecucionpresupuesto.finanza_id')
 			->join('indicedesempeñointegral', 'finanza.id', 'indicedesempeñointegral.finanza_id')
-			->join('indicedesemepñofiscal', 'finanza.id', 'indicedesemepñofiscal.finanza_id')
+			->join('indicedesempeñofiscal', 'finanza.id', 'indicedesempeñofiscal.finanza_id')
 			->select('finanza.id',
 					DB::raw('DATE(anioF) as DATEanioF'),
 					'planfinanciero.*',
 					'ejecucionpresupuesto.*',
 					'indicedesempeñointegral.*',
-					'indicedesemepñofiscal.*')
+					'indicedesempeñofiscal.*')
 						->where('finanza.municipio_id', $idMunicipio)
 						->orderBy('finanza.anioF')
 						->get();
 		foreach ($resultados as $resultado) {
 			$id = $resultado->id;
 			$anio = $resultado->YEARanioE;
-			$jardin = $resultado->jardin;
-			$trans = $resultado->trans;
-			$prim = $resultado->prim;
-			$secu = $resultado->secu;
-			$media = $resultado->media;
+			$desIntEfiTot = $resultado->desIntEfiTot;
+			$desIntGes = $resultado->desIntGes;
+			$desIntIndInt = $resultado->desIntIndInt;
 
 			$html .= "<tr>
 					<td>$anio</td>
-					<td>$jardin</td>
-					<td>$trans</td>
-					<td>$prim</td>
-					<td>$secu</td>
-					<td>$media</td>
+					<td>$desIntEfiTot</td>
+					<td>$desIntGes</td>
+					<td>$desIntIndInt</td>
 					<td><a id='$id' href='#' class='btn btn-success' data-toggle='modal' data-target='#modalMostrarActualizar' value='editar'>Editar</a></td>
 					</tr>";
 
@@ -1201,7 +1749,7 @@ class FinanzaController extends Controller
 
           if ($booleanMunicipio == True) {
 
-          	$resultados = Finanza::where(DB::raw('YEAR(anioE)'), $result->anio)
+          	$resultados = Finanza::where(DB::raw('YEAR(anioF)'), $result->anio)
           				->limit(1)
 						->get();
 		    foreach ($resultados as $resultado) {
@@ -1224,6 +1772,9 @@ class FinanzaController extends Controller
 					$finanza_id = $resultado->id;
 				}
 
+				$defAhoCor = $result->plan_financiero_ingresos_contables - $result->plan_financiero_gastos_corrientes;
+				$defSupTot = $defAhoCor + $result->plan_financiero_ingreso_de_capital - $result->plan_financiero_gastos_de_capital_inversion;
+
 			    $data2[] = array('ingTot' =>  $result->plan_financiero_ingreso_total,
 								'ingCor' =>  $result->plan_financiero_ingresos_contables,
 								'ingTri' =>  $result->plan_financiero_ingresos_tributarios,
@@ -1242,7 +1793,7 @@ class FinanzaController extends Controller
 								'gasGen' =>  $result->plan_financiero_gastos_generales,
 								'traPag' =>  $result->plan_financiero_transferencias_pagadas,
 								'intDeuPub' =>  $result->plan_financiero_transferencias_deuda_publica,
-								'defAhoCor' =>  $result->plan_financiero_deficit_o_ahorro_corriente,
+								'defAhoCor' =>  $defAhoCor,
 								'ingCap' =>  $result->plan_financiero_ingreso_de_capital,
 								'reg' =>  $result->plan_financiero_regalias,
 								'traNac' =>  $result->plan_financiero_transferencias_nacional,
@@ -1251,7 +1802,7 @@ class FinanzaController extends Controller
 								'gasCap' =>  $result->plan_financiero_gastos_de_capital_inversion,
 								'forBruCapFij' =>  $result->plan_financiero_formacion_brutal_de_capital_fijo,
 								'gasCapOtr' =>  $result->plan_financiero_gastos_de_capital_otros,
-								'defSupTot' =>  $result->plan_financiero_deficit_o_superavit_total,
+								'defSupTot' =>  $result->defSupTot,
 								'fin' =>  $result->plan_financiero_financiamiento,
 								'creNet' =>  $result->plan_financiero_credito_neto,
 								'des' =>  $result->plan_financiero_desembolsos,
@@ -1261,39 +1812,44 @@ class FinanzaController extends Controller
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
 
-			   $data3[] = array('ejeIngTot' =>  $result->plan_financiero_ingreso_total,
-								'ejeIngCor' =>  $result->plan_financiero_ingresos_contables,
-								'ejeIngTri' =>  $result->plan_financiero_ingresos_tributarios,
-								'ejeIngPre' =>  $result->plan_financiero_predial,
-								'ejeIngIndCom' =>  $result->plan_financiero_industria_y_comercio,
-								'ejeIngSobGas' =>  $result->plan_financiero_sobretasas_a_la_gasolina,
-								'ejeIngOtr' =>  $result->plan_financiero_otros,
-								'ejeIngNoTri' =>  $result->plan_financiero_ingresos_no_tributarios,
-								'ejeIngTra' =>  $result->plan_financiero_transferencias,
-								'ejeIngNivNac' =>  $result->plan_financiero_de_nivel_nacional,
-								'ejeIngNoTriOtr' =>  $result->plan_financiero_ingresos_no_tributarios_otros,
-								'ejeGasTot' =>  $result->plan_financiero_gastos_totales,
-								'ejeGasCor' =>  $result->plan_financiero_gastos_corrientes,
-								'ejeFun' =>  $result->plan_financiero_gastos_funcionamiento,
-								'ejeSerFun' =>  $result->plan_financiero_servicios_personales,
-								'ejeGasGen' =>  $result->plan_financiero_gastos_generales,
-								'ejeTraPag' =>  $result->plan_financiero_transferencias_pagadas,
-								'ejeIntDeuPub' =>  $result->plan_financiero_transferencias_deuda_publica,
-								'ejeDefAhoCor' =>  $result->plan_financiero_deficit_o_ahorro_corriente,
-								'ejeIngCap' =>  $result->plan_financiero_ingreso_de_capital,
-								'ejeReg' =>  $result->plan_financiero_regalias,
-								'ejeTraNac' =>  $result->plan_financiero_transferencias_nacional,
-								'ejeCof' =>  $result->plan_financiero_cofinanciacion,
-								'ejeIngCapOtr' =>  $result->plan_financiero_ingreso_de_capital_otros,
-								'ejeGasCap' =>  $result->plan_financiero_gastos_de_capital_inversion,
-								'ejeForBruCapFij' =>  $result->plan_financiero_formacion_brutal_de_capital_fijo,
-								'ejeGasCapOtr' =>  $result->plan_financiero_gastos_de_capital_otros,
-								'ejeDefSupTot' =>  $result->plan_financiero_deficit_o_superavit_total,
-								'ejeFin' =>  $result->plan_financiero_financiamiento,
-								'ejeCreNet' =>  $result->plan_financiero_credito_neto,
-								'ejeDes' =>  $result->plan_financiero_desembolsos,
-								'ejeAmo' =>  $result->plan_financiero_amortizaciones,
-								'ejeRecBalVarDepOtr' =>  $result->plan_financiero_recursos_del_balance_variacion_de_depositos_otros,
+			    $ejeDefAhoCor = $result->ejecuciones_presupuestales_ingresos_contables - $result->ejecuciones_presupuestales_gastos_corrientes;
+				$ejeDefSupTot = $defAhoCor + $result->ejecuciones_presupuestales_ingreso_de_capital - $result->ejecuciones_presupuestales_gastos_de_capital_inversion;
+				$ejeCreNet = $result->ejecuciones_presupuestales_desembolsos - $result->ejecuciones_presupuestales_amortizaciones;
+				$ejeFin = $ejeCreNet + $result->ejeRecBalVarDepOtr;
+
+			   $data3[] = array('ejeIngTot' =>  $result->ejecuciones_presupuestales_ingreso_total,
+								'ejeIngCor' =>  $result->ejecuciones_presupuestales_ingresos_contables,
+								'ejeIngTri' =>  $result->ejecuciones_presupuestales_ingresos_tributarios,
+								'ejeIngPre' =>  $result->ejecuciones_presupuestales_predial,
+								'ejeIngIndCom' =>  $result->ejecuciones_presupuestales_industria_y_comercio,
+								'ejeIngSobGas' =>  $result->ejecuciones_presupuestales_sobretasas_a_la_gasolina,
+								'ejeIngOtr' =>  $result->ejecuciones_presupuestales_otros,
+								'ejeIngNoTri' =>  $result->ejecuciones_presupuestales_ingresos_no_tributarios,
+								'ejeIngTra' =>  $result->ejecuciones_presupuestales_transferencias,
+								'ejeIngNivNac' =>  $result->ejecuciones_presupuestales_de_nivel_nacional,
+								'ejeIngNoTriOtr' =>  $result->ejecuciones_presupuestales_ingresos_no_tributarios_otros,
+								'ejeGasTot' =>  $result->ejecuciones_presupuestales_gastos_totales,
+								'ejeGasCor' =>  $result->ejecuciones_presupuestales_gastos_corrientes,
+								'ejeFun' =>  $result->ejecuciones_presupuestales_gastos_funcionamiento,
+								'ejeSerFun' =>  $result->ejecuciones_presupuestales_servicios_personales,
+								'ejeGasGen' =>  $result->ejecuciones_presupuestales_gastos_generales,
+								'ejeTraPag' =>  $result->ejecuciones_presupuestales_transferencias_pagadas,
+								'ejeIntDeuPub' =>  $result->ejecuciones_presupuestales_transferencias_deuda_publica,
+								'ejeDefAhoCor' =>  $ejeDefAhoCor,
+								'ejeIngCap' =>  $result->ejecuciones_presupuestales_ingreso_de_capital,
+								'ejeReg' =>  $result->ejecuciones_presupuestales_regalias,
+								'ejeTraNac' =>  $result->ejecuciones_presupuestales_transferencias_nacional,
+								'ejeCof' =>  $result->ejecuciones_presupuestales_cofinanciacion,
+								'ejeIngCapOtr' =>  $result->ejecuciones_presupuestales_ingreso_de_capital_otros,
+								'ejeGasCap' =>  $result->ejecuciones_presupuestales_gastos_de_capital_inversion,
+								'ejeForBruCapFij' =>  $result->ejecuciones_presupuestales_formacion_brutal_de_capital_fijo,
+								'ejeGasCapOtr' =>  $result->ejecuciones_presupuestales__gastos_de_capital_otros,
+								'ejeDefSupTot' =>  $ejeDefSupTot,
+								'ejeFin' =>  $ejeFin,
+								'ejeCreNet' =>  $ejeCreNet,
+								'ejeDes' =>  $result->ejecuciones_presupuestales_desembolsos,
+								'ejeAmo' =>  $result->ejecuciones_presupuestales_amortizaciones,
+								'ejeRecBalVarDepOtr' =>  $result->ejecuciones_presupuestales_recursos_del_balance_variacion_de_depositos_otros,
 	                           'finanza_id' => $finanza_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
@@ -1383,7 +1939,6 @@ class FinanzaController extends Controller
               				 'plan_financiero_gastos_generales' => "",
               				 'plan_financiero_transferencias_pagadas' => "",
               				 'plan_financiero_transferencias_deuda_publica' => "",
-              				 'plan_financiero_deficit_o_ahorro_corriente' => "",
               				 'plan_financiero_ingreso_de_capital' => "",
               				 'plan_financiero_regalias' => "",
               				 'plan_financiero_transferencias_nacional' => "",
@@ -1392,7 +1947,6 @@ class FinanzaController extends Controller
               				 'plan_financiero_gastos_de_capital_inversion' => "",
               				 'plan_financiero_formacion_brutal_de_capital_fijo' => "",
               				 'plan_financiero_gastos_de_capital_otros' => "",
-              				 'plan_financiero_deficit_o_superavit_total' => "",
               				 'plan_financiero_financiamiento' => "",
               				 'plan_financiero_credito_neto' => "",
               				 'plan_financiero_desembolsos' => "",
@@ -1417,7 +1971,6 @@ class FinanzaController extends Controller
               				 'ejecuciones_presupuestales_gastos_generales' => "",
               				 'ejecuciones_presupuestales_transferencias_pagadas' => "",
               				 'ejecuciones_presupuestales_transferencias_deuda_publica' => "",
-              				 'ejecuciones_presupuestales_deficit_o_ahorro_corriente' => "",
               				 'ejecuciones_presupuestales_ingreso_de_capital' => "",
               				 'ejecuciones_presupuestales_regalias' => "",
               				 'ejecuciones_presupuestales_transferencias_nacional' => "",
@@ -1426,9 +1979,6 @@ class FinanzaController extends Controller
               				 'ejecuciones_presupuestales_gastos_de_capital_inversion' => "",
               				 'ejecuciones_presupuestales_formacion_brutal_de_capital_fijo' => "",
               				 'ejecuciones_presupuestales_gastos_de_capital_otros' => "",
-              				 'ejecuciones_presupuestales_deficit_o_superavit_total' => "",
-              				 'ejecuciones_presupuestales_financiamiento' => "",
-              				 'ejecuciones_presupuestales_credito_neto' => "",
               				 'ejecuciones_presupuestales_desembolsos' => "",
               				 'ejecuciones_presupuestales_amortizaciones' => "",
               				 'ejecuciones_presupuestales_recursos_del_balance_variacion_de_depositos_otros' => "",

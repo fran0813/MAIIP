@@ -22,8 +22,8 @@ class CreateTaxPerformanceIndexTable extends Migration
             $table->double('magInv', 14, 4);
             $table->double('capAho', 14, 4);
             $table->double('indDesFis', 14, 4);
-            $table->double('posNivNac', 14, 4);
-            $table->double('posNivDep', 14, 4);                     
+            $table->integer('posNivNac');
+            $table->integer('posNivDep');                     
             $table->integer('finanza_id')->unsigned();
             $table->foreign('finanza_id')->references('id')->on('Finanza');
             $table->timestamps();

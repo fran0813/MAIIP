@@ -274,7 +274,7 @@ class EconomicosocialController extends Controller
 				function drawChart() {";
 
 		$html .= "var data = google.visualization.arrayToDataTable([
-				['Año', 'Hogares por vivienda', 'Personas por hogar', 'Personas por vivienda'],";
+				['Año', 'Incidencia IPM total', 'Incidencia IPM rural', 'Incidencia IPM urbano'],";
 
 		$resultados = Economicosocial::select(DB::raw('YEAR(anioES) as YEARanioES'),
 								'economicosocial.incImpTot',
@@ -295,7 +295,7 @@ class EconomicosocialController extends Controller
 		$html .= "]);";
 
 		$html .= "// Set chart options
-		        	var options = {	title: 'Viviendas',
+		        	var options = {	title: 'Incidencia IPM',
 		        					bar: {groupWidth: '20%'},
 			        				legend: { position: 'rigth' },
 			        				colors: ['#e9473f', '#397ACB', '#F8EF01']};";	
@@ -334,13 +334,27 @@ class EconomicosocialController extends Controller
 				function drawChart() {";
 
 		$html .= "var data = google.visualization.arrayToDataTable([
-				['Año', 'Hogares por vivienda', 'Personas por hogar', 'Personas por vivienda'],";
+				['Año', 'Alta tasa de dependencia económica',
+				 'Analfabetismo',
+				 'Bajo logro educativo',
+				 'Barreras de acceso a servicio de salud',
+				 'Barreras de acceso a servicios para cuidado de la primera infancia',
+				 'AnalfabeEmpleo informaltismo',
+				 'Hacinamiento',
+				 'Inadecuada eliminación de excretas',
+				 'Inasistencia escolar',
+				 'Paredes inadecuadas',
+				 'Pisos inadecuados',
+				 'Rezago escolar',
+				 'Sin acceso a fuente de agua mejorada',
+				 'Sin aseguramiento en salud',
+				 'Trabajo infantil'],";
 
 		$resultados = Economicosocial::join('indicepobrezamultidimensional', 'economicosocial.id', 'indicepobrezamultidimensional.economicosocial_id')
 						->select(DB::raw('YEAR(anioES) as YEARanioES'),
-								'matriculaporgenero.*')
+								'indicepobrezamultidimensional.*')
 						->where('economicosocial.municipio_id', $idMunicipio)
-						->orderBy('economicosocial.anioES', 'asc')
+						->where(DB::raw('YEAR(anioES)'), $anioES)
 						->get();
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioES;
@@ -382,20 +396,20 @@ class EconomicosocialController extends Controller
 		$html .= "]);";
 
 		$html .= "// Set chart options
-		        	var options = {	title: 'Viviendas',
+		        	var options = {	title: 'Incidencia IPM por componentes',
 		        					bar: {groupWidth: '20%'},
 			        				legend: { position: 'rigth' },
 			        				colors: ['#e9473f', '#397ACB', '#F8EF01']};";	
 
 		$html .= "// Instantiate and draw our chart, passing in some options.
-		        var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
+		        var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values2'));
 		        chart.draw(data, options);";
 
 		$html .= "}";
 
 		$html .= "</script>";
 
-		$html .= "<div id='columnchart_values' style='width: 900px; height: 300px;'></div>
+		$html .= "<div id='columnchart_values2' style='width: 900px; height: 300px;'></div>
 				<p> Cabecera / Rural / Total </p>";
 
 		return Response::json(array('html' => $html));

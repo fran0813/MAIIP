@@ -17,7 +17,7 @@
 
 	<div class="col-sm-2 col-md-2 col-lg-2 pull-right">
 
-		<select id="añoES" class="form-control" onchange="mostrarTablasSV()">
+		<select id="añoES" class="form-control" onchange="mostrarTablasES()">
 			<option>Año</option>
 		</select>
 
