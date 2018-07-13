@@ -56,6 +56,130 @@ $("#tablaFinanza").on("click", "a", function()
 	}
 });	
 
+function calcularDeficitCorriente()
+{
+	var ingCor = $("#ingCor").val();
+	var gasCor = $("#gasCor").val();
+	var defAhoCor = parseFloat(ingCor) + parseFloat(gasCor);
+	if (ingCor != "" && gasCor != "") {
+		$('#defAhoCor').val(defAhoCor);
+	}
+}
+
+function calcularSuperavit()
+{
+	var defAhoCor = $("#defAhoCor").val();
+	var ingCap = $("#ingCap").val();
+	var gasCap = $("#gasCap").val();
+	var defSupTot = (parseFloat(defAhoCor) + parseFloat(ingCap) )- parseFloat(gasCap);
+	if (ingCor != "" && ingCap != "" && gasCap != "") {
+		$('#defSupTot').val(defSupTot);
+	}
+}
+
+function calcularDeficitCorrienteEP()
+{
+	var ejeIngCor = $("#ejeIngCor").val();
+	var ejeGasCor = $("#ejeGasCor").val();
+	var ejeDefAhoCor = parseFloat(ejeIngCor) + parseFloat(ejeGasCor);
+	if (ejeIngCor != "" && ejeGasCor != "") {
+		$('#ejeDefAhoCor').val(ejeDefAhoCor);
+	}
+}
+
+function calcularSuperavitEP()
+{
+	var ejeDefAhoCor = $("#ejeDefAhoCor").val();
+	var ejeIngCap = $("#ejeIngCap").val();
+	var ejeCasCap = $("#ejeCasCap").val();
+	var ejeDefSupTot = (parseFloat(ejeDefAhoCor) + parseFloat(ejeIngCap) )- parseFloat(ejeCasCap);
+	if (ejeDefAhoCor != "" && ejeIngCap != "" && ejeCasCap != "") {
+		$('#ejeDefSupTot').val(ejeDefSupTot);
+	}
+}
+
+function calcularInternoExterno()
+{
+	var ejeDes = $("#ejeDes").val();
+	var ejeAmo = $("#ejeAmo").val();
+	var ejeCreNet = parseFloat(ejeDes) - parseFloat(ejeAmo);
+	if (ejeDes != "" && ejeAmo != "") {
+		$('#ejeCreNet').val(ejeCreNet);
+	}
+}
+
+function calcularFinanciamiento()
+{
+	var ejeCreNet = $("#ejeCreNet").val();
+	var ejeRecBalVarDepOtr = $("#ejeRecBalVarDepOtr").val();
+	var ejeFin = parseFloat(ejeCreNet) + parseFloat(ejeRecBalVarDepOtr);
+	if (ejeCreNet != "" && ejeRecBalVarDepOtr != "") {
+		$('#ejeFin').val(ejeFin);
+	}
+}
+
+function calcularDeficitCorriente2()
+{
+	var ingCor = $("#ingCor2").val();
+	var gasCor = $("#gasCor2").val();
+	var defAhoCor = parseFloat(ingCor) + parseFloat(gasCor);
+	if (ingCor != "" && gasCor != "") {
+		$('#defAhoCor2').val(defAhoCor);
+	}
+}
+
+function calcularSuperavit2()
+{
+	var defAhoCor = $("#defAhoCor2").val();
+	var ingCap = $("#ingCap2").val();
+	var gasCap = $("#gasCap2").val();
+	var defSupTot = (parseFloat(defAhoCor) + parseFloat(ingCap) )- parseFloat(gasCap);
+	if (ingCor != "" && ingCap != "" && gasCap != "") {
+		$('#defSupTot2').val(defSupTot);
+	}
+}
+
+function calcularDeficitCorrienteEP2()
+{
+	var ejeIngCor = $("#ejeIngCor2").val();
+	var ejeGasCor = $("#ejeGasCor2").val();
+	var ejeDefAhoCor = parseFloat(ejeIngCor) + parseFloat(ejeGasCor);
+	if (ejeIngCor != "" && ejeGasCor != "") {
+		$('#ejeDefAhoCor2').val(ejeDefAhoCor);
+	}
+}
+
+function calcularSuperavitEP2()
+{
+	var ejeDefAhoCor = $("#ejeDefAhoCor2").val();
+	var ejeIngCap = $("#ejeIngCap2").val();
+	var ejeCasCap = $("#ejeCasCap2").val();
+	var ejeDefSupTot = (parseFloat(ejeDefAhoCor) + parseFloat(ejeIngCap) )- parseFloat(ejeCasCap);
+	if (ejeDefAhoCor != "" && ejeIngCap != "" && ejeCasCap != "") {
+		$('#ejeDefSupTot2').val(ejeDefSupTot);
+	}
+}
+
+function calcularInternoExterno2()
+{
+	var ejeDes = $("#ejeDes2").val();
+	var ejeAmo = $("#ejeAmo2").val();
+	var ejeCreNet = parseFloat(ejeDes) - parseFloat(ejeAmo);
+	if (ejeDes != "" && ejeAmo != "") {
+		$('#ejeCreNet2').val(ejeCreNet);
+	}
+}
+
+function calcularFinanciamiento2()
+{
+	var ejeCreNet = $("#ejeCreNet2").val();
+	var ejeRecBalVarDepOtr = $("#ejeRecBalVarDepOtr2").val();
+	var ejeFin = parseFloat(ejeCreNet) + parseFloat(ejeRecBalVarDepOtr);
+	if (ejeCreNet != "" && ejeRecBalVarDepOtr != "") {
+		$('#ejeFin2').val(ejeFin);
+	}
+}
+
 function mostrarActualizarFinanza(id)
 {
 	$('#respuesta2').hide();
