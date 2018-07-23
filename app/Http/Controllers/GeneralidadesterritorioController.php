@@ -541,9 +541,9 @@ class GeneralidadesterritorioController extends Controller
 			      $booleanAño = True;
 			    }
 
-			    if ($booleanAño = False) {
+			    if ($booleanAño == False) {
 			    	
-		            $data1[] = array('anioGT' => $result->anio.'/01/01 00:00:00', 'temperatura' => $result->temperatura, 'alturaNivMar' => $result->altura_sobre_el_nivel_del_mar, 'municipio_id' => $id, 'created_at' => $time, 'updated_at' => $time);
+		            $data1[] = array('anioGT' => $result->anio.'/01/01 00:00:00', 'temperatura' => $result->temperatura_double, 'alturaNivMar' => $result->altura_sobre_el_nivel_del_mar_integer, 'municipio_id' => $id, 'created_at' => $time, 'updated_at' => $time);
 
 		            Generalidadterritorio::insert($data1);
 
@@ -554,11 +554,16 @@ class GeneralidadesterritorioController extends Controller
 						$generalidadterritorio_id = $resultado->id;
 					}
 
-		            $data2[] = array('ruralG' => $result->rural_generalidades, 'urbanoG' => $result->urbano_generalidades, 'totalG' => $result->total_generalidades, 'generalidadterritorio_id' => $generalidadterritorio_id, 'created_at' => $time, 'updated_at' => $time);
+					$totalG = $result->rural_generalidades_double + $result->urbano_generalidades_double;
+					$constTotal = $result->construccion_rural_integer + $result->construccion_urbana_integer;
+					$terrTotal = $result->territorio_rural_double + $result->territorio_urbana_double;
+					$totalP = $result->rural_predio_integer + $result->urbano_predio_integer;
 
-		            $data3[] = array('constRural' => $result->construccion_rural, 'constUrbano' => $result->construccion_urbana, 'constTotal' => $result->construccion_total, 'terrRural' => $result->territorio_rural, 'terrUrbano' => $result->territorio_urbana, 'terrTotal' => $result->territorio_total, 'generalidadterritorio_id' => $generalidadterritorio_id, 'created_at' => $time, 'updated_at' => $time);
+		            $data2[] = array('ruralG' => $result->rural_generalidades_double, 'urbanoG' => $result->urbano_generalidades_double, 'totalG' => $totalG, 'generalidadterritorio_id' => $generalidadterritorio_id, 'created_at' => $time, 'updated_at' => $time);
 
-		            $data4[] = array('ruralP' => $result->rural_predio, 'urbanoP' => $result->urbano_predio, 'totalP' => $result->total_predio, 'generalidadterritorio_id' => $generalidadterritorio_id, 'created_at' => $time, 'updated_at' => $time);
+		            $data3[] = array('constRural' => $result->construccion_rural_integer, 'constUrbano' => $result->construccion_urbana_integer, 'constTotal' => $constTotal, 'terrRural' => $result->territorio_rural_double, 'terrUrbano' => $result->territorio_urbana_double, 'terrTotal' => $terrTotal, 'generalidadterritorio_id' => $generalidadterritorio_id, 'created_at' => $time, 'updated_at' => $time);
+
+		            $data4[] = array('ruralP' => $result->rural_predio_integer, 'urbanoP' => $result->urbano_predio_integer, 'totalP' => $totalP, 'generalidadterritorio_id' => $generalidadterritorio_id, 'created_at' => $time, 'updated_at' => $time);
 
 		            Generalidad::insert($data2);
 		            Territorio::insert($data3);
@@ -601,20 +606,16 @@ class GeneralidadesterritorioController extends Controller
 
               $data[] = array('año' => "",
               				 'municipio' => "",
-              				 'temperatura' => "",
-              				 'altura_sobre_el_nivel_del_mar' => "",
-              				 'rural_generalidades' => "",
-              				 'urbano_generalidades' => "",
-              				 'total_generalidades' => "",
-              				 'construccion_rural' => "",
-              				 'construccion_urbana' => "",
-              				 'construccion_total' => "",
-              				 'territorio_rural' => "",
-              				 'territorio_urbana' => "",
-              				 'territorio_total' => "",
-              				 'rural_predio' => "",
-              				 'urbano_predio' => "",
-              				 'total_predio' => "");
+              				 'temperatura_double' => "",
+              				 'altura_sobre_el_nivel_del_mar_integer' => "",
+              				 'rural_generalidades_double' => "",
+              				 'urbano_generalidades_double' => "",
+              				 'construccion_rural_integer' => "",
+              				 'construccion_urbana_integer' => "",
+              				 'territorio_rural_double' => "",
+              				 'territorio_urbana_double' => "",
+              				 'rural_predio_integer' => "",
+              				 'urbano_predio_integer' => "");
 
               $sheet->fromArray($data);
 

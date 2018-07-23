@@ -575,7 +575,7 @@ class SaludController extends Controller
 		      $booleanAño = True;
 		    }
 
-		    if ($booleanAño = False) {
+		    if ($booleanAño == False) {
 		    	
 	            $data1[] = array('anioS' => $result->anio.'/01/01 00:00:00',
 	                           'municipio_id' => $id,
@@ -591,21 +591,21 @@ class SaludController extends Controller
 					$salud_id = $resultado->id;
 				}
 
-			    $data2[] = array('difBaMov' => $result->dificultades_bañarse_moverse,
-	                           'difEntApr' => $result->dificultades_aprender_entender,
-	                           'difMovCam' => $result->dificultades_moverse_caminar,
-	                           'difSalirCalle' => $result->dificultades_salir_calle,
-	                           'totalDis' => $result->total_discapacitados,
+			    $data2[] = array('difBaMov' => $result->dificultades_bañarse_moverse_integer,
+	                           'difEntApr' => $result->dificultades_aprender_entender_integer,
+	                           'difMovCam' => $result->dificultades_moverse_caminar_integer,
+	                           'difSalirCalle' => $result->dificultades_salir_calle_integer,
+	                           'totalDis' => $result->total_discapacitados_integer,
 	                           'salud_id' => $salud_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
 
-			    $data3[] = array('tasVacBCG' => $result->tasa_vacunacion_bcg,
-	                           'tasVacDPT' => $result->tasa_vacunacion_dpt,
-	                           'tasVacHepatitisB' => $result->tasa_vacunacion_hepatitis_b,
-	                           'tasVacHIB' => $result->tasa_vacunacion_hib,
-	                           'tasVacPolio' => $result->tasa_vacunacion_polio,
-	                           'tasVacTripleViral' => $result->tasa_vacunacion_triple_viral,
+			    $data3[] = array('tasVacBCG' => $result->tasa_vacunacion_bcg_double,
+	                           'tasVacDPT' => $result->tasa_vacunacion_dpt_double,
+	                           'tasVacHepatitisB' => $result->tasa_vacunacion_hepatitis_b_double,
+	                           'tasVacHIB' => $result->tasa_vacunacion_hib_double,
+	                           'tasVacPolio' => $result->tasa_vacunacion_polio_double,
+	                           'tasVacTripleViral' => $result->tasa_vacunacion_triple_viral_double,
 	                           'salud_id' => $salud_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
@@ -650,17 +650,17 @@ class SaludController extends Controller
 
               $data[] = array('año' => "",
               				'municipio' => "",
-              				 'dificultades_bañarse_moverse' => "",
-	                           'dificultades_aprender_entender' => "",
-	                           'dificultades_moverse_caminar' => "",
-	                           'dificultades_salir_calle' => "",
-	                           'total_discapacitados' => "",
-	                           'tasa_vacunacion_bcg' => "",
-	                           'tasa_vacunacion_dpt' => "",
-	                           'tasa_vacunacion_hepatitis_b' => "",
-	                           'tasa_vacunacion_hib' => "",
-	                           'tasa_vacunacion_polio' => "",
-	                           'tasa_vacunacion_triple_viral' => "");
+              				 'dificultades_bañarse_moverse_integer' => "",
+	                           'dificultades_aprender_entender_integer' => "",
+	                           'dificultades_moverse_caminar_integer' => "",
+	                           'dificultades_salir_calle_integer' => "",
+	                           'total_discapacitados_integer' => "",
+	                           'tasa_vacunacion_bcg_double' => "",
+	                           'tasa_vacunacion_dpt_double' => "",
+	                           'tasa_vacunacion_hepatitis_b_double' => "",
+	                           'tasa_vacunacion_hib_double' => "",
+	                           'tasa_vacunacion_polio_double' => "",
+	                           'tasa_vacunacion_triple_viral_double' => "");
 
               $sheet->fromArray($data);
 

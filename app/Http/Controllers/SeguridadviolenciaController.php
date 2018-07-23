@@ -766,15 +766,15 @@ class SeguridadviolenciaController extends Controller
 		    	
 	            $data1[] = array('anioSV' => $result->anio.'/01/01 00:00:00',
 	                           'municipio_id' => $id,
-	                           'tasDesEscTot' => $result->tasa_desercion_escolar_total,
-									'tasHom' => $result->tasa_homicidios,
-									'tasIncDen' => $result->tasa_incidencia_dengue,
-									'tasLesPer' => $result->tasa_lesiones_personales,
-									'tasMueAcc' => $result->tasa_muertes_por_accidentes,
-									'tasSui' => $result->tasa_suicidios,
-									'vioInt' => $result->violencia_interpersonal,
-									'casTot' => $result->casos_totales,
-									'casTasHom' => $result->casos_tasa_homicidio,
+	                           'tasDesEscTot' => $result->tasa_desercion_escolar_total_double,
+									'tasHom' => $result->tasa_homicidios_double,
+									'tasIncDen' => $result->tasa_incidencia_dengue_double,
+									'tasLesPer' => $result->tasa_lesiones_personales_double,
+									'tasMueAcc' => $result->tasa_muertes_por_accidentes_double,
+									'tasSui' => $result->tasa_suicidios_double,
+									'vioInt' => $result->violencia_interpersonal_double,
+									'casTot' => $result->casos_totales_double,
+									'casTasHom' => $result->casos_tasa_homicidio_double,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
 
@@ -787,30 +787,30 @@ class SeguridadviolenciaController extends Controller
 					$seguridadviolencia_id = $resultado->id;
 				}
 
-				$delito_total = $result->delitos_sexuales_hombre + $result->delitos_sexuales_mujer;
-				$lesiones_fatales_total = $result->lesiones_fatales_hombre + $result->lesiones_fatales_mujer;
-				$lesiones_no_fatales_total = $result->lesiones_no_fatales_hombre + $result->lesiones_no_fatales_mujer;
+				$delito_total = $result->delitos_sexuales_hombre_double + $result->delitos_sexuales_mujer_double;
+				$lesiones_fatales_total = $result->lesiones_fatales_hombre_double + $result->lesiones_fatales_mujer_double;
+				$lesiones_no_fatales_total = $result->lesiones_no_fatales_hombre_double + $result->lesiones_no_fatales_mujer_double;
 
 			    $data2[] = array('tot' => $delito_total,
-									'hom' => $result->delitos_sexuales_hombre,
-									'muj' => $result->delitos_sexuales_mujer,
+									'hom' => $result->delitos_sexuales_hombre_double,
+									'muj' => $result->delitos_sexuales_mujer_double,
 	                           'seguridadviolencia_id' => $seguridadviolencia_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
 
 			    $data3[] = array('fatTot' => $lesiones_fatales_total,
-									'fatHom' => $result->lesiones_fatales_hombre,
-									'fatMuj' => $result->lesiones_fatales_mujer,
+									'fatHom' => $result->lesiones_fatales_hombre_double,
+									'fatMuj' => $result->lesiones_fatales_mujer_double,
 									'noFatTot' => $lesiones_no_fatales_total,
-									'noFatHom' => $result->lesiones_no_fatales_hombre,
-									'noFatMuj' => $result->lesiones_no_fatales_mujer,
+									'noFatHom' => $result->lesiones_no_fatales_hombre_double,
+									'noFatMuj' => $result->lesiones_no_fatales_mujer_double,
 	                           'seguridadviolencia_id' => $seguridadviolencia_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
 
-			    $data4[] = array('may' => $result->violencia_a_personas_mayores,
-									'otrFam' => $result->violencia_entre_otros_familiares,
-									'inf' => $result->violencia_infantil,
+			    $data4[] = array('may' => $result->violencia_a_personas_mayores_integer,
+									'otrFam' => $result->violencia_entre_otros_familiares_integer,
+									'inf' => $result->violencia_infantil_integer,
 	                           'seguridadviolencia_id' => $seguridadviolencia_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
@@ -857,24 +857,24 @@ class SeguridadviolenciaController extends Controller
 
               $data[] = array('año' => "",
               				'municipio' => "",
-              				 'tasa_desercion_escolar_total' => "",
-									'tasa_homicidios' => "",
-									'tasa_incidencia_dengue' => "",
-									'tasa_lesiones_personales' => "",
-									'tasa_muertes_por_accidentes' => "",
-									'tasa_suicidios' => "",
-									'violencia_interpersonal' => "",
-									'casos_totales' => "",
-									'casos_tasa_homicidio' => "",
-									'delitos_sexuales_hombre' => "",
-									'delitos_sexuales_mujer' => "",
-									'lesiones_fatales_hombre' => "",
-									'lesiones_fatales_mujer' => "",
-									'lesiones_no_fatales_hombre' => "",
-									'lesiones_no_fatales_mujer' => "",
-									'violencia_a_personas_mayores' => "",
-									'violencia_entre_otros_familiares' => "",
-									'violencia_infantil' => "");
+              				 'tasa_desercion_escolar_total_double' => "",
+									'tasa_homicidios_double' => "",
+									'tasa_incidencia_dengue_double' => "",
+									'tasa_lesiones_personales_double' => "",
+									'tasa_muertes_por_accidentes_double' => "",
+									'tasa_suicidios_double' => "",
+									'violencia_interpersonal_double' => "",
+									'casos_totales_double' => "",
+									'casos_tasa_homicidio_double' => "",
+									'delitos_sexuales_hombre_double' => "",
+									'delitos_sexuales_mujer_double' => "",
+									'lesiones_fatales_hombre_double' => "",
+									'lesiones_fatales_mujer_double' => "",
+									'lesiones_no_fatales_hombre_double' => "",
+									'lesiones_no_fatales_mujer_double' => "",
+									'violencia_a_personas_mayores_integer' => "",
+									'violencia_entre_otros_familiares_integer' => "",
+									'violencia_infantil_integer' => "");
 
               $sheet->fromArray($data);
 

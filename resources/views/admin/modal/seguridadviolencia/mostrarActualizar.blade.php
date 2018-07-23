@@ -17,7 +17,7 @@
 
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="col-lg-4 col-md-4 col-sm-4">
-                        <label for="anio22" class="text-label">Año</label>       
+                        <label for="anio2" class="text-label">Año</label>       
                         <input id="anio2" type="date" class="form-control" required>
                     </div>
                 </div>
@@ -30,15 +30,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="tasDesEscTot2" class="text-label">Deserción escolar total</label>       
-                        <input id="tasDesEscTot2" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Tasa de deserción escolar total" class="form-control" required>
+                        <input id="tasDesEscTot2" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasHom2" class="text-label">Homicidios</label>     
-                        <input id="tasHom2" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Tasa de homicidios" class="form-control" required>
+                        <input id="tasHom2" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasIncDen2" class="text-label">Incidencia dengue</label>       
-                        <input id="tasIncDen2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Tasa de incidencia dengue" class="form-control" required>
+                        <input id="tasIncDen2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -47,15 +47,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasLesPer2" class="text-label">Lesiones personales</label>       
-                        <input id="tasLesPer2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Tasa de lesiones personales" class="form-control" required>
+                        <input id="tasLesPer2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasMueAcc2" class="text-label">Muertes por accidentes de tránsito</label>       
-                        <input id="tasMueAcc2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Tasa de muertes por accidentes de tránsito" class="form-control" required>
+                        <input id="tasMueAcc2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasSui2" class="text-label">Suicidios</label>       
-                        <input id="tasSui2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Tasa de suicidios" class="form-control" required>
+                        <input id="tasSui2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -64,15 +64,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="vioInt2" class="text-label">Violencia interpersonal</label>       
-                        <input id="vioInt2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Violencia interpersonal" class="form-control" required>
+                        <input id="vioInt2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="casTot2" class="text-label">Casos totales</label>       
-                        <input id="casTot2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Casos totales" class="form-control" required>
+                        <input id="casTot2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder=Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="casTasHom2" class="text-label">Casos y tasa homicidios</label>       
-                        <input id="casTasHom2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Casos y tasa homicidios" class="form-control" required>
+                        <input id="casTasHom2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                 </div>
 
@@ -84,15 +84,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="fatTot2" class="text-label">Lesiones fatales total</label>       
-                        <input id="fatTot2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Lesiones fatales total" class="form-control" required>
+                        <input id="fatTot2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="fatHom2" class="text-label">Lesiones fatales hombre</label>     
-                        <input id="fatHom2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="TotaLesiones fatales hombrel" class="form-control" required>
+                        <input id="fatHom2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="fatMuj2" class="text-label">Lesiones fatales mujer</label>       
-                        <input id="fatMuj2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Lesiones fatales mujer" class="form-control" required>
+                        <input id="fatMuj2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -101,15 +101,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="noFatTot2" class="text-label">Lesiones no fatales total</label>       
-                        <input id="noFatTot2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Lesiones no fatales total" class="form-control" required>
+                        <input id="noFatTot2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="noFatHom2" class="text-label">Lesiones no fatales hombre</label>     
-                        <input id="noFatHom2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Lesiones no fatales hombre" class="form-control" required>
+                        <input id="noFatHom2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="noFatMuj2" class="text-label">Lesiones no fatales mujer</label>       
-                        <input id="noFatMuj2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Lesiones no fatales mujer" class="form-control" required>
+                        <input id="noFatMuj2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                 </div>
 
@@ -121,15 +121,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="tot2" class="text-label">Total</label>       
-                        <input id="tot2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Total" class="form-control" required>
+                        <input id="tot2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="hom2" class="text-label">Hombre</label>     
-                        <input id="hom2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Hombre" class="form-control" required>
+                        <input id="hom2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="muj2" class="text-label">Mujer</label>       
-                        <input id="muj2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Mujer" class="form-control" required>
+                        <input id="muj2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                 </div>
 
@@ -141,19 +141,19 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="may2" class="text-label">Violencia a personas mayores</label>       
-                        <input id="may2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Violencia a personas mayores" class="form-control" required>
+                        <input id="may2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="otrFam2" class="text-label">Violencia entre otros familiares</label>     
-                        <input id="otrFam2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Violencia entre otros familiares" class="form-control" required>
+                        <input id="otrFam2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="inf2" class="text-label">Violencia Infantil</label>       
-                        <input id="inf2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Violencia Infantil" class="form-control" required>
+                        <input id="inf2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                 </div>
 
-                <div class="col-lg-12 col-md-12 col-sm-12"><br></div>  
+                <div class="col-lg-12 col-md-12 col-sm-12"><br></div>   
 
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     &nbsp;&nbsp;<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cerrar</button> &nbsp;&nbsp;        

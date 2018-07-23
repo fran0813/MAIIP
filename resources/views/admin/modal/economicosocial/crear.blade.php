@@ -28,11 +28,11 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="numHecSemBos" class="text-label">Número de hectáreas</label>       
-                        <input id="numHecSemBos" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Hectáreas sembradas con bosques por municipio área en bosques total " class="form-control" required>
+                        <input id="numHecSemBos" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="areAgrCosTot" class="text-label">Área agrícola cosechada total</label>     
-                        <input id="areAgrCosTot" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Área agrícola cosechada total" class="form-control" required>
+                        <input id="areAgrCosTot" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                     </div>               
@@ -43,11 +43,11 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="proAgrTot" class="text-label">Producción agrícola total</label>      
-                        <input id="proAgrTot" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Producción agrícola total" class="form-control" required>
+                        <input id="proAgrTot" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="proCar" class="text-label">Producción de carbón</label>       
-                        <input id="proCar" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Hectáreas sembradas" class="form-control" required>
+                        <input id="proCar" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                     </div>
@@ -58,15 +58,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="invBovTotMac" class="text-label">Inventario bovinos total machos</label>    
-                        <input id="invBovTotMac" type="number" pattern="[0-9]+" min="0" placeholder="Machos" class="form-control" required oninput="calcularInventarioBovinos()">
+                        <input id="invBovTotMac" type="number" pattern="[0-9]+" min="0" placeholder="Double" class="form-control" required oninput="calcularInventarioBovinos()">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="invBovTotHem" class="text-label">Inventario bovinos total hembras</label>      
-                        <input id="invBovTotHem" type="number" pattern="[0-9]+" min="0" placeholder="Hembras" class="form-control" required oninput="calcularInventarioBovinos()">
+                        <input id="invBovTotHem" type="number" pattern="[0-9]+" min="0" placeholder="Double" class="form-control" required oninput="calcularInventarioBovinos()">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="invBovTot" class="text-label">Inventario bovinos total</label>       
-                        <input id="invBovTot" type="number" pattern="[0-9]+" min="0" placeholder="Total" class="form-control" required disabled="">
+                        <input id="invBovTot" type="number" pattern="[0-9]+" min="0" placeholder="Double" class="form-control" required disabled="">
                     </div>
                     <br>
                     <br>
@@ -75,15 +75,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="incIpmRur" class="text-label">Incidencia IPM rural</label>    
-                        <input id="incIpmRur" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Rural" class="form-control" required oninput="calcularIpm()" >
+                        <input id="incIpmRur" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required oninput="calcularIpm()" >
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="incIpmUrb" class="text-label">Incidencia IPM urbano</label>      
-                        <input id="incIpmUrb" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Urbano" class="form-control" required oninput="calcularIpm()" >
+                        <input id="incIpmUrb" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required oninput="calcularIpm()" >
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="incIpmTot" class="text-label">Incidencia IPM total</label>       
-                        <input id="incIpmTot" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Total" class="form-control" required disabled="">
+                        <input id="incIpmTot" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required disabled="">
                     </div>
                 </div>
 
@@ -95,15 +95,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="uniCom" class="text-label">Unidades comerciales</label>       
-                        <input id="uniCom" type="number" pattern="[0-9]+" min="0" placeholder="Comercial" class="form-control" required>
+                        <input id="uniCom" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="uniSer" class="text-label">Unidades de servicios</label>     
-                        <input id="uniSer" type="number" pattern="[0-9]+" min="0" placeholder="Servicios" class="form-control" required>
+                        <input id="uniSer" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="uniInd" class="text-label">Unidades industriales</label>       
-                        <input id="uniInd" type="number" pattern="[0-9]+" min="0" placeholder="Industriales" class="form-control" required>
+                        <input id="uniInd" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -112,15 +112,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="uniGraCom" class="text-label">Unidades grande comerciales</label>       
-                        <input id="uniGraCom" type="number" pattern="[0-9]+" min="0" placeholder="Comercial" class="form-control" required>
+                        <input id="uniGraCom" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="uniGraInd" class="text-label">Unidades grande industria</label>     
-                        <input id="uniGraInd" type="number" pattern="[0-9]+" min="0" placeholder="Servicios" class="form-control" required>
+                        <input id="uniGraInd" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="uniGraSer" class="text-label">Unidades grande servicios</label>       
-                        <input id="uniGraSer" type="number" pattern="[0-9]+" min="0" placeholder="Industriales" class="form-control" required>
+                        <input id="uniGraSer" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -129,15 +129,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="uniMedCom" class="text-label">Unidades mediana comerciales</label>       
-                        <input id="uniMedCom" type="number" pattern="[0-9]+" min="0" placeholder="Comercial" class="form-control" required>
+                        <input id="uniMedCom" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="uniMedInd" class="text-label">Unidades mediana industria</label>     
-                        <input id="uniMedInd" type="number" pattern="[0-9]+" min="0" placeholder="Servicios" class="form-control" required>
+                        <input id="uniMedInd" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="uniMedSer" class="text-label">Unidades mediana servicios</label>       
-                        <input id="uniMedSer" type="number" pattern="[0-9]+" min="0" placeholder="Industriales" class="form-control" required>
+                        <input id="uniMedSer" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -146,15 +146,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="uniMicCom" class="text-label">Unidades micro comerciales</label>       
-                        <input id="uniMicCom" type="number" pattern="[0-9]+" min="0" placeholder="Comercial" class="form-control" required>
+                        <input id="uniMicCom" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="uniMicInd" class="text-label">Unidades micro industria</label>     
-                        <input id="uniMicInd" type="number" pattern="[0-9]+" min="0" placeholder="Servicios" class="form-control" required>
+                        <input id="uniMicInd" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="uniMicSer" class="text-label">Unidades micro servicios</label>       
-                        <input id="uniMicSer" type="number" pattern="[0-9]+" min="0" placeholder="Industriales" class="form-control" required>
+                        <input id="uniMicSer" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -163,15 +163,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="uniPeqCom" class="text-label">Unidades pequeña comerciales</label>       
-                        <input id="uniPeqCom" type="number" pattern="[0-9]+" min="0" placeholder="Comercial" class="form-control" required>
+                        <input id="uniPeqCom" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="uniPeqInd" class="text-label">Unidades pequeña industria</label>     
-                        <input id="uniPeqInd" type="number" pattern="[0-9]+" min="0" placeholder="Servicios" class="form-control" required>
+                        <input id="uniPeqInd" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="uniPeqSer" class="text-label">Unidades pequeña servicios</label>       
-                        <input id="uniPeqSer" type="number" pattern="[0-9]+" min="0" placeholder="Industriales" class="form-control" required>
+                        <input id="uniPeqSer" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                 </div>
 
@@ -183,15 +183,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="altTasDepEco" class="text-label">Alta tasa de dependencia económica</label>       
-                        <input id="altTasDepEco" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Alta tasa de dependencia económica" class="form-control" required>
+                        <input id="altTasDepEco" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="ana" class="text-label">Analfabetismo</label>     
-                        <input id="ana" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Analfabetismo" class="form-control" required>
+                        <input id="ana" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="bajLogEdu" class="text-label">Bajo logro educativo</label>       
-                        <input id="bajLogEdu" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Bajo logro educativo" class="form-control" required>
+                        <input id="bajLogEdu" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -200,15 +200,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="barAccSerSal" class="text-label">Barreras de acceso a servicio de salud</label>       
-                        <input id="barAccSerSal" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Barreras de acceso a servicio de salu" class="form-control" required>
+                        <input id="barAccSerSal" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="barAccSerCiu" class="text-label">Barreras de acceso a servicios para cuidado de la primera infancia</label>     
-                        <input id="barAccSerCiu" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Barreras de acceso a servicios para cuidado de la primera infancia" class="form-control" required>
+                        <input id="barAccSerCiu" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="empInf" class="text-label">Empleo informal</label>       
-                        <input id="empInf" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Empleo informal" class="form-control" required>
+                        <input id="empInf" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -217,15 +217,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="hac" class="text-label">Hacinamiento</label>       
-                        <input id="hac" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Hacinamiento" class="form-control" required>
+                        <input id="hac" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="inaEliExc" class="text-label">Inadecuada eliminación de excretas</label>     
-                        <input id="inaEliExc" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Inadecuada eliminación de excretas" class="form-control" required>
+                        <input id="inaEliExc" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="inaEsc" class="text-label">Inasistencia escolar</label>       
-                        <input id="inaEsc" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Inasistencia escolar" class="form-control" required>
+                        <input id="inaEsc" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -234,15 +234,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="parIna" class="text-label">Paredes inadecuadas</label>       
-                        <input id="parIna" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Paredes inadecuadas" class="form-control" required>
+                        <input id="parIna" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="pisIna" class="text-label">Pisos inadecuados</label>     
-                        <input id="pisIna" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Pisos inadecuados" class="form-control" required>
+                        <input id="pisIna" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="rezEsc" class="text-label">Rezago escolar</label>       
-                        <input id="rezEsc" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Rezago escolar" class="form-control" required>
+                        <input id="rezEsc" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -251,15 +251,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="sinAccFueAgMej" class="text-label">Sin acceso a fuente de agua mejorada</label>       
-                        <input id="sinAccFueAgMej" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Sin acceso a fuente de agua mejorada" class="form-control" required>
+                        <input id="sinAccFueAgMej" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="sinAseSal" class="text-label">Sin aseguramiento en salud</label>     
-                        <input id="sinAseSal" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Sin aseguramiento en salud" class="form-control" required>
+                        <input id="sinAseSal" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="traInf" class="text-label">Trabajo infantil</label>       
-                        <input id="traInf" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Trabajo infantil" class="form-control" required>
+                        <input id="traInf" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                 </div>
 

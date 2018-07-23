@@ -899,24 +899,30 @@ class ViviendaserviciospublicosController extends Controller
 		      $booleanAño = True;
 		    }
 
-		    if ($booleanAño = False) {
+		    if ($booleanAño == False) {
+
+		    	$totalViv = $result->cabecera_vivienda_integer + $result->rural_vivienda_integer;
+		    	$totalHog = $result->cabecera_hogar_integer + $result->rural_hogar_integer;
+		    	$totalHogViv = $result->cabecera_hogares_por_vivienda_double + $result->rural_hogares_por_vivienda_double;
+		    	$totalPerHog = $result->cabecera_personas_por_hogar_double + $result->rural_personas_por_hogar_double;
+		    	$totalPerViv = $result->cabecera_personas_por_vivienda_double + $result->rural_personas_por_vivienda_double;
 		    	
 	            $data1[] = array('anioVSP' => $result->anio.'/01/01 00:00:00',
-	                           'cabViv' =>  $result->cabecera_vivienda,
-	                           'cabHog' =>  $result->cabecera_hogar,
-	                           'cabHogViv' =>  $result->cabecera_hogares_por_vivienda,
-	                           'cabPerHog' =>  $result->cabecera_personas_por_hogar,
-	                           'cabPerViv' =>  $result->cabecera_personas_por_vivienda,
-	                           'rurViv' =>  $result->rural_vivienda,
-	                           'rurHog' =>  $result->rural_hogar,
-	                           'rurHogViv' =>  $result->rural_hogares_por_vivienda,
-	                           'rurPerHog' =>  $result->rural_personas_por_hogar,
-	                           'rurPerViv' =>  $result->rural_personas_por_vivienda,
-	                           'totalViv' =>  $result->total_vivienda,
-	                           'totalHog' =>  $result->total_hogar,
-	                           'totalHogViv' =>  $result->total_hogares_por_vivienda,
-	                           'totalPerHog' =>  $result->total_personas_por_hogar,
-	                           'totalPerViv' =>  $result->total_personas_por_vivienda,
+	                           'cabViv' =>  $result->cabecera_vivienda_integer,
+	                           'cabHog' =>  $result->cabecera_hogar_integer,
+	                           'cabHogViv' =>  $result->cabecera_hogares_por_vivienda_double,
+	                           'cabPerHog' =>  $result->cabecera_personas_por_hogar_double,
+	                           'cabPerViv' =>  $result->cabecera_personas_por_vivienda_double,
+	                           'rurViv' =>  $result->rural_vivienda_integer,
+	                           'rurHog' =>  $result->rural_hogar_integer,
+	                           'rurHogViv' =>  $result->rural_hogares_por_vivienda_double,
+	                           'rurPerHog' =>  $result->rural_personas_por_hogar_double,
+	                           'rurPerViv' =>  $result->rural_personas_por_vivienda_double,
+	                           'totalViv' =>  $totalViv,
+	                           'totalHog' =>  $totalHog,
+	                           'totalHogViv' =>  $totalHogViv,
+	                           'totalPerHog' =>  $totalPerHog,
+	                           'totalPerViv' =>  $totalPerViv,
 	                           'municipio_id' => $id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
@@ -930,30 +936,30 @@ class ViviendaserviciospublicosController extends Controller
 					$viviendaserviciopublico_id = $resultado->id;
 				}
 
-			    $data2[] = array('cabCA' => $result->cabecera_cobertura_alcantarillado,
-	                           'centPobCA' => $result->centros_poblados_cobertura_alcantarillado,
-	                           'rurDispCA' => $result->rural_disperso_cobertura_alcantarillado,
+			    $data2[] = array('cabCA' => $result->cabecera_cobertura_alcantarillado_double,
+	                           'centPobCA' => $result->centros_poblados_cobertura_alcantarillado_double,
+	                           'rurDispCA' => $result->rural_disperso_cobertura_alcantarillado_double,
 	                           'viviendaserviciopublico_id' => $viviendaserviciopublico_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
 
-			    $data3[] = array('cabCAs' => $result->cabecera_cobertura_aseo,
-	                           'centPobCAs' => $result->centros_poblados_cobertura_aseo,
-	                           'rurDispCAs' => $result->rural_disperso_cobertura_aseo,
+			    $data3[] = array('cabCAs' => $result->cabecera_cobertura_aseo_double,
+	                           'centPobCAs' => $result->centros_poblados_cobertura_aseo_double,
+	                           'rurDispCAs' => $result->rural_disperso_cobertura_aseo_double,
 	                           'viviendaserviciopublico_id' => $viviendaserviciopublico_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
 
-			    $data4[] = array('cabCG' => $result->cabecera_cobertura_gas,
-	                           'centPobCG' => $result->centros_poblados_cobertura_gas,
-	                           'rurDispCG' => $result->rural_disperso_cobertura_gas,
+			    $data4[] = array('cabCG' => $result->cabecera_cobertura_gas_double,
+	                           'centPobCG' => $result->centros_poblados_cobertura_gas_double,
+	                           'rurDispCG' => $result->rural_disperso_cobertura_gas_double,
 	                           'viviendaserviciopublico_id' => $viviendaserviciopublico_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
 
-			    $data5[] = array('cabCT' => $result->cabecera_cobertura_telefono,
-	                           'centPobCT' => $result->centros_poblados_cobertura_telefono,
-	                           'rurDispCT' => $result->rural_disperso_cobertura_telefono,
+			    $data5[] = array('cabCT' => $result->cabecera_cobertura_telefono_double,
+	                           'centPobCT' => $result->centros_poblados_cobertura_telefono_double,
+	                           'rurDispCT' => $result->rural_disperso_cobertura_telefono_double,
 	                           'viviendaserviciopublico_id' => $viviendaserviciopublico_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
@@ -1002,33 +1008,28 @@ class ViviendaserviciospublicosController extends Controller
 
               $data[] = array('año' => "",
               				'municipio' => "",
-              				 'cabecera_vivienda' => "",
-	                           'cabecera_hogar' => "",
-	                           'cabecera_hogares_por_vivienda' => "",
-	                           'cabecera_personas_por_hogar' => "",
-	                           'cabecera_personas_por_vivienda' => "",
-	                           'rural_vivienda' => "",
-	                           'rural_hogar' => "",
-	                           'rural_hogares_por_vivienda' => "",
-	                           'rural_personas_por_hogar' => "",
-	                           'rural_personas_por_vivienda' => "",
-	                           'total_vivienda' => "",
-	                           'total_hogar' => "",
-	                           'total_hogares_por_vivienda' => "",
-	                           'total_personas_por_hogar' => "",
-	                           'total_personas_por_vivienda' => "",
-	                       'cabecera_cobertura_alcantarillado' => "",
-	                           'centros_poblados_cobertura_alcantarillado' => "",
-	                           'rural_disperso_cobertura_alcantarillado' => "",
-	                           'cabecera_cobertura_aseo' => "",
-	                           'centros_poblados_cobertura_aseo' => "",
-	                           'rural_disperso_cobertura_aseo' => "",
-	                       'cabecera_cobertura_gas' => "",
-	                           'centros_poblados_cobertura_gas' => "",
-	                           'rural_disperso_cobertura_gas' => "",
-	                           'cabecera_cobertura_telefono' => "",
-	                           'centros_poblados_cobertura_telefono' => "",
-	                           'rural_disperso_cobertura_telefono' => "");
+              				 'cabecera_vivienda_integer' => "",
+	                           'cabecera_hogar_integer' => "",
+	                           'cabecera_hogares_por_vivienda_double' => "",
+	                           'cabecera_personas_por_hogar_double' => "",
+	                           'cabecera_personas_por_vivienda_double' => "",
+	                           'rural_vivienda_integer' => "",
+	                           'rural_hogar_integer' => "",
+	                           'rural_hogares_por_vivienda_double' => "",
+	                           'rural_personas_por_hogar_double' => "",
+	                           'rural_personas_por_vivienda_double' => "",
+	                       'cabecera_cobertura_alcantarillado_double' => "",
+	                           'centros_poblados_cobertura_alcantarillado_double' => "",
+	                           'rural_disperso_cobertura_alcantarillado_double' => "",
+	                           'cabecera_cobertura_aseo_double' => "",
+	                           'centros_poblados_cobertura_aseo_double' => "",
+	                           'rural_disperso_cobertura_aseo_double' => "",
+	                       'cabecera_cobertura_gas_double' => "",
+	                           'centros_poblados_cobertura_gas_double' => "",
+	                           'rural_disperso_cobertura_gas_double' => "",
+	                           'cabecera_cobertura_telefono_double' => "",
+	                           'centros_poblados_cobertura_telefono_double' => "",
+	                           'rural_disperso_cobertura_telefono_double' => "");
 
               $sheet->fromArray($data);
 

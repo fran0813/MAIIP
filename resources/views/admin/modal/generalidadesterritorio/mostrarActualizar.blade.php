@@ -18,15 +18,15 @@
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="anio2" class="text-label">Año</label>       
-                        <input id="anio2" type="date" class="form-control" disabled required>
+                        <input id="anio2" type="date" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="temperatura2" class="text-label">Temperatura</label>        
-                        <input id="temperatura2" type="number" pattern="[0-9]+" min="0" placeholder="Temperatura" class="form-control" required>
+                        <input id="temperatura2" type="number" pattern="[0-9]+" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="alturaNivMar2" class="text-label">Altura sobre el nivel del mar</label>     
-                        <input id="alturaNivMar2" type="number" pattern="[0-9]+" min="0" placeholder="Altura sobre el mar" class="form-control" required>
+                        <input id="alturaNivMar2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                 </div>
 
@@ -38,15 +38,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="ruralG2" class="text-label">Rural</label>       
-                        <input id="ruralG2" type="number" pattern="[0-9]+" min="0" placeholder="Rural" oninput="calcularTotalG2()" class="form-control" required>
+                        <input id="ruralG2" type="number" pattern="[0-9]+" min="0" placeholder="Double" oninput="calcularTotalG2()" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="urbanoG2" class="text-label">Urbano</label>     
-                        <input id="urbanoG2" type="number" pattern="[0-9]+" min="0" placeholder="Urbano" oninput="calcularTotalG2()" class="form-control" required>
+                        <input id="urbanoG2" type="number" pattern="[0-9]+" min="0" placeholder="Double" oninput="calcularTotalG2()" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="totalG2" class="text-label">Total</label>       
-                        <input id="totalG2" type="number" pattern="[0-9]+" min="0" placeholder="Total" disabled class="form-control" required>
+                        <input id="totalG2" type="number" pattern="[0-9]+" min="0" placeholder="Double" disabled class="form-control" required>
                     </div>
                 </div>
 
@@ -62,15 +62,15 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-left: 0px;">
                                 <label for="constRural2" class="text-label">Rural</label>       
-                                <input id="constRural2" type="number" pattern="[0-9]+" min="0" placeholder="Rural" oninput="calcularConstTotal2()" class="form-control" required>
+                                <input id="constRural2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" oninput="calcularConstTotal2()" class="form-control" required>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-right: 0px">
                                 <label for="constUrbano2" class="text-label">Urbano</label>     
-                                <input id="constUrbano2" type="number" pattern="[0-9]+" min="0" placeholder="Urbano" oninput="calcularConstTotal()2" class="form-control" required>
+                                <input id="constUrbano2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" oninput="calcularConstTotal2()" class="form-control" required>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px"><br>
                                 <label for="constTotal2" class="text-label">Total</label>       
-                                <input id="constTotal2" type="number" pattern="[0-9]+" min="0" placeholder="Total" disabled class="form-control" required>
+                                <input id="constTotal2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" disabled class="form-control" required>
                             </div>
                         </div>
 
@@ -80,15 +80,15 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-left: 0px;">
                                 <label for="terrRural2" class="text-label" >Rural</label>        
-                                <input id="terrRural2" type="number" pattern="[0-9]+" min="0" placeholder="Rural" oninput="calcularTerrTotal2()" class="form-control" required>
+                                <input id="terrRural2" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" oninput="calcularTerrTotal2()" class="form-control" required>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-right: 0px">
                                 <label for="terrUrbano2" class="text-label" >Urbano</label>      
-                                <input id="terrUrbano2" type="number" pattern="[0-9]+" min="0" placeholder="Urbano" oninput="calcularTerrTotal2()" class="form-control" required>
+                                <input id="terrUrbano2" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" oninput="calcularTerrTotal2()" class="form-control" required>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px"><br>
                                 <label for="terrTotal2" class="text-label" >Total</label>        
-                                <input id="terrTotal2" type="number" pattern="[0-9]+" min="0" placeholder="Total" disabled class="form-control" required>
+                                <input id="terrTotal2" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" disabled class="form-control" required>
                             </div>
                         </div>
                 </div>
@@ -101,15 +101,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="ruralP2" class="text-label">Rural</label>       
-                        <input id="ruralP2" type="number" pattern="[0-9]+" min="0" placeholder="Rural" oninput="calcularTotalP()2" class="form-control" required>
+                        <input id="ruralP2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" oninput="calcularTotalP2()" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="urbanoP2" class="text-label">Urbano</label>     
-                        <input id="urbanoP2" type="number" pattern="[0-9]+" min="0" placeholder="Urbano" oninput="calcularTotalP()2" class="form-control" required>
+                        <input id="urbanoP2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" oninput="calcularTotalP2()" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="totalP2" class="text-label">Total</label>       
-                        <input id="totalP2" type="number" pattern="[0-9]+" min="0" placeholder="Total" disabled class="form-control" required>
+                        <input id="totalP2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" disabled class="form-control" required>
                     </div>
                 </div>
 

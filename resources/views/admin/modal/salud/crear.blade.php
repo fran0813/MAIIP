@@ -28,15 +28,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="tasVacBCG" class="text-label">BCG</label>       
-                        <input id="tasVacBCG" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Tasa de BCG" class="form-control" required>
+                        <input id="tasVacBCG" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacDPT" class="text-label">DPT</label>     
-                        <input id="tasVacDPT" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Tasa de DPT" class="form-control" required>
+                        <input id="tasVacDPT" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacHepatitisB" class="text-label">Hepatitis B</label>       
-                        <input id="tasVacHepatitisB" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Tasa de Hepatitis B" class="form-control" required>
+                        <input id="tasVacHepatitisB" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -45,15 +45,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacHIB" class="text-label">HIB</label>       
-                        <input id="tasVacHIB" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Tasa de HIB" class="form-control" required>
+                        <input id="tasVacHIB" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacPolio" class="text-label">Polio</label>       
-                        <input id="tasVacPolio" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Tasa de Polio" class="form-control" required>
+                        <input id="tasVacPolio" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacTripleViral" class="text-label">Triple viral</label>       
-                        <input id="tasVacTripleViral" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Tasa de Triple viral" class="form-control" required>
+                        <input id="tasVacTripleViral" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                 </div>
 
@@ -65,15 +65,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="difBaMov" class="text-label">Dificultad para bañarse o moverse</label>       
-                        <input id="difBaMov" type="number" pattern="[0-9]+" min="0" placeholder="Total" class="form-control" required>
+                        <input id="difBaMov" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="difEntApr" class="text-label">Dificultad para entender o aprender</label>     
-                        <input id="difEntApr" type="number" pattern="[0-9]+" min="0" placeholder="Total" class="form-control" required>
+                        <input id="difEntApr" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="totalDis" class="text-label">Total de población con Discapacidad</label>       
-                        <input id="totalDis" type="number" pattern="[0-9]+" min="0" placeholder="Total" class="form-control" required>
+                        <input id="totalDis" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -82,11 +82,11 @@
                     <br>
                      <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="difSalirCalle" class="text-label">Dificultad para salir a la calle sin ayuda o compañia</label>     
-                        <input id="difSalirCalle" type="number" pattern="[0-9]+" min="0" placeholder="Total" class="form-control" required>
+                        <input id="difSalirCalle" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>                    
                      <div class="col-lg-4 col-md-4 col-sm-4">
-                        <label for="difMovCam" class="text-label">Dificultad para moverse o para caminar por si              </label>       
-                        <input id="difMovCam" type="number" pattern="[0-9]+" min="0" placeholder="Total" class="form-control" required>
+                        <label for="difMovCam" class="text-label">Dificultad para moverse o para caminar por si mismo</label>       
+                        <input id="difMovCam" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                 </div>
 

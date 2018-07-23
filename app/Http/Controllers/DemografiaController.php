@@ -655,22 +655,44 @@ class DemografiaController extends Controller
 		      $booleanAño = True;
 		    }
 
-		    if ($booleanAño = False) {
+		    if ($booleanAño == False) {
+
+		    	$indRuralidad = ($result->poblacion_zona_restante_integer / $result->poblacion_total_integer) * 100;
+
+		    	$anioD = $result->anio;
+				$pobEdadTrabajarActual = $result->poblacion_edad_trabajar_integer;
+				$ban = False;
+
+				$resultados2 = Demografia::select('demografias.pobEdadTrabajar')
+								->where('demografias.anioD', '<', $anioD)
+								->orderBy('anioD', 'desc')
+								->limit(1)
+								->get();
+				foreach ($resultados2 as $resultado2) {
+					$pobEdadTrabajarAnterior = $resultado2->pobEdadTrabajar;
+					$ban = True;
+				};
+
+				if ($ban == True) {
+					$crecPob = number_format((float)(log(($pobEdadTrabajarActual / $pobEdadTrabajarAnterior))*100), 2, '.', '');
+				}else{
+					$crecPob = 0;
+				}
 		    	
 	            $data[] = array('anioD' => $result->anio.'/01/01 00:00:00',
-	                           'pobEdadTrabajar' => $result->poblacion_edad_trabajar,
-	                           'pobPotActiva' => $result->poblacion_potencial_activa,
-	                           'numPerMen' => $result->numero_personas_menores,
-	                           'numPerMay' => $result->numero_personas_mayores,
+	                           'pobEdadTrabajar' => $result->poblacion_edad_trabajar_integer,
+	                           'pobPotActiva' => $result->poblacion_potencial_activa_integer,
+	                           'numPerMen' => $result->numero_personas_menores_integer,
+	                           'numPerMay' => $result->numero_personas_mayores_integer,
 	                           'numPerInd' => $result->numero_personas_independiente,
 	                           'numPerDep' => $result->numero_personas_dependiente,
-	                           'pobHom' => $result->poblacion_hombre,
-	                           'pobMuj' => $result->poblacion_mujer,
-	                           'pobZonCab' => $result->poblacion_zona_cabecera,
-	                           'pobZonRes' => $result->poblacion_zona_restante,
-	                           'indRuralidad' => $result->indice_de_ruralidad,
-	                           'pobTotal' => $result->poblacion_total,
-	                           'crecPob' => $result->crecimiento_poblacionl,
+	                           'pobHom' => $result->poblacion_hombre_integer,
+	                           'pobMuj' => $result->poblacion_mujer_integer,
+	                           'pobZonCab' => $result->poblacion_zona_cabecera_integer,
+	                           'pobZonRes' => $result->poblacion_zona_restante_integer,
+	                           'indRuralidad' => $indRuralidad,
+	                           'pobTotal' => $result->poblacion_total_integer,
+	                           'crecPob' => $crecPob,
 	                           'municipio_id' => $id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
@@ -713,19 +735,17 @@ class DemografiaController extends Controller
 
               $data[] = array('año' => "",
               				 'municipio' => "",
-              				 'poblacion_edad_trabajar' => "",
-              				 'poblacion_potencial_activa' => "",
-              				 'numero_personas_menores' => "",
-              				 'numero_personas_mayores' => "",
+              				 'poblacion_edad_trabajar_integer' => "",
+              				 'poblacion_potencial_activa_integer' => "",
+              				 'numero_personas_menores_integer' => "",
+              				 'numero_personas_mayores_integer' => "",
               				 'numero_personas_independiente' => "",
               				 'numero_personas_dependiente' => "",
-              				 'poblacion_hombre' => "",
-              				 'poblacion_mujer' => "",
-              				 'poblacion_zona_cabecera' => "",
-              				 'poblacion_zona_restante' => "",
-              				 'indice_de_ruralidad' => "",
-              				 'poblacion_total' => "",
-              				 'crecimiento_poblacionl' => "");
+              				 'poblacion_hombre_integer' => "",
+              				 'poblacion_mujer_integer' => "",
+              				 'poblacion_zona_cabecera_integer' => "",
+              				 'poblacion_zona_restante_integer' => "",
+              				 'poblacion_total_integer' => "");
 
               $sheet->fromArray($data);
 

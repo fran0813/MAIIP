@@ -763,19 +763,35 @@ class EducacionController extends Controller
 		      $booleanAño = True;
 		    }
 
-		    if ($booleanAño = False) {
+		    $sumaJardin = $result->rural_jardin_integer + $result->urbano_jardin_integer;
+			$sumaTransicion = $result->rural_transicion_integer + $result->urbano_transicion_integer;
+			$sumaPrimaria = $result->rural_primaria_integer + $result->urbano_primaria_integer;
+			$sumaSecundaria = $result->rural_secundaria_integer + $result->urbano_secundaria_integer;
+			$sumaMedia = $result->rural_media_integer + $result->urbano_media_integer;
+
+			$generos = $result->femenino_integer + $result->masculino_integer;
+
+		    $validar = $sumaJardin + $sumaTransicion + $sumaPrimaria + $sumaSecundaria + $sumaMedia;
+
+		    if($generos != $validar){
+				$booleanAño = True
+			}else{
+				$booleanAño = False;
+			}
+
+		    if ($booleanAño == False) {
 		    	
 	            $data1[] = array('anioE' => $result->anio.'/01/01 00:00:00',
-	                           'rurJardin' => $result->rural_jardin,
-	                           'urbJardin' => $result->urbano_jardin,
-	                           'rurTrans' => $result->rural_transicion,
-	                           'urbTrans' => $result->urbano_transicion,
-	                           'rurPrim' => $result->rural_primaria,
-	                           'urbPrim' => $result->urbano_primaria,
-	                           'rurSecu' => $result->rural_secundaria,
-	                           'urbSecu' => $result->urbano_secundaria,
-	                           'rurMedia' => $result->rural_media,
-	                           'urbMedia' => $result->urbano_media,
+	                           'rurJardin' => $result->rural_jardin_integer,
+	                           'urbJardin' => $result->urbano_jardin_integer,
+	                           'rurTrans' => $result->rural_transicion_integer,
+	                           'urbTrans' => $result->urbano_transicion_integer,
+	                           'rurPrim' => $result->rural_primaria_integer,
+	                           'urbPrim' => $result->urbano_primaria_integer,
+	                           'rurSecu' => $result->rural_secundaria_integer,
+	                           'urbSecu' => $result->urbano_secundaria_integer,
+	                           'rurMedia' => $result->rural_media_integer,
+	                           'urbMedia' => $result->urbano_media_integer,
 	                           'municipio_id' => $id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
@@ -789,12 +805,6 @@ class EducacionController extends Controller
 					$educacion_id = $resultado->id;
 				}
 
-				$sumaJardin = $result->rural_jardin + $result->urbano_jardin;
-				$sumaTransicion = $result->rural_transicion + $result->urbano_transicion;
-				$sumaPrimaria = $result->rural_primaria + $result->urbano_primaria;
-				$sumaSecundaria = $result->rural_secundaria + $result->urbano_secundaria;
-				$sumaMedia = $result->rural_media + $result->urbano_media;
-
 			    $data2[] = array('jardin' => $sumaJardin,
 	                           'trans' => $sumaTransicion,
 	                           'prim' => $sumaPrimaria,
@@ -804,8 +814,8 @@ class EducacionController extends Controller
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
 
-			    $data3[] = array('femenino' => $result->femenino,
-	                           'masculino' => $result->masculino,
+			    $data3[] = array('femenino' => $result->femenino_integer,
+	                           'masculino' => $result->masculino_integer,
 	                           'educacion_id' => $educacion_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
@@ -850,18 +860,18 @@ class EducacionController extends Controller
 
               $data[] = array('año' => "",
               				'municipio' => "",
-              				 'rural_jardin' => "",
-	                           'urbano_jardin' => "",
-	                           'rural_transicion' => "",
-	                           'urbano_transicion' => "",
-	                           'rural_primaria' => "",
-	                           'urbano_primaria' => "",
-	                           'rural_secundaria' => "",
-	                           'urbano_secundaria' => "",
-	                           'rural_media' => "",
-	                           'urbano_media' => "",
-	                           'femenino' => "",
-	                           'masculino' => "");
+              				 'rural_jardin_integer' => "",
+	                           'urbano_jardin_integer' => "",
+	                           'rural_transicion_integer' => "",
+	                           'urbano_transicion_integer' => "",
+	                           'rural_primaria_integer' => "",
+	                           'urbano_primaria_integer' => "",
+	                           'rural_secundaria_integer' => "",
+	                           'urbano_secundaria_integer' => "",
+	                           'rural_media_integer' => "",
+	                           'urbano_media_integer' => "",
+	                           'femenino_integer' => "",
+	                           'masculino_integer' => "");
 
               $sheet->fromArray($data);
 

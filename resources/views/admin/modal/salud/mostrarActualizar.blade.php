@@ -30,15 +30,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="tasVacBCG2" class="text-label">BCG</label>       
-                        <input id="tasVacBCG2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Tasa de BCG" class="form-control" required>
+                        <input id="tasVacBCG2" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacDPT2" class="text-label">DPT</label>     
-                        <input id="tasVacDPT2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Tasa de DPT" class="form-control" required>
+                        <input id="tasVacDPT2" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacHepatitisB2" class="text-label">Hepatitis B</label>       
-                        <input id="tasVacHepatitisB2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Tasa de Hepatitis B" class="form-control" required>
+                        <input id="tasVacHepatitisB2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -47,15 +47,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacHIB2" class="text-label">HIB</label>       
-                        <input id="tasVacHIB2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Tasa de HIB" class="form-control" required>
+                        <input id="tasVacHIB2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacPolio2" class="text-label">Polio</label>       
-                        <input id="tasVacPolio2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Tasa de Polio" class="form-control" required>
+                        <input id="tasVacPolio2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacTripleViral2" class="text-label">Triple viral</label>       
-                        <input id="tasVacTripleViral2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Tasa de Triple viral" class="form-control" required>
+                        <input id="tasVacTripleViral2" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
                     </div>
                 </div>
 
@@ -67,15 +67,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="difBaMov2" class="text-label">Dificultad para bañarse o moverse</label>       
-                        <input id="difBaMov2" type="number" pattern="[0-9]+" min="0" placeholder="Total" class="form-control" required>
+                        <input id="difBaMov2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="difEntApr2" class="text-label">Dificultad para entender o aprender</label>     
-                        <input id="difEntApr2" type="number" pattern="[0-9]+" min="0" placeholder="Total" class="form-control" required>
+                        <input id="difEntApr2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="totalDis2" class="text-label">Total de población con Discapacidad</label>       
-                        <input id="totalDis2" type="number" pattern="[0-9]+" min="0" placeholder="Total" class="form-control" required>
+                        <input id="totalDis2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -84,15 +84,15 @@
                     <br>
                      <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="difSalirCalle2" class="text-label">Dificultad para salir a la calle sin ayuda o compañia</label>     
-                        <input id="difSalirCalle2" type="number" pattern="[0-9]+" min="0" placeholder="Total" class="form-control" required>
+                        <input id="difSalirCalle2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>                    
                      <div class="col-lg-4 col-md-4 col-sm-4">
-                        <label for="difMovCam2" class="text-label">Dificultad para moverse o para caminar por si              </label>       
-                        <input id="difMovCam2" type="number" pattern="[0-9]+" min="0" placeholder="Total" class="form-control" required>
+                        <label for="difMovCam2" class="text-label">Dificultad para moverse o para caminar por si mismo</label>       
+                        <input id="difMovCam2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>
                 </div>
 
-                <div class="col-lg-12 col-md-12 col-sm-12"><br></div> 
+                <div class="col-lg-12 col-md-12 col-sm-12"><br></div>  
 
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     &nbsp;&nbsp;<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cerrar</button> &nbsp;&nbsp;        
