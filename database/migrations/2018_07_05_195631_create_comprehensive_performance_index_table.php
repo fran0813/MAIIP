@@ -14,14 +14,14 @@ class CreateComprehensivePerformanceIndexTable extends Migration
     public function up()
     {
         Schema::create('IndiceDesempeñoIntegral', function (Blueprint $table) {
-            $table->increments('id');
-            $table->double('desIntCapAdm', 14, 4);
-            $table->double('desIntEfiTot', 14, 4);
-            $table->double('desIntGes', 14, 4);
-            $table->double('desIntIndInt', 14, 4);
-            $table->double('desIntReqLeg', 14, 4);
-            $table->double('desIntIndDesFis', 14, 4);            
-            $table->integer('finanza_id')->unsigned();
+            $table->increments('id')->comment('Llave primaria');
+            $table->double('desIntCapAdm', 14, 4)->comment('Desempeño integral capacidad administrativa');
+            $table->double('desIntEfiTot', 14, 4)->comment('Desempeño integral eficacia total');
+            $table->double('desIntGes', 14, 4)->comment('Desempeño integral gestión');
+            $table->double('desIntIndInt', 14, 4)->comment('Desempeño integral indice integral');
+            $table->double('desIntReqLeg', 14, 4)->comment('Desempeño integral requisitos legales');
+            $table->double('desIntIndDesFis', 14, 4)->comment('Desempeño integral indicador de desempeño fiscal');            
+            $table->integer('finanza_id')->unsigned()->comment('Llave foránea a finanza');
             $table->foreign('finanza_id')->references('id')->on('Finanza');
             $table->timestamps();
         });

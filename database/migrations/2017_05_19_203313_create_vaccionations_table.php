@@ -14,14 +14,14 @@ class CreateVaccionationsTable extends Migration
     public function up()
     {
         Schema::create('Vacunaciones', function (Blueprint $table) {
-            $table->increments('id');
-            $table->double('tasVacBCG', 14, 4);
-            $table->double('tasVacDPT', 14, 4);
-            $table->double('tasVacHepatitisB', 14, 4);
-            $table->double('tasVacHIB', 14, 4);
-            $table->double('tasVacPolio', 14, 4);
-            $table->double('tasVacTripleViral', 14, 4);
-            $table->integer('salud_id')->unsigned();
+            $table->increments('id')->comment('Llave primaria');
+            $table->double('tasVacBCG', 14, 4)->comment('Tasa de Vacunación BCG');
+            $table->double('tasVacDPT', 14, 4)->comment('Tasa de Vacunación DPT');
+            $table->double('tasVacHepatitisB', 14, 4)->comment('Tasa de Vacunación Hepatitis B');
+            $table->double('tasVacHIB', 14, 4)->comment('Tasa de Vacunación HIB');
+            $table->double('tasVacPolio', 14, 4)->comment('Tasa de Vacunación Polio');
+            $table->double('tasVacTripleViral', 14, 4)->comment('Tasa de Vacunación Triple viral');
+            $table->integer('salud_id')->unsigned()->comment('Llave foránea a salud');
             $table->foreign('salud_id')->references('id')->on('Salud');
             $table->timestamps();
         });

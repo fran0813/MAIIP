@@ -38,12 +38,12 @@ function mostrarTablaEducacion(){
 							"</thead>"+
 							"<tbody>"+
 							"<tr class='border-dotted'>"+
-							"<td>Prejardin y jardin (rural)</td>"+
+							"<td>Prejardin y jardín (rural)</td>"+
 							"<td></td>"+
 							"<td></td>"+
 							"</tr>"+
 							"<tr class='border-dotted'>"+
-							"<td>Prejardin y jardin (urbano)</td>"+
+							"<td>Prejardin y jardín (urbano)</td>"+
 							"<td></td>"+
 							"<td></td>"+
 							"</tr>"+
@@ -104,7 +104,7 @@ function mostrarTablaEducacion(){
 							"</thead>"+
 							"<tbody>"+
 							"<tr class='border-dotted'>"+
-							"<td>Prejardin y jardin</td>"+
+							"<td>Prejardin y jardín</td>"+
 							"<td></td>"+
 							"<td></td>"+
 							"</tr>"+

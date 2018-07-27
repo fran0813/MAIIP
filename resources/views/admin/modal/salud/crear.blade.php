@@ -81,7 +81,7 @@
                     <br>
                     <br>
                      <div class="col-lg-4 col-md-4 col-sm-4">
-                        <label for="difSalirCalle" class="text-label">Dificultad para salir a la calle sin ayuda o compañia</label>     
+                        <label for="difSalirCalle" class="text-label">Dificultad para salir a la calle sin ayuda o compañía</label>     
                         <input id="difSalirCalle" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
                     </div>                    
                      <div class="col-lg-4 col-md-4 col-sm-4">

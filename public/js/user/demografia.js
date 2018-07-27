@@ -50,22 +50,22 @@ function mostrarTablaDememografia()
 								"<td></td>"+
 								"</tr>"+
 								"<tr class='border-dotted'>"+
-								"<td>Numero de personas menores a 15 años</td>"+
+								"<td>Número de personas menores a 15 años</td>"+
 								"<td></td>"+
 								"<td></td>"+
 								"</tr>"+
 								"<tr class='border-dotted'>"+
-								"<td>Numero de personas mayores a 64 años</td>"+
+								"<td>Número de personas mayores a 64 años</td>"+
 								"<td></td>"+
 								"<td></td>"+
 								"</tr>"+
 								"<tr class='border-dotted'>"+
-								"<td>Numero de personas independientes</td>"+
+								"<td>Número de personas independientes</td>"+
 								"<td></td>"+
 								"<td></td>"+
 								"</tr>"+
 								"<tr class='border-dotted'>"+
-								"<td>Numero de personas dependientes</td>"+
+								"<td>Número de personas dependientes</td>"+
 								"<td></td>"+
 								"<td></td>"+
 								"</tr>"+

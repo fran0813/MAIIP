@@ -14,9 +14,9 @@ class CreateDepartamentsTable extends Migration
     public function up()
     {
         Schema::create('departamentos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('codigoD')->unique();
-            $table->string('nombre', 100);
+            $table->increments('id')->comment('Llave primaria');
+            $table->integer('codigoD')->unique()->comment('Código del departamento');
+            $table->string('nombre', 100)->comment('Nombre del departamento');
             $table->timestamps();
         });
     }

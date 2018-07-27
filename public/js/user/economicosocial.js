@@ -182,7 +182,7 @@ function mostrarTablaEconomicosocial()
 									"<table class='table table-bordered table-hover'>"+
 									"<thead class='thead-s'>"+
 									"<tr>"+
-									"<th>Economico-social</th>"+
+									"<th>Económico-social</th>"+
 									"<th>Valores</th>"+
 									"</tr>"+
 									"</thead>"+

@@ -14,11 +14,11 @@ class CreatePropertiesTable extends Migration
     public function up()
     {
         Schema::create('Predios', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('ruralP');
-            $table->integer('urbanoP');
-            $table->integer('totalP');
-            $table->integer('generalidadterritorio_id')->unsigned();
+            $table->increments('id')->comment('Llave primaria');
+            $table->integer('ruralP')->comment('Rural, Predio');
+            $table->integer('urbanoP')->comment('Urbano, Predio');
+            $table->integer('totalP')->comment('total, Predio');
+            $table->integer('generalidadterritorio_id')->unsigned()->comment('Llave foránea a generalidadesterritorios');
             $table->foreign('generalidadterritorio_id')->references('id')->on('GeneralidadesTerritorios');
             $table->timestamps();
         });

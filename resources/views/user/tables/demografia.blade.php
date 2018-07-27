@@ -3,7 +3,7 @@
 @section('breadcrumbs')
 <ol class="breadcrumb">
 	<li class="color-breadcrumbs"><a href="{{ url('/informacion') }}"><b>Información</b></a></li>
-	<li class="active"><b>Demografia</b></li>
+	<li class="active"><b>Demografía</b></li>
 </ol>
 @endsection
 
@@ -31,52 +31,52 @@
 					<td></td>
 				</tr>
 				<tr class="border-dotted">
-					<td>Póblacion potencialmente activa</td>
+					<td>Población potencialmente activa</td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr class="border-dotted">
-					<td>Póblacion potencialmente inactiva</td>
+					<td>Población potencialmente inactiva</td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr class="border-dotted">
-					<td>Numero de personas menores a 15 años</td>
+					<td>Número de personas menores a 15 años</td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr class="border-dotted">
-					<td>Numero de personas mayores a 64 años</td>
+					<td>Número de personas mayores a 64 años</td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr class="border-dotted">
-					<td>Numero de personas independientes</td>
+					<td>Número de personas independientes</td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr class="border-dotted">
-					<td>Numero de personas dependientes</td>
+					<td>Número de personas dependientes</td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr class="border-dotted">
-					<td>Población por género -Hombres</td>
+					<td>Población por género - Hombres</td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr class="border-dotted">
-					<td>Población por género -Mujeres</td>
+					<td>Población por género - Mujeres</td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr class="border-dotted">
-					<td>Población por zona -Cabecera</td>
+					<td>Población por zona - Cabecera</td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr class="border-dotted">
-					<td>Población por zona -Resto</td>
+					<td>Población por zona - Resto</td>
 					<td></td>
 					<td></td>
 				</tr>

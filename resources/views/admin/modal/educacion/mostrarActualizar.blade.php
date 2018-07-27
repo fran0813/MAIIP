@@ -26,14 +26,14 @@
 
                  <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="col-lg-12 col-md-12 col-sm-12" style="font-size: 18px">
-                        <label for="rurJardin2" class="text-label"><strong>Educacion</strong></label>
+                        <label for="rurJardin2" class="text-label"><strong>Educación</strong></label>
                     </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="col-lg-12 col-md-12 col-sm-12" style="font-size: 16px; padding-left: 0px; padding-right: 0px">
                                 <label for="rurJardin2" class="text-label"><i class="fa fa-chevron-right" aria-hidden="true"></i> Rural</label>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-left: 0px;">
-                                <label for="rurJardin2" class="text-label">Prejardin y jardin</label>       
+                                <label for="rurJardin2" class="text-label">Prejardin y jardín</label>       
                                 <input id="rurJardin2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required oninput="calcularJardin2();validarGenero2()">
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-right: 0px">
@@ -66,7 +66,7 @@
                                 <label for="urbJardin2" class="text-label"><i class="fa fa-chevron-right" aria-hidden="true"></i> Urbano</label>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-left: 0px;">
-                                <label for="urbJardin2" class="text-label">Prejardin y jardin</label>       
+                                <label for="urbJardin2" class="text-label">Prejardin y jardín</label>       
                                 <input id="urbJardin2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required oninput="calcularJardin2();validarGenero2()">
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-right: 0px">
@@ -101,7 +101,7 @@
                         <label for="jardin2" class="text-label"><strong>Matriculas por nivel</strong></label>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
-                        <label for="jardin2" class="text-label">Prejardin y jardin</label>       
+                        <label for="jardin2" class="text-label">Prejardin y jardín</label>       
                         <input id="jardin2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required disabled="">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">

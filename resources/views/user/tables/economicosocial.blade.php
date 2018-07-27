@@ -3,7 +3,7 @@
 @section('breadcrumbs')
 <ol class="breadcrumb">
 	<li class="color-breadcrumbs"><a href="{{ url('/informacion') }}"><b>Información</b></a></li>
-	<li class="active"><b>Economico social</b></li>
+	<li class="active"><b>Económico social</b></li>
 </ol>
 @endsection
 
@@ -187,7 +187,7 @@
 		<table class="table table-bordered table-hover">
 			<thead class="thead-s">
 				<tr>
-					<th>Economico-social</th>
+					<th>Económico-social</th>
 					<th>Valores</th>
 				</tr>
 			</thead>

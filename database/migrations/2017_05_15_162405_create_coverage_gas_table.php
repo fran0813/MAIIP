@@ -14,11 +14,11 @@ class CreateCoverageGasTable extends Migration
     public function up()
     {
         Schema::create('CoberturaGas', function (Blueprint $table) {
-            $table->increments('id');
-            $table->double('cabCG', 14, 4);
-            $table->double('centPobCG', 14, 4);
-            $table->double('rurDispCG', 14, 4);
-            $table->integer('viviendaserviciopublico_id')->unsigned();
+            $table->increments('id')->comment('Llave primaria');
+            $table->double('cabCG', 14, 4)->comment('Cabecera cobertura gas');
+            $table->double('centPobCG', 14, 4)->comment('Centro poblados cobertura gas');
+            $table->double('rurDispCG', 14, 4)->comment('Rural disperso cobertura gas');
+            $table->integer('viviendaserviciopublico_id')->unsigned()->comment('Llave foránea a viviendasserviciospublicos');
             $table->foreign('viviendaserviciopublico_id')->references('id')->on('ViviendasServiciosPublicos');
             $table->timestamps();
         });

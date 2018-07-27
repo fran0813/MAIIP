@@ -41,135 +41,135 @@
 			</thead>
 			<tbody>
 	            <tr class="border-dotted">
-	            	<td>Plan financiero Municipios INGRESOS TOTALES</td>
+	            	<td>Plan financiero municipios ingresos totales</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 1. INGRESOS CORRIENTES</td>
+					<td>Plan financiero municipios 1. ingresos corrientes</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 1.1. INGRESOS TRIBUTARIOS</td>
+					<td>Plan financiero municipios 1.1. ingresos tributarios</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 1.1.1. PREDIAL</td>
+					<td>Plan financiero municipios 1.1.1. predial</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 1.1.2. INDUSTRIA Y COMERCIO</td>
+					<td>Plan financiero municipios 1.1.2. industria y comercio</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios  1.1.3. SOBRETASAS A LA GASOLINA</td>
+					<td>Plan financiero municipios  1.1.3. sobretasas a la gasolina</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 1.1.4. OTROS</td>
+					<td>Plan financiero municipios 1.1.4. otros</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 1.2. INGRESOS NO TRIBUTARIOS</td>
+					<td>Plan financiero municipios 1.2. ingresos no tributarios</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 1.3. TRANSFERENCIAS</td>
+					<td>Plan financiero municipios 1.3. transferencias</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 1.3.1. DEL NIVEL NACIONAL</td>
+					<td>Plan financiero municipios 1.3.1. del nivel nacional</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 1.3.2. OTRAS</td>
+					<td>Plan financiero municipios 1.3.2. otras</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios GASTOS TOTALES</td>
+					<td>Plan financiero municipios gastos totales</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 2. GASTOS CORRIENTES</td>
+					<td>Plan financiero municipios 2. gastos corrientes</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 2.1. FUNCIONAMIENTO</td>
+					<td>Plan financiero municipios 2.1. funcionamiento</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 2.1.1. SERVICIOS PERSONALES</td>
+					<td>Plan financiero municipios 2.1.1. servicios personales</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 2.1.2. GASTOS GENERALES</td>
+					<td>Plan financiero municipios 2.1.2. gastos generales</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 2.1.3. TRANSFERENCIAS PAGADAS</td>
+					<td>Plan financiero municipios 2.1.3. transferencias pagadas</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 2.2. INTERESES DEUDA PUBLICA</td>
+					<td>Plan financiero municipios 2.2. intereses deuda publica</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 3. DEFICIT O AHORRO CORRIENTE (1-2)</td>
+					<td>Plan financiero municipios 3. déficit o ahorro corriente (1-2)</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 4. INGRESOS DE CAPITAL</td>
+					<td>Plan financiero municipios 4. ingresos de capital</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 4.1. REGALÍAS</td>
+					<td>Plan financiero municipios 4.1. regalías</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 4.2. TRANSFERENCIAS NACIONALES (SGP, etc.)</td>
+					<td>Plan financiero municipios 4.2. transferencias nacionales (sgp, etc.)</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 4.3. COFINANCIACION</td>
+					<td>Plan financiero municipios 4.3. cofinanciacion</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 4.4. OTROS</td>
+					<td>Plan financiero municipios 4.4. otros</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 5. GASTOS DE CAPITAL (INVERSION)</td>
+					<td>Plan financiero municipios 5. gastos de capital (inversión)</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 5.1.1.1. FORMACION BRUTAL DE CAPITAL FIJO</td>
+					<td>Plan financiero municipios 5.1.1.1. formación brutal de capital fijo</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 5.1.1.2. OTROS</td>
+					<td>Plan financiero municipios 5.1.1.2. otros</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 6. DEFICIT O SUPERAVIT TOTAL (3+4-5)</td>
+					<td>Plan financiero municipios 6. déficit o superávit total (3+4-5)</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 7. FINANCIAMIENTO</td>
+					<td>Plan financiero municipios 7. financiamiento</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 7.1. CREDITO NETO</td>
+					<td>Plan financiero municipios 7.1. crédito neto</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 7.1.1. DESEMBOLSOS (+)</td>
+					<td>Plan financiero municipios 7.1.1. desembolsos (+)</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 7.1.2. AMORTIZACIONES (-)</td>
+					<td>Plan financiero municipios 7.1.2. amortizaciones (-)</td>
 					<td></td>
 	            </tr>
 	            <tr class="border-dotted">
-					<td>Plan financiero Municipios 7.3. RECURSOS DEL BALANCE, VARIACION DE DEPOSITOS Y OTROS</td>
+					<td>Plan financiero municipios 7.3. recursos del balance, variación de depósitos y otros</td>
 					<td></td>
 	            </tr>	
 			</tbody>
@@ -182,141 +182,141 @@
 		<table class="table table-bordered table-hover">
 			<thead class="thead-s">
 				<tr>
-					<th>Ejecucion presupuesto</th>
+					<th>Ejecución presupuesto</th>
 					<th>Valores</th>
 				</tr>
 			</thead>
 			<tbody>
                 <tr class="border-dotted">
-                	<td>INGRESOS TOTALES</td>
+                	<td>Ingresos totales</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>1. INGRESOS CORRIENTES</td>
+					<td>1. ingresos corrientes</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>1.1 INGRESOS TRIBUTARIOS</td>
+					<td>1.1 ingresos tributarios</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>1.1.1. PREDIAL</td>
+					<td>1.1.1. predial</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>1.1.2. INDUSTRIA Y COMERCIO</td>
+					<td>1.1.2. industria y comercio</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>1.1.3. SOBRETASA A LA GASOLINA</td>
+					<td>1.1.3. sobretasa a la gasolina</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>1.1.4. OTROS</td>
+					<td>1.1.4. otros</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>1.2. INGRESOS NO TRIBUTARIOS</td>
+					<td>1.2. ingresos no tributarios</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>1.3. TRANSFERENCIAS</td>
+					<td>1.3. transferencias</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>1.3.1. DEL NIVEL NACIONAL</td>
+					<td>1.3.1. del nivel nacional</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>1.3.2. OTRAS</td>
+					<td>1.3.2. otras</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-				     <td>GASTOS TOTALES</td>
+				     <td>Gastos totales</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>2. GASTOS CORRIENTES</td>
+					<td>2. gastos corrientes</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>2.1. FUNCIONAMIENTO</td>
+					<td>2.1. funcionamiento</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>2.1.1. SERVICIOS PERSONALES</td>
+					<td>2.1.1. servicios personales</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>2.1.2. GASTOS GENERALES</td>
+					<td>2.1.2. gastos generales</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>2.1.3. TRANSFERENCIAS PAGADAS (NOMINA Y A ENTIDADES)</td>
+					<td>2.1.3. transferencias pagadas (nomina y a entidades)</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>2.2. INTERESES DEUDA PUBLICA</td>
+					<td>2.2. intereses deuda publica</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>3. DEFICIT O AHORRO CORRIENTE (1-2)</td>
+					<td>3. déficit o ahorro corriente (1-2)</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>4. INGRESOS DE CAPITAL</td>
+					<td>4. ingresos de capital</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>4.1. REGALIAS</td>
+					<td>4.1. regalías</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>4.2. TRANSFERENCIAS NACIONALES (SGP, etc.)</td>
+					<td>4.2. transferencias nacionales (sgp, etc.)</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>4.3. COFINANCIACION</td>
+					<td>4.3. cofinanciacion</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>4.4. OTROS</td>
+					<td>4.4. otros</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>5. GASTOS DE CAPITAL (INVERSION)</td>
+					<td>5. gastos de capital (inversión)</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>5.1. FORMACION BRUTAL DE CAPITAL FIJO</td>
+					<td>5.1. formación brutal de capital fijo</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>5.2. RESTO INVERSIONES</td>
+					<td>5.2. resto inversiones</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>6. DEFICIT O SUPERAVIT TOTAL (3+4-5)</td>
+					<td>6. déficit o superávit total (3+4-5)</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>7. FINANCIAMIENTO (7.1 + 7.2)</td>
+					<td>7. financiamiento (7.1 + 7.2)</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>7.1. CREDITO INTERNO Y EXTERNO (7.1.1 - 7.1.2.)</td>
+					<td>7.1. crédito interno y externo (7.1.1 - 7.1.2.)</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>7.1.1. DESEMBOLSOS (+)</td>
+					<td>7.1.1. desembolsos (+)</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>7.1.2. AMORTIZACIONES (-)</td>
+					<td>7.1.2. amortizaciones (-)</td>
 	            	<td></td>
 	            </tr>	
             	<tr class="border-dotted">
-					<td>7.2. RECURSOS BALANCE, VAR. DEPOSITOS, OTROS</td>
+					<td>7.2. recursos balance, var. depósitos, otros</td>
 	            	<td></td>
 	            </tr>	
 	        </tbody>
@@ -337,27 +337,27 @@
 			</thead>
 			<tbody>
 	            <tr class="border-dotted">
-	            	<td>Desempeño Integral Capacidad Administrativa</td>
+	            	<td>Desempeño integral capacidad administrativa</td>
 	            	<td></td>
 	            </tr>	
 				<tr class="border-dotted">
-					<td>Desempeño Integral Eficacia Total</td>
+					<td>Desempeño integral eficacia total</td>
 	            	<td></td>
 	            </tr>	
 				<tr class="border-dotted">
-					<td>Desempeño Integral Gestión</td>
+					<td>Desempeño integral gestión</td>
 	            	<td></td>
 	            </tr>	
 				<tr class="border-dotted">
-					<td>Desempeño Integral Indice Integral</td>
+					<td>Desempeño integral indice integral</td>
 	            	<td></td>
 	            </tr>	 
 				<tr class="border-dotted">
-					<td>Desempeño Integral Requisitos Legales</td>
+					<td>Desempeño integral requisitos legales</td>
 	            	<td></td>
 	            </tr>	 
 				<tr class="border-dotted">
-					<td>Desempeño Integral Indicador de desempeño Fiscal</td>
+					<td>Desempeño integral indicador de desempeño fiscal</td>
 	            	<td></td>
 	            </tr>	 	
 	        </tbody>
@@ -376,7 +376,7 @@
 			</thead>
 			<tbody>
 	            <tr class="border-dotted">	
-					<td>Autofinanciación de los gastos de funcionamiento</td>
+					<td>Auto financiación de los gastos de funcionamiento</td>
 	            	<td></td>
 	            </tr>		
 				<tr class="border-dotted">
@@ -384,7 +384,7 @@
 	            	<td></td>
 	            </tr>		
 				<tr class="border-dotted">
-					<td>Dependencia de las transferencias de la Nación y las Regalías</td>
+					<td>Dependencia de las transferencias de la nación y las regalías</td>
 	            	<td></td>
 	            </tr>		
 				<tr class="border-dotted">
@@ -400,7 +400,7 @@
 	            	<td></td>
 	            </tr>		
 				<tr class="border-dotted">
-					<td>Indicador de desempeño Fiscal</td>
+					<td>Indicador de desempeño fiscal</td>
 	            	<td></td>
 	            </tr>		
 				<tr class="border-dotted">

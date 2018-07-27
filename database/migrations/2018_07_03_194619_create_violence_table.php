@@ -14,11 +14,11 @@ class CreateViolenceTable extends Migration
     public function up()
     {
         Schema::create('Violencia', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('may');
-            $table->integer('otrFam');
-            $table->integer('inf');
-            $table->integer('seguridadviolencia_id')->unsigned();
+            $table->increments('id')->comment('Llave primaria');
+            $table->integer('may')->comment('Violencia a personas mayores');
+            $table->integer('otrFam')->comment('Violencia entre otros familiares');
+            $table->integer('inf')->comment('Violencia infantil');
+            $table->integer('seguridadviolencia_id')->unsigned()->comment('Llave foránea a seguridadviolencia');
             $table->foreign('seguridadviolencia_id')->references('id')->on('SeguridadViolencia');
             $table->timestamps();
         });

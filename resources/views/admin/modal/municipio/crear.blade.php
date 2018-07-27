@@ -15,7 +15,7 @@
 
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="col-lg-6 col-md-6 col-sm-6">
-                        <label for="codigoM" class="text-label">Codígo municipal</label>     
+                        <label for="codigoM" class="text-label">Código municipal</label>     
                         <input id="codigoM" type="number" pattern="[0-9]+" min="0" placeholder="Codígo municipal" class="form-control" required>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">

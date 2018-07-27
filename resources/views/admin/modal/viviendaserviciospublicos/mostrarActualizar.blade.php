@@ -6,7 +6,7 @@
 
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Editar viviendas y servicios publicos</h4>
+              <h4 class="modal-title">Editar viviendas y servicios públicos</h4>
             </div>
 
             <div id="mostrarActualizar" class="modal-body">

@@ -863,7 +863,7 @@ class FinanzaController extends Controller
 		};		
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 1. INGRESOS CORRIENTES</td>";
+					<td>Plan financiero municipios 1. ingresos corrientes</td>";
 		foreach ($resultados as $resultado) {
 			$ingCor = $resultado->ingCor;
 
@@ -872,7 +872,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 1.1. INGRESOS TRIBUTARIOS</td>";
+					<td>Plan financiero municipios 1.1. ingresos tributarios</td>";
 		foreach ($resultados as $resultado) {
 			$ingTri = $resultado->ingTri;
 
@@ -881,7 +881,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 1.1.1. PREDIAL</td>";
+					<td>Plan financiero municipios 1.1.1. predial</td>";
 		foreach ($resultados as $resultado) {
 			$ingPre = $resultado->ingPre;
 
@@ -890,7 +890,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 1.1.2. INDUSTRIA Y COMERCIO</td>";
+					<td>Plan financiero municipios 1.1.2. industria y comercio</td>";
 		foreach ($resultados as $resultado) {
 			$ingIndCom = $resultado->ingIndCom;
 
@@ -899,7 +899,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios  1.1.3. SOBRETASAS A LA GASOLINA</td>";
+					<td>Plan financiero municipios  1.1.3. sobretasas a la gasolina</td>";
 		foreach ($resultados as $resultado) {
 			$ingSobGas = $resultado->ingSobGas;
 
@@ -908,7 +908,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 1.1.4. OTROS</td>";
+					<td>Plan financiero municipios 1.1.4. otros</td>";
 		foreach ($resultados as $resultado) {
 			$ingOtr = $resultado->ingOtr;
 
@@ -917,7 +917,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 1.2. INGRESOS NO TRIBUTARIOS</td>";
+					<td>Plan financiero municipios 1.2. ingresos no tributarios</td>";
 		foreach ($resultados as $resultado) {
 			$ingNoTri = $resultado->ingNoTri;
 
@@ -926,7 +926,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 1.3. TRANSFERENCIAS</td>";
+					<td>Plan financiero municipios 1.3. transferencias</td>";
 		foreach ($resultados as $resultado) {
 			$ingTra = $resultado->ingTra;
 
@@ -935,7 +935,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 1.3.1. DEL NIVEL NACIONAL</td>";
+					<td>Plan financiero municipios 1.3.1. del nivel nacional</td>";
 		foreach ($resultados as $resultado) {
 			$ingNivNac = $resultado->ingNivNac;
 
@@ -944,7 +944,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 1.3.2. OTRAS</td>";
+					<td>Plan financiero municipios 1.3.2. otras</td>";
 		foreach ($resultados as $resultado) {
 			$ingNoTriOtr = $resultado->ingNoTriOtr;
 
@@ -953,7 +953,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios GASTOS TOTALES</td>";
+					<td>Plan financiero municipios gastos totales</td>";
 		foreach ($resultados as $resultado) {
 			$gasTot = $resultado->gasTot;
 
@@ -962,7 +962,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 2. GASTOS CORRIENTES</td>";
+					<td>Plan financiero municipios 2. gastos corrientes</td>";
 		foreach ($resultados as $resultado) {
 			$gasCor = $resultado->gasCor;
 
@@ -971,7 +971,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 2.1. FUNCIONAMIENTO</td>";
+					<td>Plan financiero municipios 2.1. funcionamiento</td>";
 		foreach ($resultados as $resultado) {
 			$fun = $resultado->fun;
 
@@ -980,7 +980,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 2.1.1. SERVICIOS PERSONALES</td>";
+					<td>Plan financiero municipios 2.1.1. servicios personales</td>";
 		foreach ($resultados as $resultado) {
 			$serFun = $resultado->serFun;
 
@@ -989,7 +989,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 2.1.2. GASTOS GENERALES</td>";
+					<td>Plan financiero municipios 2.1.2. gastos generales</td>";
 		foreach ($resultados as $resultado) {
 			$serFun = $resultado->serFun;
 
@@ -998,7 +998,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 2.1.3. TRANSFERENCIAS PAGADAS</td>";
+					<td>Plan financiero municipios 2.1.3. transferencias pagadas</td>";
 		foreach ($resultados as $resultado) {
 			$traPag = $resultado->traPag;
 
@@ -1007,7 +1007,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 2.2. INTERESES DEUDA PUBLICA</td>";
+					<td>Plan financiero municipios 2.2. intereses deuda publica</td>";
 		foreach ($resultados as $resultado) {
 			$intDeuPub = $resultado->intDeuPub;
 
@@ -1016,7 +1016,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 3. DEFICIT O AHORRO CORRIENTE (1-2)</td>";
+					<td>Plan financiero municipios 3. deficit o ahorro corriente (1-2)</td>";
 		foreach ($resultados as $resultado) {
 			$defAhoCor = $resultado->defAhoCor;
 
@@ -1025,7 +1025,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 4. INGRESOS DE CAPITAL</td>";
+					<td>Plan financiero municipios 4. ingresos de capital</td>";
 		foreach ($resultados as $resultado) {
 			$ingCap = $resultado->ingCap;
 
@@ -1034,7 +1034,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 4.1. REGALÍAS</td>";
+					<td>Plan financiero municipios 4.1. regalías</td>";
 		foreach ($resultados as $resultado) {
 			$reg = $resultado->reg;
 
@@ -1043,7 +1043,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 4.2. TRANSFERENCIAS NACIONALES (SGP, etc.)</td>";
+					<td>Plan financiero municipios 4.2. transferencias nacionales (sgp, etc.)</td>";
 		foreach ($resultados as $resultado) {
 			$traNac = $resultado->traNac;
 
@@ -1052,7 +1052,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 4.3. COFINANCIACION</td>";
+					<td>Plan financiero municipios 4.3. cofinanciacion</td>";
 		foreach ($resultados as $resultado) {
 			$cof = $resultado->cof;
 
@@ -1061,7 +1061,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 4.4. OTROS</td>";
+					<td>Plan financiero municipios 4.4. otros</td>";
 		foreach ($resultados as $resultado) {
 			$ingCapOtr = $resultado->ingCapOtr;
 
@@ -1070,7 +1070,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 5. GASTOS DE CAPITAL (INVERSION)</td>";
+					<td>Plan financiero municipios 5. gastos de capital (inversion)</td>";
 		foreach ($resultados as $resultado) {
 			$gasCap = $resultado->gasCap;
 
@@ -1079,7 +1079,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 5.1.1.1. FORMACION BRUTAL DE CAPITAL FIJO</td>";
+					<td>Plan financiero municipios 5.1.1.1. formacion brutal de capital fijo</td>";
 		foreach ($resultados as $resultado) {
 			$forBruCapFij = $resultado->forBruCapFij;
 
@@ -1088,7 +1088,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 5.1.1.2. OTROS</td>";
+					<td>Plan financiero municipios 5.1.1.2. otros</td>";
 		foreach ($resultados as $resultado) {
 			$gasCapOtr = $resultado->gasCapOtr;
 
@@ -1097,7 +1097,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 6. DEFICIT O SUPERAVIT TOTAL (3+4-5)</td>";
+					<td>Plan financiero municipios 6. deficit o superavit total (3+4-5)</td>";
 		foreach ($resultados as $resultado) {
 			$defSupTot = $resultado->defSupTot;
 
@@ -1106,7 +1106,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 7. FINANCIAMIENTO</td>";
+					<td>Plan financiero municipios 7. financiamiento</td>";
 		foreach ($resultados as $resultado) {
 			$fin = $resultado->fin;
 
@@ -1115,7 +1115,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 7.1. CREDITO NETO</td>";
+					<td>Plan financiero municipios 7.1. credito neto</td>";
 		foreach ($resultados as $resultado) {
 			$creNet = $resultado->creNet;
 
@@ -1124,7 +1124,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 7.1.1. DESEMBOLSOS (+)</td>";
+					<td>Plan financiero municipios 7.1.1. desembolsos (+)</td>";
 		foreach ($resultados as $resultado) {
 			$des = $resultado->des;
 
@@ -1133,7 +1133,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 7.1.2. AMORTIZACIONES (-)</td>";
+					<td>Plan financiero municipios 7.1.2. amortizaciones (-)</td>";
 		foreach ($resultados as $resultado) {
 			$amo = $resultado->amo;
 
@@ -1142,7 +1142,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Plan financiero Municipios 7.3. RECURSOS DEL BALANCE, VARIACION DE DEPOSITOS Y OTROS</td>";
+					<td>Plan financiero municipios 7.3. recursos del balance, variacion de depositos y otros</td>";
 		foreach ($resultados as $resultado) {
 			$recBalVarDepOtr = $resultado->recBalVarDepOtr;
 
@@ -1167,7 +1167,7 @@ class FinanzaController extends Controller
 				</thead>
 				<tbody>
 				<tr class='border-dotted'>
-                	<td>INGRESOS TOTALES</td>";
+                	<td>ingresos totales</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngTot = $resultado->ejeIngTot;
 
@@ -1176,7 +1176,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>1. INGRESOS CORRIENTES</td>";
+					<td>1. ingresos corrientes</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngCor = $resultado->ejeIngCor;
 
@@ -1185,7 +1185,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>1.1 INGRESOS TRIBUTARIOS</td>";
+					<td>1.1 ingresos tributarios</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngTri = $resultado->ejeIngTri;
 
@@ -1194,7 +1194,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>1.1.1. PREDIAL</td>";
+					<td>1.1.1. predial</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngPre = $resultado->ejeIngPre;
 
@@ -1203,7 +1203,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>1.1.2. INDUSTRIA Y COMERCIO</td>";
+					<td>1.1.2. industria y comercio</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngIndCom = $resultado->ejeIngIndCom;
 
@@ -1212,7 +1212,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>1.1.3. SOBRETASA A LA GASOLINA</td>";
+					<td>1.1.3. sobretasa a la gasolina</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngSobGas = $resultado->ejeIngSobGas;
 
@@ -1221,7 +1221,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>1.1.4. OTROS</td>";
+					<td>1.1.4. otros</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngOtr = $resultado->ejeIngOtr;
 
@@ -1230,7 +1230,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>1.2. INGRESOS NO TRIBUTARIOS</td>";
+					<td>1.2. ingresos no tributarios</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngNoTri = $resultado->ejeIngNoTri;
 
@@ -1239,7 +1239,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>1.3. TRANSFERENCIAS</td>";
+					<td>1.3. transferencias</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngTra = $resultado->ejeIngTra;
 
@@ -1248,7 +1248,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>1.3.1. DEL NIVEL NACIONAL</td>";
+					<td>1.3.1. del nivel nacional</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngNivNac = $resultado->ejeIngNivNac;
 
@@ -1257,7 +1257,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>1.3.2. OTRAS</td>";
+					<td>1.3.2. otras</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngNoTriOtr = $resultado->ejeIngNoTriOtr;
 
@@ -1266,7 +1266,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-				     <td>GASTOS TOTALES</td>";
+				     <td>Gastos totales</td>";
 		foreach ($resultados as $resultado) {
 			$ejeGasTot = $resultado->ejeGasTot;
 
@@ -1275,7 +1275,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>2. GASTOS CORRIENTES</td>";
+					<td>2. Gastos corrientes</td>";
 		foreach ($resultados as $resultado) {
 			$ejeGasCor = $resultado->ejeGasCor;
 
@@ -1284,7 +1284,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>2.1. FUNCIONAMIENTO</td>";
+					<td>2.1. funcionamiento</td>";
 		foreach ($resultados as $resultado) {
 			$ejeFun = $resultado->ejeFun;
 
@@ -1293,7 +1293,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>2.1.1. SERVICIOS PERSONALES</td>";
+					<td>2.1.1. servicios personales</td>";
 		foreach ($resultados as $resultado) {
 			$ejeSerFun = $resultado->ejeSerFun;
 
@@ -1302,7 +1302,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>2.1.2. GASTOS GENERALES</td>";
+					<td>2.1.2. gastos generales</td>";
 		foreach ($resultados as $resultado) {
 			$ejeGasGen = $resultado->ejeGasGen;
 
@@ -1311,7 +1311,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>2.1.3. TRANSFERENCIAS PAGADAS (NOMINA Y A ENTIDADES)</td>";
+					<td>2.1.3. transferencias pagadas (nomina y a entidades)</td>";
 		foreach ($resultados as $resultado) {
 			$ejeTraPag = $resultado->ejeTraPag;
 
@@ -1320,7 +1320,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>2.2. INTERESES DEUDA PUBLICA</td>";
+					<td>2.2. intereses deuda publica</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIntDeuPub = $resultado->ejeIntDeuPub;
 
@@ -1329,7 +1329,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>3. DEFICIT O AHORRO CORRIENTE (1-2)</td>";
+					<td>3. deficit o ahorro corriente (1-2)</td>";
 		foreach ($resultados as $resultado) {
 			$ejeDefAhoCor = $resultado->ejeDefAhoCor;
 
@@ -1338,7 +1338,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>4. INGRESOS DE CAPITAL</td>";
+					<td>4. ingresos de capital</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngCap = $resultado->ejeIngCap;
 
@@ -1347,7 +1347,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>4.1. REGALIAS</td>";
+					<td>4.1. regalias</td>";
 		foreach ($resultados as $resultado) {
 			$ejeReg = $resultado->ejeReg;
 
@@ -1356,7 +1356,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>4.2. TRANSFERENCIAS NACIONALES (SGP, etc.)</td>";
+					<td>4.2. transferencias nacionales (sgp, etc.)</td>";
 		foreach ($resultados as $resultado) {
 			$ejeTraNac = $resultado->ejeTraNac;
 
@@ -1365,7 +1365,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>4.3. COFINANCIACION</td>";
+					<td>4.3. cofinanciacion</td>";
 		foreach ($resultados as $resultado) {
 			$ejeCof = $resultado->ejeCof;
 
@@ -1374,7 +1374,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>4.4. OTROS</td>";
+					<td>4.4. otros</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngCapOtr = $resultado->ejeIngCapOtr;
 
@@ -1383,7 +1383,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>5. GASTOS DE CAPITAL (INVERSION)</td>";
+					<td>5. gastos de capital (inversion)</td>";
 		foreach ($resultados as $resultado) {
 			$ejeGasCap = $resultado->ejeGasCap;
 
@@ -1392,7 +1392,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>5.1. FORMACION BRUTAL DE CAPITAL FIJO</td>";
+					<td>5.1. formacion brutal de capital fijo</td>";
 		foreach ($resultados as $resultado) {
 			$ejeForBruCapFij = $resultado->ejeForBruCapFij;
 
@@ -1401,7 +1401,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>5.2. RESTO INVERSIONES</td>";
+					<td>5.2. resto inversiones</td>";
 		foreach ($resultados as $resultado) {
 			$ejeGasCapOtr = $resultado->ejeGasCapOtr;
 
@@ -1410,7 +1410,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>6. DEFICIT O SUPERAVIT TOTAL (3+4-5)</td>";
+					<td>6. deficit o superavit total (3+4-5)</td>";
 		foreach ($resultados as $resultado) {
 			$ejeDefSupTot = $resultado->ejeDefSupTot;
 
@@ -1419,7 +1419,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>7. FINANCIAMIENTO (7.1 + 7.2)</td>";
+					<td>7. financiamiento (7.1 + 7.2)</td>";
 		foreach ($resultados as $resultado) {
 			$ejeFin = $resultado->ejeFin;
 
@@ -1428,7 +1428,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>7.1. CREDITO INTERNO Y EXTERNO (7.1.1 - 7.1.2.)</td>";
+					<td>7.1. credito interno y externo (7.1.1 - 7.1.2.)</td>";
 		foreach ($resultados as $resultado) {
 			$ejeCreNet = $resultado->ejeCreNet;
 
@@ -1437,7 +1437,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>7.1.1. DESEMBOLSOS (+)</td>";
+					<td>7.1.1. desembolsos (+)</td>";
 		foreach ($resultados as $resultado) {
 			$ejeDes = $resultado->ejeDes;
 
@@ -1446,7 +1446,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>7.1.2. AMORTIZACIONES (-)</td>";
+					<td>7.1.2. amortizaciones (-)</td>";
 		foreach ($resultados as $resultado) {
 			$ejeAmo = $resultado->ejeAmo;
 
@@ -1455,7 +1455,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>7.2. RECURSOS BALANCE, VAR. DEPOSITOS, OTROS</td>";
+					<td>7.2. recursos balance, var. depositos, otros</td>";
 		foreach ($resultados as $resultado) {
 			$ejeRecBalVarDepOtr = $resultado->ejeRecBalVarDepOtr;
 
@@ -1482,7 +1482,7 @@ class FinanzaController extends Controller
 				</thead>
 				<tbody>
 				<tr class='border-dotted'>
-	            	<td>Desempeño Integral  Capacidad Administrativa</td>";
+	            	<td>Desempeño integral  capacidad administrativa</td>";
 		foreach ($resultados as $resultado) {
 			$desIntCapAdm = $resultado->desIntCapAdm;
 
@@ -1491,7 +1491,7 @@ class FinanzaController extends Controller
 		};
            $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Desempeño Integral  Eficacia Total</td>";
+					<td>Desempeño integral  eficacia total</td>";
 		foreach ($resultados as $resultado) {
 			$desIntEfiTot = $resultado->desIntEfiTot;
 
@@ -1500,7 +1500,7 @@ class FinanzaController extends Controller
 		};
            $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Desempeño Integral  Gestión</td>";
+					<td>Desempeño integral  gestión</td>";
 		foreach ($resultados as $resultado) {
 			$desIntGes = $resultado->desIntGes;
 
@@ -1509,7 +1509,7 @@ class FinanzaController extends Controller
 		};
            $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Desempeño Integral Indice Integral</td>";
+					<td>Desempeño integral indice integral</td>";
 		foreach ($resultados as $resultado) {
 			$desIntIndInt = $resultado->desIntIndInt;
 
@@ -1518,7 +1518,7 @@ class FinanzaController extends Controller
 		};
             $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Desempeño Integral Requisitos Legales</td>";
+					<td>Desempeño integral requisitos legales</td>";
 		foreach ($resultados as $resultado) {
 			$desIntReqLeg = $resultado->desIntReqLeg;
 
@@ -1527,7 +1527,7 @@ class FinanzaController extends Controller
 		};
            $html .= "</tr>
 				<tr class='border-dotted'>
-					<td>Desempeño Integral  Indicador de desempeño Fiscal</td>";
+					<td>Desempeño integral  indicador de desempeño fiscal</td>";
 		foreach ($resultados as $resultado) {
 			$desIntIndDesFis = $resultado->desIntIndDesFis;
 

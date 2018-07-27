@@ -367,7 +367,7 @@ class DemografiaController extends Controller
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Numero de personas menores a 15 años</td>";
+				<td>Número de personas menores a 15 años</td>";
 
 		foreach ($resultados as $resultado) {
 			$numPerMen = $resultado->numPerMen;
@@ -378,7 +378,7 @@ class DemografiaController extends Controller
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Numero de personas mayores a 64 años</td>";
+				<td>Número de personas mayores a 64 años</td>";
 
 		foreach ($resultados as $resultado) {
 			$numPerMay = $resultado->numPerMay;
@@ -389,7 +389,7 @@ class DemografiaController extends Controller
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Numero de personas independientes</td>";
+				<td>Número de personas independientes</td>";
 
 		foreach ($resultados as $resultado) {
 			$numPerInd = $resultado->numPerInd;
@@ -400,7 +400,7 @@ class DemografiaController extends Controller
 
 		$html .= "</tr>
 				<tr class='border-dotted'>
-				<td>Numero de personas dependientes</td>";
+				<td>Número de personas dependientes</td>";
 
 		foreach ($resultados as $resultado) {
 			$numPerDep = $resultado->numPerDep;
@@ -477,7 +477,7 @@ class DemografiaController extends Controller
 
 		$html .= "</tr>
 				<tr>
-				<td>Crecimiento poblacionall";
+				<td>Crecimiento poblacional";
 
 		foreach ($resultados as $resultado) {
 			$crecPob = $resultado->crecPob;

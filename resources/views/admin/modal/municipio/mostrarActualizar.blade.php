@@ -6,7 +6,7 @@
 
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Editar demografias</h4>
+              <h4 class="modal-title">Editar municipio</h4>
             </div>
 
             <div id="mostrarActualizar" class="modal-body">
@@ -17,7 +17,7 @@
 
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="col-lg-6 col-md-6 col-sm-6">
-                        <label for="codigoM2" class="text-label">Codígo municipal</label>     
+                        <label for="codigoM2" class="text-label">Código municipal</label>     
                         <input id="codigoM2" type="number" pattern="[0-9]+" min="0" placeholder="Codígo municipal" class="form-control" required>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">

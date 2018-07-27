@@ -6,7 +6,7 @@
 
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Importar Municipio</h4>
+              <h4 class="modal-title">Importar municipio</h4>
             </div>
             
             <div id="modalImportarMunicipio" class="modal-body" style="border: transparent; overflow-y: auto;">

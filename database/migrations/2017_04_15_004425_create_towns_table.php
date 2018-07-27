@@ -14,11 +14,11 @@ class CreateTownsTable extends Migration
     public function up()
     {
         Schema::create('municipios', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('codigoM')->unique();
-            $table->string('nombre', 100);
-            $table->string('catMun', 50);
-            $table->integer('departamento_id')->unsigned();
+            $table->increments('id')->comment('Llave primaria');
+            $table->integer('codigoM')->unique()->comment('Código del municipio');
+            $table->string('nombre', 100)->comment('Nombre del municipio');
+            $table->string('catMun', 50)->comment('Categoría municipal');
+            $table->integer('departamento_id')->unsigned()->comment('Llave foránea a departamento');
             $table->foreign('departamento_id')->references('id')->on('departamentos');
             $table->timestamps();
         });

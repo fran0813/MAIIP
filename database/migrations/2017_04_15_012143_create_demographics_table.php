@@ -14,23 +14,23 @@ class CreateDemographicsTable extends Migration
     public function up()
     {
         Schema::create('Demografias', function (Blueprint $table) {
-            $table->increments('id');
-            $table->dateTime('anioD')->unique();
-            $table->integer('pobEdadTrabajar');
-            $table->integer('pobPotActiva');
-            $table->integer('pobPotInactiva');
-            $table->integer('numPerMen');
-            $table->integer('numPerMay');
-            $table->integer('numPerInd');
-            $table->integer('numPerDep');
-            $table->integer('pobHom');
-            $table->integer('pobMuj');
-            $table->integer('pobZonCab');
-            $table->integer('pobZonRes');
-            $table->integer('indRuralidad');
-            $table->integer('pobTotal');
-            $table->integer('crecPob');
-            $table->integer('municipio_id')->unsigned();
+            $table->increments('id')->comment('Llave primaria');
+            $table->dateTime('anioD')->unique()->comment('Año demografías');
+            $table->integer('pobEdadTrabajar')->comment('Población en edad de trabajar');
+            $table->integer('pobPotActiva')->comment('Población potencialmente activa');
+            $table->integer('pobPotInactiva')->comment('Población potencialmente inactiva');
+            $table->integer('numPerMen')->comment('Número de personas menores a 15 años');
+            $table->integer('numPerMay')->comment('Número de personas mayores a 64 años');
+            $table->integer('numPerInd')->comment('Número de personas independientes');
+            $table->integer('numPerDep')->comment('Número de personas dependientes');
+            $table->integer('pobHom')->comment('Población por género - Hombres');
+            $table->integer('pobMuj')->comment('Población por género - Mujeres');
+            $table->integer('pobZonCab')->comment('Población por zona - Cabecera');
+            $table->integer('pobZonRes')->comment('Población por zona - Resto');
+            $table->integer('indRuralidad')->comment('Índice de ruralidad');
+            $table->integer('pobTotal')->comment('Población total');
+            $table->integer('crecPob')->comment('Crecimiento poblacional');
+            $table->integer('municipio_id')->unsigned()->comment('Llave foránea a municipio');
             $table->foreign('municipio_id')->references('id')->on('Municipios');
             $table->timestamps();
         });

@@ -14,24 +14,24 @@ class CreateHousingPublicServicesTable extends Migration
     public function up()
     {
         Schema::create('ViviendasServiciosPublicos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->dateTime('anioVSP')->unique();
-            $table->integer('cabViv');
-            $table->integer('cabHog');
-            $table->double('cabHogViv', 14, 4);
-            $table->double('cabPerHog', 14, 4);
-            $table->double('cabPerViv', 14, 4);
-            $table->integer('rurViv');
-            $table->integer('rurHog');
-            $table->double('rurHogViv', 14, 4);
-            $table->double('rurPerHog', 14, 4);
-            $table->double('rurPerViv', 14, 4);
-            $table->integer('totalViv');
-            $table->integer('totalHog');
-            $table->double('totalHogViv', 14, 4);
-            $table->double('totalPerHog', 14, 4);
-            $table->double('totalPerViv', 14, 4);
-            $table->integer('municipio_id')->unsigned();
+            $table->increments('id')->comment('Llave primaria');
+            $table->dateTime('anioVSP')->unique()->comment('año Vivienda y servicios públicos');
+            $table->integer('cabViv')->comment('Cabecera viviendas');
+            $table->integer('cabHog')->comment('Cabecera hogares');
+            $table->double('cabHogViv', 14, 4)->comment('Cabecera hogares por vivienda');
+            $table->double('cabPerHog', 14, 4)->comment('Cabecera personas por hogar');
+            $table->double('cabPerViv', 14, 4)->comment('Cabecera personas por vivienda');
+            $table->integer('rurViv')->comment('Rural viviendas');
+            $table->integer('rurHog')->comment('Rural hogares');
+            $table->double('rurHogViv', 14, 4)->comment('Rural hogares por vivienda');
+            $table->double('rurPerHog', 14, 4)->comment('Rural personas por hogar');
+            $table->double('rurPerViv', 14, 4)->comment('Rural personas por vivienda');
+            $table->integer('totalViv')->comment('Total viviendas');
+            $table->integer('totalHog')->comment('Total hogares');
+            $table->double('totalHogViv', 14, 4)->comment('Total hogares por vivienda');
+            $table->double('totalPerHog', 14, 4)->comment('Total personas por hogar');
+            $table->double('totalPerViv', 14, 4)->comment('Total personas por vivienda');
+            $table->integer('municipio_id')->unsigned()->comment('Llave foránea a municipio');
             $table->foreign('municipio_id')->references('id')->on('Municipios');
             $table->timestamps();
         });

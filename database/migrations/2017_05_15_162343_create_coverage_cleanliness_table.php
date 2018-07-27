@@ -14,11 +14,11 @@ class CreateCoverageCleanlinessTable extends Migration
     public function up()
     {
         Schema::create('CoberturaAseo', function (Blueprint $table) {
-            $table->increments('id');
-            $table->double('cabCAs', 14, 4);
-            $table->double('centPobCAs', 14, 4);
-            $table->double('rurDispCAs', 14, 4);
-            $table->integer('viviendaserviciopublico_id')->unsigned();
+            $table->increments('id')->comment('Llave primaria');
+            $table->double('cabCAs', 14, 4)->comment('Cabecera cobertura aseo');
+            $table->double('centPobCAs', 14, 4)->comment('Centro poblados cobertura aseo');
+            $table->double('rurDispCAs', 14, 4)->comment('Rural disperso cobertura aseo');
+            $table->integer('viviendaserviciopublico_id')->unsigned()->comment('Llave foránea a viviendasserviciospublicos');
             $table->foreign('viviendaserviciopublico_id')->references('id')->on('ViviendasServiciosPublicos');
             $table->timestamps();
         });

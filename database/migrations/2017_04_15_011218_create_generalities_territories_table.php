@@ -14,11 +14,11 @@ class CreateGeneralitiesTerritoriesTable extends Migration
     public function up()
     {
         Schema::create('GeneralidadesTerritorios', function (Blueprint $table) {
-            $table->increments('id');
-            $table->dateTime('anioGT')->unique();
-            $table->double('temperatura', 5, 2);
-            $table->integer('alturaNivMar');
-            $table->integer('municipio_id')->unsigned();
+            $table->increments('id')->comment('Llave primaria');
+            $table->dateTime('anioGT')->unique()->comment('Año generalidades y territorio');
+            $table->double('temperatura', 5, 2)->comment('Temperatura media');
+            $table->integer('alturaNivMar')->comment('Altura sobre el nivel del mal');
+            $table->integer('municipio_id')->unsigned()->comment('Llave foránea a municipio');
             $table->foreign('municipio_id')->references('id')->on('Municipios');
             $table->timestamps();
         });

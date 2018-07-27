@@ -14,23 +14,23 @@ class CreateBusinessUnitTable extends Migration
     public function up()
     {
         Schema::create('UnidadComercial', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('uniCom');
-            $table->integer('uniSer');
-            $table->integer('uniGraCom');
-            $table->integer('uniGraInd');
-            $table->integer('uniGraSer');
-            $table->integer('uniInd');
-            $table->integer('uniMedCom');
-            $table->integer('uniMedInd');
-            $table->integer('uniMedSer');
-            $table->integer('uniMicCom');
-            $table->integer('uniMicInd');
-            $table->integer('uniMicSer');
-            $table->integer('uniPeqCom');
-            $table->integer('uniPeqInd');
-            $table->integer('uniPeqSer');
-            $table->integer('economicosocial_id')->unsigned();
+            $table->increments('id')->comment('Llave primaria');
+            $table->integer('uniCom')->comment('Unidades comerciales');
+            $table->integer('uniSer')->comment('Unidades de servicios');
+            $table->integer('uniGraCom')->comment('Unidades grande comerciales');
+            $table->integer('uniGraInd')->comment('Unidades grande industria');
+            $table->integer('uniGraSer')->comment('Unidades grande servicios');
+            $table->integer('uniInd')->comment('Unidades industriales');
+            $table->integer('uniMedCom')->comment('Unidades mediana comerciales');
+            $table->integer('uniMedInd')->comment('Unidades mediana industria');
+            $table->integer('uniMedSer')->comment('Unidades mediana servicios');
+            $table->integer('uniMicCom')->comment('Unidades micro comerciales');
+            $table->integer('uniMicInd')->comment('Unidades micro industria');
+            $table->integer('uniMicSer')->comment('Unidades micro servicios');
+            $table->integer('uniPeqCom')->comment('Unidades pequeña comerciales');
+            $table->integer('uniPeqInd')->comment('Unidades pequeña industria');
+            $table->integer('uniPeqSer')->comment('Unidades pequeña Servicios');
+            $table->integer('economicosocial_id')->unsigned()->comment('Llave foránea a economicosocial');
             $table->foreign('economicosocial_id')->references('id')->on('EconomicoSocial');
             $table->timestamps();
         });

@@ -14,10 +14,10 @@ class CreateEnrollmentByGenderTable extends Migration
     public function up()
     {
         Schema::create('MatriculaPorGenero', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('femenino');
-            $table->integer('masculino');
-            $table->integer('educacion_id')->unsigned();
+            $table->increments('id')->comment('Llave primaria');
+            $table->integer('femenino')->comment('Femenino');
+            $table->integer('masculino')->comment('Masculino');
+            $table->integer('educacion_id')->unsigned()->comment('Llave foránea a educacion');
             $table->foreign('educacion_id')->references('id')->on('Educacion');
             $table->timestamps();
         });

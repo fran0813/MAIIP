@@ -14,11 +14,11 @@ class CreateCoverageSewerageTable extends Migration
     public function up()
     {
         Schema::create('CoberturaAlcantarillado', function (Blueprint $table) {
-            $table->increments('id');
-            $table->double('cabCA', 14, 4);
-            $table->double('centPobCA', 14, 4);
-            $table->double('rurDispCA', 14, 4);
-            $table->integer('viviendaserviciopublico_id')->unsigned();
+            $table->increments('id')->comment('Llave primaria');
+            $table->double('cabCA', 14, 4)->comment('Cabecera cobertura alcantarillado');
+            $table->double('centPobCA', 14, 4)->comment('Centro poblados cobertura alcantarillado');
+            $table->double('rurDispCA', 14, 4)->comment('Rural disperso cobertura alcantarillado');
+            $table->integer('viviendaserviciopublico_id')->unsigned()->comment('Llave foránea a viviendasserviciospublicos');
             $table->foreign('viviendaserviciopublico_id')->references('id')->on('ViviendasServiciosPublicos');
             $table->timestamps();
         });

@@ -163,7 +163,7 @@ function mostrarTablaSeguridadviolencia()
 									"<td></td>"+
 									"</tr>"+
 									"<tr class='border-dotted'>"+
-									"<td>Violencia Infantil</td>"+
+									"<td>Violencia infantil</td>"+
 									"<td></td>"+
 									"</tr>"+
 									"</tbody>"+

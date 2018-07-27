@@ -129,7 +129,7 @@
                     <br>
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
-                        <label for="defAhoCor" class="text-label">Plan financiero Municipios 3. deficit o ahorro corriente (1-2)</label>       
+                        <label for="defAhoCor" class="text-label">Plan financiero Municipios 3. déficit o ahorro corriente (1-2)</label>       
                         <input id="defAhoCor" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required disabled oninput="calcularSuperavit();">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
@@ -163,11 +163,11 @@
                     <br>
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
-                        <label for="gasCap" class="text-label">Plan financiero municipios 5. gastos de capital (inversion)</label>       
+                        <label for="gasCap" class="text-label">Plan financiero municipios 5. gastos de capital (inversión)</label>       
                         <input id="gasCap" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required oninput="calcularSuperavit();">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
-                        <label for="forBruCapFij" class="text-label">Plan financiero municipios 5.1.1.1. formacion brutal de capital fijo</label>     
+                        <label for="forBruCapFij" class="text-label">Plan financiero municipios 5.1.1.1. formación brutal de capital fijo</label>     
                         <input id="forBruCapFij" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                      <div class="col-lg-4 col-md-4 col-sm-4">
@@ -180,7 +180,7 @@
                     <br>
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
-                        <label for="defSupTot" class="text-label">Plan financiero municipios 6. deficit o superavit total (3+4-5)</label>       
+                        <label for="defSupTot" class="text-label">Plan financiero municipios 6. déficit o superavit total (3+4-5)</label>       
                         <input id="defSupTot" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required disabled>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
@@ -188,7 +188,7 @@
                         <input id="fin" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                      <div class="col-lg-4 col-md-4 col-sm-4">
-                        <label for="creNet" class="text-label">Plan financiero municipios 7.1. credito neto</label>     
+                        <label for="creNet" class="text-label">Plan financiero municipios 7.1. crédito neto</label>     
                         <input id="creNet" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>             
                     <br>
@@ -205,7 +205,7 @@
                         <input id="amo" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                      <div class="col-lg-4 col-md-4 col-sm-4">
-                        <label for="recBalVarDepOtr" class="text-label">Plan financiero municipios 7.3. recursos del balance, variacion de depositos y otros</label>     
+                        <label for="recBalVarDepOtr" class="text-label">Plan financiero municipios 7.3. recursos del balance, variación de depósitos y otros</label>     
                         <input id="recBalVarDepOtr" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div> 
                 </div>
@@ -215,7 +215,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="col-lg-12 col-md-12 col-sm-12" style="font-size: 18px">
-                        <label for="ejeIngTot" class="text-label"><strong>Ejecucion presupuesto</strong></label>
+                        <label for="ejeIngTot" class="text-label"><strong>Ejecución presupuesto</strong></label>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="ejeIngTot" class="text-label">Ingresos totales</label>       
@@ -320,7 +320,7 @@
                     <br>
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
-                        <label for="ejeDefAhoCor" class="text-label">3. Deficit o ahorro corriente (1-2)</label>       
+                        <label for="ejeDefAhoCor" class="text-label">3. Déficit o ahorro corriente (1-2)</label>       
                         <input id="ejeDefAhoCor" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required disabled oninput="calcularSuperavitEP();">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
@@ -354,11 +354,11 @@
                     <br>
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
-                        <label for="ejeGasCap" class="text-label">5. Gastos de capital (inversion)</label>       
+                        <label for="ejeGasCap" class="text-label">5. Gastos de capital (inversión)</label>       
                         <input id="ejeGasCap" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required oninput="calcularSuperavitEP();">
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
-                        <label for="ejeForBruCapFij" class="text-label">5.1.1.1. Formacion brutal de capital fijo</label>     
+                        <label for="ejeForBruCapFij" class="text-label">5.1.1.1. Formación brutal de capital fijo</label>     
                         <input id="ejeForBruCapFij" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                      <div class="col-lg-4 col-md-4 col-sm-4">
@@ -371,7 +371,7 @@
                     <br>
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
-                        <label for="ejeDefSupTot" class="text-label">6. Deficit o superavit total (3+4-5)</label>       
+                        <label for="ejeDefSupTot" class="text-label">6. Déficit o superávit total (3+4-5)</label>       
                         <input id="ejeDefSupTot" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required disabled>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
@@ -396,7 +396,7 @@
                         <input id="ejeAmo" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required oninput="calcularInternoExterno();">
                     </div>
                      <div class="col-lg-4 col-md-4 col-sm-4">
-                        <label for="ejeRecBalVarDepOtr" class="text-label">7.2. Recursos del balance, variacion de depositos y otros</label>     
+                        <label for="ejeRecBalVarDepOtr" class="text-label">7.2. Recursos del balance, variación de depósitos y otros</label>     
                         <input id="ejeRecBalVarDepOtr" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required oninput="calcularFinanciamiento();">
                     </div> 
                 </div>
@@ -451,7 +451,7 @@
                         <label for="autGasFun" class="text-label"><strong>Indice de desempeño fiscal</strong></label>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
-                        <label for="autGasFun" class="text-label">Autofinanciación de los gastos de funcionamiento</label>       
+                        <label for="autGasFun" class="text-label">Auto financiación de los gastos de funcionamiento</label>       
                         <input id="autGasFun" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
