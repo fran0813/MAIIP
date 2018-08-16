@@ -98,7 +98,7 @@ class SaludController extends Controller
 		if($ban == False){
 
 			$salud_create = new Salud;
-		    $salud_create->anioS = $anioS;
+		    $salud_create->anioS = $comprobar.'/01/01 00:00';
 	        $salud_create->municipio_id = $municipio_id;
 		    $salud_create->save();
 
@@ -527,7 +527,7 @@ class SaludController extends Controller
     {
       $file = $request->file('file');
       $name = $file->getClientOriginalName();
-      Storage::disk('public')->put($name,  File::get($file));
+      Storage::disk('form')->put($name,  File::get($file));
 
       $request->session()->put('nameArchivoSalud', $name);
 
@@ -545,7 +545,7 @@ class SaludController extends Controller
           $nameArchivo = $request->session()->get("nameArchivoSalud");
       }   
 
-      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      Excel::load('public/excel/'.$nameArchivo, function($reader)
       {
         $booleanMunicipio = False;
         $booleanAño = False;
@@ -570,6 +570,7 @@ class SaludController extends Controller
           if ($booleanMunicipio == True) {
 
           	$resultados = Salud::where(DB::raw('YEAR(anioS)'), $result->anio)
+          	->where('municipio_id', $id)
           				->limit(1)
 						->get();
 		    foreach ($resultados as $resultado) {
@@ -592,11 +593,13 @@ class SaludController extends Controller
 					$salud_id = $resultado->id;
 				}
 
-			    $data2[] = array('difBaMov' => $result->dificultades_bañarse_moverse_integer,
+				$totalDis = $result->dificultades_baniarse_moverse_integer + $result->dificultades_aprender_entender_integer + $result->dificultades_moverse_caminar_integer + $result->dificultades_salir_calle_integer;
+
+			    $data2[] = array('difBaMov' => $result->dificultades_baniarse_moverse_integer,
 	                           'difEntApr' => $result->dificultades_aprender_entender_integer,
 	                           'difMovCam' => $result->dificultades_moverse_caminar_integer,
 	                           'difSalirCalle' => $result->dificultades_salir_calle_integer,
-	                           'totalDis' => $result->total_discapacitados_integer,
+	                           'totalDis' => $totalDis,
 	                           'salud_id' => $salud_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
@@ -628,7 +631,7 @@ class SaludController extends Controller
             // $html = ."<h1 class='text-center' style='margin-top: 0px;''>No se encontro el departamento.$result->departamento</h1>";
           }
 
-		    
+		   $booleanAño = False; 
         }
       });
 
@@ -649,13 +652,12 @@ class SaludController extends Controller
  
           $excel->sheet('Importar', function($sheet) {
 
-              $data[] = array('año' => "",
+              $data[] = array('anio' => "",
               				'municipio' => "",
-              				 'dificultades_bañarse_moverse_integer' => "",
+              				 'dificultades_baniarse_moverse_integer' => "",
 	                           'dificultades_aprender_entender_integer' => "",
 	                           'dificultades_moverse_caminar_integer' => "",
 	                           'dificultades_salir_calle_integer' => "",
-	                           'total_discapacitados_integer' => "",
 	                           'tasa_vacunacion_bcg_double' => "",
 	                           'tasa_vacunacion_dpt_double' => "",
 	                           'tasa_vacunacion_hepatitis_b_double' => "",
