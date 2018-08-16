@@ -741,7 +741,7 @@ class DemografiaController extends Controller
  
           $excel->sheet('Importar', function($sheet) {
 
-              $data[] = array('año' => "",
+              $data[] = array('anio' => "",
               				 'municipio' => "",
               				 'poblacion_edad_trabajar_integer' => "",
               				 'poblacion_potencial_activa_integer' => "",

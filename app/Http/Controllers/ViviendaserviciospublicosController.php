@@ -163,7 +163,7 @@ class ViviendaserviciospublicosController extends Controller
 		if ($ban == False) {
 
 			$vivienda_servicio_publico_create = new Viviendaserviciopublico;
-		    $vivienda_servicio_publico_create->anioVSP = $anioVSP;
+		    $vivienda_servicio_publico_create->anioVSP = $comprobar.'/01/01 00:00';
 		    $vivienda_servicio_publico_create->cabViv = $cabViv;
 	        $vivienda_servicio_publico_create->cabHog = $cabHog;
 	        $vivienda_servicio_publico_create->cabHogViv = $cabHogViv;
@@ -842,14 +842,14 @@ class ViviendaserviciospublicosController extends Controller
 
 	public function subiendoArchivoViviendaServiciosPublicos()
     {
-        return view('admin.viviendasserviciospublicos.subiendoArchivoViviendaServiciosPublicos');
+        return view('admin.viviendaServiciosPublicos.subiendoArchivoViviendaServiciosPublicos');
     }
 
     public function guardarArchivoViviendaServiciosPublicos(Request $request)
     {
       $file = $request->file('file');
       $name = $file->getClientOriginalName();
-      Storage::disk('public')->put($name,  File::get($file));
+      Storage::disk('form')->put($name,  File::get($file));
 
       $request->session()->put('nameArchivoViviendaServiciosPublicos', $name);
 
@@ -867,7 +867,7 @@ class ViviendaserviciospublicosController extends Controller
           $nameArchivo = $request->session()->get("nameArchivoViviendaServiciosPublicos");
       }   
 
-      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      Excel::load('public/excel/'.$nameArchivo, function($reader)
       {
         $booleanMunicipio = False;
         $booleanAño = False;
@@ -894,6 +894,7 @@ class ViviendaserviciospublicosController extends Controller
           if ($booleanMunicipio == True) {
 
           	$resultados = Viviendaserviciopublico::where(DB::raw('YEAR(anioVSP)'), $result->anio)
+          				->where('municipio_id', $id)
           				->limit(1)
 						->get();
 		    foreach ($resultados as $resultado) {
@@ -986,6 +987,7 @@ class ViviendaserviciospublicosController extends Controller
             // $html = ."<h1 class='text-center' style='margin-top: 0px;''>No se encontro el departamento.$result->departamento</h1>";
           }
 
+          $booleanAño = False;
 		    
         }
       });
@@ -1007,7 +1009,7 @@ class ViviendaserviciospublicosController extends Controller
  
           $excel->sheet('Importar', function($sheet) {
 
-              $data[] = array('año' => "",
+              $data[] = array('anio' => "",
               				'municipio' => "",
               				 'cabecera_vivienda_integer' => "",
 	                           'cabecera_hogar_integer' => "",

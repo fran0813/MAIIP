@@ -34,7 +34,7 @@ class AdminController extends Controller
 
     public function tableViviendasserviciospublicosa()
     {
-      return view('admin.viviendaserviciospublicos.index');
+      return view('admin.viviendaServiciosPublicos.index');
     }
 
     public function tableSalud()
