@@ -271,7 +271,7 @@ class AdminController extends Controller
     {
       $file = $request->file('file');
       $name = $file->getClientOriginalName();
-      Storage::disk('public')->put($name,  File::get($file));
+      Storage::disk('form')->put($name,  File::get($file));
 
       $request->session()->put('nameArchivoMunicipio', $name);
 
@@ -288,7 +288,7 @@ class AdminController extends Controller
           $nameArchivo = $request->session()->get("nameArchivoMunicipio");
       }   
 
-      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      Excel::load('public/excel/'.$nameArchivo, function($reader)
       {
         $booleanDepartamento = False;
         $booleanCodigo = False;

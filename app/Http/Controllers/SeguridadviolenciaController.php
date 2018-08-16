@@ -13,7 +13,7 @@ use App\Seguridadviolencia;
 use App\Delito;
 use App\Lesion;
 use App\Violencia;
-
+use App\Municipio;
 
 class SeguridadviolenciaController extends Controller
 {

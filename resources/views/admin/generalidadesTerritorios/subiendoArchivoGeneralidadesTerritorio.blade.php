@@ -12,7 +12,7 @@
     @endsection
 
     @section('javascript')
-        <script src="{{ asset('js/admin/excelGeneralidadesTerritorio.js') }}"></script>
+        <script src="{{ asset('js/admin/excelGeneralidadesTerritorios.js') }}"></script>
     @endsection
 
 @else

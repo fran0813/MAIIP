@@ -15,7 +15,7 @@ class CreateViolenceSecurityTable extends Migration
     {
         Schema::create('SeguridadViolencia', function (Blueprint $table) {
             $table->increments('id')->comment('Llave primaria');
-            $table->dateTime('anioSV')->unique()->comment('Año Seguridad y violencia');
+            $table->dateTime('anioSV')->comment('Año Seguridad y violencia');
             $table->double('tasDesEscTot', 14, 4)->comment('Tasa de deserción escolar total');
             $table->double('tasHom', 14, 4)->comment('Tasa de homicidios');
             $table->double('tasIncDen', 14, 4)->comment('Tasa de incidencia dengue');

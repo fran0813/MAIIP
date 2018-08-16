@@ -47,7 +47,7 @@
                 <ul class="nav" id="side-menu">
                     <br>
                     <li>
-                        <a href="{{ url('/admin/principal') }}"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
+                        <a href="{{ url('/admin') }}"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
                     </li>
                     <li>
                         <a href="{{ url('/admin/municipio') }}"><i class="fa fa-dashboard fa-fw"></i> Municipio</a>

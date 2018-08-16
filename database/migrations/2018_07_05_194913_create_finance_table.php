@@ -15,7 +15,7 @@ class CreateFinanceTable extends Migration
     {
         Schema::create('Finanza', function (Blueprint $table) {
             $table->increments('id')->comment('Llave primaria');
-            $table->dateTime('anioF')->unique()->comment('Año finanza');
+            $table->dateTime('anioF')->comment('Año finanza');
             $table->integer('municipio_id')->unsigned()->comment('Llave foránea a municipio');
             $table->foreign('municipio_id')->references('id')->on('Municipios');
             $table->timestamps();

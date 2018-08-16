@@ -13,6 +13,7 @@ use App\Generalidadterritorio;
 use App\Generalidad;
 use App\Territorio;
 use App\Predio;
+use App\Municipio;
 
 class GeneralidadesterritorioController extends Controller
 {
@@ -116,7 +117,7 @@ class GeneralidadesterritorioController extends Controller
 		if ($ban == False) {
 
 			$generalidad_territorio_create = new Generalidadterritorio;
-		    $generalidad_territorio_create->anioGT = $anioGT;
+		    $generalidad_territorio_create->anioGT = $comprobar.'/01/01 00:00';
 		    $generalidad_territorio_create->temperatura = $temperatura;
 		    $generalidad_territorio_create->alturaNivMar = $alturaNivMar;
 		    $generalidad_territorio_create->municipio_id = $municipio_id;
@@ -243,6 +244,7 @@ class GeneralidadesterritorioController extends Controller
 								'territorios.*',
 								'predios.*')
 						->where(DB::raw('YEAR(anioGT)'), $anioGT)
+						->where('municipio_id', $idMunicipio)
 						->get();
 		foreach ($resultados as $resultado) {
 			$temperatura = $resultado->temperatura;
@@ -484,14 +486,14 @@ class GeneralidadesterritorioController extends Controller
 
 	public function subiendoArchivoGeneralidadesTerritorio()
     {
-        return view('admin.generalidadesTerritorio.subiendoArchivoGeneralidadesTerritorio');
+        return view('admin.generalidadesTerritorios.subiendoArchivoGeneralidadesTerritorio');
     }
 
     public function guardarArchivoGeneralidadesTerritorio(Request $request)
     {
       $file = $request->file('file');
       $name = $file->getClientOriginalName();
-      Storage::disk('public')->put($name,  File::get($file));
+      Storage::disk('form')->put($name,  File::get($file));
 
       $request->session()->put('nameArchivoGeneralidadesTerritorio', $name);
 
@@ -509,7 +511,7 @@ class GeneralidadesterritorioController extends Controller
           $nameArchivo = $request->session()->get("nameArchivoGeneralidadesTerritorio");
       }   
 
-      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      Excel::load('public/excel/'.$nameArchivo, function($reader)
       {
         $booleanMunicipio = False;
         $booleanAño = False;
@@ -534,16 +536,17 @@ class GeneralidadesterritorioController extends Controller
 
 	          if ($booleanMunicipio == True) {
 
-	          	$resultados = Generalidadterritorio::where(DB::raw('YEAR(anioGT)'), $result->anio)
+	          	$resultados2 = Generalidadterritorio::where(DB::raw('YEAR(anioGT)'), $result->anio)
+	          				->where('municipio_id', $id)
 	          				->limit(1)
 							->get();
-			    foreach ($resultados as $resultado) {
+			    foreach ($resultados2 as $resultado2) {
 			      $booleanAño = True;
 			    }
 
 			    if ($booleanAño == False) {
 			    	
-		            $data1[] = array('anioGT' => $result->anio.'/01/01 00:00:00', 'temperatura' => $result->temperatura_double, 'alturaNivMar' => $result->altura_sobre_el_nivel_del_mar_integer, 'municipio_id' => $id, 'created_at' => $time, 'updated_at' => $time);
+		            $data1[] = array('anioGT' => $result->anio.'/01/01 00:00', 'temperatura' => $result->temperatura_double, 'alturaNivMar' => $result->altura_sobre_el_nivel_del_mar_integer, 'municipio_id' => $id, 'created_at' => $time, 'updated_at' => $time);
 
 		            Generalidadterritorio::insert($data1);
 
@@ -582,6 +585,8 @@ class GeneralidadesterritorioController extends Controller
 	          } else {
 	            // $html = ."<h1 class='text-center' style='margin-top: 0px;''>No se encontro el departamento.$result->departamento</h1>";
 	          }
+
+	          $booleanAño = False;
 	        
 	        }   
         
@@ -593,10 +598,11 @@ class GeneralidadesterritorioController extends Controller
 
       }
 
+      // return redirect('/admin/generalidadesterritorio');
       // return Response::json(array('html' => $html, 'boolean' => $booleanMunicipio));
     }
 
-    public function descargarMunicipio(Request $request)
+    public function descargarGeneralidadesTerritorio(Request $request)
     {
       $data = array();
 
@@ -604,7 +610,7 @@ class GeneralidadesterritorioController extends Controller
  
           $excel->sheet('Importar', function($sheet) {
 
-              $data[] = array('año' => "",
+              $data[] = array('anio' => "",
               				 'municipio' => "",
               				 'temperatura_double' => "",
               				 'altura_sobre_el_nivel_del_mar_integer' => "",

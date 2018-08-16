@@ -14,6 +14,7 @@ use App\Coberturaalcantarillado;
 use App\Coberturaaseo;
 use App\Coberturatelefono;
 use App\Coberturagas;
+use App\Municipio;
 
 class ViviendaserviciospublicosController extends Controller
 {

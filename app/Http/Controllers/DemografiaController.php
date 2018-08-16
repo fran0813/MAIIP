@@ -10,6 +10,7 @@ use Storage;
 use File;
 use \Response;
 use App\Demografia;
+use App\Municipio;
 
 class DemografiaController extends Controller
 {
@@ -95,7 +96,7 @@ class DemografiaController extends Controller
 		if ($ban == False) {
 
 			$demografia_create = new Demografia;
-		    $demografia_create->anioD = $anioD;
+		    $demografia_create->anioD = $comprobar.'/01/01 00:00';
 		    $demografia_create->pobEdadTrabajar = $pobEdadTrabajar;
 	        $demografia_create->pobPotActiva = $pobPotActiva;
 	        $demografia_create->pobPotInactiva = $pobPotInactiva;
@@ -541,7 +542,7 @@ class DemografiaController extends Controller
 		};
 
 		if($ban == True){
-			$html = number_format((float)(log(($pobEdadTrabajarActual / $pobEdadTrabajarAnterior))*100), 2, '.', '')."%";
+			$html = number_format((float)(log(($pobEdadTrabajarActual / $pobEdadTrabajarAnterior))*100), 2, '.', '');
 		}else{
 			$html = "0";
 		}
@@ -584,9 +585,9 @@ class DemografiaController extends Controller
 
 			$html .= "<tr>
 					<td>$anio</td>
-					<td>$indRuralidad</td>
+					<td>$indRuralidad%</td>
 					<td>$pobTotal</td>
-					<td>$crecPob</td>
+					<td>$crecPob%</td>
 					<td><a id='$id' href='#' class='btn btn-success' data-toggle='modal' data-target='#modalMostrarActualizar' value='editar'>Editar</a></td>
 					</tr>";
 		}
@@ -608,7 +609,7 @@ class DemografiaController extends Controller
     {
       $file = $request->file('file');
       $name = $file->getClientOriginalName();
-      Storage::disk('public')->put($name,  File::get($file));
+      Storage::disk('form')->put($name,  File::get($file));
 
       $request->session()->put('nameArchivoDemografia', $name);
 
@@ -626,7 +627,7 @@ class DemografiaController extends Controller
           $nameArchivo = $request->session()->get("nameArchivoDemografia");
       }   
 
-      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      Excel::load('public/excel/'.$nameArchivo, function($reader)
       {
         $booleanMunicipio = False;
         $booleanAño = False;
@@ -648,28 +649,34 @@ class DemografiaController extends Controller
 
           if ($booleanMunicipio == True) {
 
-          	$resultados = Demografia::where(DB::raw('YEAR(anioD)'), $result->anio)
+          	$resultados2 = Demografia::where(DB::raw('YEAR(anioD)'), $result->anio)
+          				->where('municipio_id', $id)
           				->limit(1)
 						->get();
-		    foreach ($resultados as $resultado) {
+		    foreach ($resultados2 as $resultado2) {
 		      $booleanAño = True;
 		    }
 
 		    if ($booleanAño == False) {
 
-		    	$indRuralidad = ($result->poblacion_zona_restante_integer / $result->poblacion_total_integer) * 100;
-
+		    	if ($result->poblacion_total_integer > 0) {
+		    		$indRuralidad = ($result->poblacion_zona_restante_integer / $result->poblacion_total_integer) * 100;
+		    	} else {
+		    		$indRuralidad = 0;
+		    	}
+	
 		    	$anioD = $result->anio;
 				$pobEdadTrabajarActual = $result->poblacion_edad_trabajar_integer;
 				$ban = False;
 
-				$resultados2 = Demografia::select('demografias.pobEdadTrabajar')
-								->where('demografias.anioD', '<', $anioD)
+				$resultados3 = Demografia::select('pobEdadTrabajar')
+								->where('anioD', '<', $anioD.'/01/01 00:00')
+								->where('municipio_id', $id)
 								->orderBy('anioD', 'desc')
 								->limit(1)
 								->get();
-				foreach ($resultados2 as $resultado2) {
-					$pobEdadTrabajarAnterior = $resultado2->pobEdadTrabajar;
+				foreach ($resultados3 as $resultado3) {
+					$pobEdadTrabajarAnterior = $resultado3->pobEdadTrabajar;
 					$ban = True;
 				};
 
@@ -679,13 +686,14 @@ class DemografiaController extends Controller
 					$crecPob = 0;
 				}
 		    	
-	            $data[] = array('anioD' => $result->anio.'/01/01 00:00:00',
+	            $data[] = array('anioD' => $result->anio.'/01/01 00:00',
 	                           'pobEdadTrabajar' => $result->poblacion_edad_trabajar_integer,
 	                           'pobPotActiva' => $result->poblacion_potencial_activa_integer,
-	                           'numPerMen' => $result->numero_personas_menores_integer,
-	                           'numPerMay' => $result->numero_personas_mayores_integer,
-	                           'numPerInd' => $result->numero_personas_independiente,
-	                           'numPerDep' => $result->numero_personas_dependiente,
+	                           'pobPotInactiva' => $result->poblacion_potencial_inactiva_integer,
+	                           'numPerMen' => $result->numero_personas_menores_15_anios_integer,
+	                           'numPerMay' => $result->numero_personas_mayores_64_anios_integer,
+	                           'numPerInd' => $result->numero_personas_independiente_integer,
+	                           'numPerDep' => $result->numero_personas_dependiente_integer,
 	                           'pobHom' => $result->poblacion_hombre_integer,
 	                           'pobMuj' => $result->poblacion_mujer_integer,
 	                           'pobZonCab' => $result->poblacion_zona_cabecera_integer,
@@ -701,7 +709,6 @@ class DemografiaController extends Controller
 
 		   		$data = array();
 
-
 	            // return redirect('/admin/responder');
 	            // $html .= "<h1 class='text-center' style='margin-top: 0px;''>Se ha subido los datos correctamente</h1>";
         	} else {
@@ -712,6 +719,7 @@ class DemografiaController extends Controller
             // $html = ."<h1 class='text-center' style='margin-top: 0px;''>No se encontro el departamento.$result->departamento</h1>";
           }
 
+          $booleanAño = False;
 		   
         }
       });
@@ -737,10 +745,11 @@ class DemografiaController extends Controller
               				 'municipio' => "",
               				 'poblacion_edad_trabajar_integer' => "",
               				 'poblacion_potencial_activa_integer' => "",
-              				 'numero_personas_menores_integer' => "",
-              				 'numero_personas_mayores_integer' => "",
-              				 'numero_personas_independiente' => "",
-              				 'numero_personas_dependiente' => "",
+              				 'poblacion_potencial_inactiva_integer' => "",
+              				 'numero_personas_menores_15_anios_integer' => "",
+              				 'numero_personas_mayores_64_anios_integer' => "",
+              				 'numero_personas_independiente_integer' => "",
+              				 'numero_personas_dependiente_integer' => "",
               				 'poblacion_hombre_integer' => "",
               				 'poblacion_mujer_integer' => "",
               				 'poblacion_zona_cabecera_integer' => "",

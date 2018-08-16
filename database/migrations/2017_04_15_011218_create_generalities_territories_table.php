@@ -15,7 +15,7 @@ class CreateGeneralitiesTerritoriesTable extends Migration
     {
         Schema::create('GeneralidadesTerritorios', function (Blueprint $table) {
             $table->increments('id')->comment('Llave primaria');
-            $table->dateTime('anioGT')->unique()->comment('Año generalidades y territorio');
+            $table->dateTime('anioGT')->comment('Año generalidades y territorio');
             $table->double('temperatura', 5, 2)->comment('Temperatura media');
             $table->integer('alturaNivMar')->comment('Altura sobre el nivel del mal');
             $table->integer('municipio_id')->unsigned()->comment('Llave foránea a municipio');

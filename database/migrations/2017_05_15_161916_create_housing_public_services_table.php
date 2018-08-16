@@ -15,7 +15,7 @@ class CreateHousingPublicServicesTable extends Migration
     {
         Schema::create('ViviendasServiciosPublicos', function (Blueprint $table) {
             $table->increments('id')->comment('Llave primaria');
-            $table->dateTime('anioVSP')->unique()->comment('año Vivienda y servicios públicos');
+            $table->dateTime('anioVSP')->comment('año Vivienda y servicios públicos');
             $table->integer('cabViv')->comment('Cabecera viviendas');
             $table->integer('cabHog')->comment('Cabecera hogares');
             $table->double('cabHogViv', 14, 4)->comment('Cabecera hogares por vivienda');

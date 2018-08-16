@@ -213,7 +213,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12"><br></div> 
 
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12"></div>
                     <div class="col-lg-12 col-md-12 col-sm-12" style="font-size: 18px">
                         <label for="ejeIngTot" class="text-label"><strong>Ejecución presupuesto</strong></label>
                     </div>

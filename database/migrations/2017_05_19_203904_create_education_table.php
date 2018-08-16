@@ -15,7 +15,7 @@ class CreateEducationTable extends Migration
     {
         Schema::create('Educacion', function (Blueprint $table) {
             $table->increments('id')->comment('Llave primaria');
-            $table->dateTime('anioE')->unique()->comment('Año educación');
+            $table->dateTime('anioE')->comment('Año educación');
             $table->integer('rurJardin')->comment('Rural prejardin y jardín');
             $table->integer('urbJardin')->comment('Urbano prejardin y jardín');
             $table->integer('rurTrans')->comment('Rural transición');

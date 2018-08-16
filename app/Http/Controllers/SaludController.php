@@ -12,6 +12,7 @@ use \Response;
 use App\Salud;
 use App\Vacunaciones;
 use App\Discapacidades;
+use App\Municipio;
 
 class SaludController extends Controller
 {

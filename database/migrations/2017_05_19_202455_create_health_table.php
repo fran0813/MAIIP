@@ -15,7 +15,7 @@ class CreateHealthTable extends Migration
     {
         Schema::create('Salud', function (Blueprint $table) {
             $table->increments('id')->comment('Llave primaria');
-            $table->dateTime('anioS')->unique()->comment('Año salud');
+            $table->dateTime('anioS')->comment('Año salud');
             $table->integer('municipio_id')->unsigned()->comment('Llave foránea a municipio');
             $table->foreign('municipio_id')->references('id')->on('Municipios');
             $table->timestamps();

@@ -774,7 +774,7 @@ class EducacionController extends Controller
 		    $validar = $sumaJardin + $sumaTransicion + $sumaPrimaria + $sumaSecundaria + $sumaMedia;
 
 		    if($generos != $validar){
-				$booleanAño = True
+				$booleanAño = True;
 			}else{
 				$booleanAño = False;
 			}

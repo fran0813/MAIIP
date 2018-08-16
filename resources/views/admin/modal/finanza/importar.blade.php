@@ -6,7 +6,7 @@
 
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Importar Finanza</h4>
+              <h4 class="modal-title">Importar Educación</h4>
             </div>
             
             <div id="modalImportarFinanza" class="modal-body" style="border: transparent; overflow-y: auto;">

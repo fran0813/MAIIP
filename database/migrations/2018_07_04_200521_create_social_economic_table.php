@@ -15,7 +15,7 @@ class CreateSocialEconomicTable extends Migration
     {
         Schema::create('EconomicoSocial', function (Blueprint $table) {
             $table->increments('id')->comment('Llave primaria');
-            $table->dateTime('anioES')->unique()->comment('Año económico social');
+            $table->dateTime('anioES')->comment('Año económico social');
             $table->double('numHecSemBos', 14, 4)->comment('Número de hectáreas sembradas con bosques por municipio área en bosques total');
             $table->double('areAgrCosTot', 14, 4)->comment('Área agrícola cosechada total');
             $table->double('proAgrTot', 14, 4)->comment('Producción agrícola total');

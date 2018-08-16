@@ -12,6 +12,7 @@ use \Response;
 use App\Economicosocial;
 use App\Unidadcomercial;
 use App\Indicepobrezamultidimensional;
+use App\Municipio;
 
 class EconomicosocialController extends Controller
 {
