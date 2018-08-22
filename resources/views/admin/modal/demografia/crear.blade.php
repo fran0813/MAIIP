@@ -89,7 +89,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="indRuralidad" class="text-label">Indice de ruralidad (%)</label>     
-                        <input id="indRuralidad" type="number" pattern="[0-9]+" min="0" placeholder="Integer" disabled="" class="form-control" required>
+                        <input id="indRuralidad" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" disabled="" class="form-control" required>
                     </div>
                 </div>
 
@@ -102,7 +102,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">                    
                         <label for="crecPob" class="text-label">Crecimiento poblacional (%)</label>     
-                        <input id="crecPob" type="number" pattern="[0-9]+" min="0" placeholder="Integer" disabled="" class="form-control" required>               
+                        <input id="crecPob" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" disabled="" class="form-control" required>               
                     </div>
                 </div>
 

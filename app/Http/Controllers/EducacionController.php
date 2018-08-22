@@ -12,6 +12,7 @@ use \Response;
 use App\Educacion;
 use App\Matriculaporgenero;
 use App\Matriculapornivel;
+use App\Municipio;
 
 class EducacionController extends Controller
 {
@@ -118,7 +119,7 @@ class EducacionController extends Controller
 		if($ban == False){
 
 			$educacion_create = new Educacion;
-		    $educacion_create->anioE = $anioE;
+		    $educacion_create->anioE = $comprobar.'/01/01 00:00';
 	        $educacion_create->rurJardin = $rurJardin;
 	        $educacion_create->urbJardin = $urbJardin;
 	        $educacion_create->rurTrans = $rurTrans;
@@ -714,7 +715,7 @@ class EducacionController extends Controller
     {
       $file = $request->file('file');
       $name = $file->getClientOriginalName();
-      Storage::disk('public')->put($name,  File::get($file));
+      Storage::disk('form')->put($name,  File::get($file));
 
       $request->session()->put('nameArchivoEducacion', $name);
 
@@ -732,7 +733,7 @@ class EducacionController extends Controller
           $nameArchivo = $request->session()->get("nameArchivoEducacion");
       }   
 
-      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      Excel::load('public/excel/'.$nameArchivo, function($reader)
       {
         $booleanMunicipio = False;
         $booleanAño = False;
@@ -837,7 +838,7 @@ class EducacionController extends Controller
             // $html = ."<h1 class='text-center' style='margin-top: 0px;''>No se encontro el departamento.$result->departamento</h1>";
           }
 
-		    
+		    $booleanAño = False;
         }
       });
 
@@ -858,7 +859,7 @@ class EducacionController extends Controller
  
           $excel->sheet('Importar', function($sheet) {
 
-              $data[] = array('año' => "",
+              $data[] = array('anio' => "",
               				'municipio' => "",
               				 'rural_jardin_integer' => "",
 	                           'urbano_jardin_integer' => "",

@@ -83,7 +83,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="pobZonCab2" class="text-label">Población zona cabecera</label>     
-                        <input id="pobZonCab2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" class="form-control" required>
+                        <input id="pobZonCab2" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Integer" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="pobZonRes2" class="text-label">Población zona resto</label>     
@@ -91,7 +91,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="indRuralidad2" class="text-label">Indice de ruralidad (%)</label>     
-                        <input id="indRuralidad2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" disabled="" class="form-control" required>
+                        <input id="indRuralidad2" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" disabled="" class="form-control" required>
                     </div>
                 </div>
 
@@ -104,7 +104,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">                    
                         <label for="crecPob2" class="text-label">Crecimiento poblacional (%)</label>     
-                        <input id="crecPob2" type="number" pattern="[0-9]+" min="0" placeholder="Integer" disabled="" class="form-control" required>               
+                        <input id="crecPob2" type="number" pattern="[0-9]+" min="0" placeholder="Double" disabled="" class="form-control" required>               
                     </div>
                 </div>
 

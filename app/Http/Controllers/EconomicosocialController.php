@@ -1104,7 +1104,7 @@ class EconomicosocialController extends Controller
     {
       $file = $request->file('file');
       $name = $file->getClientOriginalName();
-      Storage::disk('public')->put($name,  File::get($file));
+      Storage::disk('form')->put($name,  File::get($file));
 
       $request->session()->put('nameArchivoEconomicoSocial', $name);
 
@@ -1122,7 +1122,7 @@ class EconomicosocialController extends Controller
           $nameArchivo = $request->session()->get("nameArchivoEconomicoSocial");
       }   
 
-      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      Excel::load('public/excel/'.$nameArchivo, function($reader)
       {
         $booleanMunicipio = False;
         $booleanAño = False;
@@ -1238,7 +1238,8 @@ class EconomicosocialController extends Controller
             // $html = ."<h1 class='text-center' style='margin-top: 0px;''>No se encontro el departamento.$result->departamento</h1>";
           }
 
-		    
+		$booleanAño = False;
+
         }
       });
 
@@ -1259,7 +1260,7 @@ class EconomicosocialController extends Controller
  
           $excel->sheet('Importar', function($sheet) {
 
-              $data[] = array('año' => "", 
+              $data[] = array('anio' => "", 
                      		'municipio' => "",           				 
 					'unidades_comerciales_integer' => "",		
 					'unidades_de_servicios_integer' => "",			
