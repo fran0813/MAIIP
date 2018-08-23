@@ -17,7 +17,7 @@ function mostrarTablaFinanza()
 			url: "/finanza/mostrarFinanza",
 			dataType: 'json',
 			data: { idMunicipio: municipio,
-					anioS: anio }
+					anioF: anio }
 		})
 
 		.done(function(response){
@@ -418,7 +418,7 @@ function mostrarTablaFinanza()
 function mostrarGrafica1F()
 {
 	var municipio = $("#municipio").val();
-	var anioS = $("#añoF").val();
+	var anioF = $("#añoF").val();
 
 	if (municipio != "Seleccione un municipio") {
 		$.ajax({
@@ -427,7 +427,7 @@ function mostrarGrafica1F()
 			url: "/finanza/grafica1Finanza",
 			dataType: 'json',
 			data: { idMunicipio: municipio,
-					anioS: anioS }
+					anioF: anioF }
 		})
 
 		.done(function(response){
@@ -442,7 +442,7 @@ function mostrarGrafica1F()
 function mostrarGrafica2F()
 {
 	var municipio = $("#municipio").val();
-	var anioS = $("#añoF").val();
+	var anioF = $("#añoF").val();
 
 	if (municipio != "Seleccione un municipio") {
 		$.ajax({
@@ -451,7 +451,7 @@ function mostrarGrafica2F()
 			url: "/finanza/grafica2Finanza",
 			dataType: 'json',
 			data: { idMunicipio: municipio,
-					anioS: anioS }
+					anioF: anioF }
 		})
 
 		.done(function(response){
@@ -467,7 +467,7 @@ function mostrarGrafica2F()
 function mostrarGrafica3F()
 {
 	var municipio = $("#municipio").val();
-	var anioS = $("#añoF").val();
+	var anioF = $("#añoF").val();
 
 	if (municipio != "Seleccione un municipio") {
 		$.ajax({
@@ -476,7 +476,7 @@ function mostrarGrafica3F()
 			url: "/finanza/grafica3Finanza",
 			dataType: 'json',
 			data: { idMunicipio: municipio,
-					anioS: anioS }
+					anioF: anioF }
 		})
 
 		.done(function(response){

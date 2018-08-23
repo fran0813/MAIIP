@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Indicedesempeñointegral extends Model
+class Indicedesempeniointegral extends Model
 {
     protected $table = "indicedesempeñointegral";
 

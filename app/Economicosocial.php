@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Economicosocial extends Model
 {
-    protected $table = "Economicosocial";
+    protected $table = "economicosocial";
 
     protected $fillable = ['anioES',
             'numHecSemBos',

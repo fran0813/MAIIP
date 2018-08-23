@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Indicepobrezamultidimensional extends Model
 {
-    protected $table = "Indicepobrezamultidimensional";
+    protected $table = "indicepobrezamultidimensional";
 
     protected $fillable = ['altTasDepEco',
             'ana',

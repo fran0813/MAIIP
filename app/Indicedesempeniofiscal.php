@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Indicedesempeñofiscal extends Model
+class Indicedesempeniofiscal extends Model
 {
     protected $table = "indicedesempeñofiscal";
 

@@ -6,6 +6,7 @@ function mostrarTablasES()
 function mostrarTablaEconomicosocial()
 {
 	var municipio = $("#municipio").val();
+	var anio = $("#añoES").val();
 	var departamento = $("#departamento").val();
 
 	if (municipio != "Seleccione un municipio" && departamento != "Seleccione un departamento") {
@@ -14,7 +15,8 @@ function mostrarTablaEconomicosocial()
 			method: "GET",
 			url: "/economicosocial/mostrarEconomicosocial",
 			dataType: 'json',
-			data: { idMunicipio: municipio }
+			data: { idMunicipio: municipio,
+					anioES: anio }
 		})
 
 		.done(function(response){
@@ -237,6 +239,7 @@ function mostrarTablaEconomicosocial()
 function mostrarGrafica1ES()
 {
 	var municipio = $("#municipio").val();
+	var anioES = $("#añoES").val();
 
 	if (municipio != "Seleccione un municipio") {
 		$.ajax({
@@ -244,7 +247,8 @@ function mostrarGrafica1ES()
 			method: "GET",
 			url: "/economicosocial/grafica1Economicosocial",
 			dataType: 'json',
-			data: { idMunicipio: municipio }
+			data: { idMunicipio: municipio,
+					anioES: anioES }
 		})
 
 		.done(function(response){
@@ -259,6 +263,7 @@ function mostrarGrafica1ES()
 function mostrarGrafica2ES()
 {
 	var municipio = $("#municipio").val();
+	var anioES = $("#añoES").val();
 
 	if (municipio != "Seleccione un municipio") {
 		$.ajax({
@@ -266,7 +271,8 @@ function mostrarGrafica2ES()
 			method: "GET",
 			url: "/economicosocial/grafica2Economicosocial",
 			dataType: 'json',
-			data: { idMunicipio: municipio }
+			data: { idMunicipio: municipio,
+					anioES: anioES }
 		})
 
 		.done(function(response){

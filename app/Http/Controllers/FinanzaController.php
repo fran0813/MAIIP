@@ -12,8 +12,9 @@ use \Response;
 use App\Finanza;
 use App\Planfinanciero;
 use App\Ejecucionpresupuesto;
-use App\Indicedesempeñointegral;
-use App\Indicedesempeñofiscal;
+use App\Indicedesempeniointegral;
+use App\Indicedesempeniofiscal;
+use App\Municipio;
 
 class FinanzaController extends Controller
 {
@@ -174,7 +175,7 @@ class FinanzaController extends Controller
 		$ejecicionespresupuesto_update->ejeRecBalVarDepOtr = $ejeRecBalVarDepOtr;
         $ejecicionespresupuesto_update->save();
 
-		$indicedesempeñointegral_update = Indicedesempeñointegral::find($idF);
+		$indicedesempeñointegral_update = Indicedesempeniointegral::find($idF);
         $indicedesempeñointegral_update->desIntCapAdm = $desIntCapAdm;
 		$indicedesempeñointegral_update->desIntEfiTot = $desIntEfiTot;
 		$indicedesempeñointegral_update->desIntGes = $desIntGes;
@@ -183,7 +184,7 @@ class FinanzaController extends Controller
 		$indicedesempeñointegral_update->desIntIndDesFis = $desIntIndDesFis;
         $indicedesempeñointegral_update->save();
 
-        $indicedesempeñofiscal_update = Indicedesempeñofiscal::find($idF);
+        $indicedesempeñofiscal_update = Indicedesempeniofiscal::find($idF);
         $indicedesempeñofiscal_update->autGasFun = $autGasFun;
 		$indicedesempeñofiscal_update->respSerDeu = $respSerDeu;
 		$indicedesempeñofiscal_update->depTraNacReg = $depTraNacReg;
@@ -210,10 +211,10 @@ class FinanzaController extends Controller
 		$ejecicionespresupuesto_delete = Ejecucionpresupuesto::find($idF);
         $ejecicionespresupuesto_delete->delete();
 
-        $indicedesempeñointegral_delete = Indicedesempeñointegral::find($idF);
+        $indicedesempeñointegral_delete = Indicedesempeniointegral::find($idF);
         $indicedesempeñointegral_delete->delete();
 
-        $indicedesempeñofiscal_delete = Indicedesempeñofiscal::find($idF);
+        $indicedesempeñofiscal_delete = Indicedesempeniofiscal::find($idF);
         $indicedesempeñofiscal_delete->delete();
 
 		$finanza_delete = Finanza::find($idF);
@@ -321,7 +322,7 @@ class FinanzaController extends Controller
 		if($ban == False){
 
 			$finanza_create = new Finanza;
-		    $finanza_create->anioF = $anioF;
+		    $finanza_create->anioF = $comprobar.'/01/01 00:00';
 	        $finanza_create->municipio_id = $municipio_id;
 		    $finanza_create->save();
 
@@ -406,7 +407,7 @@ class FinanzaController extends Controller
 			$ejecicionespresupuesto_create->finanza_id = $finanza_id;
 	        $ejecicionespresupuesto_create->save();
 
-	        $indicedesempeñointegral_create = new Indicedesempeñointegral;
+	        $indicedesempeñointegral_create = new Indicedesempeniointegral;
 	        $indicedesempeñointegral_create->desIntCapAdm = $desIntCapAdm;
 			$indicedesempeñointegral_create->desIntEfiTot = $desIntEfiTot;
 			$indicedesempeñointegral_create->desIntGes = $desIntGes;
@@ -416,7 +417,7 @@ class FinanzaController extends Controller
 	        $indicedesempeñointegral_create->finanza_id = $finanza_id;
 	        $indicedesempeñointegral_create->save();
 
-	        $indicedesempeñofiscal_create = new Indicedesempeñofiscal;
+	        $indicedesempeñofiscal_create = new Indicedesempeniofiscal;
 	        $indicedesempeñofiscal_create->autGasFun = $autGasFun;
 			$indicedesempeñofiscal_create->respSerDeu = $respSerDeu;
 			$indicedesempeñofiscal_create->depTraNacReg = $depTraNacReg;
@@ -464,7 +465,7 @@ class FinanzaController extends Controller
 			->join('indicedesempeñointegral', 'finanza.id', 'indicedesempeñointegral.finanza_id')
 			->join('indicedesempeñofiscal', 'finanza.id', 'indicedesempeñofiscal.finanza_id')
 			->select('finanza.id',
-					DB::raw('YEAR(anioF) as DATEanioF'),
+					DB::raw('YEAR(anioF) as YEARanioF'),
 					'planfinanciero.*',
 					'ejecucionpresupuesto.*',
 					'indicedesempeñointegral.*',
@@ -506,6 +507,7 @@ class FinanzaController extends Controller
 	public function grafica2Finanza(Request $request)
 	{
 		$idMunicipio = $_GET['idMunicipio'];
+		$anioF = $_GET['anioF'];
 		$html = "";
 
 		$html = "<script type='text/javascript'>";
@@ -529,7 +531,7 @@ class FinanzaController extends Controller
 			->join('indicedesempeñointegral', 'finanza.id', 'indicedesempeñointegral.finanza_id')
 			->join('indicedesempeñofiscal', 'finanza.id', 'indicedesempeñofiscal.finanza_id')
 			->select('finanza.id',
-					DB::raw('YEAR(anioF) as DATEanioF'),
+					DB::raw('YEAR(anioF) as YEARanioF'),
 					'planfinanciero.*',
 					'ejecucionpresupuesto.*',
 					'indicedesempeñointegral.*',
@@ -538,7 +540,7 @@ class FinanzaController extends Controller
 						->where(DB::raw('YEAR(anioF)'), $anioF)
 						->get();
 		foreach ($resultados as $resultado) {
-			$anio = $resultado->DATEanioF;
+			$anio = $resultado->YEARanioF;
 			$desIntCapAdm = $resultado->desIntCapAdm;
 			$desIntEfiTot = $resultado->desIntEfiTot;
 			$desIntGes = $resultado->desIntGes;
@@ -573,6 +575,7 @@ class FinanzaController extends Controller
 	public function grafica3Finanza(Request $request)
 	{
 		$idMunicipio = $_GET['idMunicipio'];
+		$anioF = $_GET['anioF'];
 		$html = "";
 
 		$html = "<script type='text/javascript'>";
@@ -596,7 +599,7 @@ class FinanzaController extends Controller
 			->join('indicedesempeñointegral', 'finanza.id', 'indicedesempeñointegral.finanza_id')
 			->join('indicedesempeñofiscal', 'finanza.id', 'indicedesempeñofiscal.finanza_id')
 			->select('finanza.id',
-					DB::raw('YEAR(anioF) as DATEanioF'),
+					DB::raw('YEAR(anioF) as YEARanioF'),
 					'planfinanciero.*',
 					'ejecucionpresupuesto.*',
 					'indicedesempeñointegral.*',
@@ -827,9 +830,10 @@ class FinanzaController extends Controller
 	public function mostrarFinanza(Request $request)
 	{
 		$idMunicipio = $_GET['idMunicipio'];
+		$anioF = $_GET['anioF'];
 		$html = "";
 
-		$html .= "<div class='col-sm-12 col-md-12 col-lg-12'>
+		$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
 
 				<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
@@ -840,14 +844,14 @@ class FinanzaController extends Controller
 				</thead>
 				<tbody>
 				<tr class='border-dotted'>
-				<td>Plan financiero Municipios INGRESOS TOTALES</td>";
+				<td>plan financiero municipios ingresos totales</td>";
 
 		$resultados = Finanza::join('planfinanciero', 'finanza.id', 'planfinanciero.finanza_id')
 			->join('ejecucionpresupuesto', 'finanza.id', 'ejecucionpresupuesto.finanza_id')
 			->join('indicedesempeñointegral', 'finanza.id', 'indicedesempeñointegral.finanza_id')
 			->join('indicedesempeñofiscal', 'finanza.id', 'indicedesempeñofiscal.finanza_id')
 			->select('finanza.id',
-					DB::raw('DATE(anioF) as DATEanioF'),
+					DB::raw('YEAR(anioF) as YEARanioF'),
 					'planfinanciero.*',
 					'ejecucionpresupuesto.*',
 					'indicedesempeñointegral.*',
@@ -1663,7 +1667,7 @@ class FinanzaController extends Controller
 			->join('indicedesempeñointegral', 'finanza.id', 'indicedesempeñointegral.finanza_id')
 			->join('indicedesempeñofiscal', 'finanza.id', 'indicedesempeñofiscal.finanza_id')
 			->select('finanza.id',
-					DB::raw('DATE(anioF) as DATEanioF'),
+					DB::raw('YEAR(anioF) as YEARanioF'),
 					'planfinanciero.*',
 					'ejecucionpresupuesto.*',
 					'indicedesempeñointegral.*',
@@ -1673,7 +1677,7 @@ class FinanzaController extends Controller
 						->get();
 		foreach ($resultados as $resultado) {
 			$id = $resultado->id;
-			$anio = $resultado->YEARanioE;
+			$anio = $resultado->YEARanioF;
 			$desIntEfiTot = $resultado->desIntEfiTot;
 			$desIntGes = $resultado->desIntGes;
 			$desIntIndInt = $resultado->desIntIndInt;
@@ -1705,7 +1709,7 @@ class FinanzaController extends Controller
     {
       $file = $request->file('file');
       $name = $file->getClientOriginalName();
-      Storage::disk('public')->put($name,  File::get($file));
+      Storage::disk('form')->put($name,  File::get($file));
 
       $request->session()->put('nameArchivoFinanza', $name);
 
@@ -1723,7 +1727,7 @@ class FinanzaController extends Controller
           $nameArchivo = $request->session()->get("nameArchivoFinanza");
       }   
 
-      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      Excel::load('public/excel/'.$nameArchivo, function($reader)
       {
         $booleanMunicipio = False;
         $booleanAño = False;
@@ -1750,13 +1754,14 @@ class FinanzaController extends Controller
           if ($booleanMunicipio == True) {
 
           	$resultados = Finanza::where(DB::raw('YEAR(anioF)'), $result->anio)
+          	->where('municipio_id', $id)
           				->limit(1)
 						->get();
 		    foreach ($resultados as $resultado) {
 		      $booleanAño = True;
 		    }
 
-		    if ($booleanAño = False) {
+		    if ($booleanAño == False) {
 		    	
 	            $data1[] = array('anioF' => $result->anio.'/01/01 00:00:00',
 	                           'municipio_id' => $id,
@@ -1773,7 +1778,7 @@ class FinanzaController extends Controller
 				}
 
 				$defAhoCor = $result->plan_financiero_ingresos_contables_double - $result->plan_financiero_gastos_corrientes_double;
-				$defSupTot = $defAhoCor + $result->plan_financiero_ingreso_de_capital_double - $result->plan_financiero_gastos_de_capital_inversion_double;
+				$defSupTot = ($defAhoCor + $result->plan_financiero_ingreso_de_capital_double) - $result->plan_financiero_gastos_de_capital_inversion_double;
 
 			    $data2[] = array('ingTot' =>  $result->plan_financiero_ingreso_total_double,
 								'ingCor' =>  $result->plan_financiero_ingresos_contables_double,
@@ -1792,7 +1797,7 @@ class FinanzaController extends Controller
 								'serFun' =>  $result->plan_financiero_servicios_personales_double,
 								'gasGen' =>  $result->plan_financiero_gastos_generales_double,
 								'traPag' =>  $result->plan_financiero_transferencias_pagadas_double,
-								'intDeuPub' =>  $result->plan_financiero_transferencias_deuda_publica_double,
+								'intDeuPub' =>  $result->plan_financiero_deuda_publica_double,
 								'defAhoCor' =>  $defAhoCor,
 								'ingCap' =>  $result->plan_financiero_ingreso_de_capital_double,
 								'reg' =>  $result->plan_financiero_regalias_double,
@@ -1802,7 +1807,7 @@ class FinanzaController extends Controller
 								'gasCap' =>  $result->plan_financiero_gastos_de_capital_inversion_double,
 								'forBruCapFij' =>  $result->plan_financiero_formacion_brutal_de_capital_fijo_double,
 								'gasCapOtr' =>  $result->plan_financiero_gastos_de_capital_otros_double,
-								'defSupTot' =>  $result->defSupTot,
+								'defSupTot' =>  $defSupTot,
 								'fin' =>  $result->plan_financiero_financiamiento_double,
 								'creNet' =>  $result->plan_financiero_credito_neto_double,
 								'des' =>  $result->plan_financiero_desembolsos_double,
@@ -1813,7 +1818,7 @@ class FinanzaController extends Controller
 	                           'updated_at' => $time);
 
 			    $ejeDefAhoCor = $result->ejecuciones_presupuestales_ingresos_contables_double - $result->ejecuciones_presupuestales_gastos_corrientes_double;
-				$ejeDefSupTot = $defAhoCor + $result->ejecuciones_presupuestales_ingreso_de_capital - $result->ejecuciones_presupuestales_gastos_de_capital_inversion_double;
+				$ejeDefSupTot = ($defAhoCor + $result->ejecuciones_presupuestales_ingreso_de_capital) - $result->ejecuciones_presupuestales_gastos_de_capital_inversion_double;
 				$ejeCreNet = $result->ejecuciones_presupuestales_desembolsos_double - $result->ejecuciones_presupuestales_amortizaciones_double;
 				$ejeFin = $ejeCreNet + $result->ejeRecBalVarDepOtr;
 
@@ -1854,12 +1859,12 @@ class FinanzaController extends Controller
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
 
-			   $data4[] = array('desIntCapAdm' => $result->desempeño_integral_capacidad_administrativa_double,
-								'desIntEfiTot' => $result->desempeño_integral_eficacia_total_double,
-								'desIntGes' => $result->desempeño_integral_gestion_double,
-								'desIntIndInt' => $result->desempeño_integral_indice_integral_double,
-								'desIntReqLeg' => $result->desempeño_integral_requisitos_legales_double,
-								'desIntIndDesFis' => $result->desempeño_integral_indicador_de_desempeño_fiscal_double,
+			   $data4[] = array('desIntCapAdm' => $result->desempenio_integral_capacidad_administrativa_double,
+								'desIntEfiTot' => $result->desempenio_integral_eficacia_total_double,
+								'desIntGes' => $result->desempenio_integral_gestion_double,
+								'desIntIndInt' => $result->desempenio_integral_indice_integral_double,
+								'desIntReqLeg' => $result->desempenio_integral_requisitos_legales_double,
+								'desIntIndDesFis' => $result->desempenio_integral_indicador_de_desempenio_fiscal_double,
 	                           'finanza_id' => $finanza_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
@@ -1870,7 +1875,7 @@ class FinanzaController extends Controller
 								'genRecPro' => $result->generacion_de_recursos_propios_double,
 								'magInv' => $result->magnitud_de_la_inversion_double,
 								'capAho' => $result->capacidad_de_ahorro_double,
-								'indDesFis' => $result->indicador_de_desempeño_fiscal_double,
+								'indDesFis' => $result->indicador_de_desempenio_fiscal_double,
 								'posNivNac' => $result->posicion_a_nivel_nacional_integer,
 								'posNivDep' => $result->posicion_a_nivel_departamento_integer,
 	                           'finanza_id' => $finanza_id,
@@ -1879,8 +1884,8 @@ class FinanzaController extends Controller
 
 			    Planfinanciero::insert($data2);
 			    Ejecucionpresupuesto::insert($data3);
-			    Indicedesempeñointegral::insert($data4);
-			    Indicedesempeñofiscal::insert($data5);
+			    Indicedesempeniointegral::insert($data4);
+			    Indicedesempeniofiscal::insert($data5);
 
 			    $data1 = array();
 			    $data2 = array();
@@ -1898,6 +1903,7 @@ class FinanzaController extends Controller
             // $html = ."<h1 class='text-center' style='margin-top: 0px;''>No se encontro el departamento.$result->departamento</h1>";
           }
 
+          $booleanAño = False;
 		    
         }
       });
@@ -1919,7 +1925,7 @@ class FinanzaController extends Controller
  
           $excel->sheet('Importar', function($sheet) {
 
-              $data[] = array('año' => "",
+              $data[] = array('anio' => "",
               				'municipio' => "",
               				 'plan_financiero_ingreso_total_double' => "",
               				 'plan_financiero_ingresos_contables_double' => "",
@@ -1938,7 +1944,7 @@ class FinanzaController extends Controller
               				 'plan_financiero_servicios_personales_double' => "",
               				 'plan_financiero_gastos_generales_double' => "",
               				 'plan_financiero_transferencias_pagadas_double' => "",
-              				 'plan_financiero_transferencias_deuda_publica_double' => "",
+              				 'plan_financiero_deuda_publica_double' => "",
               				 'plan_financiero_ingreso_de_capital_double' => "",
               				 'plan_financiero_regalias_double' => "",
               				 'plan_financiero_transferencias_nacional_double' => "",
@@ -1983,12 +1989,12 @@ class FinanzaController extends Controller
               				 'ejecuciones_presupuestales_amortizaciones_double' => "",
               				 'ejecuciones_presupuestales_recursos_del_balance_variacion_de_depositos_otros_double' => "",
 
-              				 'desempeño_integral_capacidad_administrativa_double' => "",
-              				 'desempeño_integral_eficacia_total_double' => "",
-              				 'desempeño_integral_gestion_double' => "",
-              				 'desempeño_integral_indice_integral_double' => "",
-              				 'desempeño_integral_requisitos_legales_double' => "",
-              				 'desempeño_integral_indicador_de_desempeño_fiscal_double' => "",
+              				 'desempenio_integral_capacidad_administrativa_double' => "",
+              				 'desempenio_integral_eficacia_total_double' => "",
+              				 'desempenio_integral_gestion_double' => "",
+              				 'desempenio_integral_indice_integral_double' => "",
+              				 'desempenio_integral_requisitos_legales_double' => "",
+              				 'desempenio_integral_indicador_de_desempenio_fiscal_double' => "",
 
               				 'autofinanciacion_de_los_gastos_de_funcionamiento_double' => "",
               				 'respaldo_del_servicio_de_la_deuda_double' => "",
@@ -1996,7 +2002,7 @@ class FinanzaController extends Controller
               				 'generacion_de_recursos_propios_double' => "",
               				 'magnitud_de_la_inversion_double' => "",
               				 'capacidad_de_ahorro_double' => "",
-              				 'indicador_de_desempeño_fiscal_double' => "",
+              				 'indicador_de_desempenio_fiscal_double' => "",
               				 'posicion_a_nivel_nacional_integer' => "",
               				 'posicion_a_nivel_departamento_integer' => "",
 	                       );

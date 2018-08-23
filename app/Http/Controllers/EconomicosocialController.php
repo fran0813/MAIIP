@@ -188,7 +188,7 @@ class EconomicosocialController extends Controller
 		if ($ban == False) {
 
 			$economico_social_create = new Economicosocial;
-			$economico_social_create->anioES = $anioES;
+			$economico_social_create->anioES = $comprobar.'/01/01 00:00';
 		    $economico_social_create->numHecSemBos = $numHecSemBos;
 	        $economico_social_create->areAgrCosTot = $areAgrCosTot;
 	        $economico_social_create->proAgrTot = $proAgrTot;
@@ -278,7 +278,7 @@ class EconomicosocialController extends Controller
 				['Año', 'Incidencia IPM total', 'Incidencia IPM rural', 'Incidencia IPM urbano'],";
 
 		$resultados = Economicosocial::select(DB::raw('YEAR(anioES) as YEARanioES'),
-								'economicosocial.incImpTot',
+								'economicosocial.incIpmTot',
 								'economicosocial.incIpmRur',
 								'economicosocial.incIpmUrb')
 						->where('economicosocial.municipio_id', $idMunicipio)
@@ -286,11 +286,11 @@ class EconomicosocialController extends Controller
 						->get();
 		foreach ($resultados as $resultado) {
 			$anio = $resultado->YEARanioES;
-			$incImpTot = $resultado->incImpTot;
+			$incIpmTot = $resultado->incIpmTot;
 			$incIpmRur = $resultado->incIpmRur;
 			$incIpmUrb = $resultado->incIpmUrb;
 
-			$html .= "['$anio', $incImpTot, $incIpmRur, $incIpmUrb],";
+			$html .= "['$anio', $incIpmTot, $incIpmRur, $incIpmUrb],";
 		}
 
 		$html .= "]);";
@@ -535,7 +535,7 @@ class EconomicosocialController extends Controller
 		$anioES = $_GET['anioES'];
 		$html = "";
 
-		$html .= "<div class='col-sm-12 col-md-12 col-lg-12'>
+		$html .= "<div class='col-sm-6 col-md-6 col-lg-6'>
 
 				<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
@@ -551,7 +551,7 @@ class EconomicosocialController extends Controller
 		$resultados = Economicosocial::join('unidadcomercial', 'economicosocial.id', 'unidadcomercial.economicosocial_id')
 			->join('indicepobrezamultidimensional', 'economicosocial.id', 'indicepobrezamultidimensional.economicosocial_id')
 			->select('economicosocial.id',
-					DB::raw('DATE(anioES) as DATEanioES'),
+					DB::raw('YEAR(anioES) as YEARanioES'),
 					'economicosocial.numHecSemBos',
 			        'economicosocial.areAgrCosTot',
 			        'economicosocial.proAgrTot',
@@ -571,21 +571,6 @@ class EconomicosocialController extends Controller
 			$uniCom = $resultado->uniCom;
 
 			$html .= "<td>$uniCom</td>";
-
-		};
-
-		$html .= "</tr>
-				<tr class='border-dotted'>
-				<td>Hogares</td>";
-
-		foreach ($resultados as $resultado) {
-			$cabHog = $resultado->cabHog;
-			$rurHog = $resultado->rurHog;
-			$totalHog = $resultado->totalHog;
-
-			$html .= "<td>$cabHog</td>
-					<td>$rurHog</td>
-					<td>$totalHog</td>";
 
 		};
 
@@ -1055,7 +1040,7 @@ class EconomicosocialController extends Controller
 		$resultados = Economicosocial::join('unidadcomercial', 'economicosocial.id', 'unidadcomercial.economicosocial_id')
 			->join('indicepobrezamultidimensional', 'economicosocial.id', 'indicepobrezamultidimensional.economicosocial_id')
 			->select('economicosocial.id',
-					DB::raw('DATE(anioES) as DATEanioES'),
+					DB::raw('YEAR(anioES) as YEARanioES'),
 					'economicosocial.numHecSemBos',
 			        'economicosocial.areAgrCosTot',
 			        'economicosocial.proAgrTot',
@@ -1073,7 +1058,7 @@ class EconomicosocialController extends Controller
 						->get();
 		foreach ($resultados as $resultado) {
 			$id = $resultado->id;
-			$anio = $resultado->DATEanioES;
+			$anio = $resultado->YEARanioES;
 			$areAgrCosTot = $resultado->areAgrCosTot;
 			$proAgrTot = $resultado->proAgrTot;
 			$proCar = $resultado->proCar;
@@ -1118,7 +1103,7 @@ class EconomicosocialController extends Controller
       $nameArchivo = null;
       $html = "";
 
-      if ($request->session()->get("nameArchivoViviendaEconomicoSocial")) {
+      if ($request->session()->get("nameArchivoEconomicoSocial")) {
           $nameArchivo = $request->session()->get("nameArchivoEconomicoSocial");
       }   
 
@@ -1147,22 +1132,22 @@ class EconomicosocialController extends Controller
           if ($booleanMunicipio == True) {
 
           	$resultados = Economicosocial::where(DB::raw('YEAR(anioES)'), $result->anio)
+          	->where('municipio_id', $id)
           				->limit(1)
 						->get();
 		    foreach ($resultados as $resultado) {
 		      $booleanAño = True;
 		    }
 
-		    if ($booleanAño = False) {
+		    if ($booleanAño == False) {
 		    	
 		    	$invBovTot = $result->inventario_bovinos_total_machos_double + $result->inventario_bovinos_total_hembras;
 		    	$incIpmTot = $result->incidencia_ipm_rural_double + $result->incidencia_ipm_urbano_double;
-
 	            $data1[] = array('anioES' => $result->anio.'/01/01 00:00:00',
-	                           'numHecSemBos' => $result->numero_de_hectáreas_sembradas_con_bosques_por_municipio_area_en_bosques_total_double,
+	                           'numHecSemBos' => $result->numero_de_hectareas_sembradas_con_bosques_por_municipio_area_en_bosques_total_double,
 							'areAgrCosTot' => $result->area_agricola_cosechada_total_double,		
-							'proAgrTot' => $result->produccion_agrícola_total_double,				
-							'proCar' => $result->produccion_de_carbón_double,						
+							'proAgrTot' => $result->produccion_agricola_total_double,				
+							'proCar' => $result->produccion_de_carbon_double,						
 							'invBovTotMac' => $result->inventario_bovinos_total_machos_double,	
 							'invBovTotHem' => $result->inventario_bovinos_total_hembras_double,
 							'invBovTot' => $invBovTot,			
@@ -1194,9 +1179,9 @@ class EconomicosocialController extends Controller
 					'uniMicCom' => $result->unidades_micro_comerciales_integer,				
 					'uniMicInd' => $result->unidades_micro_industria_integer,						
 					'uniMicSer' => $result->unidades_micro_servicios_integer,						
-					'uniPeqCom' => $result->unidades_pequeña_comerciales_integer,				
-					'uniPeqInd' => $result->unidades_pequeña_industria_integer,					
-					'uniPeqSer' => $result->unidades_pequeña_Servicios_integer,	
+					'uniPeqCom' => $result->unidades_pequenia_comerciales_integer,				
+					'uniPeqInd' => $result->unidades_pequenia_industria_integer,					
+					'uniPeqSer' => $result->unidades_pequenia_servicios_integer,	
 	                           'economicosocial_id' => $economicosocial_id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
@@ -1209,7 +1194,7 @@ class EconomicosocialController extends Controller
 					'barAccSerCiu' => $result->barreras_de_acceso_a_servicios_para_cuidado_de_la_primera_infancia_double,	
 					'empInf' => $result->empleo_informal_double,		
 					'hac' => $result->hacinamiento_double,	
-					'inaEliExc' => $result->inadecuada_eliminación_de_excretas_double,	
+					'inaEliExc' => $result->inadecuada_eliminacion_de_excretas_double,	
 					'inaEsc' => $result->inasistencia_escolar_double,					
 					'parIna' => $result->paredes_inadecuadas_double,					
 					'pisIna' => $result->pisos_inadecuados_double,					
@@ -1274,9 +1259,9 @@ class EconomicosocialController extends Controller
 					'unidades_micro_comerciales_integer' => "",								
 					'unidades_micro_industria_integer' => "",								
 					'unidades_micro_servicios_integer' => "",								
-					'unidades_pequeña_comerciales_integer' => "",							
-					'unidades_pequeña_industria_integer' => "",								
-					'unidades_pequeña_servicios_integer' => "",				
+					'unidades_pequenia_comerciales_integer' => "",							
+					'unidades_pequenia_industria_integer' => "",								
+					'unidades_pequenia_servicios_integer' => "",				
 					'alta_tasa_de_dependencia_economica_double' => "",						
 					'analfabetismo_double' => "",				
 					'bajo_logro_educativo_double' => "",				
@@ -1284,7 +1269,7 @@ class EconomicosocialController extends Controller
 					'barreras_de_acceso_a_servicios_para_cuidado_de_la_primera_infancia_double' => "",				
 					'empleo_informal_double' => "",					
 					'hacinamiento_double' => "",				
-					'inadecuada_eliminación_de_excretas_double' => "",						
+					'inadecuada_eliminacion_de_excretas_double' => "",						
 					'inasistencia_escolar_double' => "",								
 					'paredes_inadecuadas_double' => "",								
 					'pisos_inadecuados_double' => "",								
@@ -1292,10 +1277,10 @@ class EconomicosocialController extends Controller
 					'sin_acceso_a_fuente_de_agua_mejorada_double' => "",				
 					'sin_aseguramiento_en_salud_double' => "",							
 					'trabajo_infantil_double' => "",				
-					'numero_de_hectáreas_sembradas_con_bosques_por_municipio_area_en_bosques_total_double' => "",	
+					'numero_de_hectareas_sembradas_con_bosques_por_municipio_area_en_bosques_total_double' => "",	
 					'area_agricola_cosechada_total_double' => "",								
-					'produccion_agrícola_total_double' => "",								
-					'produccion_de_carbón_double' => "",								
+					'produccion_agricola_total_double' => "",								
+					'produccion_de_carbon_double' => "",								
 					'inventario_bovinos_total_machos_double' => "",					
 					'inventario_bovinos_total_hembras_double' => "",									
 					'incidencia_ipm_urbano_double' => "",								
