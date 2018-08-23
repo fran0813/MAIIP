@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Seguridadviolencia extends Model
 {
-    protected $table = "seguridadViolencia";
+    protected $table = "seguridadviolencia";
 
     protected $fillable = ['anioSV',
             'tasDesEscTot',

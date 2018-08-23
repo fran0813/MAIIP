@@ -25,9 +25,9 @@ function subirRespuestas()
 
 		// if (response.boolean == "True") {
 			
-			setTimeout(function(){
-				location.href ="/admin/seguridadviolencia";
-			}, 1000);
+			// setTimeout(function(){
+			// 	location.href ="/admin/demografia";
+			// }, 1000);
 
 		// } else {
 			

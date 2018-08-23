@@ -12,7 +12,7 @@ function subirRespuestas()
 	$.ajax({
 		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 		method: "POST",
-		url: "/admin/subirRespuestaDemografia",
+		url: "/admin/subirRespuestaSalud",
 		dataType: 'json',
 		data: {  }
 	})
@@ -25,9 +25,9 @@ function subirRespuestas()
 
 		// if (response.boolean == "True") {
 			
-			// setTimeout(function(){
-			// 	location.href ="/admin/demografia";
-			// }, 1000);
+			setTimeout(function(){
+				location.href ="/admin/salud";
+			}, 1000);
 
 		// } else {
 			

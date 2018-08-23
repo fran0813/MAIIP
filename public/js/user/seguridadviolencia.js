@@ -17,7 +17,7 @@ function mostrarTablaSeguridadviolencia()
 			url: "/seguridadviolencia/mostrarSeguridadviolencia",
 			dataType: 'json',
 			data: { idMunicipio: municipio,
-					anioS: anio }
+					anioSV: anio }
 		})
 
 		.done(function(response){
@@ -185,7 +185,7 @@ function mostrarGrafica1SV()
 			url: "/seguridadviolencia/grafica1Seguridadviolencia",
 			dataType: 'json',
 			data: { idMunicipio: municipio,
-					anioS: anioS }
+					anioSV: anioS }
 		})
 
 		.done(function(response){

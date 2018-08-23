@@ -758,6 +758,7 @@ class EducacionController extends Controller
           if ($booleanMunicipio == True) {
 
           	$resultados = Educacion::where(DB::raw('YEAR(anioE)'), $result->anio)
+          			->where('municipio_id', $id)
           				->limit(1)
 						->get();
 		    foreach ($resultados as $resultado) {

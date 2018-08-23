@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Delito extends Model
 {
-    protected $table = "delitoSexual";
+    protected $table = "delitosexual";
 
     protected $fillable = ['femenino', 'tot',
             'hom',

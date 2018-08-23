@@ -138,7 +138,7 @@ class SeguridadviolenciaController extends Controller
 		if($ban == False){
 
 			$seguridadviolencia_create = new Seguridadviolencia;
-		    $seguridadviolencia_create->anioSV = $anioSV;
+		    $seguridadviolencia_create->anioSV = $comprobar.'/01/01 00:00';
 		    $seguridadviolencia_create->$tasDesEscTot = $tasDesEscTot;
 			$seguridadviolencia_create->$tasHom = $tasHom;
 			$seguridadviolencia_create->$tasIncDen = $tasIncDen;
@@ -220,7 +220,7 @@ class SeguridadviolenciaController extends Controller
 								'seguridadviolencia.tasIncDen',
 								'seguridadviolencia.tasMueAcc',
 								'delitosexual.*')
-						->where('salud.municipio_id', $idMunicipio)
+						->where('seguridadviolencia.municipio_id', $idMunicipio)
 						->where(DB::raw('YEAR(anioSV)'), $anioSV)
 						->get();
 		foreach ($resultados as $resultado) {
@@ -373,6 +373,10 @@ class SeguridadviolenciaController extends Controller
 		foreach ($resultados as $resultado) {
 			$tasDesEscTot = $resultado->tasDesEscTot;
 
+			if ($tasDesEscTot == 0) {
+				$tasDesEscTot = "N.D.";
+			}
+
 			$html .= "<td>$tasDesEscTot</td>";
 
 		};
@@ -383,6 +387,10 @@ class SeguridadviolenciaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$tasHom = $resultado->tasHom;
+
+			if ($tasHom == 0) {
+				$tasHom = "N.D.";
+			}
 
 			$html .= "<td>$tasHom</td>";
 
@@ -395,6 +403,10 @@ class SeguridadviolenciaController extends Controller
 		foreach ($resultados as $resultado) {
 			$tasIncDen = $resultado->tasIncDen;
 
+			if ($tasIncDen == 0) {
+				$tasIncDen = "N.D.";
+			}
+
 			$html .= "<td>$tasIncDen</td>";
 
 		};
@@ -405,6 +417,10 @@ class SeguridadviolenciaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$tasLesPer = $resultado->tasLesPer;
+
+			if ($tasLesPer == 0) {
+				$tasLesPer = "N.D.";
+			}
 
 			$html .= "<td>$tasLesPer</td>";
 
@@ -417,6 +433,10 @@ class SeguridadviolenciaController extends Controller
 		foreach ($resultados as $resultado) {
 			$tasMueAcc = $resultado->tasMueAcc;
 
+			if ($tasMueAcc == 0) {
+				$tasMueAcc = "N.D.";
+			}
+
 			$html .= "<td>$tasMueAcc</td>";
 
 		};
@@ -427,6 +447,10 @@ class SeguridadviolenciaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$tasSui = $resultado->tasSui;
+
+			if ($tasSui == 0) {
+				$tasSui = "N.D.";
+			}
 
 			$html .= "<td>$tasSui</td>";
 
@@ -439,6 +463,10 @@ class SeguridadviolenciaController extends Controller
 		foreach ($resultados as $resultado) {
 			$vioInt = $resultado->vioInt;
 
+			if ($vioInt == 0) {
+				$vioInt = "N.D.";
+			}
+
 			$html .= "<td>$vioInt</td>";
 
 		};
@@ -450,6 +478,10 @@ class SeguridadviolenciaController extends Controller
 		foreach ($resultados as $resultado) {
 			$casTot = $resultado->casTot;
 
+			if ($casTot == 0) {
+				$casTot = "N.D.";
+			}
+
 			$html .= "<td>$casTot</td>";
 
 		};
@@ -460,6 +492,10 @@ class SeguridadviolenciaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$casTasHom = $resultado->casTasHom;
+
+			if ($casTasHom == 0) {
+				$casTasHom = "N.D.";
+			}
 
 			$html .= "<td>$casTasHom</td>";
 
@@ -487,6 +523,10 @@ class SeguridadviolenciaController extends Controller
 		foreach ($resultados as $resultado) {
 			$fatTot = $resultado->fatTot;
 
+			if ($fatTot == 0) {
+				$fatTot = "N.D.";
+			}
+
 			$html .= "<td>$fatTot</td>";
 		};
 
@@ -496,6 +536,10 @@ class SeguridadviolenciaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$fatHom = $resultado->fatHom;
+
+			if ($fatHom == 0) {
+				$fatHom = "N.D.";
+			}
 
 			$html .= "<td>$fatHom</td>";
 		};
@@ -507,6 +551,10 @@ class SeguridadviolenciaController extends Controller
 		foreach ($resultados as $resultado) {
 			$fatMuj = $resultado->fatMuj;
 
+			if ($fatMuj == 0) {
+				$fatMuj = "N.D.";
+			}
+
 			$html .= "<td>$fatMuj</td>";
 		};
 
@@ -516,6 +564,10 @@ class SeguridadviolenciaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$noFatTot = $resultado->noFatTot;
+
+			if ($noFatTot == 0) {
+				$noFatTot = "N.D.";
+			}
 
 			$html .= "<td>$noFatTot</td>";
 		};
@@ -527,6 +579,10 @@ class SeguridadviolenciaController extends Controller
 		foreach ($resultados as $resultado) {
 			$noFatHom = $resultado->noFatHom;
 
+			if ($noFatHom == 0) {
+				$noFatHom = "N.D.";
+			}
+
 			$html .= "<td>$noFatHom</td>";
 		};
 
@@ -536,6 +592,10 @@ class SeguridadviolenciaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$noFatMuj = $resultado->noFatMuj;
+
+			if ($noFatMuj == 0) {
+				$noFatMuj = "N.D.";
+			}
 
 			$html .= "<td>$noFatMuj</td>";
 		};
@@ -563,6 +623,10 @@ class SeguridadviolenciaController extends Controller
 		foreach ($resultados as $resultado) {
 			$tot = $resultado->tot;
 
+			if ($tot == 0) {
+				$tot = "N.D.";
+			}
+
 			$html .= "<td>$tot</td>";
 		};
 
@@ -573,6 +637,10 @@ class SeguridadviolenciaController extends Controller
 		foreach ($resultados as $resultado) {
 			$hom = $resultado->hom;
 
+			if ($hom == 0) {
+				$hom = "N.D.";
+			}
+
 			$html .= "<td>$hom</td>";
 		};
 
@@ -582,6 +650,10 @@ class SeguridadviolenciaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$muj = $resultado->muj;
+
+			if ($muj == 0) {
+				$muj = "N.D.";
+			}
 
 			$html .= "<td>$muj</td>";
 		};
@@ -608,6 +680,10 @@ class SeguridadviolenciaController extends Controller
 		foreach ($resultados as $resultado) {
 			$may = $resultado->may;
 
+			if ($may == 0) {
+				$may = "N.D.";
+			}
+
 			$html .= "<td>$may</td>";
 		};
 
@@ -618,6 +694,10 @@ class SeguridadviolenciaController extends Controller
 		foreach ($resultados as $resultado) {
 			$otrFam = $resultado->otrFam;
 
+			if ($otrFam == 0) {
+				$otrFam = "N.D.";
+			}
+
 			$html .= "<td>$otrFam</td>";
 		};
 
@@ -627,6 +707,10 @@ class SeguridadviolenciaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$inf = $resultado->inf;
+
+			if ($inf == 0) {
+				$inf = "N.D.";
+			}
 
 			$html .= "<td>$inf</td>";
 		};
@@ -679,11 +763,27 @@ class SeguridadviolenciaController extends Controller
             ->get();
 		foreach ($resultados as $resultado) {
 			$id = $resultado->id;
-			$anio = $resultado->YEARanioS;
+			$anio = $resultado->YEARanioSV;
 			$tasHom = $resultado->tasHom;
 			$tasDesEscTot = $resultado->tasDesEscTot;
 			$tasIncDen = $resultado->tasIncDen;
 			$tasSui = $resultado->tasSui;
+
+			if ($tasHom == 0) {
+				$tasHom = "N.D.";
+			}
+			if ($tasDesEscTot == 0) {
+				$tasDesEscTot = "N.D.";
+			}
+			if ($tasDesEscTot == 0) {
+				$tasDesEscTot = "N.D.";
+			}
+			if ($tasIncDen == 0) {
+				$tasIncDen = "N.D.";
+			}
+			if ($tasSui == 0) {
+				$tasSui = "N.D.";
+			}
 
 			$html .= "<tr>
 					<td>$anio</td>
@@ -712,7 +812,7 @@ class SeguridadviolenciaController extends Controller
     {
       $file = $request->file('file');
       $name = $file->getClientOriginalName();
-      Storage::disk('public')->put($name,  File::get($file));
+      Storage::disk('form')->put($name,  File::get($file));
 
       $request->session()->put('nameArchivoSeguridadViolencia', $name);
 
@@ -730,7 +830,7 @@ class SeguridadviolenciaController extends Controller
           $nameArchivo = $request->session()->get("nameArchivoSeguridadViolencia");
       }   
 
-      Excel::load('Storage/app/public/'.$nameArchivo, function($reader)
+      Excel::load('public/excel/'.$nameArchivo, function($reader)
       {
         $booleanMunicipio = False;
         $booleanAño = False;
@@ -756,25 +856,26 @@ class SeguridadviolenciaController extends Controller
           if ($booleanMunicipio == True) {
 
           	$resultados = Seguridadviolencia::where(DB::raw('YEAR(anioSV)'), $result->anio)
+          			->where('municipio_id', $id)
           				->limit(1)
 						->get();
 		    foreach ($resultados as $resultado) {
 		      $booleanAño = True;
 		    }
 
-		    if ($booleanAño = False) {
+		    if ($booleanAño == False) {
 		    	
 	            $data1[] = array('anioSV' => $result->anio.'/01/01 00:00:00',
-	                           'municipio_id' => $id,
 	                           'tasDesEscTot' => $result->tasa_desercion_escolar_total_double,
-									'tasHom' => $result->tasa_homicidios_double,
-									'tasIncDen' => $result->tasa_incidencia_dengue_double,
-									'tasLesPer' => $result->tasa_lesiones_personales_double,
-									'tasMueAcc' => $result->tasa_muertes_por_accidentes_double,
-									'tasSui' => $result->tasa_suicidios_double,
-									'vioInt' => $result->violencia_interpersonal_double,
-									'casTot' => $result->casos_totales_double,
-									'casTasHom' => $result->casos_tasa_homicidio_double,
+								'tasHom' => $result->tasa_homicidios_double,
+								'tasIncDen' => $result->tasa_incidencia_dengue_double,
+								'tasLesPer' => $result->tasa_lesiones_personales_double,
+								'tasMueAcc' => $result->tasa_muertes_por_accidentes_double,
+								'tasSui' => $result->tasa_suicidios_double,
+								'vioInt' => $result->violencia_interpersonal_double,
+								'casTot' => $result->casos_totales_double,
+								'casTasHom' => $result->casos_tasa_homicidio_double,
+	                           'municipio_id' => $id,
 	                           'created_at' => $time,
 	                           'updated_at' => $time);
 
@@ -834,7 +935,7 @@ class SeguridadviolenciaController extends Controller
             // $html = ."<h1 class='text-center' style='margin-top: 0px;''>No se encontro el departamento.$result->departamento</h1>";
           }
 
-		    
+		    $booleanAño = False;
         }
       });
 
@@ -855,7 +956,7 @@ class SeguridadviolenciaController extends Controller
  
           $excel->sheet('Importar', function($sheet) {
 
-              $data[] = array('año' => "",
+              $data[] = array('anio' => "",
               				'municipio' => "",
               				 'tasa_desercion_escolar_total_double' => "",
 									'tasa_homicidios_double' => "",

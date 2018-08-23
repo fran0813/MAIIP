@@ -83,10 +83,10 @@ Route::group(['prefix' => 'admin'], function()
 	Route::post('/guardarArchivoViviendaServiciosPublicos', 'ViviendaserviciospublicosController@guardarArchivoViviendaServiciosPublicos')->middleware('auth');
 	Route::post('/subirRespuestaViviendaServiciosPublicos', 'ViviendaserviciospublicosController@subirRespuestaViviendaServiciosPublicos')->middleware('auth');
 	Route::get('/descargarViviendaServiciosPublicos', 'ViviendaserviciospublicosController@descargarViviendaServiciosPublicos')->middleware('auth');
-
+ 
 	Route::get('/subiendoArchivoSeguridadViolencia', 'SeguridadviolenciaController@subiendoArchivoSeguridadViolencia')->middleware('auth');
 	Route::post('/guardarArchivoSeguridadViolencia', 'SeguridadviolenciaController@guardarArchivoSeguridadViolencia')->middleware('auth');
-	Route::post('/subirRespuestaSeguridadViolencia', 'SeguridadviolenciaController@subirRespuestaSeguridadViolencia')->middleware('auth');
+	Route::post('/subirRespuestaSeguridadviolencia', 'SeguridadviolenciaController@subirRespuestaSeguridadviolencia')->middleware('auth');
 	Route::get('/descargarSeguridadViolencia', 'SeguridadviolenciaController@descargarSeguridadViolencia')->middleware('auth');
 
 	Route::get('/subiendoArchivoEconomicoSocial', 'EconomicosocialController@subiendoArchivoEconomicoSocial')->middleware('auth');
