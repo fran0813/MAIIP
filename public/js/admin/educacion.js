@@ -31,6 +31,7 @@ function mostrarDatos()
 function mostrarCrear()
 {
 	$("#crear").show();
+	$("#importar").show();
 }
 
 $("#tablaeducacion").on("click", "a", function()

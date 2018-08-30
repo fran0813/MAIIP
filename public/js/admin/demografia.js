@@ -32,6 +32,7 @@ function mostrarDatos()
 function mostrarCrear()
 {
 	$("#crear").show();
+	$("#importar").show();
 }
 
 $("#tablaDemografia").on("click", "a", function()

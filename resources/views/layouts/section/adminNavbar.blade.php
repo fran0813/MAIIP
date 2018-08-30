@@ -50,16 +50,19 @@
                         <a href="{{ url('/admin') }}"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
                     </li>
                     <li>
+                        <a href="{{ url('/admin/departamento') }}"><i class="fa fa-dashboard fa-fw"></i> Departamento</a>
+                    </li>
+                    <li>
                         <a href="{{ url('/admin/municipio') }}"><i class="fa fa-dashboard fa-fw"></i> Municipio</a>
                     </li>
                     <li>
                         <a href="{{ url('/admin/generalidadesterritorio') }}"><i class="fa fa-thermometer-three-quarters fa-fw"></i> Generalidades y territorio</a>
                     </li> 
                     <li>
-                        <a href="{{ url('/admin/demografia') }}"><i class="fa fa-edit fa-fw"></i> Demografias</a>
+                        <a href="{{ url('/admin/demografia') }}"><i class="fa fa-edit fa-fw"></i> Demografías</a>
                     </li> 
                     <li>
-                        <a href="{{ url('/admin/viviendaserviciospublicos') }}"><i class="fa fa-home fa-fw"></i> Vivienda y Servivicios Públicos</a>
+                        <a href="{{ url('/admin/viviendaserviciospublicos') }}"><i class="fa fa-home fa-fw"></i> Vivienda y Servicios Públicos</a>
                     </li>
                     <li>
                         <a href="{{ url('/admin/salud') }}"><i class="fa fa-plus fa-fw"></i> Salud</a>
@@ -68,7 +71,7 @@
                         <a href="{{ url('/admin/educacion') }}"><i class="fa fa-book fa-fw"></i> Educación</a>
                     </li>
                     <li>
-                        <a href="{{ url('/admin/seguridadviolencia') }}"><i class="fa fa-unlock-alt fa-fw"></i> Seguiridad y Violencia</a>
+                        <a href="{{ url('/admin/seguridadviolencia') }}"><i class="fa fa-unlock-alt fa-fw"></i> Seguridad y Violencia</a>
                     </li>
                     <li>
                         <a href="{{ url('/admin/economicosocial') }}"><i class="fa fa-users fa-fw"></i> Económico-Social</a>

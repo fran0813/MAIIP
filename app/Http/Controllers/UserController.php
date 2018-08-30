@@ -95,6 +95,7 @@ class UserController extends Controller
 	public function mostrarCodigo(Request $request)
 	{
 		$html = "";
+		$html2 = "";
 		$idDepartamento = $_GET['idDepartamento'];
 		$idMunicipio = $_GET['idMunicipio'];
 
@@ -107,14 +108,16 @@ class UserController extends Controller
 			$coddep = $resultado->codigoD;
 			$codmun = $resultado->codigoM;
 			$html .= "<input class='form-control' type='text' disabled='true' value='$coddep$codmun'>";
+			$html2 .= "<b>Código</b>";
 
 		};
 
 		if ($idMunicipio == "Seleccione un municipio") {
 			$html .= "<input class='form-control' type='text' value='' disabled=''>";
+			$html2 .= "<b></b>";
 		}
 
-		return Response::json(array('html' => $html));
+		return Response::json(array('html' => $html, 'html2' => $html2));
 	}
 
 	public function mostrarAñoGT(Request $request)

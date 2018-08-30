@@ -52,6 +52,7 @@ function calcularIpm()
 function mostrarCrear()
 {
 	$("#crear").show();
+	$("#importar").show();
 }
 
 $("#tablaEconomicosocial").on("click", "a", function()

@@ -32,6 +32,7 @@ function mostrarDatos()
 function mostrarCrear()
 {
 	$("#crear").show();
+	$("#importar").show();
 }
 
 $("#tablaFinanza").on("click", "a", function()

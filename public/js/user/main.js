@@ -87,6 +87,7 @@ function mostrarCodigo()
 
 	.done(function(response) {
 		$('#codigo').html(response.html);
+		$('#codigo2').html(response.html2);
 	});
 
 }

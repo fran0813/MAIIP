@@ -1,26 +1,31 @@
-function mostrarMunicipios()
-{
-	var departamento = $("#departamento").val();
+$( document ).ready(function()
+{   
+	mostrarDepartamentos();
+});
 
-	if (departamento != "Seleccione un departamento") {
+function mostrarDepartamentos()
+{
+	// var departamento = $("#departamento").val();
+
+	// if (departamento != "Seleccione un departamento") {
 
 		mostrarCrear();
 
 		$.ajax({
 			headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 			method: "GET",
-			url: "/admin/mostrarMunicipio",
+			url: "/admin/mostrarDepartamento",
 			dataType: 'json',
-			data: { idDepartamento: departamento }
+			data: { }
 		})
 
 		.done(function(response) {
-			$('#tablaMunicipio').html(response.html);
+			$('#tablaDepartamento').html(response.html);
 		});
 
-	} else {
-		$('#tablaMunicipio').html("<center><h3>Porfavor seleccione un <strong>Departamento</strong> y un <strong>Municipio</strong></h3></center>");
-	}
+	// } else {
+	// 	$('#tablaDepartamento').html("<center><h3>Porfavor seleccione un <strong>Departamento</strong> y un <strong>Municipio</strong></h3></center>");
+	// }
 }
 
 function mostrarCrear()
@@ -29,13 +34,13 @@ function mostrarCrear()
 	$("#importar").show();
 }
 
-$("#tablaMunicipio").on("click", "a", function()
+$("#tablaDepartamento").on("click", "a", function()
 {
 	var value = $(this).attr("value");
 	var id = $(this).attr("id");
 
 	if (value == "editar") {
-		mostrarActualizarMunicipio(id);
+		mostrarActualizarDepartamento(id);
 	} else if(value == "eliminar") {
 		// $.ajax({
 		// 	headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -51,23 +56,22 @@ $("#tablaMunicipio").on("click", "a", function()
 	}
 });	
 
-function mostrarActualizarMunicipio(id)
+function mostrarActualizarDepartamento(id)
 {
 	$('#respuesta2').hide();
 
 	$.ajax({
 		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 		method: "POST",
-		url: "/admin/mostrarActualizarMunicipio",
+		url: "/admin/mostrarActualizarDepartamento",
 		dataType: 'json',
 		data: { id: id }
 	})
 
 	.done(function(response) {
 		$("#id").val(response.id);
-		$("#codigoM2").val(response.codigoM);
+		$("#codigoD2").val(response.codigoD);
 		$("#nombre2").val(response.nombre);
-		$("#catMun2").val(response.catMun);
 	});
 }
 
@@ -75,26 +79,22 @@ function mostrarActualizarMunicipio(id)
 // Crear
 $("#formCrear").on("submit", function()
 {
-	var codigoM = $("#codigoM").val();
+	var codigoD = $("#codigoD").val();
 	var nombre = $("#nombre").val();
-	var catMun = $("#catMun").val();
-	var departamento = $("#departamento").val();
 
 	$.ajax({
 		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 		method: "POST",
-		url: "/admin/crearMunicipio",
+		url: "/admin/crearDepartamento",
 		dataType: 'json',
-		data: { codigoM: codigoM,
-				nombre: nombre,
-				catMun: catMun,
-				departamento_id: departamento }
+		data: { codigoD: codigoD,
+				nombre: nombre, }
 	})
 
 	.done(function(response){
 		$('#respuesta').show();
 		$('#respuesta').html(response.html);
-		mostrarMunicipios();		
+		mostrarDepartamentos();		
 	});
 
 	return false;
@@ -109,9 +109,8 @@ function limpiarRespuesta()
 $("#formActualizar").on("submit", function()
 {
 	var id = $("#id").val();
-	var codigoM = $("#codigoM2").val();
+	var codigoD = $("#codigoD2").val();
 	var nombre = $("#nombre2").val();
-	var catMun = $("#catMun2").val();
 
 	$.ajax({
 		headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -119,15 +118,14 @@ $("#formActualizar").on("submit", function()
 		url: "/admin/actualizarMunicipio",
 		dataType: 'json',
 		data: { id: id,
-				codigoM: codigoM,
-				nombre: nombre,
-				catMun: catMun, }
+				codigoD: codigoD,
+				nombre: nombre, }
 	})
 
 	.done(function(response) {
 		$('#respuesta2').show();
 		$('#respuesta2').html(response.html);	
-		mostrarMunicipios();	
+		mostrarDepartamentos();	
 	});
 
 	return false;

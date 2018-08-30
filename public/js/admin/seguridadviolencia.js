@@ -32,6 +32,7 @@ function mostrarDatos()
 function mostrarCrear()
 {
 	$("#crear").show();
+	$("#importar").show();
 }
 
 $("#tablaSeguridadViolencia").on("click", "a", function()

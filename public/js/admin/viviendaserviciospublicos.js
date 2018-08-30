@@ -31,6 +31,7 @@ function mostrarDatos()
 function mostrarCrear()
 {
 	$("#crear").show();
+	$("#importar").show();
 }
 
 $("#tablaviviendaserviciospublicos").on("click", "a", function()

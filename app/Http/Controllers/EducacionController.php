@@ -358,7 +358,10 @@ class EducacionController extends Controller
 		$idMunicipio = $_GET['idMunicipio'];
 		$html = "";
 
-		$html .= "<div class='col-sm-12 col-md-12 col-lg-12'>
+
+$html .= "<div class='col-sm-12 col-md-12 col-lg-12 table-wrapper-scroll-x' style='overflow-x: scroll; margin-bottom: 20px;'>";
+
+		$html .= "<table class='table table-bordered table-striped'>
 
 				<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
@@ -506,7 +509,9 @@ class EducacionController extends Controller
 
 			</div>";
 
-		$html .= "<div class='col-sm-12 col-md-12 col-lg-12'>
+
+$html .="</div>";
+		$html .= "<div class='col-sm-12 col-md-12 col-lg-12 table-wrapper-scroll-x' style='overflow-x: scroll; margin-bottom: 20px;'>
 
 			<table class='table table-bordered table-hover'>
 				<thead class='thead-s'>
@@ -544,15 +549,6 @@ class EducacionController extends Controller
 
 		};
 
-		$html .= "</tr>
-					<tr class='border-dotted'>
-						<td>Primaria (rural)</td>";
-
-		foreach ($resultados as $resultado) {
-			$rurPrim = $resultado->rurPrim;
-
-			$html .= "<td>$rurPrim</td>";
-		};
 
 		$html .= "</tr>
 					<tr class='border-dotted'>
@@ -593,9 +589,10 @@ class EducacionController extends Controller
 
 			</div>";
 
-		$html .= "<div class='col-sm-12 col-md-12 col-lg-12'>
 
-			<table class='table table-bordered table-hover'>
+		$html .= "<div class='col-sm-12 col-md-12 col-lg-12 table-wrapper-scroll-x' style='overflow-x: scroll; margin-bottom: 20px;'>
+
+			<table class='table table-bordered table-striped'>
 				<thead class='thead-s'>
 					<tr>
 						<th>Matricula por genero</th>";

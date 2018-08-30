@@ -14,7 +14,7 @@
 @section('tables')
 <div class="col-sm-12 col-md-12 col-lg-12">
 
-	<div id="demografias" class="col-sm-12 col-md-12 col-lg-12">
+	<div id="demografias" class="col-sm-12 col-md-12 col-lg-12 table-wrapper-scroll-x" style='overflow-x: scroll;'>
 
 		<table class="table table-bordered table-hover">
 			<thead class="thead-s">

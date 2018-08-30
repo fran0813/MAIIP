@@ -41,6 +41,13 @@ Route::group(['prefix' => 'admin'], function()
 	Route::get('economicosocial', 'AdminController@tableeconomicosocial')->middleware('auth');
 	Route::get('finanza', 'AdminController@tablefinanza')->middleware('auth');
 
+	Route::get('departamento', 'AdminController@tabledepartamento')->middleware('auth');
+	Route::get('/mostrarDepartamento', 'AdminController@mostrarTablaDepartamento')->middleware('auth');
+	Route::post('/actualizarDepartamento', 'AdminController@actualizarDepartamento')->middleware('auth');
+	Route::post('/borrarDepartamento', 'AdminController@borrarDepartamento')->middleware('auth');
+	Route::post('/crearDepartamento', 'AdminController@crearDepartamento')->middleware('auth');
+	Route::post('/mostrarActualizarDepartamento', 'AdminController@mostrarActualizarDepartamento')->middleware('auth');
+
 	Route::get('municipio', 'AdminController@tablemunicipio')->middleware('auth');
 	Route::get('/mostrarMunicipio', 'AdminController@mostrarTablaMunicipio')->middleware('auth');
 	Route::post('/actualizarMunicipio', 'AdminController@actualizarMunicipio')->middleware('auth');

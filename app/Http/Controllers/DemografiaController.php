@@ -301,7 +301,7 @@ class DemografiaController extends Controller
 		$idMunicipio = $_GET['idMunicipio'];
 		$html = "";
 
-		$html .= "<table class='table table-bordered' style='overflow-x: scroll;'>
+		$html .= "<table class='table table-bordered table-striped'>
 				<thead class='thead-s'>
 				<tr>
 				<th>Datos</th>";
