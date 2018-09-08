@@ -90,7 +90,7 @@ class AdminController extends Controller
 
       $html .= "<option>Seleccione un departamento</option>";
 
-      $departamentos = Departamento::orderBy('departamentos.nombre', 'desc')
+      $departamentos = Departamento::orderBy('departamentos.nombre', 'asc')
             ->get();
       foreach ($departamentos as $departamento) {
         $id = $departamento->id;
@@ -126,7 +126,7 @@ class AdminController extends Controller
       $html .= "<option>Seleccione un municipio</option>";
 
       $municipios = Municipio::where('departamento_id', $idDepartamento)
-          ->orderBy('municipios.nombre', 'desc')
+          ->orderBy('municipios.nombre', 'asc')
           ->get();
       foreach ($municipios as $municipio) {
         $id = $municipio->id;

@@ -15,6 +15,7 @@ use App\Coberturaaseo;
 use App\Coberturatelefono;
 use App\Coberturagas;
 use App\Municipio;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ViviendaserviciospublicosController extends Controller
 {
@@ -519,6 +520,16 @@ class ViviendaserviciospublicosController extends Controller
 			$rurViv = $resultado->rurViv;
 			$totalViv = $resultado->totalViv;
 
+			if ($cabViv == 0) {
+				$cabViv = "N.D";
+			}
+			if ($rurViv == 0) {
+				$rurViv = "N.D";
+			}
+			if ($totalViv == 0) {
+				$totalViv = "N.D";
+			}
+
 			$html .= "<td>$cabViv</td>
 					<td>$rurViv</td>
 					<td>$totalViv</td>";
@@ -533,6 +544,16 @@ class ViviendaserviciospublicosController extends Controller
 			$cabHog = $resultado->cabHog;
 			$rurHog = $resultado->rurHog;
 			$totalHog = $resultado->totalHog;
+
+			if ($cabHog == 0) {
+				$cabHog = "N.D";
+			}
+			if ($rurHog == 0) {
+				$rurHog = "N.D";
+			}
+			if ($totalHog == 0) {
+				$totalHog = "N.D";
+			}
 
 			$html .= "<td>$cabHog</td>
 					<td>$rurHog</td>
@@ -549,6 +570,16 @@ class ViviendaserviciospublicosController extends Controller
 			$rurHogViv = $resultado->rurHogViv;
 			$totalHogViv = $resultado->totalHogViv;
 
+			if ($cabHogViv == 0) {
+				$cabHogViv = "N.D";
+			}
+			if ($rurHogViv == 0) {
+				$rurHogViv = "N.D";
+			}
+			if ($totalHogViv == 0) {
+				$totalHogViv = "N.D";
+			}
+
 			$html .= "<td>$cabHogViv</td>
 					<td>$rurHogViv</td>
 					<td>$totalHogViv</td>";
@@ -564,6 +595,16 @@ class ViviendaserviciospublicosController extends Controller
 			$rurPerHog = $resultado->rurPerHog;
 			$totalPerHog = $resultado->totalPerHog;
 
+			if ($cabPerHog == 0) {
+				$cabPerHog = "N.D";
+			}
+			if ($rurPerHog == 0) {
+				$rurPerHog = "N.D";
+			}
+			if ($totalPerHog == 0) {
+				$totalPerHog = "N.D";
+			}
+
 			$html .= "<td>$cabPerHog</td>
 					<td>$rurPerHog</td>
 					<td>$totalPerHog</td>";
@@ -578,6 +619,16 @@ class ViviendaserviciospublicosController extends Controller
 			$cabPerViv = $resultado->cabPerViv;
 			$rurPerViv = $resultado->rurPerViv;
 			$totalPerViv = $resultado->totalPerViv;
+
+			if ($cabPerViv == 0) {
+				$cabPerViv = "N.D";
+			}
+			if ($rurPerViv == 0) {
+				$rurPerViv = "N.D";
+			}
+			if ($totalPerViv == 0) {
+				$totalPerViv = "N.D";
+			}
 
 			$html .= "<td>$cabPerViv</td>
 					<td>$rurPerViv</td>
@@ -607,6 +658,10 @@ class ViviendaserviciospublicosController extends Controller
 		foreach ($resultados as $resultado) {
 			$cabCA = $resultado->cabCA;
 
+			if ($cabCA == 0) {
+				$cabCA = "N.D";
+			}
+
 			$html .= "<td>$cabCA</td>";
 
 		};
@@ -618,6 +673,10 @@ class ViviendaserviciospublicosController extends Controller
 		foreach ($resultados as $resultado) {
 			$centPobCA = $resultado->centPobCA;
 
+			if ($centPobCA == 0) {
+				$centPobCA = "N.D";
+			}
+
 			$html .= "<td>$centPobCA</td>";
 		};
 
@@ -627,6 +686,10 @@ class ViviendaserviciospublicosController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$rurDispCA = $resultado->rurDispCA;
+
+			if ($rurDispCA == 0) {
+				$rurDispCA = "N.D";
+			}
 
 			$html .= "<td>$rurDispCA</td>";
 
@@ -654,6 +717,10 @@ class ViviendaserviciospublicosController extends Controller
 		foreach ($resultados as $resultado) {
 			$cabCAs = $resultado->cabCAs;
 
+			if ($cabCAs == 0) {
+				$cabCAs = "N.D";
+			}
+
 			$html .= "<td>$cabCAs</td>";
 
 		};
@@ -665,6 +732,10 @@ class ViviendaserviciospublicosController extends Controller
 		foreach ($resultados as $resultado) {
 			$centPobCAs = $resultado->centPobCAs;
 
+			if ($centPobCAs == 0) {
+				$centPobCAs = "N.D";
+			}
+
 			$html .= "<td>$centPobCAs</td>";
 		}
 
@@ -674,6 +745,10 @@ class ViviendaserviciospublicosController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$rurDispCAs = $resultado->rurDispCAs;
+
+			if ($rurDispCAs == 0) {
+				$rurDispCAs = "N.D";
+			}
 
 			$html .= "<td>$rurDispCAs</td>";
 		}
@@ -700,6 +775,10 @@ class ViviendaserviciospublicosController extends Controller
 		foreach ($resultados as $resultado) {
 			$cabCG = $resultado->cabCG;
 
+			if ($cabCG == 0) {
+				$cabCG = "N.D";
+			}
+
 			$html .= "<td>$cabCG</td>";
 
 		};
@@ -711,6 +790,10 @@ class ViviendaserviciospublicosController extends Controller
 		foreach ($resultados as $resultado) {
 			$centPobCG = $resultado->centPobCG;
 
+			if ($centPobCG == 0) {
+				$centPobCG = "N.D";
+			}
+
 			$html .= "<td>$centPobCG</td>";
 		}
 
@@ -720,6 +803,10 @@ class ViviendaserviciospublicosController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$rurDispCG = $resultado->rurDispCG;
+
+			if ($rurDispCG == 0) {
+				$rurDispCG = "N.D";
+			}
 
 			$html .= "<td>$rurDispCG</td>";
 		}
@@ -746,6 +833,10 @@ class ViviendaserviciospublicosController extends Controller
 		foreach ($resultados as $resultado) {
 			$cabCT = $resultado->cabCT;
 
+			if ($cabCT == 0) {
+				$cabCT = "N.D";
+			}
+
 			$html .= "<td>$cabCT</td>";
 
 		};
@@ -757,6 +848,10 @@ class ViviendaserviciospublicosController extends Controller
 		foreach ($resultados as $resultado) {
 			$centPobCT = $resultado->centPobCT;
 
+			if ($centPobCT == 0) {
+				$centPobCT = "N.D";
+			}
+
 			$html .= "<td>$centPobCT</td>";
 		}
 
@@ -766,6 +861,10 @@ class ViviendaserviciospublicosController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$rurDispCT = $resultado->rurDispCT;
+
+			if ($rurDispCT == 0) {
+				$rurDispCT = "N.D";
+			}
 
 			$html .= "<td>$rurDispCT</td>";
 		}
@@ -1039,6 +1138,191 @@ class ViviendaserviciospublicosController extends Controller
           });
       })->export('xls');
     }
+
+    // nuevo
+    public function pdf(Request $request)
+	{
+
+		$año1 = $request->input('date1');
+		$id = $request->input('municipio');
+
+		$resultados = Viviendaserviciopublico::join('coberturaalcantarillado', 'viviendasserviciospublicos.id', 'coberturaalcantarillado.viviendaserviciopublico_id')
+			->join('coberturaaseo', 'viviendasserviciospublicos.id', 'coberturaaseo.viviendaserviciopublico_id')
+			->join('coberturagas', 'viviendasserviciospublicos.id', 'coberturagas.viviendaserviciopublico_id')
+			->join('coberturatelefono', 'viviendasserviciospublicos.id', 'coberturatelefono.viviendaserviciopublico_id')
+			->select('viviendasserviciospublicos.id',
+					DB::raw('YEAR(anioVSP) as YEARanioVSP'),
+					'viviendasserviciospublicos.cabViv',
+					'viviendasserviciospublicos.cabHog',
+					'viviendasserviciospublicos.cabHogViv',
+					'viviendasserviciospublicos.cabPerHog',
+					'viviendasserviciospublicos.cabPerViv',
+					'viviendasserviciospublicos.rurViv',
+					'viviendasserviciospublicos.rurHog',
+					'viviendasserviciospublicos.rurHogViv',
+					'viviendasserviciospublicos.rurPerHog',
+					'viviendasserviciospublicos.rurPerViv',
+					'viviendasserviciospublicos.totalViv',
+					'viviendasserviciospublicos.totalHog',
+					'viviendasserviciospublicos.totalHogViv',
+					'viviendasserviciospublicos.totalPerHog',
+					'viviendasserviciospublicos.totalPerViv',
+					'coberturaalcantarillado.*',
+					'coberturaaseo.*',
+					'coberturagas.*',
+					'coberturatelefono.*')
+						->where('municipio_id', $id)
+						->where(DB::raw('YEAR(anioVSP)'), $año1)
+						->get();
+		foreach ($resultados as $resultado) {
+			$id = $resultado->id;
+			$anio = $resultado->YEARanioVSP;
+			$cabViv = $resultado->cabViv;
+			$cabHog = $resultado->cabHog;
+			$cabHogViv = $resultado->cabHogViv;
+			$cabPerHog = $resultado->cabPerHog;
+			$cabPerViv = $resultado->cabPerViv;
+			$rurViv = $resultado->rurViv;
+			$rurHog = $resultado->rurHog;
+			$rurHogViv = $resultado->rurHogViv;
+			$rurPerHog = $resultado->rurPerHog;
+			$rurPerViv = $resultado->rurPerViv;
+			$totalViv = $resultado->totalViv;
+			$totalHog = $resultado->totalHog;
+			$totalHogViv = $resultado->totalHogViv;
+			$totalPerHog = $resultado->totalPerHog;
+			$totalPerViv = $resultado->totalPerViv;
+			$cabCA = $resultado->cabCA;
+			$centPobCA = $resultado->centPobCA;
+			$rurDispCA = $resultado->rurDispCA;
+			$cabCAs = $resultado->cabCAs;
+			$centPobCAs = $resultado->centPobCAs;
+			$rurDispCAs = $resultado->rurDispCAs;
+			$cabCG = $resultado->cabCG;
+			$centPobCG = $resultado->centPobCG;
+			$rurDispCG = $resultado->rurDispCG;
+			$cabCT = $resultado->cabCT;
+			$centPobCT = $resultado->centPobCT;
+			$rurDispCT = $resultado->rurDispCT;
+
+			if ($cabViv == 0) {
+				$cabViv == "N.D";
+			}
+			if ($cabHog == 0) {
+				$cabHog == "N.D";
+			}
+			if ($cabHogViv == 0) {
+				$cabHogViv == "N.D";
+			}
+			if ($cabPerHog == 0) {
+				$cabPerHog == "N.D";
+			}
+			if ($cabPerViv == 0) {
+				$cabPerViv == "N.D";
+			}
+			if ($rurViv == 0) {
+				$rurViv == "N.D";
+			}
+			if ($rurHog == 0) {
+				$rurHog == "N.D";
+			}
+			if ($rurHogViv == 0) {
+				$rurHogViv == "N.D";
+			}
+			if ($rurPerHog == 0) {
+				$rurPerHog == "N.D";
+			}
+			if ($rurPerViv == 0) {
+				$rurPerViv == "N.D";
+			}
+			if ($totalViv == 0) {
+				$totalViv == "N.D";
+			}
+			if ($totalHog == 0) {
+				$totalHog == "N.D";
+			}
+			if ($totalHogViv == 0) {
+				$totalHogViv == "N.D";
+			}
+			if ($totalPerHog == 0) {
+				$totalPerHog == "N.D";
+			}
+			if ($totalPerViv == 0) {
+				$totalPerViv == "N.D";
+			}
+			if ($cabCA == 0) {
+				$cabCA == "N.D";
+			}
+			if ($centPobCA == 0) {
+				$centPobCA == "N.D";
+			}
+			if ($rurDispCA == 0) {
+				$rurDispCA == "N.D";
+			}
+			if ($cabCAs == 0) {
+				$cabCAs == "N.D";
+			}
+			if ($centPobCAs == 0) {
+				$centPobCAs == "N.D";
+			}
+			if ($rurDispCAs == 0) {
+				$rurDispCAs == "N.D";
+			}
+			if ($cabCG == 0) {
+				$cabCG == "N.D";
+			}
+			if ($centPobCG == 0) {
+				$centPobCG == "N.D";
+			}
+			if ($rurDispCG == 0) {
+				$rurDispCG == "N.D";
+			}
+			if ($cabCT == 0) {
+				$cabCT == "N.D";
+			}
+			if ($centPobCT == 0) {
+				$centPobCT == "N.D";
+			}
+			if ($rurDispCT == 0) {
+				$rurDispCT == "N.D";
+			}
+		}
+
+		$data =  [
+            'id' => $id,
+			'anio' => $anio,
+			'cabViv' => $cabViv,
+			'cabHog' => $cabHog,
+			'cabHogViv' => $cabHogViv,
+			'cabPerHog' => $cabPerHog,
+			'cabPerViv' => $cabPerViv,
+			'rurViv' => $rurViv,
+			'rurHog' => $rurHog,
+			'rurHogViv' => $rurHogViv,
+			'rurPerHog' => $rurPerHog,
+			'rurPerViv' => $rurPerViv,
+			'totalViv' => $totalViv,
+			'totalHog' => $totalHog,
+			'totalHogViv' => $totalHogViv,
+			'totalPerHog' => $totalPerHog,
+			'totalPerViv' => $totalPerViv,
+			'cabCA' => $cabCA,
+			'centPobCA' => $centPobCA,
+			'rurDispCA' => $rurDispCA,
+			'cabCAs' => $cabCAs,
+			'centPobCAs' => $centPobCAs,
+			'rurDispCAs' => $rurDispCAs,
+			'cabCG' => $cabCG,
+			'centPobCG' => $centPobCG,
+			'rurDispCG' => $rurDispCG,
+			'cabCT' => $cabCT,
+			'centPobCT' => $centPobCT,
+			'rurDispCT' => $rurDispCT,
+        ];
+
+		$pdf = PDF::loadView('user.pdf.pdfVSP', compact('data'));
+		return $pdf->stream('Viviendaserviciospublicos.pdf');
+	}
 
 }
 

@@ -11,6 +11,7 @@ use File;
 use \Response;
 use App\Demografia;
 use App\Municipio;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class DemografiaController extends Controller
 {
@@ -340,6 +341,10 @@ class DemografiaController extends Controller
 		foreach ($resultados as $resultado) {
 			$pobEdadTrabajar = $resultado->pobEdadTrabajar;
 
+			if ($pobEdadTrabajar == 0) {
+				$pobEdadTrabajar = "N.D";
+			}
+
 			$html .= "<td>$pobEdadTrabajar</td>";
 
 		};
@@ -350,6 +355,10 @@ class DemografiaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$pobPotActiva = $resultado->pobPotActiva;
+
+			if ($pobPotActiva == 0) {
+				$pobPotActiva = "N.D";
+			}
 
 			$html .= "<td>$pobPotActiva</td>";
 
@@ -362,6 +371,10 @@ class DemografiaController extends Controller
 		foreach ($resultados as $resultado) {
 			$pobPotInactiva = $resultado->pobPotInactiva;
 
+			if ($pobPotInactiva == 0) {
+				$pobPotInactiva = "N.D";
+			}
+
 			$html .= "<td>$pobPotInactiva</td>";
 
 		};
@@ -372,6 +385,10 @@ class DemografiaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$numPerMen = $resultado->numPerMen;
+
+			if ($numPerMen == 0) {
+				$numPerMen = "N.D";
+			}
 
 			$html .= "<td>$numPerMen</td>";
 
@@ -384,6 +401,10 @@ class DemografiaController extends Controller
 		foreach ($resultados as $resultado) {
 			$numPerMay = $resultado->numPerMay;
 
+			if ($numPerMay == 0) {
+				$numPerMay = "N.D";
+			}
+
 			$html .= "<td>$numPerMay</td>";
 
 		};
@@ -394,6 +415,10 @@ class DemografiaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$numPerInd = $resultado->numPerInd;
+
+			if ($numPerInd == 0) {
+				$numPerInd = "N.D";
+			}
 
 			$html .= "<td>$numPerInd</td>";
 
@@ -406,6 +431,10 @@ class DemografiaController extends Controller
 		foreach ($resultados as $resultado) {
 			$numPerDep = $resultado->numPerDep;
 
+			if ($numPerDep == 0) {
+				$numPerDep = "N.D";
+			}
+
 			$html .= "<td>$numPerDep</td>";
 
 		};
@@ -416,6 +445,10 @@ class DemografiaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$pobHom = $resultado->pobHom;
+
+			if ($pobHom == 0) {
+				$pobHom = "N.D";
+			}
 
 			$html .= "<td>$pobHom</td>";
 
@@ -428,6 +461,10 @@ class DemografiaController extends Controller
 		foreach ($resultados as $resultado) {
 			$pobMuj = $resultado->pobMuj;
 
+			if ($pobMuj == 0) {
+				$pobMuj = "N.D";
+			}
+
 			$html .= "<td>$pobMuj</td>";
 
 		};
@@ -438,6 +475,10 @@ class DemografiaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$pobZonCab = $resultado->pobZonCab;
+
+			if ($pobZonCab == 0) {
+				$pobZonCab = "N.D";
+			}
 
 			$html .= "<td>$pobZonCab</td>";
 
@@ -450,6 +491,10 @@ class DemografiaController extends Controller
 		foreach ($resultados as $resultado) {
 			$pobZonRes = $resultado->pobZonRes;
 
+			if ($pobZonRes == 0) {
+				$pobZonRes = "N.D";
+			}
+
 			$html .= "<td>$pobZonRes</td>";
 
 		};
@@ -460,6 +505,10 @@ class DemografiaController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$indRuralidad = $resultado->indRuralidad;
+
+			if ($indRuralidad == 0) {
+				$indRuralidad = "N.D";
+			}
 
 			$html .= "<td>$indRuralidad%</td>";
 
@@ -472,6 +521,10 @@ class DemografiaController extends Controller
 		foreach ($resultados as $resultado) {
 			$pobTotal = $resultado->pobTotal;
 
+			if ($pobTotal == 0) {
+				$pobTotal = "N.D";
+			}
+
 			$html .= "<td>$pobTotal</td>";
 
 		};
@@ -483,8 +536,8 @@ class DemografiaController extends Controller
 		foreach ($resultados as $resultado) {
 			$crecPob = $resultado->crecPob;
 
-			if ($crecPob == "0") {
-				$html .= "<td>N/A</td>";
+			if ($crecPob == 0) {
+				$html .= "<td>N.D</td>";
 			} else {
 				$html .= "<td>$crecPob%</td>";
 			}
@@ -761,5 +814,120 @@ class DemografiaController extends Controller
           });
       })->export('xls');
     }
+
+    // nuevo
+    public function pdf(Request $request)
+	{
+
+		$año1 = $request->input('date1');
+		$id = $request->input('municipio');
+
+		$resultados = Demografia::select('demografias.id',
+							DB::raw('YEAR(anioD) as YEARanioD'),
+							'demografias.pobEdadTrabajar',
+							'demografias.pobPotActiva',
+							'demografias.pobPotInactiva',
+							'demografias.numPerMen',
+							'demografias.numPerMay',
+							'demografias.numPerInd',
+							'demografias.numPerDep',
+							'demografias.pobHom',
+							'demografias.pobMuj',
+							'demografias.pobZonCab',
+							'demografias.pobZonRes',
+							'demografias.indRuralidad',
+							'demografias.pobTotal',
+							'demografias.crecPob')
+						->where('municipio_id', $id)
+						->where(DB::raw('YEAR(anioD)'), $año1)
+						->get();
+		foreach ($resultados as $resultado) {
+			$id = $resultado->id;
+			$anio = $resultado->YEARanioD;
+			$pobEdadTrabajar = $resultado->pobEdadTrabajar;
+			$pobPotActiva = $resultado->pobPotActiva;
+			$pobPotInactiva = $resultado->pobPotInactiva;
+			$numPerMen = $resultado->numPerMen;
+			$numPerMay = $resultado->numPerMay;
+			$numPerInd = $resultado->numPerInd;
+			$numPerDep = $resultado->numPerDep;
+			$pobHom = $resultado->pobHom;
+			$pobMuj = $resultado->pobMuj;
+			$pobZonCab = $resultado->pobZonCab;
+			$pobZonRes = $resultado->pobZonRes;
+			$indRuralidad = $resultado->indRuralidad;
+			$pobTotal = $resultado->pobTotal;
+			$crecPob = $resultado->crecPob;
+
+			if ($pobTotal == 0) {
+				$pobTotal = "N.D";
+			}
+
+			if ($pobEdadTrabajar == 0) {
+				$pobEdadTrabajar = "N.D";
+			}
+			if ($pobPotActiva == 0) {
+				$pobPotActiva = "N.D";
+			}
+			if ($pobPotInactiva == 0) {
+				$pobPotInactiva = "N.D";
+			}
+			if ($numPerMen == 0) {
+				$numPerMen = "N.D";
+			}
+			if ($numPerMay == 0) {
+				$numPerMay = "N.D";
+			}
+			if ($numPerInd == 0) {
+				$numPerInd = "N.D";
+			}
+			if ($numPerDep == 0) {
+				$numPerDep = "N.D";
+			}
+			if ($pobHom == 0) {
+				$pobHom = "N.D";
+			}
+			if ($pobMuj == 0) {
+				$pobMuj = "N.D";
+			}
+			if ($pobZonCab == 0) {
+				$pobZonCab = "N.D";
+			}
+			if ($pobZonRes == 0) {
+				$pobZonRes = "N.D";
+			}
+			if ($indRuralidad == 0) {
+				$indRuralidad = "N.D";
+			}
+			if ($pobTotal == 0) {
+				$pobTotal = "N.D";
+			}
+			if ($crecPob == 0) {
+				$crecPob = "N.D";
+			}
+		}
+
+		$data =  [
+            'id' => $id,
+			'anio' => $anio,
+			'pobEdadTrabajar' => $pobEdadTrabajar,
+			'pobPotActiva' => $pobPotActiva,
+			'pobPotInactiva' => $pobPotInactiva,
+			'numPerMen' => $numPerMen,
+			'numPerMay' => $numPerMay,
+			'numPerInd' => $numPerInd,
+			'numPerDep' => $numPerDep,
+			'pobHom' => $pobHom,
+			'pobMuj' => $pobMuj,
+			'pobZonCab' => $pobZonCab,
+			'pobZonRes' => $pobZonRes,
+			'indRuralidad' => $indRuralidad,
+			'pobTotal' => $pobTotal,
+			'crecPob' => $crecPob,
+        ];
+
+		$pdf = PDF::loadView('user.pdf.pdfD', compact('data'));
+		return $pdf->stream('Demografias.pdf');
+	}
 
 }

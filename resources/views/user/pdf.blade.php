@@ -2,8 +2,16 @@
 
 @section('active')
 	<li><a href="{{ url('/') }}">Inicio <span class="sr-only">(current)</span></a></li>
-	<li class="active"><a href="{{ url('/informacion') }}">Información</a></li>
-	<li><a href="{{ url('/pdf') }}">Descargar pdf</a></li>
+	<li ><a href="{{ url('/informacion') }}">Información</a></li>
+	<li class="active"><a href="{{ url('/pdf') }}">Descargar pdf</a></li>
+@endsection
+
+@section('breadcrumbs')
+
+<ol class="breadcrumb">
+   <li class="active">Pdf</li>
+</ol>
+
 @endsection
 
 @section('content')
@@ -36,7 +44,7 @@
 	<br>
 
 	{{-- Submenu --}}
-	@include('user.section.submenu')
+	@include('user.section.submenu2')
 
 	{{-- Tabla - Graficas --}}
 	<div class="col-sm-10 col-md-10 col-lg-10" style="background-color: #fff;padding: 18px;">

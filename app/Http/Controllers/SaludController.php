@@ -13,6 +13,7 @@ use App\Salud;
 use App\Vacunaciones;
 use App\Discapacidades;
 use App\Municipio;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class SaludController extends Controller
 {
@@ -336,6 +337,10 @@ class SaludController extends Controller
 		foreach ($resultados as $resultado) {
 			$tasVacBCG = $resultado->tasVacBCG;
 
+			if ($tasVacBCG == 0) {
+				$tasVacBCG == "N.D";
+			}
+
 			$html .= "<td>$tasVacBCG</td>";
 
 		};
@@ -346,6 +351,10 @@ class SaludController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$tasVacDPT = $resultado->tasVacDPT;
+
+			if ($tasVacDPT == 0) {
+				$tasVacDPT == "N.D";
+			}
 
 			$html .= "<td>$tasVacDPT</td>";
 
@@ -358,6 +367,10 @@ class SaludController extends Controller
 		foreach ($resultados as $resultado) {
 			$tasVacHepatitisB = $resultado->tasVacHepatitisB;
 
+			if ($tasVacHepatitisB == 0) {
+				$tasVacHepatitisB == "N.D";
+			}
+
 			$html .= "<td>$tasVacHepatitisB</td>";
 
 		};
@@ -368,6 +381,10 @@ class SaludController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$tasVacHIB = $resultado->tasVacHIB;
+
+			if ($tasVacHIB == 0) {
+				$tasVacHIB == "N.D";
+			}
 
 			$html .= "<td>$tasVacHIB</td>";
 
@@ -380,6 +397,10 @@ class SaludController extends Controller
 		foreach ($resultados as $resultado) {
 			$tasVacPolio = $resultado->tasVacPolio;
 
+			if ($tasVacPolio == 0) {
+				$tasVacPolio == "N.D";
+			}
+
 			$html .= "<td>$tasVacPolio</td>";
 
 		};
@@ -390,6 +411,10 @@ class SaludController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$tasVacTripleViral = $resultado->tasVacTripleViral;
+
+			if ($tasVacTripleViral == 0) {
+				$tasVacTripleViral == "N.D";
+			}
 
 			$html .= "<td>$tasVacTripleViral</td>";
 
@@ -417,6 +442,10 @@ class SaludController extends Controller
 		foreach ($resultados as $resultado) {
 			$difBaMov = $resultado->difBaMov;
 
+			if ($difBaMov == 0) {
+				$difBaMov == "N.D";
+			}
+
 			$html .= "<td>$difBaMov</td>";
 		};
 
@@ -426,6 +455,10 @@ class SaludController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$difEntApr = $resultado->difEntApr;
+
+			if ($difEntApr == 0) {
+				$difEntApr == "N.D";
+			}
 
 			$html .= "<td>$difEntApr</td>";
 		};
@@ -437,6 +470,10 @@ class SaludController extends Controller
 		foreach ($resultados as $resultado) {
 			$difMovCam = $resultado->difMovCam;
 
+			if ($difMovCam == 0) {
+				$difMovCam == "N.D";
+			}
+
 			$html .= "<td>$difMovCam</td>";
 		};
 
@@ -447,6 +484,10 @@ class SaludController extends Controller
 		foreach ($resultados as $resultado) {
 			$difSalirCalle = $resultado->difSalirCalle;
 
+			if ($difSalirCalle == 0) {
+				$difSalirCalle == "N.D";
+			}
+
 			$html .= "<td>$difSalirCalle</td>";
 		};
 
@@ -456,6 +497,10 @@ class SaludController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$totalDis = $resultado->totalDis;
+
+			if ($totalDis == 0) {
+				$totalDis == "N.D";
+			}
 
 			$html .= "<td>$totalDis</td>";
 		};
@@ -671,4 +716,88 @@ class SaludController extends Controller
       })->export('xls');
     }
 
+    // nuevo
+    public function pdf(Request $request)
+	{
+
+		$año1 = $request->input('date1');
+		$id = $request->input('municipio');
+
+		$resultados = Salud::join('vacunaciones', 'salud.id', 'vacunaciones.salud_id')
+						->join('discapacidades', 'salud.id', 'discapacidades.salud_id')
+						->select(DB::raw('YEAR(anioS) as YEARanioS'),
+								'discapacidades.*',
+								'vacunaciones.*')
+						->where('municipio_id', $id)
+						->where(DB::raw('YEAR(anioS)'), $año1)
+						->get();
+		foreach ($resultados as $resultado) {
+			$id = $resultado->id;
+			$anio = $resultado->YEARanioS;
+			$tasVacBCG = $resultado->tasVacBCG;
+            $tasVacDPT = $resultado->tasVacDPT;
+            $tasVacHepatitisB = $resultado->tasVacHepatitisB;
+            $tasVacHIB = $resultado->tasVacHIB;
+            $tasVacPolio = $resultado->tasVacPolio;
+            $tasVacTripleViral = $resultado->tasVacTripleViral;
+            $difBaMov = $resultado->difBaMov;
+            $difEntApr = $resultado->difEntApr;
+            $difMovCam = $resultado->difMovCam;
+            $difSalirCalle = $resultado->difSalirCalle;
+            $totalDis = $resultado->totalDis;
+
+			if ($tasVacBCG == 0) {
+				$tasVacBCG == "N.D";
+			}
+            if ($tasVacDPT == 0) {
+            	$tasVacDPT == "N.D";
+            }
+            if ($tasVacHepatitisB == 0) {
+            	$tasVacHepatitisB == "N.D";
+            }
+            if ($tasVacHIB == 0) {
+            	$tasVacHIB == "N.D";
+            }
+            if ($tasVacPolio == 0) {
+            	$tasVacPolio == "N.D";
+            }
+            if ($tasVacTripleViral == 0) {
+            	$tasVacTripleViral == "N.D";
+            }
+            if ($difBaMov == 0) {
+            	$difBaMov == "N.D";
+            }
+            if ($difEntApr == 0) {
+            	$difEntApr == "N.D";
+            }
+            if ($difMovCam == 0) {
+            	$difMovCam == "N.D";
+            }
+            if ($difSalirCalle == 0) {
+            	$difSalirCalle == "N.D";
+            }
+            if ($totalDis == 0) {
+            	$totalDis == "N.D";
+            }
+		}
+
+		$data =  [
+            'id' => $id,
+			'anio' => $anio,
+			'tasVacBCG' => $tasVacBCG,
+            'tasVacDPT' => $tasVacDPT,
+            'tasVacHepatitisB' => $tasVacHepatitisB,
+            'tasVacHIB' => $tasVacHIB,
+            'tasVacPolio' => $tasVacPolio,
+            'tasVacTripleViral' => $tasVacTripleViral,
+            'difBaMov' => $difBaMov,
+            'difEntApr' => $difEntApr,
+            'difMovCam' => $difMovCam,
+            'difSalirCalle' => $difSalirCalle,
+            'totalDis' => $totalDis,
+        ];
+
+		$pdf = PDF::loadView('user.pdf.pdfS', compact('data'));
+		return $pdf->stream('Salud.pdf');
+	}
 }

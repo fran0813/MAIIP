@@ -9,7 +9,9 @@ use \Response;
 use App\Departamento;
 use App\Municipio;
 use App\Generalidadterritorio;
+use App\Demografia;
 use App\Viviendaserviciopublico;
+use App\Educacion;
 use App\Salud;
 use App\Seguridadviolencia;
 use App\Economicosocial;
@@ -20,6 +22,11 @@ class UserController extends Controller
     public function index()
 	{
 		return view('user.informacion');
+	}
+
+	public function pdf()
+	{
+		return view('user.pdf');
 	}
 
 	public function establecerDepartamento(Request $request)
@@ -38,9 +45,9 @@ class UserController extends Controller
 	        $departamento_select = $request->session()->get("departamento_select");
 	    }
 
-    	$html .= "<option>Seleccione un departamento</option>";
+    	$html .= "<option value=''>Seleccione un departamento</option>";
 
-     	$departamentos = Departamento::orderBy('departamentos.nombre', 'desc')
+     	$departamentos = Departamento::orderBy('departamentos.nombre', 'asc')
      								->get();
       	foreach ($departamentos as $departamento) {
 	        $id = $departamento->id;
@@ -73,10 +80,10 @@ class UserController extends Controller
 			$municipio_select = $request->session()->get("municipio_select");
 		}
 
-		$html .= "<option>Seleccione un municipio</option>";
+		$html .= "<option value=''>Seleccione un municipio</option>";
 
 		$municipios = Municipio::where('departamento_id', $idDepartamento)
-						->orderBy('municipios.nombre', 'desc')
+						->orderBy('municipios.nombre', 'asc')
 						->get();
 		foreach ($municipios as $municipio) {
 			$id = $municipio->id;
@@ -227,4 +234,151 @@ class UserController extends Controller
 
 		return Response::json(array('html' => $html));
 	}
+
+	// nuevo
+
+	public function mostrarAñoPdfGT(Request $request)
+	{
+		$html = "";
+		$idMunicipio = $_GET['idMunicipio'];
+
+		$html .= "<option value=''>Seleccione desde el año</option>";
+
+		$resultados = Generalidadterritorio::select(DB::raw('YEAR(anioGT) as YEARanioGT'))
+						->where('municipio_id', $idMunicipio)
+						->get();
+		foreach ($resultados as $resultado) {
+			$anio = $resultado->YEARanioGT;
+			$html .= "<option value='$anio'>$anio</option>";
+		};
+
+		return Response::json(array('html' => $html));
+	}
+
+	public function mostrarAñoPdfD(Request $request)
+	{
+		$html = "";
+		$idMunicipio = $_GET['idMunicipio'];
+
+		$html .= "<option value=''>Seleccione desde el año</option>";
+
+		$resultados = Demografia::select(DB::raw('YEAR(anioD) as YEARanioD'))
+						->where('municipio_id', $idMunicipio)
+						->get();
+		foreach ($resultados as $resultado) {
+			$anio = $resultado->YEARanioD;
+			$html .= "<option value='$anio'>$anio</option>";
+		};
+
+		return Response::json(array('html' => $html));
+	}
+
+	public function mostrarAñoPdfVSP(Request $request)
+	{
+		$html = "";
+		$idMunicipio = $_GET['idMunicipio'];
+
+		$html .= "<option value=''>Seleccione desde el año</option>";
+
+		$resultados = Viviendaserviciopublico::select(DB::raw('YEAR(anioVSP) as YEARanioVSP'))
+						->where('municipio_id', $idMunicipio)
+						->get();
+		foreach ($resultados as $resultado) {
+			$anio = $resultado->YEARanioVSP;
+			$html .= "<option value='$anio'>$anio</option>";
+		};
+
+		return Response::json(array('html' => $html));
+	}
+
+	public function mostrarAñoPdfE(Request $request)
+	{
+		$html = "";
+		$idMunicipio = $_GET['idMunicipio'];
+
+		$html .= "<option value=''>Seleccione desde el año</option>";
+
+		$resultados = Educacion::select(DB::raw('YEAR(anioE) as YEARanioE'))
+						->where('municipio_id', $idMunicipio)
+						->get();
+		foreach ($resultados as $resultado) {
+			$anio = $resultado->YEARanioE;
+			$html .= "<option value='$anio'>$anio</option>";
+		};
+
+		return Response::json(array('html' => $html));
+	}
+
+	public function mostrarAñoPdfS(Request $request)
+	{
+		$html = "";
+		$idMunicipio = $_GET['idMunicipio'];
+
+		$html .= "<option value=''>Seleccione desde el año</option>";
+
+		$resultados = Salud::select(DB::raw('YEAR(anioS) as YEARanioS'))
+						->where('municipio_id', $idMunicipio)
+						->get();
+		foreach ($resultados as $resultado) {
+			$anio = $resultado->YEARanioS;
+			$html .= "<option value='$anio'>$anio</option>";
+		};
+
+		return Response::json(array('html' => $html));
+	}
+
+	public function mostrarAñoPdfSV(Request $request)
+	{
+		$html = "";
+		$idMunicipio = $_GET['idMunicipio'];
+
+		$html .= "<option value=''>Seleccione desde el año</option>";
+
+		$resultados = Seguridadviolencia::select(DB::raw('YEAR(anioSV) as YEARanioSV'))
+						->where('municipio_id', $idMunicipio)
+						->get();
+		foreach ($resultados as $resultado) {
+			$anio = $resultado->YEARanioSV;
+			$html .= "<option value='$anio'>$anio</option>";
+		};
+
+		return Response::json(array('html' => $html));
+	}
+
+	public function mostrarAñoPdfES(Request $request)
+	{
+		$html = "";
+		$idMunicipio = $_GET['idMunicipio'];
+
+		$html .= "<option value=''>Seleccione desde el año</option>";
+
+		$resultados = Economicosocial::select(DB::raw('YEAR(anioES) as YEARanioES'))
+						->where('municipio_id', $idMunicipio)
+						->get();
+		foreach ($resultados as $resultado) {
+			$anio = $resultado->YEARanioES;
+			$html .= "<option value='$anio'>$anio</option>";
+		};
+
+		return Response::json(array('html' => $html));
+	}
+
+	public function mostrarAñoPdfF(Request $request)
+	{
+		$html = "";
+		$idMunicipio = $_GET['idMunicipio'];
+
+		$html .= "<option value=''>Seleccione desde el año</option>";
+
+		$resultados = Finanza::select(DB::raw('YEAR(anioF) as YEARanioF'))
+						->where('municipio_id', $idMunicipio)
+						->get();
+		foreach ($resultados as $resultado) {
+			$anio = $resultado->YEARanioF;
+			$html .= "<option value='$anio'>$anio</option>";
+		};
+
+		return Response::json(array('html' => $html));
+	}
+
 }

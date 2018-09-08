@@ -38,15 +38,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="ruralG2" class="text-label">Rural</label>       
-                        <input id="ruralG2" type="number" pattern="[0-9]+" min="0" placeholder="Double" oninput="calcularTotalG2()" class="form-control" required>
+                        <input id="ruralG2" type="number" pattern="[0-9]+" min="0" step="0.00000000000001" placeholder="Double" oninput="calcularTotalG2()" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="urbanoG2" class="text-label">Urbano</label>     
-                        <input id="urbanoG2" type="number" pattern="[0-9]+" min="0" placeholder="Double" oninput="calcularTotalG2()" class="form-control" required>
+                        <input id="urbanoG2" type="number" pattern="[0-9]+" min="0" step="0.00000000000001" placeholder="Double" oninput="calcularTotalG2()" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="totalG2" class="text-label">Total</label>       
-                        <input id="totalG2" type="number" pattern="[0-9]+" min="0" placeholder="Double" disabled class="form-control" required>
+                        <input id="totalG2" type="number" pattern="[0-9]+" min="0" step="0.00000000000001" placeholder="Double" disabled class="form-control" required>
                     </div>
                 </div>
 
@@ -80,15 +80,15 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-left: 0px;">
                                 <label for="terrRural2" class="text-label" >Rural</label>        
-                                <input id="terrRural2" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" oninput="calcularTerrTotal2()" class="form-control" required>
+                                <input id="terrRural2" type="number" pattern="[0-9]+" min="0" step="0.00000000000001" placeholder="Double" oninput="calcularTerrTotal2()" class="form-control" required>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-right: 0px">
                                 <label for="terrUrbano2" class="text-label" >Urbano</label>      
-                                <input id="terrUrbano2" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" oninput="calcularTerrTotal2()" class="form-control" required>
+                                <input id="terrUrbano2" type="number" pattern="[0-9]+" min="0" step="0.00000000000001" placeholder="Double" oninput="calcularTerrTotal2()" class="form-control" required>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px"><br>
                                 <label for="terrTotal2" class="text-label" >Total</label>        
-                                <input id="terrTotal2" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" disabled class="form-control" required>
+                                <input id="terrTotal2" type="number" pattern="[0-9]+" min="0" step="0.00000000000001" placeholder="Double" disabled class="form-control" required>
                             </div>
                         </div>
                 </div>

@@ -14,6 +14,7 @@ use App\Delito;
 use App\Lesion;
 use App\Violencia;
 use App\Municipio;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class SeguridadviolenciaController extends Controller
 {
@@ -982,5 +983,151 @@ class SeguridadviolenciaController extends Controller
           });
       })->export('xls');
     }
+
+    // nuevo
+    public function pdf(Request $request)
+	{
+
+		$año1 = $request->input('date1');
+		$id = $request->input('municipio');
+
+		$resultados = Seguridadviolencia::join('delitosexual', 'seguridadviolencia.id', 'delitosexual.seguridadviolencia_id')
+						->join('lesion', 'seguridadviolencia.id', 'lesion.seguridadviolencia_id')
+						->join('violencia', 'seguridadviolencia.id', 'violencia.seguridadviolencia_id')
+						->select(DB::raw('YEAR(anioSV) as YEARanioSV'),
+							'seguridadviolencia.tasDesEscTot',
+					            'seguridadviolencia.tasHom',
+					            'seguridadviolencia.tasIncDen',
+					            'seguridadviolencia.tasLesPer',
+					            'seguridadviolencia.tasMueAcc',
+					            'seguridadviolencia.tasSui',
+					            'seguridadviolencia.vioInt',
+					            'seguridadviolencia.casTot',
+					            'seguridadviolencia.casTasHom',
+								'delitosexual.*',
+								'lesion.*',
+								'violencia.*')
+						->where('municipio_id', $id)
+						->where(DB::raw('YEAR(anioSV)'), $año1)
+						->get();
+		foreach ($resultados as $resultado) {
+			$id = $resultado->id;
+			$anio = $resultado->YEARanioSV;
+			$tasDesEscTot = $resultado->tasDesEscTot;
+			$tasHom = $resultado->tasHom;
+			$tasIncDen = $resultado->tasIncDen;
+			$tasLesPer = $resultado->tasLesPer;
+			$tasMueAcc = $resultado->tasMueAcc;
+			$tasSui = $resultado->tasSui;
+			$vioInt = $resultado->vioInt;
+			$casTot = $resultado->casTot;
+			$casTasHom = $resultado->casTasHom;
+			$tot = $resultado->tot;
+			$hom = $resultado->hom;
+			$muj = $resultado->muj;
+			$fatTot = $resultado->fatTot;
+			$fatHom = $resultado->fatHom;
+			$fatMuj = $resultado->fatMuj;
+			$noFatTot = $resultado->noFatTot;
+			$noFatHom = $resultado->noFatHom;
+			$noFatMuj = $resultado->noFatMuj;
+			$may = $resultado->may;
+			$otrFam = $resultado->otrFam;
+			$inf = $resultado->inf;
+
+            if ($tasDesEscTot == 0) {
+            	$tasDesEscTot = "N.D";
+            }
+			if ($tasHom == 0) {
+				$tasHom = "N.D";
+			}
+			if ($tasIncDen == 0) {
+				$tasIncDen = "N.D";
+			}
+			if ($tasLesPer == 0) {
+				$tasLesPer = "N.D";
+			}
+			if ($tasMueAcc == 0) {
+				$tasMueAcc = "N.D";
+			}
+			if ($tasSui == 0) {
+				$tasSui = "N.D";
+			}
+			if ($vioInt == 0) {
+				$vioInt = "N.D";
+			}
+			if ($casTot == 0) {
+				$casTot = "N.D";
+			}
+			if ($casTasHom == 0) {
+				$casTasHom = "N.D";
+			}
+			if ($tot == 0) {
+				$tot = "N.D";
+			}
+			if ($hom == 0) {
+				$hom = "N.D";
+			}
+			if ($muj == 0) {
+				$muj = "N.D";
+			}
+			if ($fatTot == 0) {
+				$fatTot = "N.D";
+			}
+			if ($fatHom == 0) {
+				$fatHom = "N.D";
+			}
+			if ($fatMuj == 0) {
+				$fatMuj = "N.D";
+			}
+			if ($noFatTot == 0) {
+				$noFatTot = "N.D";
+			}
+			if ($noFatHom == 0) {
+				$noFatHom = "N.D";
+			}
+			if ($noFatMuj == 0) {
+				$noFatMuj = "N.D";
+			}
+			if ($may == 0) {
+				$may = "N.D";
+			}
+			if ($otrFam == 0) {
+				$otrFam = "N.D";
+			}
+			if ($inf == 0) {
+				$inf = "N.D";
+			}
+		}
+
+		$data =  [
+            'id' => $id,
+			'anio' => $anio,
+			'tasDesEscTot' => $tasDesEscTot,
+			'tasHom' => $tasHom,
+			'tasIncDen' => $tasIncDen,
+			'tasLesPer' => $tasLesPer,
+			'tasMueAcc' => $tasMueAcc,
+			'tasSui' => $tasSui,
+			'vioInt' => $vioInt,
+			'casTot' => $casTot,
+			'casTasHom' => $casTasHom,
+			'tot' => $tot,
+			'hom' => $hom,
+			'muj' => $muj,
+			'fatTot' => $fatTot,
+			'fatHom' => $fatHom,
+			'fatMuj' => $fatMuj,
+			'noFatTot' => $noFatTot,
+			'noFatHom' => $noFatHom,
+			'noFatMuj' => $noFatMuj,
+			'may' => $may,
+			'otrFam' => $otrFam,
+			'inf' => $inf,
+        ];
+
+		$pdf = PDF::loadView('user.pdf.pdfSV', compact('data'));
+		return $pdf->stream('Seguridadviolencia.pdf');
+	}
 
 }

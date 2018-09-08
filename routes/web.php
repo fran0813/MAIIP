@@ -124,6 +124,17 @@ Route::group(['prefix' => '/'], function()
 
 	Route::post('/establecerDepartamento', 'UserController@establecerDepartamento');
 	Route::post('/establecerMunicipio', 'UserController@establecerMunicipio');
+
+	// nuevo
+	Route::get('pdf', 'UserController@pdf');
+	Route::get('mostrarAñoPdfGT', 'UserController@mostrarAñoPdfGT');
+	Route::get('mostrarAñoPdfD', 'UserController@mostrarAñoPdfD');
+	Route::get('mostrarAñoPdfVSP', 'UserController@mostrarAñoPdfVSP');
+	Route::get('mostrarAñoPdfE', 'UserController@mostrarAñoPdfE');
+	Route::get('mostrarAñoPdfS', 'UserController@mostrarAñoPdfS');
+	Route::get('mostrarAñoPdfSV', 'UserController@mostrarAñoPdfSV');
+	Route::get('mostrarAñoPdfES', 'UserController@mostrarAñoPdfES');
+	Route::get('mostrarAñoPdfF', 'UserController@mostrarAñoPdfF');
 });
 
 Route::group(['prefix' => 'generalidadesterritorio'], function(){
@@ -133,6 +144,9 @@ Route::group(['prefix' => 'generalidadesterritorio'], function(){
 	Route::post('/crearGeneralidadesterritorio', 'GeneralidadesterritorioController@crearGeneralidadesterritorio')->middleware('auth');
 	Route::post('/mostrarActualizarGeneralidadesterritorio', 'GeneralidadesterritorioController@mostrarActualizarGeneralidadesterritorio')->middleware('auth');
 	Route::get('/mostrarGeneralidadesterritorio', 'GeneralidadesterritorioController@mostrarGeneralidadesterritorio');
+
+	// nuevo
+	Route::get('/pdf', 'GeneralidadesterritorioController@pdf');
 });
 
 Route::group(['prefix' => 'demografia'], function(){
@@ -146,6 +160,9 @@ Route::group(['prefix' => 'demografia'], function(){
 	Route::get('/grafica2Demografia', 'DemografiaController@grafica2Demografia');
 	Route::post('/mostrarActualizarDemografia', 'DemografiaController@mostrarActualizarDemografia')->middleware('auth');
 	Route::get('/mostrarDemografia', 'DemografiaController@mostrarDemografia');
+
+	// nuevo
+	Route::get('/pdf', 'DemografiaController@pdf');
 });
 
 Route::group(['prefix' => 'viviendaserviciospublicos'], function(){
@@ -157,6 +174,9 @@ Route::group(['prefix' => 'viviendaserviciospublicos'], function(){
 	Route::get('/grafica2Viviendaserviciospublicos', 'ViviendaserviciospublicosController@grafica2Viviendaserviciospublicos');
 	Route::post('/mostrarActualizarViviendaserviciospublicos', 'ViviendaserviciospublicosController@mostrarActualizarViviendaserviciospublicos')->middleware('auth');
 	Route::get('/mostrarViviendaserviciospublicos', 'ViviendaserviciospublicosController@mostrarViviendaserviciospublicos');
+
+	// nuevo
+	Route::get('/pdf', 'ViviendaserviciospublicosController@pdf');
 });
 
 Route::group(['prefix' => 'salud'], function(){
@@ -168,6 +188,9 @@ Route::group(['prefix' => 'salud'], function(){
 	Route::get('/grafica2Salud', 'SaludController@grafica2Salud');
 	Route::post('/mostrarActualizarSalud', 'SaludController@mostrarActualizarSalud')->middleware('auth');
 	Route::get('/mostrarSalud', 'SaludController@mostrarSalud');
+
+	// nuevo
+	Route::get('/pdf', 'SaludController@pdf');
 });
 
 Route::group(['prefix' => 'educacion'], function(){
@@ -179,6 +202,9 @@ Route::group(['prefix' => 'educacion'], function(){
 	Route::get('/grafica2Educacion', 'EducacionController@grafica2Educacion');
 	Route::post('/mostrarActualizarEducacion', 'EducacionController@mostrarActualizarEducacion')->middleware('auth');
 	Route::get('/mostrarEducacion', 'EducacionController@mostrarEducacion');
+
+	// nuevo
+	Route::get('/pdf', 'EducacionController@pdf');
 });
 
 Route::group(['prefix' => 'seguridadviolencia'], function(){
@@ -189,6 +215,9 @@ Route::group(['prefix' => 'seguridadviolencia'], function(){
 	Route::get('/grafica1Seguridadviolencia', 'SeguridadviolenciaController@grafica1Seguridadviolencia');
 	Route::post('/mostrarActualizarSeguridadviolencia', 'SeguridadviolenciaController@mostrarActualizarSeguridadviolencia')->middleware('auth');
 	Route::get('/mostrarSeguridadviolencia', 'SeguridadviolenciaController@mostrarSeguridadviolencia');
+
+	// nuevo
+	Route::get('/pdf', 'SeguridadviolenciaController@pdf');
 });
 
 Route::group(['prefix' => 'economicosocial'], function(){
@@ -200,6 +229,9 @@ Route::group(['prefix' => 'economicosocial'], function(){
 	Route::get('/grafica2Economicosocial', 'EconomicosocialController@grafica2Economicosocial');
 	Route::post('/mostrarActualizarEconomicosocial', 'EconomicosocialController@mostrarActualizarEconomicosocial')->middleware('auth');
 	Route::get('/mostrarEconomicosocial', 'EconomicosocialController@mostrarEconomicosocial');
+
+	// nuevo
+	Route::get('/pdf', 'EconomicosocialController@pdf');
 });
 
 Route::group(['prefix' => 'finanza'], function(){
@@ -212,6 +244,9 @@ Route::group(['prefix' => 'finanza'], function(){
 	Route::get('/grafica3Finanza', 'FinanzaController@grafica3Finanza');
 	Route::post('/mostrarActualizarFinanza', 'FinanzaController@mostrarActualizarFinanza')->middleware('auth');
 	Route::get('/mostrarFinanza', 'FinanzaController@mostrarFinanza');
+
+	// nuevo
+	Route::get('/pdf', 'FinanzaController@pdf');
 });
 
 Route::group(['prefix' => 'tabla'], function(){
@@ -223,4 +258,16 @@ Route::group(['prefix' => 'tabla'], function(){
 	Route::get('seguridadviolencia', 'TableController@seguridadviolencia');
 	Route::get('economicosocial', 'TableController@economicosocial');
 	Route::get('finanza', 'TableController@finanza');
+});
+
+// nuevo
+Route::group(['prefix' => 'pdf'], function(){
+	Route::get('generalidadesterritorio', 'TableController@pdfgeneralidadesterritorio');
+	Route::get('demografia', 'TableController@pdfdemografia');
+	Route::get('viviendaserviciospublicos', 'TableController@pdfviviendasserviciospublicos');
+	Route::get('salud', 'TableController@pdfsalud');
+	Route::get('educacion', 'TableController@pdfeducacion');
+	Route::get('seguridadviolencia', 'TableController@pdfseguridadviolencia');
+	Route::get('economicosocial', 'TableController@pdfeconomicosocial');
+	Route::get('finanza', 'TableController@pdffinanza');
 });

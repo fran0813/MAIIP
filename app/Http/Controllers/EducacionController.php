@@ -13,6 +13,7 @@ use App\Educacion;
 use App\Matriculaporgenero;
 use App\Matriculapornivel;
 use App\Municipio;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class EducacionController extends Controller
 {
@@ -401,6 +402,10 @@ $html .= "<div class='col-sm-12 col-md-12 col-lg-12 table-wrapper-scroll-x' styl
 		foreach ($resultados as $resultado) {
 			$rurJardin = $resultado->rurJardin;
 
+			if ($rurJardin == 0) {
+				$rurJardin = "N.D";
+			}
+
 			$html .= "<td>$rurJardin</td>";
 
 		};
@@ -411,6 +416,10 @@ $html .= "<div class='col-sm-12 col-md-12 col-lg-12 table-wrapper-scroll-x' styl
 
 		foreach ($resultados as $resultado) {
 			$urbJardin = $resultado->urbJardin;
+
+			if ($urbJardin == 0) {
+				$urbJardin = "N.D";
+			}
 
 			$html .= "<td>$urbJardin</td>";
 
@@ -423,6 +432,10 @@ $html .= "<div class='col-sm-12 col-md-12 col-lg-12 table-wrapper-scroll-x' styl
 		foreach ($resultados as $resultado) {
 			$rurTrans = $resultado->rurTrans;
 
+			if ($rurTrans == 0) {
+				$rurTrans = "N.D";
+			}
+
 			$html .= "<td>$rurTrans</td>";
 
 		};
@@ -433,6 +446,10 @@ $html .= "<div class='col-sm-12 col-md-12 col-lg-12 table-wrapper-scroll-x' styl
 
 		foreach ($resultados as $resultado) {
 			$urbTrans = $resultado->urbTrans;
+
+			if ($urbTrans == 0) {
+				$urbTrans = "N.D";
+			}
 
 			$html .= "<td>$urbTrans</td>";
 
@@ -445,6 +462,10 @@ $html .= "<div class='col-sm-12 col-md-12 col-lg-12 table-wrapper-scroll-x' styl
 		foreach ($resultados as $resultado) {
 			$rurPrim = $resultado->rurPrim;
 
+			if ($rurPrim == 0) {
+				$rurPrim = "N.D";
+			}
+
 			$html .= "<td>$rurPrim</td>";
 		};
 
@@ -454,6 +475,10 @@ $html .= "<div class='col-sm-12 col-md-12 col-lg-12 table-wrapper-scroll-x' styl
 
 		foreach ($resultados as $resultado) {
 			$urbPrim = $resultado->urbPrim;
+
+			if ($urbPrim == 0) {
+				$urbPrim = "N.D";
+			}
 
 			$html .= "<td>$urbPrim</td>";
 
@@ -466,6 +491,10 @@ $html .= "<div class='col-sm-12 col-md-12 col-lg-12 table-wrapper-scroll-x' styl
 		foreach ($resultados as $resultado) {
 			$rurSecu = $resultado->rurSecu;
 
+			if ($rurSecu == 0) {
+				$rurSecu = "N.D";
+			}
+
 			$html .= "<td>$rurSecu</td>";
 
 		};
@@ -476,6 +505,10 @@ $html .= "<div class='col-sm-12 col-md-12 col-lg-12 table-wrapper-scroll-x' styl
 
 		foreach ($resultados as $resultado) {
 			$urbSecu = $resultado->urbSecu;
+
+			if ($urbSecu == 0) {
+				$urbSecu = "N.D";
+			}
 
 			$html .= "<td>$urbSecu</td>";
 
@@ -488,6 +521,10 @@ $html .= "<div class='col-sm-12 col-md-12 col-lg-12 table-wrapper-scroll-x' styl
 		foreach ($resultados as $resultado) {
 			$rurMedia = $resultado->rurMedia;
 
+			if ($rurMedia == 0) {
+				$rurMedia = "N.D";
+			}
+
 			$html .= "<td>$rurMedia</td>";
 
 		};
@@ -498,6 +535,10 @@ $html .= "<div class='col-sm-12 col-md-12 col-lg-12 table-wrapper-scroll-x' styl
 
 		foreach ($resultados as $resultado) {
 			$urbMedia = $resultado->urbMedia;
+
+			if ($urbMedia == 0) {
+				$urbMedia = "N.D";
+			}
 
 			$html .= "<td>$urbMedia</td>";
 
@@ -534,6 +575,10 @@ $html .="</div>";
 		foreach ($resultados as $resultado) {
 			$jardin = $resultado->jardin;
 
+			if ($jardin == 0) {
+				$jardin = "N.D";
+			}
+
 			$html .= "<td>$jardin</td>";
 
 		};
@@ -544,6 +589,10 @@ $html .="</div>";
 
 		foreach ($resultados as $resultado) {
 			$trans = $resultado->trans;
+
+			if ($trans == 0) {
+				$trans = "N.D";
+			}
 
 			$html .= "<td>$trans</td>";
 
@@ -557,6 +606,10 @@ $html .="</div>";
 		foreach ($resultados as $resultado) {
 			$prim = $resultado->prim;
 
+			if ($prim == 0) {
+				$prim = "N.D";
+			}
+
 			$html .= "<td>$prim</td>";
 
 		};
@@ -568,6 +621,10 @@ $html .="</div>";
 		foreach ($resultados as $resultado) {
 			$secu = $resultado->secu;
 
+			if ($secu == 0) {
+				$secu = "N.D";
+			}
+
 			$html .= "<td>$secu</td>";
 
 		};
@@ -578,6 +635,10 @@ $html .="</div>";
 
 		foreach ($resultados as $resultado) {
 			$media = $resultado->media;
+
+			if ($media == 0) {
+				$media = "N.D";
+			}
 
 			$html .= "<td>$media</td>";
 
@@ -613,6 +674,10 @@ $html .="</div>";
 		foreach ($resultados as $resultado) {
 			$femenino = $resultado->femenino;
 
+			if ($femenino == 0) {
+				$femenino = "N.D";
+			}
+
 			$html .= "<td>$femenino</td>";
 
 		};
@@ -623,6 +688,10 @@ $html .="</div>";
 
 		foreach ($resultados as $resultado) {
 			$masculino = $resultado->masculino;
+
+			if ($masculino == 0) {
+				$masculino = "N.D";
+			}
 
 			$html .= "<td>$masculino</td>";
 
@@ -877,5 +946,130 @@ $html .="</div>";
           });
       })->export('xls');
     }
+
+    // nuevo
+    public function pdf(Request $request)
+	{
+
+		$año1 = $request->input('date1');
+		$id = $request->input('municipio');
+
+		$resultados = Educacion::join('matriculaporgenero', 'educacion.id', 'matriculaporgenero.educacion_id')
+						->join('matriculapornivel', 'educacion.id', 'matriculapornivel.educacion_id')
+						->select(DB::raw('YEAR(anioE) as YEARanioE'),
+								'educacion.rurJardin',
+								'educacion.urbJardin',
+								'educacion.rurTrans',
+								'educacion.urbTrans',
+								'educacion.rurPrim',
+								'educacion.urbPrim',
+								'educacion.rurSecu',
+								'educacion.urbSecu',
+								'educacion.rurMedia',
+								'educacion.urbMedia',
+								'matriculaporgenero.*',
+								'matriculapornivel.*')
+						->where('municipio_id', $id)
+						->where(DB::raw('YEAR(anioE)'), $año1)
+						->get();
+		foreach ($resultados as $resultado) {
+			$id = $resultado->id;
+			$anio = $resultado->YEARanioE;
+			$rurJardin = $resultado->rurJardin;
+			$urbJardin = $resultado->urbJardin;
+			$rurTrans = $resultado->rurTrans;
+			$urbTrans = $resultado->urbTrans;
+			$rurPrim = $resultado->rurPrim;
+			$urbPrim = $resultado->urbPrim;
+			$rurSecu = $resultado->rurSecu;
+			$urbSecu = $resultado->urbSecu;
+			$rurMedia = $resultado->rurMedia;
+			$urbMedia = $resultado->urbMedia;
+			$jardin = $resultado->jardin;
+			$trans = $resultado->trans;
+			$prim = $resultado->prim;
+			$secu = $resultado->secu;
+			$media = $resultado->media;
+			$femenino = $resultado->femenino;
+			$masculino = $resultado->masculino;
+
+			if ($rurJardin == 0) {
+				$rurJardin = "N.D";
+			}
+			if ($urbJardin == 0) {
+				$urbJardin = "N.D";
+			}
+			if ($rurTrans == 0) {
+				$rurTrans = "N.D";
+			}
+			if ($urbTrans == 0) {
+				$urbTrans = "N.D";
+			}
+			if ($rurPrim == 0) {
+				$rurPrim = "N.D";
+			}
+			if ($urbPrim == 0) {
+				$urbPrim = "N.D";
+			}
+			if ($rurSecu == 0) {
+				$rurSecu = "N.D";
+			}
+			if ($urbSecu == 0) {
+				$urbSecu = "N.D";
+			}
+			if ($rurMedia == 0) {
+				$rurMedia = "N.D";
+			}
+			if ($urbMedia == 0) {
+				$urbMedia = "N.D";
+			}
+			if ($jardin == 0) {
+				$jardin = "N.D";
+			}
+			if ($trans == 0) {
+				$trans = "N.D";
+			}
+			if ($prim == 0) {
+				$prim = "N.D";
+			}
+			if ($secu == 0) {
+				$secu = "N.D";
+			}
+			if ($media == 0) {
+				$media = "N.D";
+			}
+			if ($femenino == 0) {
+				$femenino = "N.D";
+			}
+			if ($masculino == 0) {
+				$masculino = "N.D";
+			}
+		}
+
+		$data =  [
+            'id' => $id,
+			'anio' => $anio,
+			'rurJardin' =>  $rurJardin,
+			'urbJardin' =>  $urbJardin,
+			'rurTrans' =>  $rurTrans,
+			'urbTrans' =>  $urbTrans,
+			'rurPrim' =>  $rurPrim,
+			'urbPrim' =>  $urbPrim,
+			'rurSecu' =>  $rurSecu,
+			'urbSecu' =>  $urbSecu,
+			'rurMedia' =>  $rurMedia,
+			'urbMedia' =>  $urbMedia,
+			'jardin' =>  $jardin,
+			'trans' =>  $trans,
+			'prim' =>  $prim,
+			'secu' =>  $secu,
+			'media' =>  $media,
+			'femenino' =>  $femenino,
+			'masculino' =>  $masculino,
+        ];
+
+		$pdf = PDF::loadView('user.pdf.pdfE', compact('data'));
+		return $pdf->stream('Educacion.pdf');
+	}
 
 }

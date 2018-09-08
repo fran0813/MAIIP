@@ -13,6 +13,7 @@ use App\Economicosocial;
 use App\Unidadcomercial;
 use App\Indicepobrezamultidimensional;
 use App\Municipio;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class EconomicosocialController extends Controller
 {
@@ -570,6 +571,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$uniCom = $resultado->uniCom;
 
+			if ($uniCom == 0) {
+	        	$uniCom = "N.D";
+	        }
+
 			$html .= "<td>$uniCom</td>";
 
 		};
@@ -580,6 +585,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$uniSer = $resultado->uniSer;
+
+			if ($uniSer == 0) {
+	        	$uniSer = "N.D";
+	        }
 
 			$html .= "<td>$uniSer</td>";
 
@@ -592,6 +601,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$uniGraCom = $resultado->uniGraCom;
 
+			if ($uniGraCom == 0) {
+	        	$uniGraCom = "N.D";
+	        }
+
 			$html .= "<td>$uniGraCom</td>";
 
 		};
@@ -602,6 +615,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$uniGraInd = $resultado->uniGraInd;
+
+			if ($uniGraInd == 0) {
+	        	$uniGraInd = "N.D";
+	        }
 
 			$html .= "<td>$uniGraInd</td>";
 
@@ -614,6 +631,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$uniGraSer = $resultado->uniGraSer;
 
+			if ($uniGraSer == 0) {
+	        	$uniGraSer = "N.D";
+	        }
+
 			$html .= "<td>$uniGraSer</td>";
 
 		};
@@ -624,6 +645,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$uniInd = $resultado->uniInd;
+
+			if ($uniInd == 0) {
+	        	$uniInd = "N.D";
+	        }
 
 			$html .= "<td>$uniInd</td>";
 
@@ -636,6 +661,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$uniMedCom = $resultado->uniMedCom;
 
+			if ($uniMedCom == 0) {
+	        	$uniMedCom = "N.D";
+	        }
+
 			$html .= "<td>$uniMedCom</td>";
 
 		};
@@ -646,6 +675,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$uniMedInd = $resultado->uniMedInd;
+
+			if ($uniMedInd == 0) {
+	        	$uniMedInd = "N.D";
+	        }
 
 			$html .= "<td>$uniMedInd</td>";
 
@@ -658,6 +691,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$uniMedSer = $resultado->uniMedSer;
 
+			if ($uniMedSer == 0) {
+	        	$uniMedSer = "N.D";
+	        }
+
 			$html .= "<td>$uniMedSer</td>";
 
 		};
@@ -668,6 +705,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$uniMicCom = $resultado->uniMicCom;
+
+			if ($uniMicCom == 0) {
+	        	$uniMicCom = "N.D";
+	        }
 
 			$html .= "<td>$uniMicCom</td>";
 
@@ -680,6 +721,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$uniMicInd = $resultado->uniMicInd;
 
+			if ($uniMicInd == 0) {
+	        	$uniMicInd = "N.D";
+	        }
+
 			$html .= "<td>$uniMicInd</td>";
 
 		};
@@ -690,6 +735,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$uniMicSer = $resultado->uniMicSer;
+
+			if ($uniMicSer == 0) {
+	        	$uniMicSer = "N.D";
+	        }
 
 			$html .= "<td>$uniMicSer</td>";
 
@@ -702,6 +751,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$uniPeqCom = $resultado->uniPeqCom;
 
+			if ($uniPeqCom == 0) {
+	        	$uniPeqCom = "N.D";
+	        }
+
 			$html .= "<td>$uniPeqCom</td>";
 
 		};
@@ -713,6 +766,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$uniPeqInd = $resultado->uniPeqInd;
 
+			if ($uniPeqInd == 0) {
+	        	$uniPeqInd = "N.D";
+	        }
+
 			$html .= "<td>$uniPeqInd</td>";
 
 		};
@@ -723,6 +780,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$uniPeqSer = $resultado->uniPeqSer;
+
+			if ($uniPeqSer == 0) {
+	        	$uniPeqSer = "N.D";
+	        }
 
 			$html .= "<td>$uniPeqSer</td>";
 
@@ -750,6 +811,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$altTasDepEco = $resultado->altTasDepEco;
 
+			if ($altTasDepEco == 0) {
+	        	$altTasDepEco = "N.D";
+	        }
+
 			$html .= "<td>$altTasDepEco</td>";
 
 		};
@@ -761,6 +826,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$ana = $resultado->ana;
 
+			if ($ana == 0) {
+	        	$ana = "N.D";
+	        }
+
 			$html .= "<td>$ana</td>";
 		};
 
@@ -770,6 +839,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$bajLogEdu = $resultado->bajLogEdu;
+
+			if ($bajLogEdu == 0) {
+	        	$bajLogEdu = "N.D";
+	        }
 
 			$html .= "<td>$bajLogEdu</td>";
 		};
@@ -781,6 +854,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$barAccSerSal = $resultado->barAccSerSal;
 
+			if ($barAccSerSal == 0) {
+	        	$barAccSerSal = "N.D";
+	        }
+
 			$html .= "<td>$barAccSerSal</td>";
 		};
 
@@ -790,6 +867,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$barAccSerCiu = $resultado->barAccSerCiu;
+
+			if ($barAccSerCiu == 0) {
+	        	$barAccSerCiu = "N.D";
+	        }
 
 			$html .= "<td>$barAccSerCiu</td>";
 		};
@@ -801,6 +882,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$empInf = $resultado->empInf;
 
+			if ($empInf == 0) {
+	        	$empInf = "N.D";
+	        }
+
 			$html .= "<td>$empInf</td>";
 		};
 
@@ -810,6 +895,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$hac = $resultado->hac;
+
+			if ($hac == 0) {
+	        	$hac = "N.D";
+	        }
 
 			$html .= "<td>$hac</td>";
 		};
@@ -821,6 +910,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$inaEliExc = $resultado->inaEliExc;
 
+			if ($inaEliExc == 0) {
+	        	$inaEliExc = "N.D";
+	        }
+
 			$html .= "<td>$inaEliExc</td>";
 		};
 
@@ -830,6 +923,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$inaEsc = $resultado->inaEsc;
+
+			if ($inaEsc == 0) {
+	        	$inaEsc = "N.D";
+	        }
 
 			$html .= "<td>$inaEsc</td>";
 		};
@@ -841,6 +938,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$parIna = $resultado->parIna;
 
+			if ($parIna == 0) {
+	        	$parIna = "N.D";
+	        }
+
 			$html .= "<td>$parIna</td>";
 		};
 
@@ -850,6 +951,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$pisIna = $resultado->pisIna;
+
+			if ($pisIna == 0) {
+	        	$pisIna = "N.D";
+	        }
 
 			$html .= "<td>$pisIna</td>";
 		};
@@ -861,6 +966,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$rezEsc = $resultado->rezEsc;
 
+			if ($rezEsc == 0) {
+	        	$rezEsc = "N.D";
+	        }
+
 			$html .= "<td>$rezEsc</td>";
 		};
 
@@ -870,6 +979,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$sinAccFueAgMej = $resultado->sinAccFueAgMej;
+
+			if ($sinAccFueAgMej == 0) {
+	        	$sinAccFueAgMej = "N.D";
+	        }
 
 			$html .= "<td>$sinAccFueAgMej</td>";
 		};
@@ -881,6 +994,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$sinAseSal = $resultado->sinAseSal;
 
+			if ($sinAseSal == 0) {
+	        	$sinAseSal = "N.D";
+	        }
+
 			$html .= "<td>$sinAseSal</td>";
 		};
 
@@ -890,6 +1007,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$traInf = $resultado->traInf;
+
+			if ($traInf == 0) {
+	        	$traInf = "N.D";
+	        }
 
 			$html .= "<td>$traInf</td>";
 		};
@@ -917,6 +1038,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$numHecSemBos = $resultado->numHecSemBos;
 
+			if ($numHecSemBos == 0) {
+	        	$numHecSemBos = "N.D";
+	        }
+
 			$html .= "<td>$numHecSemBos</td>";
 
 		};
@@ -928,6 +1053,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$areAgrCosTot = $resultado->areAgrCosTot;
 
+			if ($areAgrCosTot == 0) {
+	        	$areAgrCosTot = "N.D";
+	        }
+
 			$html .= "<td>$areAgrCosTot</td>";
 		}
 
@@ -937,6 +1066,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$proAgrTot = $resultado->proAgrTot;
+
+			if ($proAgrTot == 0) {
+	        	$proAgrTot = "N.D";
+	        }
 
 			$html .= "<td>$proAgrTot</td>";
 		}
@@ -948,6 +1081,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$proCar = $resultado->proCar;
 
+			if ($traInf == 0) {
+	        	$traInf = "N.D";
+	        }
+
 			$html .= "<td>$proCar</td>";
 		}
 
@@ -957,6 +1094,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$invBovTotMac = $resultado->invBovTotMac;
+
+			if ($invBovTotMac == 0) {
+	        	$invBovTotMac = "N.D";
+	        }
 
 			$html .= "<td>$invBovTotMac</td>";
 		}
@@ -968,6 +1109,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$invBovTotHem = $resultado->invBovTotHem;
 
+			if ($invBovTotHem == 0) {
+	        	$invBovTotHem = "N.D";
+	        }
+
 			$html .= "<td>$invBovTotHem</td>";
 		}
 
@@ -977,6 +1122,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$invBovTot = $resultado->invBovTot;
+
+			if ($invBovTot == 0) {
+	        	$invBovTot = "N.D";
+	        }
 
 			$html .= "<td>$invBovTot</td>";
 		}
@@ -988,6 +1137,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$incIpmTot = $resultado->incIpmTot;
 
+			if ($incIpmTot == 0) {
+	        	$incIpmTot = "N.D";
+	        }
+
 			$html .= "<td>$incIpmTot</td>";
 		}
 
@@ -998,6 +1151,10 @@ class EconomicosocialController extends Controller
 		foreach ($resultados as $resultado) {
 			$incIpmUrb = $resultado->incIpmUrb;
 
+			if ($incIpmUrb == 0) {
+	        	$incIpmUrb = "N.D";
+	        }
+
 			$html .= "<td>$incIpmUrb</td>";
 		}
 
@@ -1007,6 +1164,10 @@ class EconomicosocialController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$incIpmRur = $resultado->incIpmRur;
+
+			if ($incIpmRur == 0) {
+	        	$incIpmRur = "N.D";
+	        }
 
 			$html .= "<td>$incIpmRur</td>";
 		}
@@ -1292,6 +1453,247 @@ class EconomicosocialController extends Controller
           });
       })->export('xls');
     }
+
+    // nuevo
+    public function pdf(Request $request)
+	{
+
+		$año1 = $request->input('date1');
+		$id = $request->input('municipio');
+
+		$resultados = Economicosocial::join('unidadcomercial', 'economicosocial.id', 'unidadcomercial.economicosocial_id')
+			->join('indicepobrezamultidimensional', 'economicosocial.id', 'indicepobrezamultidimensional.economicosocial_id')
+			->select('economicosocial.id',
+					DB::raw('YEAR(anioES) as YEARanioES'),
+					'numHecSemBos',
+			        'areAgrCosTot',
+			        'proAgrTot',
+			        'proCar',
+			        'invBovTotMac',
+			        'invBovTotHem',
+			        'invBovTot',
+			        'incIpmTot',
+			        'incIpmRur',
+			        'incIpmUrb',
+					'unidadcomercial.*',
+					'indicepobrezamultidimensional.*')
+						->where('municipio_id', $id)
+						->where(DB::raw('YEAR(anioES)'), $año1)
+						->get();
+		foreach ($resultados as $resultado) {
+			$id = $resultado->id;
+			$anio = $resultado->YEARanioES;
+			$numHecSemBos = $resultado->numHecSemBos;
+	        $areAgrCosTot = $resultado->areAgrCosTot;
+	        $proAgrTot = $resultado->proAgrTot;
+	        $proCar = $resultado->proCar;
+	        $invBovTotMac = $resultado->invBovTotMac;
+	        $invBovTotHem = $resultado->invBovTotHem;
+	        $invBovTot = $resultado->invBovTot;
+	        $incIpmTot = $resultado->incIpmTot;
+	        $incIpmRur = $resultado->incIpmRur;
+	        $incIpmUrb = $resultado->incIpmUrb;
+	        $uniCom = $resultado->uniCom;
+	        $uniSer = $resultado->uniSer;
+	        $uniGraCom = $resultado->uniGraCom;
+	        $uniGraInd = $resultado->uniGraInd;
+	        $uniGraSer = $resultado->uniGraSer;
+	        $uniInd = $resultado->uniInd;
+	        $uniMedCom = $resultado->uniMedCom;
+	        $uniMedInd = $resultado->uniMedInd;
+	        $uniMedSer = $resultado->uniMedSer;
+	        $uniMicCom = $resultado->uniMicCom;
+	        $uniMicInd = $resultado->uniMicInd;
+	        $uniMicSer = $resultado->uniMicSer;
+	        $uniPeqCom = $resultado->uniPeqCom;
+	        $uniPeqInd = $resultado->uniPeqInd;
+	        $uniPeqSer = $resultado->uniPeqSer;
+	        $altTasDepEco = $resultado->altTasDepEco;
+	        $ana = $resultado->ana;
+	        $bajLogEdu = $resultado->bajLogEdu;
+	        $barAccSerSal = $resultado->barAccSerSal;
+	        $barAccSerCiu = $resultado->barAccSerCiu;
+	        $empInf = $resultado->empInf;
+	        $hac = $resultado->hac;
+	        $inaEliExc = $resultado->inaEliExc;
+	        $inaEsc = $resultado->inaEsc;
+	        $parIna = $resultado->parIna;
+	        $pisIna = $resultado->pisIna;
+	        $rezEsc = $resultado->rezEsc;
+	        $sinAccFueAgMej = $resultado->sinAccFueAgMej;
+	        $sinAseSal = $resultado->sinAseSal;
+	        $traInf = $resultado->traInf;
+
+			if ($numHecSemBos == 0) {
+				$numHecSemBos = "N.D";
+			}
+	        if ($areAgrCosTot == 0) {
+	        	$areAgrCosTot = "N.D";
+	        }
+	        if ($proAgrTot == 0) {
+	        	$proAgrTot = "N.D";
+	        }
+	        if ($proCar == 0) {
+	        	$proCar = "N.D";
+	        }
+	        if ($invBovTotMac == 0) {
+	        	$invBovTotMac = "N.D";
+	        }
+	        if ($invBovTotHem == 0) {
+	        	$invBovTotHem = "N.D";
+	        }
+	        if ($invBovTot == 0) {
+	        	$invBovTot = "N.D";
+	        }
+	        if ($incIpmTot == 0) {
+	        	$incIpmTot = "N.D";
+	        }
+	        if ($incIpmRur == 0) {
+	        	$incIpmRur = "N.D";
+	        }
+	        if ($incIpmUrb == 0) {
+	        	$incIpmUrb = "N.D";
+	        }
+	        if ($uniCom == 0) {
+	        	$uniCom = "N.D";
+	        }
+	        if ($uniSer == 0) {
+	        	$uniSer = "N.D";
+	        }
+	        if ($uniGraCom == 0) {
+	        	$uniGraCom = "N.D";
+	        }
+	        if ($uniGraInd == 0) {
+	        	$uniGraInd = "N.D";
+	        }
+	        if ($uniGraSer == 0) {
+	        	$uniGraSer = "N.D";
+	        }
+	        if ($uniInd == 0) {
+	        	$uniInd = "N.D";
+	        }
+	        if ($uniMedCom == 0) {
+	        	$uniMedCom = "N.D";
+	        }
+	        if ($uniMedInd == 0) {
+	        	$uniMedInd = "N.D";
+	        }
+	        if ($uniMedSer == 0) {
+	        	$uniMedSer = "N.D";
+	        }
+	        if ($uniMicCom == 0) {
+	        	$uniMicCom = "N.D";
+	        }
+	        if ($uniMicInd == 0) {
+	        	$uniMicInd = "N.D";
+	        }
+	        if ($uniMicSer == 0) {
+	        	$uniMicSer = "N.D";
+	        }
+	        if ($uniPeqCom == 0) {
+	        	$uniPeqCom = "N.D";
+	        }
+	        if ($uniPeqInd == 0) {
+	        	$uniPeqInd = "N.D";
+	        }
+	        if ($uniPeqSer == 0) {
+	        	$uniPeqSer = "N.D";
+	        }
+	        if ($altTasDepEco == 0) {
+	        	$altTasDepEco = "N.D";
+	        }
+	        if ($ana == 0) {
+	        	$ana = "N.D";
+	        }
+	        if ($bajLogEdu == 0) {
+	        	$bajLogEdu = "N.D";
+	        }
+	        if ($barAccSerSal == 0) {
+	        	$barAccSerSal = "N.D";
+	        }
+	        if ($barAccSerCiu == 0) {
+	        	$barAccSerCiu = "N.D";
+	        }
+	        if ($empInf == 0) {
+	        	$empInf = "N.D";
+	        }
+	        if ($hac == 0) {
+	        	$hac = "N.D";
+	        }
+	        if ($inaEliExc == 0) {
+	        	$inaEliExc = "N.D";
+	        }
+	        if ($inaEsc == 0) {
+	        	$inaEsc = "N.D";
+	        }
+	        if ($parIna == 0) {
+	        	$parIna = "N.D";
+	        }
+	        if ($pisIna == 0) {
+	        	$pisIna = "N.D";
+	        }
+	        if ($rezEsc == 0) {
+	        	$rezEsc = "N.D";
+	        }
+	        if ($sinAccFueAgMej == 0) {
+	        	$sinAccFueAgMej = "N.D";
+	        }
+	        if ($sinAseSal == 0) {
+	        	$sinAseSal = "N.D";
+	        }
+	        if ($traInf == 0) {
+	        	$traInf = "N.D";
+	        }
+		}
+
+		$data =  [
+            'id' => $id,
+			'anio' => $anio,
+			'numHecSemBos' => $numHecSemBos,
+	        'areAgrCosTot' => $areAgrCosTot,
+	        'proAgrTot' => $proAgrTot,
+	        'proCar' => $proCar,
+	        'invBovTotMac' => $invBovTotMac,
+	        'invBovTotHem' => $invBovTotHem,
+	        'invBovTot' => $invBovTot,
+	        'incIpmTot' => $incIpmTot,
+	        'incIpmRur' => $incIpmRur,
+	        'incIpmUrb' => $incIpmUrb,
+	        'uniCom' => $uniCom,
+	        'uniSer' => $uniSer,
+	        'uniGraCom' => $uniGraCom,
+	        'uniGraInd' => $uniGraInd,
+	        'uniGraSer' => $uniGraSer,
+	        'uniInd' => $uniInd,
+	        'uniMedCom' => $uniMedCom,
+	        'uniMedInd' => $uniMedInd,
+	        'uniMedSer' => $uniMedSer,
+	        'uniMicCom' => $uniMicCom,
+	        'uniMicInd' => $uniMicInd,
+	        'uniMicSer' => $uniMicSer,
+	        'uniPeqCom' => $uniPeqCom,
+	        'uniPeqInd' => $uniPeqInd,
+	        'uniPeqSer' => $uniPeqSer,
+	        'altTasDepEco' => $altTasDepEco,
+	        'ana' => $ana,
+	        'bajLogEdu' => $bajLogEdu,
+	        'barAccSerSal' => $barAccSerSal,
+	        'barAccSerCiu' => $barAccSerCiu,
+	        'empInf' => $empInf,
+	        'hac' => $hac,
+	        'inaEliExc' => $inaEliExc,
+	        'inaEsc' => $inaEsc,
+	        'parIna' => $parIna,
+	        'pisIna' => $pisIna,
+	        'rezEsc' => $rezEsc,
+	        'sinAccFueAgMej' => $sinAccFueAgMej,
+	        'sinAseSal' => $sinAseSal,
+	        'traInf' => $traInf,
+        ];
+
+		$pdf = PDF::loadView('user.pdf.pdfES', compact('data'));
+		return $pdf->stream('Economicosocial.pdf');
+	}
 
 }
 

@@ -14,6 +14,7 @@ use App\Generalidad;
 use App\Territorio;
 use App\Predio;
 use App\Municipio;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class GeneralidadesterritorioController extends Controller
 {
@@ -294,6 +295,10 @@ class GeneralidadesterritorioController extends Controller
 		foreach ($resultados as $resultado) {
 			$ruralP = $resultado->ruralP;
 
+			if ($ruralP == 0) {
+				$ruralP = "N.D.";
+			}
+
 			$html .= "<td>$ruralP</td>";
 
 		}
@@ -305,6 +310,10 @@ class GeneralidadesterritorioController extends Controller
 		foreach ($resultados as $resultado) {
 			$urbanoP = $resultado->urbanoP;
 
+			if ($urbanoP == 0) {
+				$urbanoP = "N.D.";
+			}
+
 			$html .= "<td>$urbanoP</td>";
 		}
 
@@ -314,6 +323,10 @@ class GeneralidadesterritorioController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$totalP = $resultado->totalP;
+
+			if ($totalP == 0) {
+				$totalP = "N.D.";
+			}
 
 			$html .= "<td>$totalP</td>";
 
@@ -342,6 +355,10 @@ class GeneralidadesterritorioController extends Controller
 		foreach ($resultados as $resultado) {
 			$ruralG = $resultado->ruralG;
 
+			if ($ruralG == 0) {
+				$ruralG = "N.D.";
+			}
+
 			$html .= "<td>$ruralG</td>";
 
 		}
@@ -353,6 +370,10 @@ class GeneralidadesterritorioController extends Controller
 		foreach ($resultados as $resultado) {
 			$urbanoG = $resultado->urbanoG;
 
+			if ($urbanoG == 0) {
+				$urbanoG = "N.D.";
+			}
+
 			$html .= "<td>$urbanoG</td>";
 		}
 
@@ -362,6 +383,10 @@ class GeneralidadesterritorioController extends Controller
 
 		foreach ($resultados as $resultado) {
 			$totalG = $resultado->totalG;
+
+			if ($totalG == 0) {
+				$totalG = "N.D.";
+			}
 
 			$html .= "<td>$totalG</td>";
 		}
@@ -389,6 +414,12 @@ class GeneralidadesterritorioController extends Controller
 			$constRural = $resultado->constRural;
 			$terrRural = $resultado->terrRural;
 
+			if ($constRural == 0) {
+				$constRural = "N.D.";
+			}
+			if ($terrRural == 0) {
+				$terrRural = "N.D.";
+			}
 			$html .= "<td>$constRural</td>
 						<td>$terrRural</td>";
 
@@ -402,6 +433,13 @@ class GeneralidadesterritorioController extends Controller
 			$constUrbano = $resultado->constUrbano;
 			$terrUrbano = $resultado->terrUrbano;
 
+			if ($constUrbano == 0) {
+				$constUrbano = "N.D.";
+			}
+			if ($terrUrbano == 0) {
+				$terrUrbano = "N.D.";
+			}
+
 			$html .= "<td>$constUrbano</td>
 						<td>$terrUrbano</td>";
 		}
@@ -413,6 +451,13 @@ class GeneralidadesterritorioController extends Controller
 		foreach ($resultados as $resultado) {
 			$constTotal = $resultado->constTotal;
 			$terrTotal = $resultado->terrTotal;
+
+			if ($constTotal == 0) {
+				$constTotal = "N.D.";
+			}
+			if ($terrTotal == 0) {
+				$terrTotal = "N.D.";
+			}
 
 			$html .= "<td>$constTotal</td>
 						<td>$terrTotal</td>";
@@ -628,5 +673,113 @@ class GeneralidadesterritorioController extends Controller
           });
       })->export('xls');
     }
+
+ 	// nuevo
+    public function pdf(Request $request)
+	{
+
+		$año1 = $request->input('date1');
+		$id = $request->input('municipio');
+
+		$resultados = Generalidadterritorio::join('generalidades', 'generalidadesterritorios.id', 'generalidades.generalidadterritorio_id')
+						->join('territorios', 'generalidadesterritorios.id', 'territorios.generalidadterritorio_id')
+						->join('predios', 'generalidadesterritorios.id', 'predios.generalidadterritorio_id')
+						->select('generalidadesterritorios.id',
+						DB::raw('YEAR(anioGT) as YEARanioGT'),
+								'generalidadesterritorios.temperatura',
+								'generalidadesterritorios.alturaNivMar',
+								'generalidades.*',
+								'territorios.*',
+								'predios.*')
+						->where('municipio_id', $id)
+						->where(DB::raw('YEAR(anioGT)'), $año1)
+						->get();
+		foreach ($resultados as $resultado) {
+			$id = $resultado->id;
+			$anio = $resultado->YEARanioGT;
+			$temperatura = $resultado->temperatura;
+			$alturaNivMar = $resultado->alturaNivMar;
+			$ruralG = $resultado->ruralG;
+			$urbanoG = $resultado->urbanoG;
+			$totalG = $resultado->totalG;
+			$constRural = $resultado->constRural;
+			$constUrbano = $resultado->constUrbano;
+			$constTotal = $resultado->constTotal;
+			$terrRural = $resultado->terrRural;
+			$terrUrbano = $resultado->terrUrbano;
+			$terrTotal = $resultado->terrTotal;
+			$ruralP = $resultado->ruralP;
+			$urbanoP = $resultado->urbanoP;
+			$totalP = $resultado->totalP;
+
+			if ($temperatura == 0) {
+				$temperatura = "N.D.";
+			}
+			if ($temperatura == 0) {
+				$temperatura = "N.D";
+			}
+			if ($alturaNivMar == 0) {
+				$alturaNivMar = "N.D";
+			}
+			if ($ruralG == 0) {
+				$ruralG = "N.D";
+			}
+			if ($urbanoG == 0) {
+				$urbanoG = "N.D";
+			}
+			if ($totalG == 0) {
+				$totalG = "N.D";
+			}
+			if ($constRural == 0) {
+				$constRural = "N.D";
+			}
+			if ($constUrbano == 0) {
+				$constUrbano = "N.D";
+			}
+			if ($constTotal == 0) {
+				$constTotal = "N.D";
+			}
+			if ($terrRural == 0) {
+				$terrRural = "N.D";
+			}
+			if ($terrUrbano == 0) {
+				$terrUrbano = "N.D";
+			}
+			if ($terrTotal == 0) {
+				$terrTotal = "N.D";
+			}
+			if ($ruralP == 0) {
+				$ruralP = "N.D";
+			}
+			if ($urbanoP == 0) {
+				$urbanoP = "N.D";
+			}
+			if ($totalP == 0) {
+				$totalP = "N.D";
+			}
+		}
+
+		$data =  [
+            'id' => $id,
+			'anio' => $anio,
+			'temperatura' => $temperatura,
+			'alturaNivMar' => $alturaNivMar,
+			'ruralG' => $ruralG,
+			'urbanoG' => $urbanoG,
+			'totalG' => $totalG,
+			'constRural' => $constRural,
+			'constUrbano' => $constUrbano,
+			'constTotal' => $constTotal,
+			'terrRural' => $terrRural,
+			'terrUrbano' => $terrUrbano,
+			'terrTotal' => $terrTotal,
+			'ruralP' => $ruralP,
+			'urbanoP' => $urbanoP,
+			'totalP' => $totalP,
+        ];
+
+		$pdf = PDF::loadView('user.pdf.pdfGT', compact('data'));
+		return $pdf->stream('Generalidadesterritorios.pdf');
+	}
 
 }

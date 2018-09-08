@@ -48,4 +48,45 @@ class TableController extends Controller
     {
       return view('user.tables.finanza');
     }
+
+    // nuevo
+    public function pdfgeneralidadesterritorio()
+    {
+      return view('user.pdf.view.generalidadesterritorio');
+    }
+
+    public function pdfdemografia()
+    {
+      return view('user.pdf.view.demografia');
+    }
+
+    public function pdfviviendasserviciospublicos()
+    {
+      return view('user.pdf.view.viviendaserviciospublicos');
+    }
+
+    public function pdfsalud()
+    {
+      return view('user.pdf.view.salud');
+    }
+
+    public function pdfeducacion()
+    {
+      return view('user.pdf.view.educacion');
+    }
+
+    public function pdfseguridadviolencia()
+    {
+      return view('user.pdf.view.seguridadviolencia');
+    }
+
+    public function pdfeconomicosocial()
+    {
+      return view('user.pdf.view.economicosocial');
+    }
+
+    public function pdffinanza()
+    {
+      return view('user.pdf.view.finanza');
+    }
 }

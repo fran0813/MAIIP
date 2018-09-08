@@ -15,6 +15,7 @@ use App\Ejecucionpresupuesto;
 use App\Indicedesempeniointegral;
 use App\Indicedesempeniofiscal;
 use App\Municipio;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class FinanzaController extends Controller
 {
@@ -862,6 +863,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ingTot = $resultado->ingTot;
 
+			if ($ingTot == 0) {
+				$ingTot = "N.D";
+			}
+
 			$html .= "<td>$ingTot</td>";
 
 		};		
@@ -870,6 +875,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios 1. ingresos corrientes</td>";
 		foreach ($resultados as $resultado) {
 			$ingCor = $resultado->ingCor;
+
+			if ($ingCor == 0) {
+				$ingCor = "N.D";
+			}
 
 			$html .= "<td>$ingCor</td>";
 
@@ -880,6 +889,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ingTri = $resultado->ingTri;
 
+			if ($ingTri == 0) {
+				$ingTri = "N.D";
+			}
+
 			$html .= "<td>$ingTri</td>";
 
 		};
@@ -888,6 +901,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios 1.1.1. predial</td>";
 		foreach ($resultados as $resultado) {
 			$ingPre = $resultado->ingPre;
+
+			if ($ingPre == 0) {
+				$ingPre = "N.D";
+			}
 
 			$html .= "<td>$ingPre</td>";
 
@@ -898,6 +915,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ingIndCom = $resultado->ingIndCom;
 
+			if ($ingIndCom == 0) {
+				$ingIndCom = "N.D";
+			}
+
 			$html .= "<td>$ingIndCom</td>";
 
 		};
@@ -906,6 +927,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios  1.1.3. sobretasas a la gasolina</td>";
 		foreach ($resultados as $resultado) {
 			$ingSobGas = $resultado->ingSobGas;
+
+			if ($ingSobGas == 0) {
+				$ingSobGas = "N.D";
+			}
 
 			$html .= "<td>$ingSobGas</td>";
 
@@ -916,6 +941,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ingOtr = $resultado->ingOtr;
 
+			if ($ingOtr == 0) {
+				$ingOtr = "N.D";
+			}
+
 			$html .= "<td>$ingOtr</td>";
 
 		};
@@ -924,6 +953,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios 1.2. ingresos no tributarios</td>";
 		foreach ($resultados as $resultado) {
 			$ingNoTri = $resultado->ingNoTri;
+
+			if ($ingNoTri == 0) {
+				$ingNoTri = "N.D";
+			}
 
 			$html .= "<td>$ingNoTri</td>";
 
@@ -934,6 +967,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ingTra = $resultado->ingTra;
 
+			if ($ingTra == 0) {
+				$ingTra = "N.D";
+			}
+
 			$html .= "<td>$ingTra</td>";
 
 		};
@@ -942,6 +979,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios 1.3.1. del nivel nacional</td>";
 		foreach ($resultados as $resultado) {
 			$ingNivNac = $resultado->ingNivNac;
+
+			if ($ingNivNac == 0) {
+				$ingNivNac = "N.D";
+			}
 
 			$html .= "<td>$ingNivNac</td>";
 
@@ -952,6 +993,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ingNoTriOtr = $resultado->ingNoTriOtr;
 
+			if ($ingNoTriOtr == 0) {
+				$ingNoTriOtr = "N.D";
+			}
+
 			$html .= "<td>$ingNoTriOtr</td>";
 
 		};
@@ -960,6 +1005,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios gastos totales</td>";
 		foreach ($resultados as $resultado) {
 			$gasTot = $resultado->gasTot;
+
+			if ($gasTot == 0) {
+				$gasTot = "N.D";
+			}
 
 			$html .= "<td>$gasTot</td>";
 
@@ -970,6 +1019,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$gasCor = $resultado->gasCor;
 
+			if ($gasCor == 0) {
+				$gasCor = "N.D";
+			}
+
 			$html .= "<td>$gasCor</td>";
 
 		};
@@ -978,6 +1031,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios 2.1. funcionamiento</td>";
 		foreach ($resultados as $resultado) {
 			$fun = $resultado->fun;
+
+			if ($fun == 0) {
+				$fun = "N.D";
+			}
 
 			$html .= "<td>$fun</td>";
 
@@ -988,6 +1045,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$serFun = $resultado->serFun;
 
+			if ($serFun == 0) {
+				$serFun = "N.D";
+			}
+
 			$html .= "<td>$serFun</td>";
 
 		};
@@ -995,9 +1056,13 @@ class FinanzaController extends Controller
 				<tr class='border-dotted'>
 					<td>Plan financiero municipios 2.1.2. gastos generales</td>";
 		foreach ($resultados as $resultado) {
-			$serFun = $resultado->serFun;
+			$gasGen = $resultado->gasGen;
 
-			$html .= "<td>$serFun</td>";
+			if ($gasGen == 0) {
+				$gasGen = "N.D";
+			}
+
+			$html .= "<td>$gasGen</td>";
 
 		};
             $html .= "</tr>
@@ -1005,6 +1070,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios 2.1.3. transferencias pagadas</td>";
 		foreach ($resultados as $resultado) {
 			$traPag = $resultado->traPag;
+
+			if ($traPag == 0) {
+				$traPag = "N.D";
+			}
 
 			$html .= "<td>$traPag</td>";
 
@@ -1015,6 +1084,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$intDeuPub = $resultado->intDeuPub;
 
+			if ($intDeuPub == 0) {
+				$intDeuPub = "N.D";
+			}
+
 			$html .= "<td>$intDeuPub</td>";
 
 		};
@@ -1023,6 +1096,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios 3. deficit o ahorro corriente (1-2)</td>";
 		foreach ($resultados as $resultado) {
 			$defAhoCor = $resultado->defAhoCor;
+
+			if ($defAhoCor == 0) {
+				$defAhoCor = "N.D";
+			}
 
 			$html .= "<td>$defAhoCor</td>";
 
@@ -1033,6 +1110,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ingCap = $resultado->ingCap;
 
+			if ($ingCap == 0) {
+				$ingCap = "N.D";
+			}
+
 			$html .= "<td>$ingCap</td>";
 
 		};
@@ -1041,6 +1122,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios 4.1. regalías</td>";
 		foreach ($resultados as $resultado) {
 			$reg = $resultado->reg;
+
+			if ($reg == 0) {
+				$reg = "N.D";
+			}
 
 			$html .= "<td>$reg</td>";
 
@@ -1051,6 +1136,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$traNac = $resultado->traNac;
 
+			if ($traNac == 0) {
+				$traNac = "N.D";
+			}
+
 			$html .= "<td>$traNac</td>";
 
 		};
@@ -1059,6 +1148,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios 4.3. cofinanciacion</td>";
 		foreach ($resultados as $resultado) {
 			$cof = $resultado->cof;
+
+			if ($cof == 0) {
+				$cof = "N.D";
+			}
 
 			$html .= "<td>$cof</td>";
 
@@ -1069,6 +1162,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ingCapOtr = $resultado->ingCapOtr;
 
+			if ($ingCapOtr == 0) {
+				$ingCapOtr = "N.D";
+			}
+
 			$html .= "<td>$ingCapOtr</td>";
 
 		};
@@ -1077,6 +1174,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios 5. gastos de capital (inversion)</td>";
 		foreach ($resultados as $resultado) {
 			$gasCap = $resultado->gasCap;
+
+			if ($gasCap == 0) {
+				$gasCap = "N.D";
+			}
 
 			$html .= "<td>$gasCap</td>";
 
@@ -1087,6 +1188,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$forBruCapFij = $resultado->forBruCapFij;
 
+			if ($forBruCapFij == 0) {
+				$forBruCapFij = "N.D";
+			}
+
 			$html .= "<td>$forBruCapFij</td>";
 
 		};
@@ -1095,6 +1200,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios 5.1.1.2. otros</td>";
 		foreach ($resultados as $resultado) {
 			$gasCapOtr = $resultado->gasCapOtr;
+
+			if ($gasCapOtr == 0) {
+				$gasCapOtr = "N.D";
+			}
 
 			$html .= "<td>$gasCapOtr</td>";
 
@@ -1105,6 +1214,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$defSupTot = $resultado->defSupTot;
 
+			if ($defSupTot == 0) {
+				$defSupTot = "N.D";
+			}
+
 			$html .= "<td>$defSupTot</td>";
 
 		};
@@ -1113,6 +1226,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios 7. financiamiento</td>";
 		foreach ($resultados as $resultado) {
 			$fin = $resultado->fin;
+
+			if ($fin == 0) {
+				$fin = "N.D";
+			}
 
 			$html .= "<td>$fin</td>";
 
@@ -1123,6 +1240,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$creNet = $resultado->creNet;
 
+			if ($creNet == 0) {
+				$creNet = "N.D";
+			}
+
 			$html .= "<td>$creNet</td>";
 
 		};
@@ -1131,6 +1252,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios 7.1.1. desembolsos (+)</td>";
 		foreach ($resultados as $resultado) {
 			$des = $resultado->des;
+
+			if ($des == 0) {
+				$des = "N.D";
+			}
 
 			$html .= "<td>$des</td>";
 
@@ -1141,6 +1266,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$amo = $resultado->amo;
 
+			if ($amo == 0) {
+				$amo = "N.D";
+			}
+
 			$html .= "<td>$amo</td>";
 
 		};
@@ -1149,6 +1278,10 @@ class FinanzaController extends Controller
 					<td>Plan financiero municipios 7.3. recursos del balance, variacion de depositos y otros</td>";
 		foreach ($resultados as $resultado) {
 			$recBalVarDepOtr = $resultado->recBalVarDepOtr;
+
+			if ($recBalVarDepOtr == 0) {
+				$recBalVarDepOtr = "N.D";
+			}
 
 			$html .= "<td>$recBalVarDepOtr</td>";
 
@@ -1175,6 +1308,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeIngTot = $resultado->ejeIngTot;
 
+			if ($ejeIngTot == 0) {
+				$ejeIngTot = "N.D";
+			}
+
 			$html .= "<td>$ejeIngTot</td>";
 
 		};
@@ -1183,6 +1320,10 @@ class FinanzaController extends Controller
 					<td>1. ingresos corrientes</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngCor = $resultado->ejeIngCor;
+
+			if ($ejeIngCor == 0) {
+				$ejeIngCor = "N.D";
+			}
 
 			$html .= "<td>$ejeIngCor</td>";
 
@@ -1193,6 +1334,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeIngTri = $resultado->ejeIngTri;
 
+			if ($ejeIngTri == 0) {
+				$ejeIngTri = "N.D";
+			}
+
 			$html .= "<td>$ejeIngTri</td>";
 
 		};
@@ -1201,6 +1346,10 @@ class FinanzaController extends Controller
 					<td>1.1.1. predial</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngPre = $resultado->ejeIngPre;
+
+			if ($ejeIngPre == 0) {
+				$ejeIngPre = "N.D";
+			}
 
 			$html .= "<td>$ejeIngPre</td>";
 
@@ -1211,6 +1360,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeIngIndCom = $resultado->ejeIngIndCom;
 
+			if ($ejeIngIndCom == 0) {
+				$ejeIngIndCom = "N.D";
+			}
+
 			$html .= "<td>$ejeIngIndCom</td>";
 
 		};
@@ -1219,6 +1372,10 @@ class FinanzaController extends Controller
 					<td>1.1.3. sobretasa a la gasolina</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngSobGas = $resultado->ejeIngSobGas;
+
+			if ($ejeIngSobGas == 0) {
+				$ejeIngSobGas = "N.D";
+			}
 
 			$html .= "<td>$ejeIngSobGas</td>";
 
@@ -1229,6 +1386,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeIngOtr = $resultado->ejeIngOtr;
 
+			if ($ejeIngOtr == 0) {
+				$ejeIngOtr = "N.D";
+			}
+
 			$html .= "<td>$ejeIngOtr</td>";
 
 		};
@@ -1237,6 +1398,10 @@ class FinanzaController extends Controller
 					<td>1.2. ingresos no tributarios</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngNoTri = $resultado->ejeIngNoTri;
+
+			if ($ejeIngNoTri == 0) {
+				$ejeIngNoTri = "N.D";
+			}
 
 			$html .= "<td>$ejeIngNoTri</td>";
 
@@ -1247,6 +1412,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeIngTra = $resultado->ejeIngTra;
 
+			if ($ejeIngTra == 0) {
+				$ejeIngTra = "N.D";
+			}
+
 			$html .= "<td>$ejeIngTra</td>";
 
 		};
@@ -1255,6 +1424,10 @@ class FinanzaController extends Controller
 					<td>1.3.1. del nivel nacional</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngNivNac = $resultado->ejeIngNivNac;
+
+			if ($ejeIngNivNac == 0) {
+				$ejeIngNivNac = "N.D";
+			}
 
 			$html .= "<td>$ejeIngNivNac</td>";
 
@@ -1265,6 +1438,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeIngNoTriOtr = $resultado->ejeIngNoTriOtr;
 
+			if ($ejeIngNoTriOtr == 0) {
+				$ejeIngNoTriOtr = "N.D";
+			}
+
 			$html .= "<td>$ejeIngNoTriOtr</td>";
 
 		};
@@ -1273,6 +1450,10 @@ class FinanzaController extends Controller
 				     <td>Gastos totales</td>";
 		foreach ($resultados as $resultado) {
 			$ejeGasTot = $resultado->ejeGasTot;
+
+			if ($ejeGasTot == 0) {
+				$ejeGasTot = "N.D";
+			}
 
 			$html .= "<td>$ejeGasTot</td>";
 
@@ -1283,6 +1464,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeGasCor = $resultado->ejeGasCor;
 
+			if ($ejeGasCor == 0) {
+				$ejeGasCor = "N.D";
+			}
+
 			$html .= "<td>$ejeGasCor</td>";
 
 		};
@@ -1291,6 +1476,10 @@ class FinanzaController extends Controller
 					<td>2.1. funcionamiento</td>";
 		foreach ($resultados as $resultado) {
 			$ejeFun = $resultado->ejeFun;
+
+			if ($ejeFun == 0) {
+				$ejeFun = "N.D";
+			}
 
 			$html .= "<td>$ejeFun</td>";
 
@@ -1301,6 +1490,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeSerFun = $resultado->ejeSerFun;
 
+			if ($ejeSerFun == 0) {
+				$ejeSerFun = "N.D";
+			}
+
 			$html .= "<td>$ejeSerFun</td>";
 
 		};
@@ -1309,6 +1502,10 @@ class FinanzaController extends Controller
 					<td>2.1.2. gastos generales</td>";
 		foreach ($resultados as $resultado) {
 			$ejeGasGen = $resultado->ejeGasGen;
+
+			if ($ejeGasGen == 0) {
+				$ejeGasGen = "N.D";
+			}
 
 			$html .= "<td>$ejeGasGen</td>";
 
@@ -1319,6 +1516,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeTraPag = $resultado->ejeTraPag;
 
+			if ($ejeTraPag == 0) {
+				$ejeTraPag = "N.D";
+			}
+
 			$html .= "<td>$ejeTraPag</td>";
 
 		};
@@ -1327,6 +1528,10 @@ class FinanzaController extends Controller
 					<td>2.2. intereses deuda publica</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIntDeuPub = $resultado->ejeIntDeuPub;
+
+			if ($ejeIntDeuPub == 0) {
+				$ejeIntDeuPub = "N.D";
+			}
 
 			$html .= "<td>$ejeIntDeuPub</td>";
 
@@ -1337,6 +1542,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeDefAhoCor = $resultado->ejeDefAhoCor;
 
+			if ($ejeDefAhoCor == 0) {
+				$ejeDefAhoCor = "N.D";
+			}
+
 			$html .= "<td>$ejeDefAhoCor</td>";
 
 		};
@@ -1345,6 +1554,10 @@ class FinanzaController extends Controller
 					<td>4. ingresos de capital</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngCap = $resultado->ejeIngCap;
+
+			if ($ejeIngCap == 0) {
+				$ejeIngCap = "N.D";
+			}
 
 			$html .= "<td>$ejeIngCap</td>";
 
@@ -1355,6 +1568,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeReg = $resultado->ejeReg;
 
+			if ($ejeReg == 0) {
+				$ejeReg = "N.D";
+			}
+
 			$html .= "<td>$ejeReg</td>";
 
 		};
@@ -1363,6 +1580,10 @@ class FinanzaController extends Controller
 					<td>4.2. transferencias nacionales (sgp, etc.)</td>";
 		foreach ($resultados as $resultado) {
 			$ejeTraNac = $resultado->ejeTraNac;
+
+			if ($ejeTraNac == 0) {
+				$ejeTraNac = "N.D";
+			}
 
 			$html .= "<td>$ejeTraNac</td>";
 
@@ -1373,6 +1594,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeCof = $resultado->ejeCof;
 
+			if ($ejeCof == 0) {
+				$ejeCof = "N.D";
+			}
+
 			$html .= "<td>$ejeCof</td>";
 
 		};
@@ -1381,6 +1606,10 @@ class FinanzaController extends Controller
 					<td>4.4. otros</td>";
 		foreach ($resultados as $resultado) {
 			$ejeIngCapOtr = $resultado->ejeIngCapOtr;
+
+			if ($ejeIngCapOtr == 0) {
+				$ejeIngCapOtr = "N.D";
+			}
 
 			$html .= "<td>$ejeIngCapOtr</td>";
 
@@ -1391,6 +1620,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeGasCap = $resultado->ejeGasCap;
 
+			if ($ejeGasCap == 0) {
+				$ejeGasCap = "N.D";
+			}
+
 			$html .= "<td>$ejeGasCap</td>";
 
 		};
@@ -1399,6 +1632,10 @@ class FinanzaController extends Controller
 					<td>5.1. formacion brutal de capital fijo</td>";
 		foreach ($resultados as $resultado) {
 			$ejeForBruCapFij = $resultado->ejeForBruCapFij;
+
+			if ($ejeForBruCapFij == 0) {
+				$ejeForBruCapFij = "N.D";
+			}
 
 			$html .= "<td>$ejeForBruCapFij</td>";
 
@@ -1409,6 +1646,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeGasCapOtr = $resultado->ejeGasCapOtr;
 
+			if ($ejeGasCapOtr == 0) {
+				$ejeGasCapOtr = "N.D";
+			}
+
 			$html .= "<td>$ejeGasCapOtr</td>";
 
 		};
@@ -1417,6 +1658,10 @@ class FinanzaController extends Controller
 					<td>6. deficit o superavit total (3+4-5)</td>";
 		foreach ($resultados as $resultado) {
 			$ejeDefSupTot = $resultado->ejeDefSupTot;
+
+			if ($ejeDefSupTot == 0) {
+				$ejeDefSupTot = "N.D";
+			}
 
 			$html .= "<td>$ejeDefSupTot</td>";
 
@@ -1427,6 +1672,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeFin = $resultado->ejeFin;
 
+			if ($ejeFin == 0) {
+				$ejeFin = "N.D";
+			}
+
 			$html .= "<td>$ejeFin</td>";
 
 		};
@@ -1435,6 +1684,10 @@ class FinanzaController extends Controller
 					<td>7.1. credito interno y externo (7.1.1 - 7.1.2.)</td>";
 		foreach ($resultados as $resultado) {
 			$ejeCreNet = $resultado->ejeCreNet;
+
+			if ($ejeCreNet == 0) {
+				$ejeCreNet = "N.D";
+			}
 
 			$html .= "<td>$ejeCreNet</td>";
 
@@ -1445,6 +1698,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeDes = $resultado->ejeDes;
 
+			if ($ejeDes == 0) {
+				$ejeDes = "N.D";
+			}
+
 			$html .= "<td>$ejeDes</td>";
 
 		};
@@ -1454,6 +1711,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$ejeAmo = $resultado->ejeAmo;
 
+			if ($ejeAmo == 0) {
+				$ejeAmo = "N.D";
+			}
+
 			$html .= "<td>$ejeAmo</td>";
 
 		};
@@ -1462,6 +1723,10 @@ class FinanzaController extends Controller
 					<td>7.2. recursos balance, var. depositos, otros</td>";
 		foreach ($resultados as $resultado) {
 			$ejeRecBalVarDepOtr = $resultado->ejeRecBalVarDepOtr;
+
+			if ($ejeRecBalVarDepOtr == 0) {
+				$ejeRecBalVarDepOtr = "N.D";
+			}
 
 			$html .= "<td>$ejeRecBalVarDepOtr</td>";
 
@@ -1490,6 +1755,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$desIntCapAdm = $resultado->desIntCapAdm;
 
+			if ($desIntCapAdm == 0) {
+				$desIntCapAdm = "N.D";
+			}
+
 			$html .= "<td>$desIntCapAdm</td>";
 
 		};
@@ -1498,6 +1767,10 @@ class FinanzaController extends Controller
 					<td>Desempeño integral  eficacia total</td>";
 		foreach ($resultados as $resultado) {
 			$desIntEfiTot = $resultado->desIntEfiTot;
+
+			if ($desIntEfiTot == 0) {
+				$desIntEfiTot = "N.D";
+			}
 
 			$html .= "<td>$desIntEfiTot</td>";
 
@@ -1508,6 +1781,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$desIntGes = $resultado->desIntGes;
 
+			if ($desIntGes == 0) {
+				$desIntGes = "N.D";
+			}
+
 			$html .= "<td>$desIntGes</td>";
 
 		};
@@ -1516,6 +1793,10 @@ class FinanzaController extends Controller
 					<td>Desempeño integral indice integral</td>";
 		foreach ($resultados as $resultado) {
 			$desIntIndInt = $resultado->desIntIndInt;
+
+			if ($desIntIndInt == 0) {
+				$desIntIndInt = "N.D";
+			}
 
 			$html .= "<td>$desIntIndInt</td>";
 
@@ -1526,6 +1807,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$desIntReqLeg = $resultado->desIntReqLeg;
 
+			if ($desIntReqLeg == 0) {
+				$desIntReqLeg = "N.D";
+			}
+
 			$html .= "<td>$desIntReqLeg</td>";
 
 		};
@@ -1534,6 +1819,10 @@ class FinanzaController extends Controller
 					<td>Desempeño integral  indicador de desempeño fiscal</td>";
 		foreach ($resultados as $resultado) {
 			$desIntIndDesFis = $resultado->desIntIndDesFis;
+
+			if ($desIntIndDesFis == 0) {
+				$desIntIndDesFis = "N.D";
+			}
 
 			$html .= "<td>$desIntIndDesFis</td>";
 
@@ -1560,6 +1849,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$autGasFun = $resultado->autGasFun;
 
+			if ($autGasFun == 0) {
+				$autGasFun = "N.D";
+			}
+
 			$html .= "<td>$autGasFun</td>";
 
 		};
@@ -1568,6 +1861,10 @@ class FinanzaController extends Controller
 				 	<td>Respaldo del servicio de la deuda</td>";
 		foreach ($resultados as $resultado) {
 			$respSerDeu = $resultado->respSerDeu;
+
+			if ($respSerDeu == 0) {
+				$respSerDeu = "N.D";
+			}
 
 			$html .= "<td>$respSerDeu</td>";
 
@@ -1578,6 +1875,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$depTraNacReg = $resultado->depTraNacReg;
 
+			if ($depTraNacReg == 0) {
+				$depTraNacReg = "N.D";
+			}
+
 			$html .= "<td>$depTraNacReg</td>";
 
 		};
@@ -1586,6 +1887,10 @@ class FinanzaController extends Controller
 					<td>Generación de recursos propios</td>";
 		foreach ($resultados as $resultado) {
 			$genRecPro = $resultado->genRecPro;
+
+			if ($genRecPro == 0) {
+				$genRecPro = "N.D";
+			}
 
 			$html .= "<td>$genRecPro</td>";
 
@@ -1596,6 +1901,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$magInv = $resultado->magInv;
 
+			if ($magInv == 0) {
+				$magInv = "N.D";
+			}
+
 			$html .= "<td>$magInv</td>";
 
 		};
@@ -1604,6 +1913,10 @@ class FinanzaController extends Controller
 					<td>Capacidad de ahorro</td>";
 		foreach ($resultados as $resultado) {
 			$capAho = $resultado->capAho;
+
+			if ($capAho == 0) {
+				$capAho = "N.D";
+			}
 
 			$html .= "<td>$capAho</td>";
 
@@ -1614,6 +1927,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$indDesFis = $resultado->indDesFis;
 
+			if ($indDesFis == 0) {
+				$indDesFis = "N.D";
+			}
+
 			$html .= "<td>$indDesFis</td>";
 
 		};
@@ -1623,6 +1940,10 @@ class FinanzaController extends Controller
 		foreach ($resultados as $resultado) {
 			$posNivNac = $resultado->posNivNac;
 
+			if ($posNivNac == 0) {
+				$posNivNac = "N.D";
+			}
+
 			$html .= "<td>$posNivNac</td>";
 
 		};
@@ -1631,6 +1952,10 @@ class FinanzaController extends Controller
 					<td>Posición a nivel departamento</td>";
 		foreach ($resultados as $resultado) {
 			$posNivDep = $resultado->posNivDep;
+
+			if ($posNivDep == 0) {
+				$posNivDep = "N.D";
+			}
 
 			$html .= "<td>$posNivDep</td>";
 
@@ -2012,5 +2337,445 @@ class FinanzaController extends Controller
           });
       })->export('xls');
     }
+
+    // nuevo
+    public function pdf(Request $request)
+	{
+
+		$año1 = $request->input('date1');
+		$id = $request->input('municipio');
+
+		$resultados = Finanza::join('planfinanciero', 'finanza.id', 'planfinanciero.finanza_id')
+			->join('ejecucionpresupuesto', 'finanza.id', 'ejecucionpresupuesto.finanza_id')
+			->join('indicedesempeñointegral', 'finanza.id', 'indicedesempeñointegral.finanza_id')
+			->join('indicedesempeñofiscal', 'finanza.id', 'indicedesempeñofiscal.finanza_id')
+			->select('finanza.id',
+					DB::raw('YEAR(anioF) as YEARanioF'),
+					'planfinanciero.*',
+					'ejecucionpresupuesto.*',
+					'indicedesempeñointegral.*',
+					'indicedesempeñofiscal.*')
+						->where('municipio_id', $id)
+						->where(DB::raw('YEAR(anioF)'), $año1)
+						->get();
+		foreach ($resultados as $resultado) {
+			$id = $resultado->id;
+			$anio = $resultado->YEARanioF;
+			$ingTot = $resultado->ingTot;
+			$ingCor = $resultado->ingCor;
+			$ingTri = $resultado->ingTri;
+			$ingPre = $resultado->ingPre;
+			$ingIndCom = $resultado->ingIndCom;
+			$ingSobGas = $resultado->ingSobGas;
+			$ingOtr = $resultado->ingOtr;
+			$ingNoTri = $resultado->ingNoTri;
+			$ingTra = $resultado->ingTra;
+			$ingNivNac = $resultado->ingNivNac;
+			$ingNoTriOtr = $resultado->ingNoTriOtr;
+			$gasTot = $resultado->gasTot;
+			$gasCor = $resultado->gasCor;
+			$fun = $resultado->fun;
+			$serFun = $resultado->serFun;
+			$gasGen = $resultado->gasGen;
+			$traPag = $resultado->traPag;
+			$intDeuPub = $resultado->intDeuPub;
+			$defAhoCor = $resultado->defAhoCor;
+			$ingCap = $resultado->ingCap;
+			$reg = $resultado->reg;
+			$traNac = $resultado->traNac;
+			$cof = $resultado->cof;
+			$ingCapOtr = $resultado->ingCapOtr;
+			$gasCap = $resultado->gasCap;
+			$forBruCapFij = $resultado->forBruCapFij;
+			$gasCapOtr = $resultado->gasCapOtr;
+			$defSupTot = $resultado->defSupTot;
+			$fin = $resultado->fin;
+			$creNet = $resultado->creNet;
+			$des = $resultado->des;
+			$amo = $resultado->amo;
+			$recBalVarDepOtr = $resultado->recBalVarDepOtr;
+			$ejeIngTot = $resultado->ejeIngTot;
+			$ejeIngCor = $resultado->ejeIngCor;
+			$ejeIngTri = $resultado->ejeIngTri;
+			$ejeIngPre = $resultado->ejeIngPre;
+			$ejeIngIndCom = $resultado->ejeIngIndCom;
+			$ejeIngSobGas = $resultado->ejeIngSobGas;
+			$ejeIngOtr = $resultado->ejeIngOtr;
+			$ejeIngNoTri = $resultado->ejeIngNoTri;
+			$ejeIngTra = $resultado->ejeIngTra;
+			$ejeIngNivNac = $resultado->ejeIngNivNac;
+			$ejeIngNoTriOtr = $resultado->ejeIngNoTriOtr;
+			$ejeGasTot = $resultado->ejeGasTot;
+			$ejeGasCor = $resultado->ejeGasCor;
+			$ejeFun = $resultado->ejeFun;
+			$ejeSerFun = $resultado->ejeSerFun;
+			$ejeGasGen = $resultado->ejeGasGen;
+			$ejeTraPag = $resultado->ejeTraPag;
+			$ejeIntDeuPub = $resultado->ejeIntDeuPub;
+			$ejeDefAhoCor = $resultado->ejeDefAhoCor;
+			$ejeIngCap = $resultado->ejeIngCap;
+			$ejeReg = $resultado->ejeReg;
+			$ejeTraNac = $resultado->ejeTraNac;
+			$ejeCof = $resultado->ejeCof;
+			$ejeIngCapOtr = $resultado->ejeIngCapOtr;
+			$ejeGasCap = $resultado->ejeGasCap;
+			$ejeForBruCapFij = $resultado->ejeForBruCapFij;
+			$ejeGasCapOtr = $resultado->ejeGasCapOtr;
+			$ejeDefSupTot = $resultado->ejeDefSupTot;
+			$ejeFin = $resultado->ejeFin;
+			$ejeCreNet = $resultado->ejeCreNet;
+			$ejeDes = $resultado->ejeDes;
+			$ejeAmo = $resultado->ejeAmo;
+			$ejeRecBalVarDepOtr = $resultado->ejeRecBalVarDepOtr;
+			$desIntCapAdm = $resultado->desIntCapAdm;
+			$desIntEfiTot = $resultado->desIntEfiTot;
+			$desIntGes = $resultado->desIntGes;
+			$desIntIndInt = $resultado->desIntIndInt;
+			$desIntReqLeg = $resultado->desIntReqLeg;
+			$desIntIndDesFis = $resultado->desIntIndDesFis;
+			$autGasFun = $resultado->autGasFun;
+			$respSerDeu = $resultado->respSerDeu;
+			$depTraNacReg = $resultado->depTraNacReg;
+			$genRecPro = $resultado->genRecPro;
+			$magInv = $resultado->magInv;
+			$capAho = $resultado->capAho;
+			$indDesFis = $resultado->indDesFis;
+			$posNivNac = $resultado->posNivNac;
+			$posNivDep = $resultado->posNivDep;
+
+	        if ($ingTot == 0) {
+	        	$ingTot = "N.D";
+	        }
+			if ($ingCor == 0) {
+				$ingCor = "N.D";
+			}
+			if ($ingTri == 0) {
+				$ingTri = "N.D";
+			}
+			if ($ingPre == 0) {
+				$ingPre = "N.D";
+			}
+			if ($ingIndCom == 0) {
+				$ingIndCom = "N.D";
+			}
+			if ($ingSobGas == 0) {
+				$ingSobGas = "N.D";
+			}
+			if ($ingOtr == 0) {
+				$ingOtr = "N.D";
+			}
+			if ($ingNoTri == 0) {
+				$ingNoTri = "N.D";
+			}
+			if ($ingTra == 0) {
+				$ingTra = "N.D";
+			}
+			if ($ingNivNac == 0) {
+				$ingNivNac = "N.D";
+			}
+			if ($ingNoTriOtr == 0) {
+				$ingNoTriOtr = "N.D";
+			}
+			if ($gasTot == 0) {
+				$gasTot = "N.D";
+			}
+			if ($gasCor == 0) {
+				$gasCor = "N.D";
+			}
+			if ($fun == 0) {
+				$fun = "N.D";
+			}
+			if ($serFun == 0) {
+				$serFun = "N.D";
+			}
+			if ($gasGen == 0) {
+				$gasGen = "N.D";
+			}
+			if ($traPag == 0) {
+				$traPag = "N.D";
+			}
+			if ($intDeuPub == 0) {
+				$intDeuPub = "N.D";
+			}
+			if ($defAhoCor == 0) {
+				$defAhoCor = "N.D";
+			}
+			if ($ingCap == 0) {
+				$ingCap = "N.D";
+			}
+			if ($reg == 0) {
+				$reg = "N.D";
+			}
+			if ($traNac == 0) {
+				$traNac = "N.D";
+			}
+			if ($cof == 0) {
+				$cof = "N.D";
+			}
+			if ($ingCapOtr == 0) {
+				$ingCapOtr = "N.D";
+			}
+			if ($gasCap == 0) {
+				$gasCap = "N.D";
+			}
+			if ($forBruCapFij == 0) {
+				$forBruCapFij = "N.D";
+			}
+			if ($gasCapOtr == 0) {
+				$gasCapOtr = "N.D";
+			}
+			if ($defSupTot == 0) {
+				$defSupTot = "N.D";
+			}
+			if ($fin == 0) {
+				$fin = "N.D";
+			}
+			if ($creNet == 0) {
+				$creNet = "N.D";
+			}
+			if ($des == 0) {
+				$des = "N.D";
+			}
+			if ($amo == 0) {
+				$amo = "N.D";
+			}
+			if ($recBalVarDepOtr == 0) {
+				$recBalVarDepOtr = "N.D";
+			}
+			if ($ejeIngTot == 0) {
+				$ejeIngTot = "N.D";
+			}
+			if ($ejeIngCor == 0) {
+				$ejeIngCor = "N.D";
+			}
+			if ($ejeIngTri == 0) {
+				$ejeIngTri = "N.D";
+			}
+			if ($ejeIngPre == 0) {
+				$ejeIngPre = "N.D";
+			}
+			if ($ejeIngIndCom == 0) {
+				$ejeIngIndCom = "N.D";
+			}
+			if ($ejeIngSobGas == 0) {
+				$ejeIngSobGas = "N.D";
+			}
+			if ($ejeIngOtr == 0) {
+				$ejeIngOtr = "N.D";
+			}
+			if ($ejeIngNoTri == 0) {
+				$ejeIngNoTri = "N.D";
+			}
+			if ($ejeIngTra == 0) {
+				$ejeIngTra = "N.D";
+			}
+			if ($ejeIngNivNac == 0) {
+				$ejeIngNivNac = "N.D";
+			}
+			if ($ejeIngNoTriOtr == 0) {
+				$ejeIngNoTriOtr = "N.D";
+			}
+			if ($ejeGasTot == 0) {
+				$ejeGasTot = "N.D";
+			}
+			if ($ejeGasCor == 0) {
+				$ejeGasCor = "N.D";
+			}
+			if ($ejeFun == 0) {
+				$ejeFun = "N.D";
+			}
+			if ($ejeSerFun == 0) {
+				$ejeSerFun = "N.D";
+			}
+			if ($ejeGasGen == 0) {
+				$ejeGasGen = "N.D";
+			}
+			if ($ejeTraPag == 0) {
+				$ejeTraPag = "N.D";
+			}
+			if ($ejeIntDeuPub == 0) {
+				$ejeIntDeuPub = "N.D";
+			}
+			if ($ejeDefAhoCor == 0) {
+				$ejeDefAhoCor = "N.D";
+			}
+			if ($ejeIngCap == 0) {
+				$ejeIngCap = "N.D";
+			}
+			if ($ejeReg == 0) {
+				$ejeReg = "N.D";
+			}
+			if ($ejeTraNac == 0) {
+				$ejeTraNac = "N.D";
+			}
+			if ($ejeCof == 0) {
+				$ejeCof = "N.D";
+			}
+			if ($ejeIngCapOtr == 0) {
+				$ejeIngCapOtr = "N.D";
+			}
+			if ($ejeGasCap == 0) {
+				$ejeGasCap = "N.D";
+			}
+			if ($ejeForBruCapFij == 0) {
+				$ejeForBruCapFij = "N.D";
+			}
+			if ($ejeGasCapOtr == 0) {
+				$ejeGasCapOtr = "N.D";
+			}
+			if ($ejeDefSupTot == 0) {
+				$ejeDefSupTot = "N.D";
+			}
+			if ($ejeFin == 0) {
+				$ejeFin = "N.D";
+			}
+			if ($ejeCreNet == 0) {
+				$ejeCreNet = "N.D";
+			}
+			if ($ejeDes == 0) {
+				$ejeDes = "N.D";
+			}
+			if ($ejeAmo == 0) {
+				$ejeAmo = "N.D";
+			}
+			if ($ejeRecBalVarDepOtr == 0) {
+				$ejeRecBalVarDepOtr = "N.D";
+			}
+			if ($desIntCapAdm == 0) {
+				$desIntCapAdm = "N.D";
+			}
+			if ($desIntEfiTot == 0) {
+				$desIntEfiTot = "N.D";
+			}
+			if ($desIntGes == 0) {
+				$desIntGes = "N.D";
+			}
+			if ($desIntIndInt == 0) {
+				$desIntIndInt = "N.D";
+			}
+			if ($desIntReqLeg == 0) {
+				$desIntReqLeg = "N.D";
+			}
+			if ($desIntIndDesFis == 0) {
+				$desIntIndDesFis = "N.D";
+			}
+			if ($autGasFun == 0) {
+				$autGasFun = "N.D";
+			}
+			if ($respSerDeu == 0) {
+				$respSerDeu = "N.D";
+			}
+			if ($depTraNacReg == 0) {
+				$depTraNacReg = "N.D";
+			}
+			if ($genRecPro == 0) {
+				$genRecPro = "N.D";
+			}
+			if ($magInv == 0) {
+				$magInv = "N.D";
+			}
+			if ($capAho == 0) {
+				$capAho = "N.D";
+			}
+			if ($indDesFis == 0) {
+				$indDesFis = "N.D";
+			}
+			if ($posNivNac == 0) {
+				$posNivNac = "N.D";
+			}
+			if ($posNivDep == 0) {
+				$posNivDep = "N.D";
+			}
+		}
+
+		$data =  [
+            'id' => $id,
+			'anio' => $anio,
+			'ingTot' => $ingTot,
+			'ingCor' => $ingCor,
+			'ingTri' => $ingTri,
+			'ingPre' => $ingPre,
+			'ingIndCom' => $ingIndCom,
+			'ingSobGas' => $ingSobGas,
+			'ingOtr' => $ingOtr,
+			'ingNoTri' => $ingNoTri,
+			'ingTra' => $ingTra,
+			'ingNivNac' => $ingNivNac,
+			'ingNoTriOtr' => $ingNoTriOtr,
+			'gasTot' => $gasTot,
+			'gasCor' => $gasCor,
+			'fun' => $fun,
+			'serFun' => $serFun,
+			'gasGen' => $gasGen,
+			'traPag' => $traPag,
+			'intDeuPub' => $intDeuPub,
+			'defAhoCor' => $defAhoCor,
+			'ingCap' => $ingCap,
+			'reg' => $reg,
+			'traNac' => $traNac,
+			'cof' => $cof,
+			'ingCapOtr' => $ingCapOtr,
+			'gasCap' => $gasCap,
+			'forBruCapFij' => $forBruCapFij,
+			'gasCapOtr' => $gasCapOtr,
+			'defSupTot' => $defSupTot,
+			'fin' => $fin,
+			'creNet' => $creNet,
+			'des' => $des,
+			'amo' => $amo,
+			'recBalVarDepOtr' => $recBalVarDepOtr,
+			'ejeIngTot' => $ejeIngTot,
+			'ejeIngCor' => $ejeIngCor,
+			'ejeIngTri' => $ejeIngTri,
+			'ejeIngPre' => $ejeIngPre,
+			'ejeIngIndCom' => $ejeIngIndCom,
+			'ejeIngSobGas' => $ejeIngSobGas,
+			'ejeIngOtr' => $ejeIngOtr,
+			'ejeIngNoTri' => $ejeIngNoTri,
+			'ejeIngTra' => $ejeIngTra,
+			'ejeIngNivNac' => $ejeIngNivNac,
+			'ejeIngNoTriOtr' => $ejeIngNoTriOtr,
+			'ejeGasTot' => $ejeGasTot,
+			'ejeGasCor' => $ejeGasCor,
+			'ejeFun' => $ejeFun,
+			'ejeSerFun' => $ejeSerFun,
+			'ejeGasGen' => $ejeGasGen,
+			'ejeTraPag' => $ejeTraPag,
+			'ejeIntDeuPub' => $ejeIntDeuPub,
+			'ejeDefAhoCor' => $ejeDefAhoCor,
+			'ejeIngCap' => $ejeIngCap,
+			'ejeReg' => $ejeReg,
+			'ejeTraNac' => $ejeTraNac,
+			'ejeCof' => $ejeCof,
+			'ejeIngCapOtr' => $ejeIngCapOtr,
+			'ejeGasCap' => $ejeGasCap,
+			'ejeForBruCapFij' => $ejeForBruCapFij,
+			'ejeGasCapOtr' => $ejeGasCapOtr,
+			'ejeDefSupTot' => $ejeDefSupTot,
+			'ejeFin' => $ejeFin,
+			'ejeCreNet' => $ejeCreNet,
+			'ejeDes' => $ejeDes,
+			'ejeAmo' => $ejeAmo,
+			'ejeRecBalVarDepOtr' => $ejeRecBalVarDepOtr,
+			'desIntCapAdm' => $desIntCapAdm,
+			'desIntEfiTot' => $desIntEfiTot,
+			'desIntGes' => $desIntGes,
+			'desIntIndInt' => $desIntIndInt,
+			'desIntReqLeg' => $desIntReqLeg,
+			'desIntIndDesFis' => $desIntIndDesFis,
+			'autGasFun' => $autGasFun,
+			'respSerDeu' => $respSerDeu,
+			'depTraNacReg' => $depTraNacReg,
+			'genRecPro' => $genRecPro,
+			'magInv' => $magInv,
+			'capAho' => $capAho,
+			'indDesFis' => $indDesFis,
+			'posNivNac' => $posNivNac,
+			'posNivDep' => $posNivDep,
+        ];
+
+		$pdf = PDF::loadView('user.pdf.pdfF', compact('data'));
+		return $pdf->stream('Finanza.pdf');
+	}
 
 }

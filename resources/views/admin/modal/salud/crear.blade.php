@@ -28,15 +28,15 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">              
                         <label for="tasVacBCG" class="text-label">BCG</label>       
-                        <input id="tasVacBCG" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
+                        <input id="tasVacBCG" type="number" pattern="[0-9]+" min="0" step="0.00000000000001" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacDPT" class="text-label">DPT</label>     
-                        <input id="tasVacDPT" type="number" pattern="[0-9]+" min="0" step="0.1" placeholder="Double" class="form-control" required>
+                        <input id="tasVacDPT" type="number" pattern="[0-9]+" min="0" step="0.00000000000001" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacHepatitisB" class="text-label">Hepatitis B</label>       
-                        <input id="tasVacHepatitisB" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
+                        <input id="tasVacHepatitisB" type="number" pattern="[0-9]+" step="0.00000000000001" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <br>
                     <br>
@@ -45,15 +45,15 @@
                     <br>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacHIB" class="text-label">HIB</label>       
-                        <input id="tasVacHIB" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
+                        <input id="tasVacHIB" type="number" pattern="[0-9]+" step="0.00000000000001" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacPolio" class="text-label">Polio</label>       
-                        <input id="tasVacPolio" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
+                        <input id="tasVacPolio" type="number" pattern="[0-9]+" step="0.00000000000001" min="0" placeholder="Double" class="form-control" required>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <label for="tasVacTripleViral" class="text-label">Triple viral</label>       
-                        <input id="tasVacTripleViral" type="number" pattern="[0-9]+" step="0.1" min="0" placeholder="Double" class="form-control" required>
+                        <input id="tasVacTripleViral" type="number" pattern="[0-9]+" step="0.00000000000001" min="0" placeholder="Double" class="form-control" required>
                     </div>
                 </div>
 
