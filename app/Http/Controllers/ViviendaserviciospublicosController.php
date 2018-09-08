@@ -941,7 +941,7 @@ class ViviendaserviciospublicosController extends Controller
 
 	public function subiendoArchivoViviendaServiciosPublicos()
     {
-        return view('admin.viviendaServiciosPublicos.subiendoArchivoViviendaServiciosPublicos');
+        return view('admin.viviendaserviciospublicos.subiendoArchivoViviendaServiciosPublicos');
     }
 
     public function guardarArchivoViviendaServiciosPublicos(Request $request)

@@ -531,7 +531,7 @@ class GeneralidadesterritorioController extends Controller
 
 	public function subiendoArchivoGeneralidadesTerritorio()
     {
-        return view('admin.generalidadesTerritorios.subiendoArchivoGeneralidadesTerritorio');
+        return view('admin.generalidadesterritorios.subiendoArchivoGeneralidadesTerritorio');
     }
 
     public function guardarArchivoGeneralidadesTerritorio(Request $request)

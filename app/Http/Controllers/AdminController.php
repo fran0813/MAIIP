@@ -24,7 +24,7 @@ class AdminController extends Controller
 
     public function tableGeneralidadesterritorio()
     {
-      return view('admin.generalidadesTerritorios.index');
+      return view('admin.generalidadesterritorios.index');
     }
 
     public function tableDemografia()
@@ -34,7 +34,7 @@ class AdminController extends Controller
 
     public function tableViviendasserviciospublicosa()
     {
-      return view('admin.viviendaServiciosPublicos.index');
+      return view('admin.viviendaserviciospublicos.index');
     }
 
     public function tableSalud()
