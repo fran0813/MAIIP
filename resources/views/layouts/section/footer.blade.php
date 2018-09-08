@@ -11,7 +11,8 @@
 	<div class="col-ms-8 col-md-8 col-lg-8">
 		<br>
 		<a href="{{ url('/') }}" class="text-footer">Inicio</a> <b style="font-size: 20px;color: #fff;">|</b>
-		<a href="{{ url('/informacion') }}" class="text-footer">Información</a>
+		<a href="{{ url('/informacion') }}" class="text-footer">Información</a> <b style="font-size: 20px;color: #fff;">|</b>
+		<a href="{{ url('/pdf') }}" class="text-footer">Descargar pdf</a>
 	</div>
 
 </div>

@@ -43,6 +43,8 @@
 
 		@yield('tables')
 
+		Por favor seleccione una característica
+
 	</div>
 
 </div>
